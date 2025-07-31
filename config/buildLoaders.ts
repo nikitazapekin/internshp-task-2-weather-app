@@ -5,7 +5,6 @@ export function buildLoaders() {
             exclude: /node_modules/,
             use: [
                 'babel-loader',
-                'ts-loader'
             ]
         },
         {
