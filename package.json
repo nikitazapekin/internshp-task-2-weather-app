@@ -6,7 +6,11 @@
   "scripts": {
     "start": "webpack serve --env mode=development --env port=4000",
     "build:dev": "webpack --env mode=development",
-    "build:prod": "webpack --env mode=production"
+    "build:prod": "webpack --env mode=production",
+    "format": "prettier --write .",
+    "prepare": "husky",
+    "lint": "eslint src/ --max-warnings 0 --no-error-on-unmatched-pattern",
+    "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix --no-cache"
   },
   "keywords": [],
   "author": "",
@@ -15,11 +19,23 @@
     "@babel/core": "^7.23.2",
     "@babel/preset-react": "^7.22.15",
     "@babel/preset-typescript": "^7.23.2",
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
+    "@eslint/eslintrc": "^3.3.1",
+    "@eslint/js": "^9.32.0",
     "@types/node": "^24.1.0",
     "@types/react": "^18.2.25",
     "@types/react-dom": "^18.2.11",
     "@types/webpack": "^5.28.5",
+    "eslint": "^9.32.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-prettier": "^5.5.3",
+    "eslint-plugin-simple-import-sort": "^12.1.1",
     "html-webpack-plugin": "^5.5.3",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.1.2",
+    "prettier": "^3.6.2",
     "ts-loader": "^9.5.2",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.2",
@@ -31,5 +47,11 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "styled-components": "^6.0.8"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
   }
 }
