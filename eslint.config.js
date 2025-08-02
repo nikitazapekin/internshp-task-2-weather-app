@@ -4,6 +4,7 @@ import reactPlugin from "eslint-plugin-react";
 import reactHooks from "eslint-plugin-react-hooks";
 import globals from "globals";
 import js from "@eslint/js";
+import jestPlugin from "eslint-plugin-jest";
 
 export default [
   js.configs.recommended,
@@ -17,6 +18,20 @@ export default [
         ...globals.es2021,
         ...globals.node,
       },
+    },
+  },
+  {
+    files: ["**/*.test.ts", "**/*.test.tsx"],
+    plugins: {
+      jest: jestPlugin,
+    },
+    languageOptions: {
+      globals: {
+        ...jestPlugin.environments.globals.globals,
+      },
+    },
+    rules: {
+      ...jestPlugin.configs.recommended.rules,
     },
   },
   {
