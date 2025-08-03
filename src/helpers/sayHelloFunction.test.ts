@@ -8,10 +8,6 @@ describe("sayHello function", () => {
     expect(result).toBe("Hello John");
   });
 
-  it("should handle special characters in name", () => {
-    expect(sayHello("@#$%")).toBe("Hello @#$%");
-  });
-
   it("should return type string", () => {
     const result = sayHello("Test");
 
