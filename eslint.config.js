@@ -9,7 +9,14 @@ import jestPlugin from "eslint-plugin-jest";
 export default [
   js.configs.recommended,
   {
-    ignores: ["**/node_modules/**", "**/dist/**", "**/.next/**", "**/out/**", "**/*.d.ts"],
+    ignores: [
+      "**/node_modules/**",
+      "**/dist/**",
+      "**/.next/**",
+      "**/out/**",
+      "**/*.d.ts",
+      "cypress.config.ts",
+    ],
   },
   {
     languageOptions: {
