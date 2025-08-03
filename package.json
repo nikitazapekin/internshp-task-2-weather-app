@@ -24,8 +24,6 @@
     "@babel/core": "^7.23.2",
     "@babel/preset-react": "^7.22.15",
     "@babel/preset-typescript": "^7.23.2",
-    "@commitlint/cli": "^19.8.1",
-    "@commitlint/config-conventional": "^19.8.1",
     "@types/jest": "^30.0.0",
     "@types/node": "^24.1.0",
     "@types/react": "^18.2.25",
@@ -47,8 +45,9 @@
     "ts-node": "^10.9.2",
     "typescript": "^5.9.2",
     "webpack": "^5.88.2",
-    "webpack-cli": "^6.0.1",
-    "webpack-dev-server": "^4.15.1"
+    "webpack-dev-server": "^4.15.1",
+    "@commitlint/config-conventional": "^19.8.1",
+    "@commitlint/cli": "^19.8.1"
   },
   "dependencies": {
     "react": "^18.2.0",
