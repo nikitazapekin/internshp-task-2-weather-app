@@ -16,6 +16,7 @@ export default [
       "**/out/**",
       "**/*.d.ts",
       "cypress.config.ts",
+      "**/cypress/**",
     ],
   },
   {
