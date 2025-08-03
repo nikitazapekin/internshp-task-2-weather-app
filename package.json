@@ -15,7 +15,8 @@
     "cypress:run": "cypress run",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
-    "test:all": "npm run test && npm run cypress:run"
+    "test:all": "npm run test && npm run cypress:run",
+    "cypress:coverage": "cypress run --env coverage=true"
   },
   "keywords": [],
   "author": "",
