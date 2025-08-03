@@ -9,23 +9,37 @@
     "moduleResolution": "node",
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "isolatedModules": true,
-
     "baseUrl": ".",
     "paths": {
-      "@components/*": ["./src/components/*"],
-      "@pages/*": ["./src/pages/*"],
-      "@constants/*": ["./src/constants/*"],
-      "@assets/*": ["./src/assets/*"],
-      "@utils/*": ["./src/utils/*"],
-      "@store/*": ["./src/store/*"],
-      "@api/*": ["./src/api/*"]
+      "@components/*": [
+        "./src/components/*"
+      ],
+      "@pages/*": [
+        "./src/pages/*"
+      ],
+      "@constants/*": [
+        "./src/constants/*"
+      ],
+      "@assets/*": [
+        "./src/assets/*"
+      ],
+      "@utils/*": [
+        "./src/utils/*"
+      ],
+      "@store/*": [
+        "./src/store/*"
+      ],
+      "@api/*": [
+        "./src/api/*"
+      ]
     }
   },
   "ts-node": {
     "compilerOptions": {
-      "module": "ESNext"
+      "module": "CommonJS"
     }
   },
-  "types": ["jest", "node"]
+  "exclude": [
+  "./cypress.config.ts",
+  ]
 }
