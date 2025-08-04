@@ -1,11 +1,9 @@
 import { combineReducers } from "redux";
 
-import { authReducer } from "./authReducer";
-import { todoReducer } from "./todoReducer";
+import { elasticSearchReducer } from "./elasticSearchReducer";
 
 const rootReducer = combineReducers({
-  auth: authReducer,
-  todo: todoReducer,
+  elasticSearch: elasticSearchReducer,
 });
 
 export default rootReducer;

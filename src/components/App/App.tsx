@@ -1,25 +1,20 @@
-import { logout } from "@store/actions/authActions";
-import type { RootState } from "@store/index";
-import { fetchTodoRequest } from "@store/selectors/todoActions";
+import { searchElasticQuery } from "@store/actions/elasticSearch";
+import { selectElasticSearch } from "@store/selectors/elasticSearchSelectors";
 import { useDispatch, useSelector } from "react-redux";
 
 export const App = () => {
   const dispatch = useDispatch();
-  const { isAuthenticated, username: currentUser } = useSelector((state: RootState) => state.auth);
+  const query = useSelector(selectElasticSearch);
 
-  const handleLogout = () => {
-    dispatch(logout());
-  };
-  const handleFetchTodo = () => {
-    dispatch(fetchTodoRequest());
+  const handleElasticSearch = () => {
+    dispatch(searchElasticQuery("11"));
   };
 
   return (
     <div>
-      <button onClick={handleLogout}>
-        {currentUser} {isAuthenticated}{" "}
-      </button>
-      <button onClick={handleFetchTodo}>fetch</button>
+      <button onClick={handleElasticSearch}>test</button>
+
+      {query}
     </div>
   );
 };
