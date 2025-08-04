@@ -127,12 +127,12 @@ yarn run test:all
 2. let result;
 3.
 4. switch (a) {
-5.    case 11:
-6.       result = "Is 11";
-7.       break;
+5.   case 11:
+6.     result = "Is 11";
+7.     break;
 8.
-9.    default:
-10.      result = "Not 11";
+9.   default:
+10.    result = "Not 11";
 11. }
 12. //end of file
 ```
@@ -152,7 +152,7 @@ yarn run test:all
 
 ```javascript
 1. function test() {
-2.    console.log("hello world")
+2.   console.log("hello world")
 3. }
 4.
 5. let b=11
@@ -165,7 +165,7 @@ yarn run test:all
 1. let c=11
 2.
 3. function test() {
-4.    console.log("hello world")
+4.   console.log("hello world")
 5. }
 6. //end of file
 ```
