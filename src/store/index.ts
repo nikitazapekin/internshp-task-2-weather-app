@@ -1,8 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage";
+import createSagaMiddleware from "redux-saga";
 
 import rootReducer from "./reducers";
+import rootSaga from "./sagas";
 
 const persistConfig = {
   key: "root",
@@ -10,6 +12,7 @@ const persistConfig = {
   whitelist: ["auth"],
 };
 
+const sagaMiddleware = createSagaMiddleware();
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({
@@ -17,8 +20,10 @@ export const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: false,
-    }),
+    }).concat(sagaMiddleware),
 });
+
+sagaMiddleware.run(rootSaga);
 
 export const persistor = persistStore(store);
 
