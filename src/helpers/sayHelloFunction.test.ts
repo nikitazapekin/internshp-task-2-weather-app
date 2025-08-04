@@ -1,5 +1,6 @@
-import { sayHello } from "./sayHelloFunction";
 import { expect } from "@jest/globals";
+
+import { sayHello } from "./sayHelloFunction";
 
 describe("sayHello function", () => {
   it("should return correct greeting for a given name", () => {

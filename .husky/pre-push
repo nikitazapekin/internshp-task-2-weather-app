@@ -2,8 +2,8 @@
 yarn run test:all
 
 if [ $? -ne 0 ]; then
-  echo "Тесты не прошли"
+  echo "Some test failed"
   exit 1
 fi
-echo "Все тесты прошли успешно."
+echo "Tests were passed successfuly"
 exit 0

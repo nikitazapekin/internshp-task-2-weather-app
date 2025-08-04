@@ -1,10 +1,4 @@
-export interface BuildPaths {
-  entry: string;
-  html: string;
-  public: string;
-  output: string;
-  src: string;
-}
+export type BuildPaths = Record<"entry" | "html" | "public" | "output" | "src", string>;
 
 export type BuildMode = "production" | "development";
 

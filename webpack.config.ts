@@ -1,7 +1,8 @@
 import path from "path";
 import type webpack from "webpack";
+
 import { buildWebpack } from "./config/buildWebpack";
-import type { BuildMode, BuildPaths } from "./config/types/types";
+import type { BuildMode, BuildPaths } from "./config/types";
 
 interface EnvVariables {
   mode?: BuildMode;
@@ -22,7 +23,7 @@ export default (env: EnvVariables) => {
     port: env.port ?? 3000,
     mode: env.mode ?? "development",
     paths,
-    analyzer: env.analyzer,
+    analyzer: env.analyzer ?? false,
   });
 
   return config;

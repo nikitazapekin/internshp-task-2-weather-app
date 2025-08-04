@@ -1,10 +1,11 @@
+import js from "@eslint/js";
 import tsEslint from "@typescript-eslint/eslint-plugin";
 import tsParser from "@typescript-eslint/parser";
+import jestPlugin from "eslint-plugin-jest";
 import reactPlugin from "eslint-plugin-react";
 import reactHooks from "eslint-plugin-react-hooks";
+import simpleImportSort from "eslint-plugin-simple-import-sort";
 import globals from "globals";
-import js from "@eslint/js";
-import jestPlugin from "eslint-plugin-jest";
 
 export default [
   js.configs.recommended,
@@ -18,6 +19,15 @@ export default [
       "cypress.config.ts",
       "**/cypress/**",
     ],
+  },
+  {
+    plugins: {
+      "simple-import-sort": simpleImportSort,
+    },
+    rules: {
+      "simple-import-sort/imports": "error",
+      "simple-import-sort/exports": "error",
+    },
   },
   {
     languageOptions: {
