@@ -1,0 +1,64 @@
+name: CI/CD Pipeline
+on:
+  push:
+    branches: [ develop ]
+  pull_request:
+    branches: [ develop ]
+
+jobs:
+  test-and-build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [ 18.x ]
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+          
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Run lint
+        run: npm run lint
+      
+      - name: Run unit tests
+        run: npm run test
+      
+      - name: Run Cypress tests
+        run: npm run cypress:run
+      
+      - name: Build production
+        run: npm run build:prod
+      
+      - name: Verify build output
+        run: ls -la build
+
+  deploy:
+    needs: test-and-build
+    if: success()
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Use Node.js 18.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+          cache: 'npm'
+          
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Install Vercel CLI
+        run: npm install -g vercel@latest
+      
+      - name: Deploy to Vercel
+        run: vercel --prod --confirm
+        env:
+          VERCEL_API_TOKEN: ${{ env.VERCEL_API_TOKEN }}
+          
