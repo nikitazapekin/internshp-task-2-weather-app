@@ -88,7 +88,7 @@ yarn run test:all
 1. let a = 11
 2. 
 3. let b = 32
-4. let c =22
+4. let c = 22
 5. //end of file
 ```
 
@@ -96,7 +96,7 @@ yarn run test:all
 
 ```javascript
 1. let a = 11
-2. let b=32
+2. let b = 32
 3. //end of file
 ```
 
@@ -104,7 +104,7 @@ yarn run test:all
 
 ```javascript
 1. function test() {
-2.    let b =11
+2.    let b = 11
 3.
 4.    return b
 5. }
@@ -116,7 +116,7 @@ yarn run test:all
 ```javascript
 1. 'use strict'
 2.
-3. let b =11
+3. let b = 11
 4. //end of file
 ```
 
@@ -140,11 +140,11 @@ yarn run test:all
 6. Требуется пустая строка после и перед блочными операторами if, for, while, try, switch. Пример:
 
 ```javascript
-1. let a=11
+1. let a = 11
 2.
 3. if (a) return 11
 4.
-5. let b=11
+5. let b = 11
 6. //end of file
 ```
 
@@ -155,14 +155,14 @@ yarn run test:all
 2.   console.log("hello world")
 3. }
 4.
-5. let b=11
+5. let b = 11
 6. //end of file
 ```
 
 8. Требуется добавлять пустую строку перед объявлением функции. Пример:
 
 ```javascript
-1. let c=11
+1. let c = 11
 2.
 3. function test() {
 4.   console.log("hello world")
@@ -173,7 +173,7 @@ yarn run test:all
 9. Требуется добавлять в конце каждого файла пустую строку. Пример:
 
 ```javascript
-1. let c=11
+1. let c = 11
 2. //end of file
 ```
 
@@ -182,7 +182,7 @@ yarn run test:all
 ```javascript
 1. import "./styles.scss
 2.
-3. let b=11
+3. let b = 11
 4. //end of file
 ```
 
