@@ -1,4 +1,254 @@
+
 # Tестовое задание приложение погоды
+
+## Руководство пользования:
+
+Для начала работы необходимо установить зависимости:
+
+```
+yarn install
+```
+
+Для запуска dev-сервера использовать команду:
+
+```
+yarn run start
+```
+
+Для development-сборки использовать команду:
+
+```
+yarn run build:dev
+```
+
+Для production-сборки использовать команду:
+
+```
+yarn run build:prod
+```
+
+Для автоматического форматирования кода использовать команду:
+
+```
+yarn run format
+```
+
+Для проверки кода на соответствие стайлгайду использовать команду:
+
+```
+yarn run lint
+```
+   
+Для автоматического исправления ошибок стиля использовать команду:
+
+```
+yarn run lint:fix
+```
+
+Для запуска unit-тестов использовать команду:
+
+```
+yarn run test
+```  
+   
+Для запуска тестов с генерацией отчета о покрытии использовать команду:
+
+```
+yarn run test:coverage
+```  
+ 
+Для запуска e2e тестов использовать команду:
+
+```
+yarn run cypress
+``` 
+
+Для запуска всех тестов (unit + e2e) использовать команду:
+
+``` 
+yarn run test:all 
+```
+
+## Правила оформления кода:
+
+1. Требуется пустая строка после объявления переменных const, let, var. Пример:
+
+```javascript
+1. let a = 11
+2.
+3. console.log(a)
+4. //end of file
+```
+
+2. Между const, let, var пустая строка может быть или отсутствовать. Пример:
+
+### Вариант 1:
+
+```javascript
+1. let a = 11
+2. 
+3. let b = 32
+4. let c = 22
+5. //end of file
+```
+
+### Вариант 2:
+
+```javascript
+1. let a = 11
+2. let b = 32
+3. //end of file
+```
+
+3. Требуется добавления пустой строки перед return. Пример:
+
+```javascript
+1. function test() {
+2.    let b = 11
+3.
+4.    return b
+5. }
+6. //end of file
+```
+
+4. Требуется добавления пустой строки после директив по типу 'use strict'. Пример:
+
+```javascript
+1. 'use strict'
+2.
+3. let b = 11
+4. //end of file
+```
+
+5. Требуется добавления пустой строку после case или default в switch. Пример:
+
+```javascript
+1. let a = 11;
+2. let result;
+3.
+4. switch (a) {
+5.   case 11:
+6.     result = "Is 11";
+7.     break;
+8.
+9.   default:
+10.    result = "Not 11";
+11. }
+12. //end of file
+```
+
+6. Требуется пустая строка после и перед блочными операторами if, for, while, try, switch. Пример:
+
+```javascript
+1. let a = 11
+2.
+3. if (a) return 11
+4.
+5. let b = 11
+6. //end of file
+```
+
+7. Требуется добавлять пустую строку после объявления функции function, arrow function. Пример:
+
+```javascript
+1. function test() {
+2.   console.log("hello world")
+3. }
+4.
+5. let b = 11
+6. //end of file
+```
+
+8. Требуется добавлять пустую строку перед объявлением функции. Пример:
+
+```javascript
+1. let c = 11
+2.
+3. function test() {
+4.   console.log("hello world")
+5. }
+6. //end of file
+```
+
+9. Требуется добавлять в конце каждого файла пустую строку. Пример:
+
+```javascript
+1. let c = 11
+2. //end of file
+```
+
+10. Требуется добавлять пустую строку после импортов. Пример:
+
+```javascript
+1. import "./styles.scss
+2.
+3. let b = 11
+4. //end of file
+```
+
+## Соглашение о коммитах 1.0.0:
+
+При создании коммита необходимо указать тип коммита.
+В скобках после типа указать ключевое изменение. 
+После скобок с типом указывается двоеточие, после которого идет кратное описание изменения с заглавной буквы. 
+
+Основные типы:
+
+1. fix(issue): – исправление бага 
+
+2. feat(feature): – новая функциональность 
+
+3. build(config): – изменения, связанные со сборкой (например, Webpack, Rollup)
+
+4. chore(task): – рутинные задачи, не влияющие на код (обновление зависимостей, настройка CI)
+
+5. ci(config): – изменения в CI-конфигурации (GitHub Actions, Travis)
+
+6. docs(readme): – обновление документации
+
+7. style(format): – исправление форматирования (пробелы, запятые) без изменения логики
+
+8. refactor(function): – изменения кода без исправления багов или добавления функциональности
+
+9. perf(cache): – изменения, улучшающие производительность
+
+10. test(jest): – добавление или исправление тестов
+
+#### Пример использования соглашения коммиторв:
+
+1. fix(parser): Handle null values in parse()
+
+2. chore(deps): Update lodash to v5
+
+3. feat(feature): Add form validation
+
+3. build(config): Add ts-loader
+
+4. chore(task): Remove code smell 
+
+5. ci(config): Run cypress tests
+
+6. docs(readme): Add styleguide description
+
+7. style(format): Format index.js file
+
+8. refactor(function): Move handleValidate function to helpers folder
+
+9. perf(cache): Add useCallback to handleValidate function
+
+10. test(jest): – Add tests for handleValidate function
+
+## Цветовая система приложения:
+
+Цветовая система
+
+- $black - #000;
+
+- $blue - #122e65;
+
+- $gray - #d9d9d933";
+
+- $white - #fff;
 
 ## Содержание
 
@@ -117,3 +367,6 @@ Will be soon...
 [Eslint](https://eslint.org/docs/user-guide/configuring)
 
 [Babel](https://babeljs.io/docs/en/configuration)
+
+
+

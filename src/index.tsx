@@ -1,5 +1,8 @@
 import { App } from "@components/App/App";
 import { createRoot } from "react-dom/client";
+import { ThemeProvider } from "styled-components";
+
+import { theme } from "./constants/";
 
 const root = document.getElementById("root");
 
@@ -9,4 +12,8 @@ if (!root) {
 
 const container = createRoot(root);
 
-container.render(<App />);
+container.render(
+  <ThemeProvider theme={theme}>
+    <App />
+  </ThemeProvider>
+);

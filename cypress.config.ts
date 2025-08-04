@@ -1,7 +1,7 @@
 import { defineConfig } from "cypress";
 
 export default defineConfig({
-  video: true,
+  video: false,
   port: 4001,
   chromeWebSecurity: false,
   e2e: {

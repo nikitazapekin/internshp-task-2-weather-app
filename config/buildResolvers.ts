@@ -13,6 +13,7 @@ export function buildResolvers() {
       "@utils": path.resolve(__dirname, "src/utils"),
       "@store": path.resolve(__dirname, "src/store"),
       "@api": path.resolve(__dirname, "src/api"),
+      "@types": path.resolve(__dirname, "src/types"),
     },
   };
 }

@@ -3,15 +3,14 @@ import "styled-components";
 declare module "styled-components" {
   export interface DefaultTheme {
     container: number;
-    largeContainer: number;
-    sizes: Record<string, string>;
+    deviceHeight: string;
     colors: {
       black: string;
       blue: string;
       gray: string;
       white: string;
     };
-    fonts: {
+    fontFamilies: {
       primary: string;
       secondary: string;
     };
@@ -22,15 +21,9 @@ declare module "styled-components" {
       sm: string;
       xs: string;
       xxs: string;
-      small: string;
-      medium: string;
-      large: string;
-      xlarge: string;
     };
     fontWeights: {
-      light: number;
       regular: number;
-      bold: number;
     };
     media: {
       xxl: string;
@@ -39,6 +32,5 @@ declare module "styled-components" {
       md: string;
       sm: string;
     };
-    deviceHeight: string;
   }
 }

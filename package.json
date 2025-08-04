@@ -16,8 +16,7 @@
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "test:all": "npm run test && npm run cypress:run",
-    "cypress:coverage": "cypress run --env coverage=true",
-    "vercel-build": "npm run build:prod"
+    "cypress:coverage": "cypress run --env coverage=true"
   },
   "keywords": [],
   "author": "",
@@ -49,7 +48,6 @@
     "ts-loader": "^9.5.2",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.2",
-    "wait-on": "^8.0.4",
     "webpack": "^5.88.2",
     "webpack-cli": "^6.0.1",
     "webpack-dev-server": "^4.15.1"
