@@ -1,3 +1,3 @@
-import type { RootState } from "../index";
+import type { RootState } from "../";
 
 export const selectElasticSearch = (state: RootState) => state.elasticSearch.query;

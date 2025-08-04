@@ -1,30 +1,34 @@
 import { createReducer } from "@reduxjs/toolkit";
-import { fetchTodoFailure, fetchTodoRequest, fetchTodoSuccess } from "@store/selectors/todoActions";
+import {
+  fetchWeatherFailure,
+  fetchWeatherRequest,
+  fetchWeatherSuccess,
+} from "@store/selectors/weatherSelectors";
 
-interface TodoState {
+interface WeatherState {
   loading: boolean;
   error: string | null;
   title: string | null;
 }
 
-const initialState: TodoState = {
+const initialState: WeatherState = {
   loading: false,
   error: null,
   title: null,
 };
 
-export const todoReducer = createReducer(initialState, (builder) => {
+export const weatherReducer = createReducer(initialState, (builder) => {
   builder
-    .addCase(fetchTodoRequest, (state) => {
+    .addCase(fetchWeatherRequest, (state) => {
       console.log(2, state.title);
       state.loading = true;
       state.error = null;
     })
-    .addCase(fetchTodoSuccess, (state, action) => {
+    .addCase(fetchWeatherSuccess, (state, action) => {
       state.loading = false;
       state.title = action.payload.title;
     })
-    .addCase(fetchTodoFailure, (state, action) => {
+    .addCase(fetchWeatherFailure, (state, action) => {
       state.loading = false;
       state.error = action.payload;
     });
