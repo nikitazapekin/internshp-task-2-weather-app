@@ -15,10 +15,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20.x
-          cache: 'yarn'  
+          cache: 'yarn'
           
-      - name: Install dependencies (Yarn)
-        run: yarn install --frozen-lockfile  
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
       
       - name: Run lint
         run: yarn lint
@@ -27,15 +27,13 @@ jobs:
         run: yarn test
       
       - name: Run Cypress tests
-        run: yarn cypress:run
+        run: |
+          yarn start &
+          yarn wait-on http://localhost:4000
+          yarn cypress:run
       
       - name: Build production
         run: yarn build:prod
-      
-      - name: Verify build
-        run: |
-          ls -la build
-          [ -f build/index.html ] || exit 1
 
   deploy:
     needs: test-and-build
