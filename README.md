@@ -1,4 +1,304 @@
+
 # Tестовое задание приложение погоды
+
+## Руководство пользования:
+
+Для начала работы необходимо установить пакетный менеджер:
+
+```
+npm install 
+//or 
+yarn install
+```
+
+Для запуска приложения необходимо запустить команду:
+
+```
+npm run start
+//or 
+yarn run start 
+```
+
+Для production-сборки использовать команду:
+
+```
+npm run build:dev
+//or 
+yarn run build:dev
+```
+
+Для development-сборки использовать команду:
+
+```
+npm run build:prod
+//or 
+yarn run build:prod
+```
+
+Для форматирования проекта (добавление отступов, пустых строк между блоками кода) использовать команду:
+
+```
+npm run format
+//or 
+yarn run format
+```
+
+Для просмотра соответствия кода стайлгайду (получение ошибок и предупреждений) использовать команду:
+
+```
+npm run lint
+//or 
+yarn run lint
+```
+   
+Для добавления пробелов между блоками кода согласно стайлгайду использовать команду:
+
+```
+npm run lint:fix
+//or 
+yarn run lint:fix
+```
+
+Для запуска тестов использовать команду:
+
+```
+npm run test
+//or 
+yarn run test
+```  
+   
+Для запуска тестов c отображением тестового покрытия использовать команду:
+
+```
+npm run test:coverage
+//or 
+yarn run test:coverage
+```  
+ 
+Для запуска e2e тестов использовать команду:
+
+```
+npm run test:cypress
+//or 
+yarn run test:cypress
+``` 
+
+## Правила оформления кода:
+
+1. Требуется пустая строка после объявления переменных const, let, var. Пример:
+
+```javascript
+1. let a = 11
+2.
+3. console.log(a)
+```
+
+2. Между const, let, var пустая строка может быть или отсутствовать. Пример:
+
+### Вариант 1:
+
+```javascript
+1. let a = 11
+2. 
+3. let b = 32
+4. let c =22
+```
+
+### Вариант 2:
+
+```javascript
+1. let a = 11
+2. let b=32
+```
+
+3. Требуется добавления пустой строки перед return. Пример:
+
+```javascript
+1. function test() {
+2.    let b =11
+3.
+4.    return b
+5.    }
+```
+
+4. Требуется добавления пустой строки после директив по типу 'use strict'. Пример:
+
+```javascript
+1. 'use strict'
+2.
+3.  let b =11
+```
+
+5. Требуется добавления пустой строку после case или default в switch. Пример:
+
+```javascript
+1. let a = 11;
+2. let result;
+3.
+4. switch (a) {
+5.     case 11:
+6.         result = "Is 11";
+7.         break;
+8.
+9.     default:
+10.         result = "Not 11";
+11. }
+```
+
+6. Требуется пустая строка после и перед блочными операторами if, for, while, try, switch. Пример:
+
+```javascript
+1. let a=11
+2.
+3. if (a) return 11
+4.
+5. let b=11
+```
+
+7. Требуется добавлять пустую строку после объявления функции function, arrow function. Пример:
+
+```javascript
+1. function test() {
+2.   console.log("hello world")
+3. }
+4.
+5. let b=11
+```
+
+8. Требуется добавлять пустую строку перед объявлением функции. Пример:
+
+```javascript
+1. let c=11
+2.
+3. function test() {
+4.   console.log("hello world")
+5. }
+```
+
+9. Требуется добавлять в конце каждого файла пустую строку. Пример:
+
+```javascript
+1.  let c=11
+2.  //end of file
+```
+
+10. Требуется добавлять пустую строку после импортов. Пример:
+
+```javascript
+1. import "./styles.scss
+2.
+3. let b=11
+```
+
+## Соглашение о коммитах 1.0.0:
+
+При создании коммита необходимо указать тип коммита.
+В скобках после типа указать ключевое изменение. 
+После скобок с типом указывается двоеточие, после которого идет кратное описание изменения с заглавной буквы. 
+
+Основные типы:
+
+1. fix(issue): – исправление бага 
+
+2. feat(feature): – новая функциональность 
+
+3. build(config): – изменения, связанные со сборкой (например, Webpack, Rollup)
+
+4. chore(task): – рутинные задачи, не влияющие на код (обновление зависимостей, настройка CI)
+
+5. ci(config): – изменения в CI-конфигурации (GitHub Actions, Travis)
+
+6. docs(readme): – обновление документации
+
+7. style(format): – исправление форматирования (пробелы, запятые) без изменения логики
+
+8. refactor(function): – изменения кода без исправления багов или добавления функциональности
+
+9. perf(cache): – изменения, улучшающие производительность
+
+10. test(jest): – добавление или исправление тестов
+
+#### Пример использования соглашения коммиторв:
+
+1. fix(parser): Handle null values in parse()
+
+2. chore(deps): Update lodash to v5
+
+3. feat(feature): Add form validation
+
+3. build(config): Add ts-loader
+
+4. chore(task): Remove code smell 
+
+5. ci(config): Run cypress tests
+
+6. docs(readme): Add styleguide description
+
+7. style(format): Format index.js file
+
+8. refactor(function): Move handleValidate function to helpers folder
+
+9. perf(cache): Add useCallback to handleValidate function
+
+10. test(jest): – Add tests for handleValidate function
+
+## Объявления переменных стилей:
+
+Цветовая система
+
+Объявление переменных стилей
+
+- $black - #000;
+
+- $blue - #122e65;
+
+- $gray - rgba(217, 217, 217, 0.2);
+
+- $white - #fff;
+
+### Типографика ($font-\*):
+
+Шрифты:
+
+- $font-primary – основной шрифт (Inter)
+
+- $font-secondary – дополнительный шрифт (sans-serif)
+
+Размеры ($font-size-\*):
+
+- $font-size-xl – 41px;
+
+- $font-size-lg – 30px;
+
+- $font-size-md – 27px;
+
+- $font-size-sm – 22px;
+
+- $font-size-xs – 20px;
+
+- $font-size-xxs – 18px;
+
+Насыщенность ($font-weight-\*):
+
+- regular (400)
+
+### Медиазапросы ($media-\*):
+
+- $media-xxl – экраны > 1700px
+
+- $media-xl – 1280px
+
+- $media-lg – 1024px
+
+- $media-md – 768px
+
+- $media-sm – 480px
+
+### Лейаут ($container, $deviceHeight):
+
+- $container: 1187px – ширина контейнера
+
+- $deviceHeight: 100vh – полная высота экрана
 
 ## Содержание
 
@@ -117,3 +417,6 @@ Will be soon...
 [Eslint](https://eslint.org/docs/user-guide/configuring)
 
 [Babel](https://babeljs.io/docs/en/configuration)
+
+
+
