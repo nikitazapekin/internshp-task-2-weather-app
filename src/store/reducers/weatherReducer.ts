@@ -20,7 +20,6 @@ const initialState: WeatherState = {
 export const weatherReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(fetchWeatherRequest, (state) => {
-      console.log(2, state.title);
       state.loading = true;
       state.error = null;
     })
