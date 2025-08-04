@@ -6,88 +6,66 @@
 Для начала работы необходимо установить зависимости:
 
 ```
-npm install
-//or
 yarn install
 ```
 
 Для запуска dev-сервера использовать команду:
 
 ```
-npm run start
-//or
 yarn run start
 ```
 
 Для development-сборки использовать команду:
 
 ```
-npm run build:dev
-//or
 yarn run build:dev
 ```
 
 Для production-сборки использовать команду:
 
 ```
-npm run build:prod
-//or
 yarn run build:prod
 ```
 
 Для автоматического форматирования кода использовать команду:
 
 ```
-npm run format
-//or
 yarn run format
 ```
 
 Для проверки кода на соответствие стайлгайду использовать команду:
 
 ```
-npm run lint
-//or
 yarn run lint
 ```
    
 Для автоматического исправления ошибок стиля использовать команду:
 
 ```
-npm run lint:fix
-//or
 yarn run lint:fix
 ```
 
 Для запуска unit-тестов использовать команду:
 
 ```
-npm run test
-//or
 yarn run test
 ```  
    
 Для запуска тестов с генерацией отчета о покрытии использовать команду:
 
 ```
-npm run test:coverage
-//or
 yarn run test:coverage
 ```  
  
 Для запуска e2e тестов использовать команду:
 
 ```
-npm run cypress
-//or
 yarn run cypress
 ``` 
 
 Для запуска всех тестов (unit + e2e) использовать команду:
 
 ``` 
-npm run test:all
-//or
 yarn run test:all 
 ```
 
@@ -99,6 +77,7 @@ yarn run test:all
 1. let a = 11
 2.
 3. console.log(a)
+4. //end of file
 ```
 
 2. Между const, let, var пустая строка может быть или отсутствовать. Пример:
@@ -110,6 +89,7 @@ yarn run test:all
 2. 
 3. let b = 32
 4. let c =22
+5. //end of file
 ```
 
 ### Вариант 2:
@@ -117,6 +97,7 @@ yarn run test:all
 ```javascript
 1. let a = 11
 2. let b=32
+3. //end of file
 ```
 
 3. Требуется добавления пустой строки перед return. Пример:
@@ -126,7 +107,8 @@ yarn run test:all
 2.    let b =11
 3.
 4.    return b
-5.    }
+5. }
+6. //end of file
 ```
 
 4. Требуется добавления пустой строки после директив по типу 'use strict'. Пример:
@@ -134,7 +116,8 @@ yarn run test:all
 ```javascript
 1. 'use strict'
 2.
-3.  let b =11
+3. let b =11
+4. //end of file
 ```
 
 5. Требуется добавления пустой строку после case или default в switch. Пример:
@@ -144,13 +127,14 @@ yarn run test:all
 2. let result;
 3.
 4. switch (a) {
-5.     case 11:
-6.         result = "Is 11";
-7.         break;
+5.    case 11:
+6.       result = "Is 11";
+7.       break;
 8.
-9.     default:
-10.         result = "Not 11";
+9.    default:
+10.      result = "Not 11";
 11. }
+12. //end of file
 ```
 
 6. Требуется пустая строка после и перед блочными операторами if, for, while, try, switch. Пример:
@@ -161,16 +145,18 @@ yarn run test:all
 3. if (a) return 11
 4.
 5. let b=11
+6. //end of file
 ```
 
 7. Требуется добавлять пустую строку после объявления функции function, arrow function. Пример:
 
 ```javascript
 1. function test() {
-2.   console.log("hello world")
+2.    console.log("hello world")
 3. }
 4.
 5. let b=11
+6. //end of file
 ```
 
 8. Требуется добавлять пустую строку перед объявлением функции. Пример:
@@ -179,15 +165,16 @@ yarn run test:all
 1. let c=11
 2.
 3. function test() {
-4.   console.log("hello world")
+4.    console.log("hello world")
 5. }
+6. //end of file
 ```
 
 9. Требуется добавлять в конце каждого файла пустую строку. Пример:
 
 ```javascript
-1.  let c=11
-2.  //end of file
+1. let c=11
+2. //end of file
 ```
 
 10. Требуется добавлять пустую строку после импортов. Пример:
@@ -196,6 +183,7 @@ yarn run test:all
 1. import "./styles.scss
 2.
 3. let b=11
+4. //end of file
 ```
 
 ## Соглашение о коммитах 1.0.0:
@@ -250,63 +238,17 @@ yarn run test:all
 
 10. test(jest): – Add tests for handleValidate function
 
-## Объявления переменных стилей:
+## Цветовая система приложения:
 
 Цветовая система
-
-Объявление переменных стилей
 
 - $black - #000;
 
 - $blue - #122e65;
 
-- $gray - rgba(217, 217, 217, 0.2);
+- $gray - #d9d9d933";
 
 - $white - #fff;
-
-### Типографика ($font-\*):
-
-Шрифты:
-
-- $font-primary – основной шрифт (Inter)
-
-- $font-secondary – дополнительный шрифт (sans-serif)
-
-Размеры ($font-size-\*):
-
-- $font-size-xl – 41px;
-
-- $font-size-lg – 30px;
-
-- $font-size-md – 27px;
-
-- $font-size-sm – 22px;
-
-- $font-size-xs – 20px;
-
-- $font-size-xxs – 18px;
-
-Насыщенность ($font-weight-\*):
-
-- regular (400)
-
-### Медиазапросы ($media-\*):
-
-- $media-xxl – экраны > 1700px
-
-- $media-xl – 1280px
-
-- $media-lg – 1024px
-
-- $media-md – 768px
-
-- $media-sm – 480px
-
-### Лейаут ($container, $deviceHeight):
-
-- $container: 1187px – ширина контейнера
-
-- $deviceHeight: 100vh – полная высота экрана
 
 ## Содержание
 

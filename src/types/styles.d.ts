@@ -3,7 +3,6 @@ import "styled-components";
 declare module "styled-components" {
   export interface DefaultTheme {
     container: number;
-    largeContainer: number;
     deviceHeight: string;
     colors: {
       black: string;
