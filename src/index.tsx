@@ -1,4 +1,5 @@
 import { App } from "@components/App/App";
+import ErrorBoundary from "@components/ErrorBoundary";
 import { createRoot } from "react-dom/client";
 import { ThemeProvider } from "styled-components";
 
@@ -13,7 +14,9 @@ if (!root) {
 const container = createRoot(root);
 
 container.render(
-  <ThemeProvider theme={theme}>
-    <App />
-  </ThemeProvider>
+  <ErrorBoundary>
+    <ThemeProvider theme={theme}>
+      <App />
+    </ThemeProvider>
+  </ErrorBoundary>
 );
