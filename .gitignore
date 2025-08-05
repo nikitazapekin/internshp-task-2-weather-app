@@ -17,8 +17,6 @@ node_modules/
 .env.production
 .env*.local
 
-yarn.lock
-package-lock.json
 coverage
 
 /dist/
