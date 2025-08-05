@@ -13,9 +13,16 @@
     {
       "files": ["*.styled.ts", "*.styles.ts"],
       "options": {
-        "bracketSameLine": false,
+        "parser": "typescript",
         "embeddedLanguageFormatting": "auto",
-        "parser": "typescript"
+        "bracketSameLine": false,
+        "templateLiterals": {
+          "indent": 2,
+          "padding": {
+            "before": 1,
+            "after": 1
+          }
+        }
       }
     }
   ]
