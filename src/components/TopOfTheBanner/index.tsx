@@ -1,34 +1,11 @@
 import Button from "@components/Button";
+import { UI_CONSTANTS } from "@constants";
+import { getCurrentTime } from "@utils/helpers/getCurrentTime/getCurrentTime";
 
 import { SearchInput, SearchWrapper, Time, TopWrapper } from "./styled";
 
 const TopOfTheBanner = () => {
-  const currentTime = new Date();
-  const timeString = currentTime.toLocaleTimeString("en-US", {
-    hour: "numeric",
-    minute: "2-digit",
-    hour12: true,
-  });
-  const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-  const months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
-  const dayName = days[currentTime.getDay()];
-  const day = currentTime.getDate();
-  const month = months[currentTime.getMonth()];
-  const year = currentTime.getFullYear();
-  const dateString = `${dayName}, ${day} ${month} ${year}`;
+  const { timeString, dateString } = getCurrentTime();
 
   return (
     <TopWrapper>
@@ -37,8 +14,8 @@ const TopOfTheBanner = () => {
         {dateString}
       </Time>
       <SearchWrapper>
-        <SearchInput value="33" />
-        <Button text="Search" />
+        <SearchInput />
+        <Button text={UI_CONSTANTS.buttons.searchButton} />
       </SearchWrapper>
     </TopWrapper>
   );

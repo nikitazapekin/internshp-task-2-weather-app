@@ -12,4 +12,8 @@ export const ButtonElement = styled.button`
   font-size: ${({ theme }) => theme.fontSizes.md};
   font-family:
     ${({ theme }) => theme.fontFamilies.primary}, ${({ theme }) => theme.fontFamilies.secondary};
+  transition: 0.4s ease-in-out;
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.blue};
+  }
 `;
