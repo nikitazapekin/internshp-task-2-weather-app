@@ -20,7 +20,8 @@
       "@api/*": ["./src/api/*"],
       "@types/*": ["./src/types/*"],
       "@constants": ["./src/constants"],
-      "@styles/*": ["src/styles/*"]
+      "@styles/*": ["src/styles/*"],
+       "@styles": ["src/styles"]
     }
   },
   "ts-node": {

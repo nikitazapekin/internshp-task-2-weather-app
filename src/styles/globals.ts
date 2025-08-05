@@ -10,7 +10,7 @@ export const GlobalStyle = createGlobalStyle`
     scroll-behavior: smooth;
   }
   body {
-   font-family:
-    ${({ theme }) => theme.fontFamilies.primary}, ${({ theme }) => theme.fontFamilies.secondary};
+    font-family:
+     ${({ theme }) => theme.fontFamilies.primary}, ${({ theme }) => theme.fontFamilies.secondary};
 }
 `;
