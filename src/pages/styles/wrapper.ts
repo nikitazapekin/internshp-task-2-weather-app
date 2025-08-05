@@ -15,4 +15,6 @@ export const WrapperContainer = styled.main`
   width: 100%;
   flex-direction: column;
   min-height: 100vh;
+  align-items: center;
+  justify-content: center;
 `;
