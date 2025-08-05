@@ -1,4 +1,4 @@
-import { App } from "@components/App/App";
+import WeekWeatherPage from "@pages/weekWeatherPage";
 import { createRoot } from "react-dom/client";
 import { ThemeProvider } from "styled-components";
 
@@ -14,6 +14,6 @@ const container = createRoot(root);
 
 container.render(
   <ThemeProvider theme={theme}>
-    <App />
+    <WeekWeatherPage />
   </ThemeProvider>
 );
