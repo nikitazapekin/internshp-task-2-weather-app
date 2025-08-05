@@ -1,3 +1,3 @@
 export const App = () => {
-  return <div style={{ color: "yellow" }}>Hello world!</div>;
+  return <div style={{ color: "blue" }}>Hello world!</div>;
 };
