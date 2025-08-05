@@ -1,13 +1,12 @@
-import type { AxiosResponse } from "axios";
-import axios from "axios";
-import type { SagaIterator } from "redux-saga";
-import { call, put, takeLatest } from "redux-saga/effects";
-
+import WeatherService from "@api/weatherService";
 import {
   fetchWeatherFailure,
   fetchWeatherRequest,
   fetchWeatherSuccess,
-} from "../actions/weatherActions";
+} from "@store/actions/weatherActions";
+import type { AxiosResponse } from "axios";
+import type { SagaIterator } from "redux-saga";
+import { call, put, takeLatest } from "redux-saga/effects";
 
 interface WeatherResponse {
   userId: number;
@@ -18,10 +17,7 @@ interface WeatherResponse {
 
 function* fetchWeather(): SagaIterator {
   try {
-    const response: AxiosResponse<WeatherResponse> = yield call(
-      axios.get,
-      "https://jsonplaceholder.typicode.com/todos/1"
-    );
+    const response: AxiosResponse<WeatherResponse> = yield call(WeatherService.getWeatherForWeek);
 
     yield put(fetchWeatherSuccess({ title: response.data.title }));
   } catch (error: unknown) {
