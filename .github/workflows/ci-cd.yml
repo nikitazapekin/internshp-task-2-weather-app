@@ -1,9 +1,9 @@
 name: CI/CD Pipeline
 on:
   push:
-    branches: [feature/ci-cd-and-deployment]
+    branches: [develop]
   pull_request:
-    branches: [feature/ci-cd-and-deployment]
+    branches: [develop]
 
 jobs:
   test-and-build:
