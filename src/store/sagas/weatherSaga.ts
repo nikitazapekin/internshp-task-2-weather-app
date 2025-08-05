@@ -1,5 +1,5 @@
 import WeatherService from "@api/weatherService";
-import type { WeatherResponseType } from "@interfaces/WeatherResponseType";
+import type { WeatherResponseType } from "@interfaces/weatherResponseType";
 import {
   fetchWeatherFailure,
   fetchWeatherRequest,

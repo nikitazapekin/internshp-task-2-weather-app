@@ -1,4 +1,4 @@
-import type { WeatherResponseType } from "@interfaces/WeatherResponseType";
+import type { WeatherResponseType } from "@interfaces/weatherResponseType";
 import type { AxiosResponse } from "axios";
 
 import $api from ".";
