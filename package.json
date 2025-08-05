@@ -16,7 +16,8 @@
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "test:all": "npm run test && npm run cypress:run",
-    "cypress:coverage": "cypress run --env coverage=true"
+    "cypress:coverage": "cypress run --env coverage=true",
+    "vercel-build": "npm run build:prod"
   },
   "keywords": [],
   "author": "",
