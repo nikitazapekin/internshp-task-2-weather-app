@@ -14,6 +14,7 @@ export function buildResolvers() {
       "@store": path.resolve(__dirname, "src/store"),
       "@api": path.resolve(__dirname, "src/api"),
       "@types": path.resolve(__dirname, "src/types"),
+      "@styles": path.resolve(__dirname, "src/styles"),
     },
   };
 }

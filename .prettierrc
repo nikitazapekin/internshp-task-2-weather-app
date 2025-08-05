@@ -10,11 +10,7 @@
   "endOfLine": "lf",
   "overrides": [
     {
-      "files": [
-        "*.js",
-        "*.ts",
-        "*.tsx"
-      ],
+      "files": ["*.js", "*.ts", "*.tsx"],
       "options": {
         "insertPragma": false,
         "requirePragma": false

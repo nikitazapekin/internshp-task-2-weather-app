@@ -11,32 +11,16 @@
     "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
     "paths": {
-      "@components/*": [
-        "./src/components/*"
-      ],
-      "@pages/*": [
-        "./src/pages/*"
-      ],
-      "@constants/*": [
-        "./src/constants/*"
-      ],
-      "@assets/*": [
-        "./src/assets/*"
-      ],
-      "@utils/*": [
-        "./src/utils/*"
-      ],
-      "@store/*": [
-        "./src/store/*"
-      ],
-      "@api/*": [
-        "./src/api/*"
-      ],
-      "@types/*": [
-        "./src/types/*"
-      ],
-      "@constants": ["./src/constants"] 
-
+      "@components/*": ["./src/components/*"],
+      "@pages/*": ["./src/pages/*"],
+      "@constants/*": ["./src/constants/*"],
+      "@assets/*": ["./src/assets/*"],
+      "@utils/*": ["./src/utils/*"],
+      "@store/*": ["./src/store/*"],
+      "@api/*": ["./src/api/*"],
+      "@types/*": ["./src/types/*"],
+      "@constants": ["./src/constants"],
+      "@styles": ["src/styles"]
     }
   },
   "ts-node": {
@@ -44,7 +28,5 @@
       "module": "CommonJS"
     }
   },
-  "exclude": [
-  "./cypress.config.ts",
-  ]
+  "exclude": ["./cypress.config.ts"]
 }

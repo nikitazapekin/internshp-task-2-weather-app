@@ -23,10 +23,10 @@ export const theme = {
     regular: 400,
   },
   media: {
-    xxl: "(max-width: 1400px)",
-    xl: "(max-width: 1280px)",
-    lg: "(max-width: 1024px)",
-    md: "(max-width: 768px)",
-    sm: "(max-width: 480px)",
+    xxl: 1400,
+    xl: 1280,
+    lg: 1024,
+    md: 768,
+    sm: 480,
   },
 };

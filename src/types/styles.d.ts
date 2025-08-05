@@ -26,11 +26,11 @@ declare module "styled-components" {
       regular: number;
     };
     media: {
-      xxl: string;
-      xl: string;
-      lg: string;
-      md: string;
-      sm: string;
+      xxl: number;
+      xl: number;
+      lg: number;
+      md: number;
+      sm: number;
     };
   }
 }

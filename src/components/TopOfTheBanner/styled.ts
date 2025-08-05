@@ -1,9 +1,18 @@
 import styled from "styled-components";
 
+import { media } from "../../styles/breakpoints";
+
 export const TopWrapper = styled.section`
   width: 100%;
   display: flex;
   justify-content: space-between;
+
+  ${media.lg`
+flex-direction: column;
+align-items: center;
+row-gap: 48.74px;
+ 
+  `}
 `;
 
 export const Time = styled.h1`
@@ -12,6 +21,11 @@ export const Time = styled.h1`
   font-size: ${({ theme }) => theme.fontSizes.xl};
   font-family:
     ${({ theme }) => theme.fontFamilies.primary}, ${({ theme }) => theme.fontFamilies.secondary};
+  ${media.lg`
+text-align: center;
+ font-size: ${({ theme }) => theme.fontSizes.lg};
+ 
+  `}
 `;
 
 export const SearchWrapper = styled.div`
@@ -19,6 +33,10 @@ export const SearchWrapper = styled.div`
   flex-direction: column;
   row-gap: 17px;
   align-items: center;
+  ${media.lg`
+flex-direction: row;
+column-gap: 28px;
+  `}
 `;
 
 export const SearchInput = styled.input`
@@ -35,4 +53,8 @@ export const SearchInput = styled.input`
   color: ${({ theme }) => theme.colors.black};
   font-family:
     ${({ theme }) => theme.fontFamilies.primary}, ${({ theme }) => theme.fontFamilies.secondary};
+
+  ${media.lg`
+max-width: 173px;
+          `}
 `;

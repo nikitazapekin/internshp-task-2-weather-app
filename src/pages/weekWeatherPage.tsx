@@ -1,8 +1,8 @@
 import Banner from "@components/Banner";
 
-import { GlobalStyle } from "../styled/globals";
-import { Reset } from "../styled/reset";
-import { PageWrapper, WrapperContainer } from "../styled/wrapper";
+import { GlobalStyle } from "../styles/globals";
+import { Reset } from "../styles/reset";
+import { PageWrapper, WrapperContainer } from "../styles/wrapper";
 
 const WeekWeatherPage = () => {
   return (
