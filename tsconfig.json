@@ -32,8 +32,8 @@
       "@api/*": [
         "./src/api/*"
       ],
-      "@types/*": [
-        "./src/types/*"
+      "@interfaces/*": [
+        "src/interfaces/*"
       ]
     }
   },
@@ -43,6 +43,6 @@
     }
   },
   "exclude": [
-  "./cypress.config.ts",
+    "./cypress.config.ts",
   ]
 }

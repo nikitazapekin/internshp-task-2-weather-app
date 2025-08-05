@@ -1,9 +1,10 @@
-import { App } from "@components/App/App";
-import ErrorBoundary from "@components/ErrorBoundary";
 import { createRoot } from "react-dom/client";
+import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
 import { ThemeProvider } from "styled-components";
 
 import { theme } from "./constants/";
+import { persistor, store } from "./store";
 
 const root = document.getElementById("root");
 
@@ -14,9 +15,9 @@ if (!root) {
 const container = createRoot(root);
 
 container.render(
-  <ErrorBoundary>
-    <ThemeProvider theme={theme}>
-      <App />
-    </ThemeProvider>
-  </ErrorBoundary>
+  <Provider store={store}>
+    <PersistGate persistor={persistor}>
+      <ThemeProvider theme={theme}></ThemeProvider>
+    </PersistGate>
+  </Provider>
 );
