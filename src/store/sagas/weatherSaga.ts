@@ -1,4 +1,5 @@
 import WeatherService from "@api/weatherService";
+import type { WeatherResponseType } from "@interfaces/WeatherResponseType";
 import {
   fetchWeatherFailure,
   fetchWeatherRequest,
@@ -8,16 +9,11 @@ import type { AxiosResponse } from "axios";
 import type { SagaIterator } from "redux-saga";
 import { call, put, takeLatest } from "redux-saga/effects";
 
-interface WeatherResponse {
-  userId: number;
-  id: number;
-  title: string;
-  completed: boolean;
-}
-
 function* fetchWeather(): SagaIterator {
   try {
-    const response: AxiosResponse<WeatherResponse> = yield call(WeatherService.getWeatherForWeek);
+    const response: AxiosResponse<WeatherResponseType> = yield call(
+      WeatherService.getWeatherForWeek
+    );
 
     yield put(fetchWeatherSuccess({ title: response.data.title }));
   } catch (error: unknown) {
