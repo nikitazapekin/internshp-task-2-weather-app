@@ -24,6 +24,10 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
         return this.props.fallback;
       }
 
+      if (!this.state.error) {
+        return <ErrorText>An unknown error occurred</ErrorText>;
+      }
+
       return <ErrorText>{this.state.error.message}</ErrorText>;
     }
 
