@@ -3,7 +3,7 @@ import {
   fetchWeatherFailure,
   fetchWeatherRequest,
   fetchWeatherSuccess,
-} from "@store/selectors/weatherSelectors";
+} from "@store/actions/weatherActions";
 
 interface WeatherState {
   loading: boolean;

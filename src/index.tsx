@@ -1,4 +1,3 @@
-import { App } from "@components/App/App";
 import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
@@ -18,9 +17,7 @@ const container = createRoot(root);
 container.render(
   <Provider store={store}>
     <PersistGate persistor={persistor}>
-      <ThemeProvider theme={theme}>
-        <App />
-      </ThemeProvider>
+      <ThemeProvider theme={theme}></ThemeProvider>
     </PersistGate>
   </Provider>
 );
