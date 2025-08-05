@@ -18,10 +18,10 @@ export const Time = styled.h1`
   color: ${({ theme }) => theme.colors.black};
   font-weight: ${({ theme }) => theme.fontWeights.regular};
   font-size: ${({ theme }) => theme.fontSizes.xl};
+
   ${media.lg`
-text-align: center;
- font-size: ${({ theme }) => theme.fontSizes.lg};
- 
+    text-align: center;
+    font-size: ${({ theme }) => theme.fontSizes.lg};
   `}
 `;
 
@@ -30,8 +30,8 @@ export const SearchWrapper = styled.div`
   flex-direction: column;
   row-gap: 17px;
   align-items: center;
-  ${media.lg`
-flex-direction: row;
+  ${media.lg`   
+                    flex-direction: row;
 column-gap: 28px;
   `}
 `;

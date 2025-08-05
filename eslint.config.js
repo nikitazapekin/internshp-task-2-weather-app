@@ -1,6 +1,7 @@
 import js from "@eslint/js";
 import tsEslint from "@typescript-eslint/eslint-plugin";
 import tsParser from "@typescript-eslint/parser";
+import prettierConfig from "eslint-config-prettier";
 import jestPlugin from "eslint-plugin-jest";
 import reactPlugin from "eslint-plugin-react";
 import reactHooks from "eslint-plugin-react-hooks";
@@ -9,6 +10,7 @@ import globals from "globals";
 
 export default [
   js.configs.recommended,
+  prettierConfig,
   {
     ignores: [
       "**/node_modules/**",
@@ -91,6 +93,43 @@ export default [
         { blankLine: "always", prev: "function", next: "*" },
         { blankLine: "always", prev: "import", next: "*" },
         { blankLine: "any", prev: "import", next: "import" },
+      ],
+    },
+  },
+  {
+    files: ["**/*.styled.ts", "**/*.styles.ts"],
+    rules: {
+      indent: [
+        "error",
+        2,
+        {
+          ignoredNodes: ["TemplateLiteral"],
+          SwitchCase: 1,
+        },
+      ],
+      "template-curly-spacing": ["error", "never"],
+      "padding-line-between-statements": [
+        "error",
+        {
+          blankLine: "always",
+          prev: "template-literal",
+          next: "*",
+        },
+        {
+          blankLine: "always",
+          prev: "*",
+          next: "template-literal",
+        },
+        {
+          blankLine: "always",
+          prev: "*",
+          next: "block-like",
+        },
+        {
+          blankLine: "always",
+          prev: "block-like",
+          next: "*",
+        },
       ],
     },
   },
