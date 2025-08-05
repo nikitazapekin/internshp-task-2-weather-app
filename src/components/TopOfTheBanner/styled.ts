@@ -7,9 +7,9 @@ export const TopWrapper = styled.section`
   justify-content: space-between;
 
   ${media.lg`
-flex-direction: column;
-align-items: center;
-row-gap: 48.74px;
+	flex-direction: column;
+	align-items: center;
+	row-gap: 48.74px;
  
   `}
 `;
@@ -30,9 +30,10 @@ export const SearchWrapper = styled.div`
   flex-direction: column;
   row-gap: 17px;
   align-items: center;
+
   ${media.lg`   
-                    flex-direction: row;
-column-gap: 28px;
+ 	flex-direction: row;
+	column-gap: 28px;
   `}
 `;
 
@@ -50,6 +51,6 @@ export const SearchInput = styled.input`
   color: ${({ theme }) => theme.colors.black};
 
   ${media.lg`
-max-width: 173px;
-          `}
+	max-width: 173px;
+  `}
 `;

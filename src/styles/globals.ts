@@ -9,7 +9,7 @@ export const GlobalStyle = createGlobalStyle`
   html {
     scroll-behavior: smooth;
   }
-body {
+  body {
    font-family:
     ${({ theme }) => theme.fontFamilies.primary}, ${({ theme }) => theme.fontFamilies.secondary};
 }
