@@ -29,4 +29,10 @@ export const theme = {
     md: 768,
     sm: 480,
   },
+  zIndexes: {
+    minusOne: -1,
+    zero: 0,
+    one: 1,
+    two: 2,
+  },
 };

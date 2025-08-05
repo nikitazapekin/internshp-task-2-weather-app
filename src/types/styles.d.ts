@@ -32,5 +32,11 @@ declare module "styled-components" {
       md: number;
       sm: number;
     };
+    zIndexes: {
+      minusOne: number;
+      zero: number;
+      one: number;
+      two: number;
+    };
   }
 }

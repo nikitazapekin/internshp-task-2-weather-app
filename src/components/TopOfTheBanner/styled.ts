@@ -1,6 +1,5 @@
+import { media } from "@styles/breakpoints";
 import styled from "styled-components";
-
-import { media } from "../../styles/breakpoints";
 
 export const TopWrapper = styled.section`
   width: 100%;
@@ -19,8 +18,6 @@ export const Time = styled.h1`
   color: ${({ theme }) => theme.colors.black};
   font-weight: ${({ theme }) => theme.fontWeights.regular};
   font-size: ${({ theme }) => theme.fontSizes.xl};
-  font-family:
-    ${({ theme }) => theme.fontFamilies.primary}, ${({ theme }) => theme.fontFamilies.secondary};
   ${media.lg`
 text-align: center;
  font-size: ${({ theme }) => theme.fontSizes.lg};
@@ -51,8 +48,6 @@ export const SearchInput = styled.input`
   font-weight: ${({ theme }) => theme.fontWeights.regular};
   font-size: ${({ theme }) => theme.fontSizes.md};
   color: ${({ theme }) => theme.colors.black};
-  font-family:
-    ${({ theme }) => theme.fontFamilies.primary}, ${({ theme }) => theme.fontFamilies.secondary};
 
   ${media.lg`
 max-width: 173px;

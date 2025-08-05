@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const BannerWrapper = styled.section`
+export const Wrapper = styled.section`
   max-width: ${({ theme }) => theme.container}px;
   padding: 0 20px;
   padding: 50px 79px 0 79px;
@@ -16,6 +16,6 @@ export const BannerBackground = styled.section`
   top: 0;
   width: 100%;
   height: 100%;
-  z-index: -1;
+  z-index: ${({ theme }) => theme.zIndexes.minusOne};
   opacity: 0.2;
 `;
