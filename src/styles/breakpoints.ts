@@ -8,7 +8,9 @@ export const breakpoints = {
   md: theme.media.md,
   sm: theme.media.sm,
 } as const;
+
 type Breakpoint = keyof typeof breakpoints;
+
 export const media = Object.fromEntries(
   Object.entries(breakpoints).map(([name, size]) => [
     name,
