@@ -3,11 +3,12 @@ import { flex } from "@styles/mixins";
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-  ${flex("flex-start", "center", "column", "0px", "17px")}
+  ${flex("flex-start", "center", "column")}
+  row-gap: ${(props) => props.theme.spaces.md}px;
 
   ${media.lg`   
- 	flex-direction: row;
-	column-gap: 28px;
+    ${flex("flex-start", "center", "row")}
+      column-gap: ${(props) => props.theme.spaces.lg}px;
   `}
 `;
 
