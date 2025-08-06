@@ -1,11 +1,9 @@
 import { media } from "@styles/breakpoints";
+import { flex } from "@styles/mixins";
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  row-gap: 17px;
-  align-items: center;
+  ${flex("flex-start", "center", "column", "0px", "17px")}
 
   ${media.lg`   
  	flex-direction: row;
@@ -16,7 +14,7 @@ export const Wrapper = styled.div`
 export const SearchInput = styled.input`
   border-radius: 5px;
   max-width: 257px;
-  padding: 3px 14px;
+  padding: ${({ theme }) => theme.paddings.inputFieldPadding};
   width: 100%;
   outline: none;
   border: none;

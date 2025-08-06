@@ -2,8 +2,7 @@ import styled from "styled-components";
 
 export const Wrapper = styled.section`
   max-width: ${({ theme }) => theme.container}px;
-  padding: 0 20px;
-  padding: 50px 79px 0 79px;
+  padding: ${({ theme }) => theme.paddings.bannerPaddings};
   width: 100%;
   position: relative;
 `;

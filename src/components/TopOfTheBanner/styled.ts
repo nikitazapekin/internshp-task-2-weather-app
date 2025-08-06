@@ -1,14 +1,15 @@
 import { media } from "@styles/breakpoints";
+import { flex } from "@styles/mixins";
 import styled from "styled-components";
 
 export const TopWrapper = styled.section`
   width: 100%;
-  display: flex;
-  justify-content: space-between;
+
+  ${flex("space-between", "center", "row", "0px", "0px")}
 
   ${media.lg`
-	flex-direction: column;
-	align-items: center;
-	row-gap: 48.74px;
+
+  ${flex("center", "center", "column", "48.74px", "0px")}
+
   `}
 `;

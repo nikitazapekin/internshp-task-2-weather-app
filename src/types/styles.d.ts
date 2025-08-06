@@ -38,5 +38,15 @@ declare module "styled-components" {
       one: number;
       two: number;
     };
+    paddings: {
+      bannerPaddings: string;
+      buttonPaddings: string;
+      inputFieldPadding: string;
+      eventCardPaddings: string;
+      bottomOfBannerPaddings: string;
+    };
+    paddingsMobile: {
+      buttonPaddings: string;
+    };
   }
 }

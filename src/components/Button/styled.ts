@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const ButtonElement = styled.button`
   cursor: pointer;
-  padding: 6px 26px 6px 26px;
+  padding: ${({ theme }) => theme.paddings.buttonPaddings};
   border: none;
   outline: none;
   border-radius: 10px;

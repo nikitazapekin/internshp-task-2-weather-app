@@ -35,4 +35,14 @@ export const theme = {
     one: 1,
     two: 2,
   },
+  paddings: {
+    bannerPaddings: "50px 79px 0 79px",
+    buttonPaddings: "6px 26px",
+    inputFieldPadding: "3px 14px",
+    eventCardPaddings: "8px 12px",
+    bottomOfBannerPaddings: "17px 70px 16px 39px",
+  },
+  paddingsMobile: {
+    buttonPaddings: "7px 14px",
+  },
 };
