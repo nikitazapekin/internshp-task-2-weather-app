@@ -4,7 +4,6 @@ import styled from "styled-components";
 
 export const TopWrapper = styled.section`
   width: 100%;
-  background-color: red;
 
   ${flex("space-between", "center", "row", "0px", "0px")}
 
