@@ -18,10 +18,10 @@
       "@utils/*": ["./src/utils/*"],
       "@store/*": ["./src/store/*"],
       "@api/*": ["./src/api/*"],
-      "@types/*": ["./src/types/*"],
       "@constants": ["./src/constants"],
       "@styles/*": ["src/styles/*"],
-       "@styles": ["src/styles"]
+      "@styles": ["src/styles"],
+      "@interfaces/*": ["src/interfaces/*"]
     }
   },
   "ts-node": {
