@@ -18,9 +18,7 @@ const config: Config = {
   },
   moduleNameMapper: {
     "^@components/(.*)$": "<rootDir>/src/components/$1",
-    "^@pages/(.*)$": "<rootDir>/src/pages/$1",
-    "^@constants/(.*)$": "<rootDir>/src/constants/$1",
-    "^@constants$": "<rootDir>/src/constants/index",
+
     "^@assets/(.*)$": "<rootDir>/src/assets/$1",
     "^@utils/(.*)$": "<rootDir>/src/utils/$1",
     "^@store/(.*)$": "<rootDir>/src/store/$1",
@@ -29,7 +27,9 @@ const config: Config = {
     "^@interfaces/(.*)$": "<rootDir>/src/interfaces/$1",
     "^@styles/(.*)$": "<rootDir>/src/styles/$1",
     "^@styles$": "<rootDir>/src/styles/index",
-    "^@constants/monthsAndDays$": "<rootDir>/src/constants/monthsAndDays",
+    "^@constants/(.*)$": "<rootDir>/src/constants/$1",
+    "^@constants$": "<rootDir>/src/constants/index",
+    "^@constants(?:/(.*))?$": "<rootDir>/src/constants/$1",
   },
 
   collectCoverage: true,
