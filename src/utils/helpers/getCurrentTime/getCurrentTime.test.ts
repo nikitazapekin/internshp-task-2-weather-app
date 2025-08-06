@@ -2,29 +2,52 @@ import { expect } from "@jest/globals";
 
 import { getCurrentTime } from "./getCurrentTime";
 
-const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-const months = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
-];
+jest.mock("@constants/monthsAndDays", () => ({
+  days: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+  months: [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ],
+}));
 
 describe("getCurrentTime function", () => {
   it("should return correct date string format", () => {
     const currentDate = new Date();
     const { dateString } = getCurrentTime();
-    const expectedDayName = days[currentDate.getDay()];
+    const expectedDayName = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ][currentDate.getDay()];
     const expectedDay = currentDate.getDate();
-    const expectedMonth = months[currentDate.getMonth()];
+    const expectedMonth = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ][currentDate.getMonth()];
     const expectedYear = currentDate.getFullYear();
     const expectedDateString = `${expectedDayName}, ${expectedDay} ${expectedMonth} ${expectedYear}`;
 
