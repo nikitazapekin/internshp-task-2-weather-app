@@ -4,7 +4,6 @@ const config: Config = {
   verbose: true,
   preset: "ts-jest",
   testEnvironment: "node",
-
   testPathIgnorePatterns: ["/node_modules/", "/dist/"],
   moduleFileExtensions: ["js", "json", "jsx", "ts", "tsx", "node"],
   transform: {
@@ -12,13 +11,12 @@ const config: Config = {
       "ts-jest",
       {
         tsconfig: "tsconfig.json",
-        //  isolatedModules: true,
       },
     ],
   },
   moduleNameMapper: {
     "^@components/(.*)$": "<rootDir>/src/components/$1",
-
+    "^@pages/(.*)$": "<rootDir>/src/pages/$1",
     "^@assets/(.*)$": "<rootDir>/src/assets/$1",
     "^@utils/(.*)$": "<rootDir>/src/utils/$1",
     "^@store/(.*)$": "<rootDir>/src/store/$1",
@@ -29,13 +27,10 @@ const config: Config = {
     "^@styles$": "<rootDir>/src/styles/index",
     "^@constants/(.*)$": "<rootDir>/src/constants/$1",
     "^@constants$": "<rootDir>/src/constants/index",
-    "^@constants(?:/(.*))?$": "<rootDir>/src/constants/$1",
   },
-
   collectCoverage: true,
   coverageDirectory: "coverage",
   collectCoverageFrom: ["src/**/*.{ts,tsx}", "!src/**/*.d.ts"],
-
   clearMocks: true,
   resetMocks: true,
   restoreMocks: true,
