@@ -2,7 +2,7 @@ name: CI/CD Pipeline
 
 on:
   push:
-    branches: ['**']  
+    branches: [develop]
   pull_request:
     types: [closed]
     branches: [develop]
@@ -59,7 +59,7 @@ jobs:
         run: vercel --prod --yes --token ${{ secrets.VERCEL_TOKEN }}
 
   deploy-on-push:
-    if: github.event_name == 'push'  
+    if: github.event_name == 'push' && github.ref == 'refs/heads/develop'
     needs: test-and-build
     runs-on: ubuntu-latest
     steps:

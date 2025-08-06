@@ -1,4 +1,4 @@
-import { days, FIRST_DAY_OF_MONTH, LAST_DAY_OF_MONTH, months } from "@constants/monthsAndDays";
+import { days, FIRST_DAY_OF_MONTH, LAST_DAY_OF_MONTH, months } from "@constants";
 
 interface TimeAndDate {
   timeString: string;
