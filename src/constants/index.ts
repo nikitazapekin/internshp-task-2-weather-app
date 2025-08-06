@@ -1,3 +1,3 @@
-export * from "./MonthsAndDays";
+export * from "./monthsAndDays";
 export * from "./theme";
 export * from "./UI";

@@ -1,4 +1,5 @@
 name: CI/CD Pipeline
+
 on:
   push:
     branches: [develop]
@@ -54,4 +55,10 @@ jobs:
         run: npm install -g vercel@latest  
       
       - name: Deploy to Vercel
-        run: vercel --prod --yes --token ${{ secrets.VERCEL_TOKEN }}
+        run: |
+          if [ "$GITHUB_EVENT_NAME" == "pull_request" ]; then
+            BRANCH_NAME=${{ github.head_ref }}
+          else
+            BRANCH_NAME=${{ github.ref_name }}
+          fi
+          vercel --prod --yes --token ${{ secrets.VERCEL_TOKEN }} --scope ${{ secrets.VERCEL_SCOPE }} --branch $BRANCH_NAME

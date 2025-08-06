@@ -1,4 +1,4 @@
-import Search from "@components/Search";
+import SearchCitiesComponent from "@components/Search";
 import DateInfo from "@components/Time";
 
 import { TopWrapper } from "./styled";
@@ -7,7 +7,7 @@ const TopOfTheBanner = () => {
   return (
     <TopWrapper>
       <DateInfo />
-      <Search />
+      <SearchCitiesComponent />
     </TopWrapper>
   );
 };

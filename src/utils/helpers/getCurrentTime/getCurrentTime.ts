@@ -1,4 +1,4 @@
-import { days, months } from "@constants";
+import { days, FIRST_DAY_OF_MONTH, LAST_DAY_OF_MONTH, months } from "@constants";
 
 interface TimeAndDate {
   timeString: string;
@@ -40,7 +40,7 @@ export const getCurrentTime = (): TimeAndDate => {
     const month = months[monthIndex];
     const year = currentTime.getFullYear();
 
-    if (day < 1 || day > 31) {
+    if (day < FIRST_DAY_OF_MONTH || day > LAST_DAY_OF_MONTH) {
       throw new Error("Invalid day of month");
     }
 

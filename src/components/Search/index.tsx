@@ -3,7 +3,7 @@ import { UI_CONSTANTS } from "@constants/UI";
 
 import { SearchInput, Wrapper } from "./styled";
 
-const Search = () => {
+const SearchCitiesComponent = () => {
   return (
     <Wrapper>
       <SearchInput />
@@ -12,4 +12,4 @@ const Search = () => {
   );
 };
 
-export default Search;
+export default SearchCitiesComponent;

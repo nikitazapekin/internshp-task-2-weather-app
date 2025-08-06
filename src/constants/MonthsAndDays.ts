@@ -13,3 +13,5 @@ export const months = [
   "November",
   "December",
 ];
+export const FIRST_DAY_OF_MONTH = 1;
+export const LAST_DAY_OF_MONTH = 31;

@@ -4,12 +4,9 @@ import styled from "styled-components";
 
 export const TopWrapper = styled.section`
   width: 100%;
-
   ${flex("space-between", "center", "row", "0px", "0px")}
 
   ${media.lg`
-
   ${flex("center", "center", "column", "48.74px", "0px")}
-
   `}
 `;
