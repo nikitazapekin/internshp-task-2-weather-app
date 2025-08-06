@@ -4,7 +4,6 @@ on:
   push:
     branches: [develop]
   pull_request:
-    types: [closed]
     branches: [develop]
 
 jobs:
@@ -12,6 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref || github.ref }}   
       
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -40,12 +41,14 @@ jobs:
       - name: Build production
         run: yarn build:prod
 
-  deploy-on-merge:
-    if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true
+  deploy:
     needs: test-and-build
+    if: success()
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref || github.ref }}  
       
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -55,23 +58,10 @@ jobs:
       - name: Install Vercel CLI
         run: npm install -g vercel@latest  
       
-      - name: Deploy to Vercel
-        run: vercel --prod --yes --token ${{ secrets.VERCEL_TOKEN }}
-
-  deploy-on-push:
-    if: github.event_name == 'push' && github.ref == 'refs/heads/develop'
-    needs: test-and-build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20.x
-      
-      - name: Install Vercel CLI
-        run: npm install -g vercel@latest  
-      
-      - name: Deploy to Vercel
-        run: vercel --prod --yes --token ${{ secrets.VERCEL_TOKEN }}
+      - name: Deploy to Vercel (Preview for PR, Production for develop)
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            vercel --yes --token ${{ secrets.VERCEL_TOKEN }}  # Превью-деплой для PR
+          else
+            vercel --prod --yes --token ${{ secrets.VERCEL_TOKEN }}  # Продакшен-деплой для develop
+          fi
