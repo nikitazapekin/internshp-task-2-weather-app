@@ -7,12 +7,12 @@ const config: Config = {
 
   testPathIgnorePatterns: ["/node_modules/", "/dist/"],
   moduleFileExtensions: ["js", "json", "jsx", "ts", "tsx", "node"],
+  modulePaths: ["<rootDir>/src"],
   transform: {
     "^.+\\.tsx?$": [
       "ts-jest",
       {
         tsconfig: "tsconfig.json",
-        isolatedModules: true,
       },
     ],
   },
