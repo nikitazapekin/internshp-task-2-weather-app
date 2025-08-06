@@ -61,7 +61,7 @@ jobs:
       - name: Deploy to Vercel (Preview for PR, Production for develop)
         run: |
           if [ "${{ github.event_name }}" = "pull_request" ]; then
-            vercel --yes --token ${{ secrets.VERCEL_TOKEN }}  # Превью-деплой для PR
+            vercel --yes --token ${{ secrets.VERCEL_TOKEN }}  
           else
-            vercel --prod --yes --token ${{ secrets.VERCEL_TOKEN }}  # Продакшен-деплой для develop
+            vercel --prod --yes --token ${{ secrets.VERCEL_TOKEN }}  
           fi

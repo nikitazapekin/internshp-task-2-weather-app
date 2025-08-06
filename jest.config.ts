@@ -29,6 +29,7 @@ const config: Config = {
     "^@interfaces/(.*)$": "<rootDir>/src/interfaces/$1",
     "^@styles/(.*)$": "<rootDir>/src/styles/$1",
     "^@styles$": "<rootDir>/src/styles/index",
+    "^@constants/monthsAndDays$": "<rootDir>/src/constants/monthsAndDays",
   },
 
   collectCoverage: true,

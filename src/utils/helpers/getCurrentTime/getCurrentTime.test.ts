@@ -1,6 +1,6 @@
+import { days, months } from "@constants/monthsAndDays";
 import { expect } from "@jest/globals";
 
-import { days, months } from "../../../constants/monthsAndDays";
 import { getCurrentTime } from "./getCurrentTime";
 
 describe("getCurrentTime function", () => {
