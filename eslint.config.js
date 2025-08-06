@@ -95,6 +95,12 @@ export default [
     },
   },
   {
+    files: ["./src/styles/breakpoints.ts"],
+    rules: {
+      "@typescript-eslint/no-explicit-any": "off",
+    },
+  },
+  {
     settings: {
       react: {
         version: "detect",
