@@ -2,7 +2,8 @@ import styled from "styled-components";
 
 export const Wrapper = styled.section`
   max-width: ${({ theme }) => theme.container}px;
-  padding: ${({ theme }) => theme.paddings.bannerPaddings};
+  padding: ${({ theme }) => theme.spaces.xxl}px ${({ theme }) => theme.spaces.eh}px
+    ${({ theme }) => theme.spaces.md}px ${({ theme }) => theme.spaces.xh}px;
   width: 100%;
   position: relative;
 `;
@@ -15,6 +16,6 @@ export const BannerBackground = styled.section`
   top: 0;
   width: 100%;
   height: 100%;
-  z-index: ${({ theme }) => theme.zIndexes.minusOne};
+  z-index: ${({ theme }) => theme.zIndexes.x};
   opacity: 0.2;
 `;

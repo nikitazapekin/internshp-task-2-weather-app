@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const ButtonElement = styled.button`
   cursor: pointer;
-  padding: ${({ theme }) => theme.paddings.buttonPaddings};
+  padding: ${({ theme }) => theme.spaces.x}px ${({ theme }) => theme.spaces.lg};
   border: none;
   outline: none;
   border-radius: 10px;
@@ -11,6 +11,7 @@ export const ButtonElement = styled.button`
   font-weight: ${({ theme }) => theme.fontWeights.regular};
   font-size: ${({ theme }) => theme.fontSizes.md};
   transition: 0.4s ease-in-out;
+
   &:hover {
     background-color: ${({ theme }) => theme.colors.blue};
   }

@@ -33,20 +33,23 @@ declare module "styled-components" {
       sm: number;
     };
     zIndexes: {
-      minusOne: number;
-      zero: number;
-      one: number;
-      two: number;
+      x: number;
+      xs: number;
+      sm: number;
+      md: number;
     };
-    paddings: {
-      bannerPaddings: string;
-      buttonPaddings: string;
-      inputFieldPadding: string;
-      eventCardPaddings: string;
-      bottomOfBannerPaddings: string;
-    };
-    paddingsMobile: {
-      buttonPaddings: string;
+    spaces: {
+      x: number;
+      xs: number;
+      sm: number;
+      md: number;
+      lg: number;
+      xl: number;
+      xxl: number;
+      g: number;
+      h: number;
+      xh: number;
+      eh: number;
     };
   }
 }

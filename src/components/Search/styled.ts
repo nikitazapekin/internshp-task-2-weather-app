@@ -14,7 +14,7 @@ export const Wrapper = styled.div`
 export const SearchInput = styled.input`
   border-radius: 5px;
   max-width: 257px;
-  padding: ${({ theme }) => theme.paddings.inputFieldPadding};
+  padding: ${({ theme }) => theme.spaces.x}px ${({ theme }) => theme.spaces.sm}px;
   width: 100%;
   outline: none;
   border: none;
@@ -25,6 +25,6 @@ export const SearchInput = styled.input`
   color: ${({ theme }) => theme.colors.black};
 
   ${media.lg`
-	max-width: 173px;
+  	max-width: 173px;
   `}
 `;
