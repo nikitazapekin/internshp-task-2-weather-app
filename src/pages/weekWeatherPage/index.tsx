@@ -5,8 +5,8 @@ const WeekWeatherPage = () => {
   return (
     <PageWrapper>
       <WrapperContainer>
-        <Reset />
         <GlobalStyle />
+        <Reset />
         <Banner />
       </WrapperContainer>
     </PageWrapper>
