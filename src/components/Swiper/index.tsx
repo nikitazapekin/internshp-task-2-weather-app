@@ -1,4 +1,5 @@
 import SwiperItem from "@components/SwiperItem";
+import { THRERSHOLD, TOUCH_ID } from "@constants/swiper";
 import { useRef, useState } from "react";
 
 import { Wrapper } from "./styled";
@@ -33,15 +34,14 @@ const Swiper = () => {
 
     setIsDragging(false);
 
-    const threshold = 0.01;
     const diffX = clientX - startX;
 
-    if (diffX < -threshold) {
+    if (diffX < -THRERSHOLD) {
       containerRef.current.scrollBy({
         left: containerRef.current.offsetWidth,
         behavior: "smooth",
       });
-    } else if (diffX > threshold) {
+    } else if (diffX > THRERSHOLD) {
       containerRef.current.scrollBy({
         left: -containerRef.current.offsetWidth,
         behavior: "smooth",
@@ -55,8 +55,8 @@ const Swiper = () => {
       onMouseDown={(e) => handleStart(e.clientX)}
       onMouseUp={(e) => handleEnd(e.clientX)}
       onMouseLeave={() => setIsDragging(false)}
-      onTouchStart={(e) => handleStart(e.touches[0].clientX)}
-      onTouchEnd={(e) => handleEnd(e.changedTouches[0].clientX)}
+      onTouchStart={(e) => handleStart(e.touches[TOUCH_ID].clientX)}
+      onTouchEnd={(e) => handleEnd(e.changedTouches[TOUCH_ID].clientX)}
     >
       {weatherElements.map((weatherElement) => (
         <SwiperItem weatherElement={weatherElement} key={weatherElement.id} />
