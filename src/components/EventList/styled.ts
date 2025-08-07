@@ -8,10 +8,13 @@ export const Wrapper = styled.ul`
   margin-top: ${(props) => props.theme.spaces.sm}px;
   align-self: start;
   max-height: 145px;
-  width: 100%;
+  width: auto;
   overflow-y: scroll;
+  overflow-x: hidden;
   scrollbar-width: thin;
   scrollbar-color: ${(props) => props.theme.colors.black} ${(props) => props.theme.colors.white};
+  max-width: 400px;
+  width: 100%;
 
   &::-webkit-scrollbar {
     width: 6px;

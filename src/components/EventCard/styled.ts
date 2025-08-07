@@ -5,6 +5,8 @@ export const Wrapper = styled.li`
   ${flex("flex-start", "center", "row")}
 
   column-gap: ${(props) => props.theme.spaces.lg}px;
+  width: 100%;
+  max-width: 100%;
 `;
 export const Time = styled.div`
   color: ${({ theme }) => theme.colors.white};
@@ -19,5 +21,6 @@ export const Text = styled.p`
   color: ${({ theme }) => theme.colors.black};
   font-weight: ${({ theme }) => theme.fontWeights.regular};
   font-size: ${({ theme }) => theme.fontSizes.md}px;
-  white-space: nowrap;
+  max-width: 200px;
+  width: 100%;
 `;
