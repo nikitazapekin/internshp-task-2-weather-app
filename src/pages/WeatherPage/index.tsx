@@ -8,6 +8,7 @@ const WeekWeatherPage = () => {
         <GlobalStyle />
         <Reset />
         <Banner />
+        Hello world!
       </WrapperContainer>
     </PageWrapper>
   );
