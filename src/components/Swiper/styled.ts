@@ -2,11 +2,20 @@ import { flex } from "@styles/mixins";
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-  height: auto;
   width: 100%;
-  overflow: hidden;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  ${flex("flex-start", "center", "row")};
+  gap: ${({ theme }) => theme.spaces.xl}px;
+  cursor: grab;
 
-  ${flex("flex-start", "center", "row")}
+  &:active {
+    cursor: grabbing;
+  }
 
-  column-gap: ${({ theme }) => theme.spaces.xl}px;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;

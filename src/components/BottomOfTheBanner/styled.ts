@@ -6,6 +6,7 @@ export const Wrapper = styled.section`
   background-color: ${({ theme }) => theme.colors.gray};
   backdrop-filter: blur(15px);
   margin-top: ${({ theme }) => theme.spaces.xl}px;
+  user-select: none;
 
   ${flex("flex-start", "center", "row")};
 

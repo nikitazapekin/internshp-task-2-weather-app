@@ -9,10 +9,13 @@ export const Title = styled.p`
   color: ${({ theme }) => theme.colors.black};
   font-weight: ${({ theme }) => theme.fontWeights.regular};
   font-size: ${({ theme }) => theme.fontSizes.xxs};
+  user-select: none;
 `;
 
 export const Image = styled.img`
   margin-top: ${({ theme }) => theme.spaces.md}px;
+  pointer-events: none;
+  user-select: none;
 `;
 
 export const Degree = styled.p`
@@ -20,4 +23,5 @@ export const Degree = styled.p`
   color: ${({ theme }) => theme.colors.black};
   font-weight: ${({ theme }) => theme.fontWeights.regular};
   font-size: ${({ theme }) => theme.fontSizes.md};
+  user-select: none;
 `;
