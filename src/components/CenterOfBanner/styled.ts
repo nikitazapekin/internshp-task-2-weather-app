@@ -6,9 +6,13 @@ export const Wrapper = styled.div`
   ${flex("flex-start", "center", "column")}
   row-gap: ${(props) => props.theme.spaces.md}px;
   width: 100%;
+
+  ${media.lg`
+    margin-top:  ${(props) => props.theme.spaces.md}px;
+   `}
 `;
 
-export const AuthButtonsAndEvents = styled.div`
+export const EventsAndWeatherButtonsWrapper = styled.div`
   ${flex("space-between", "center", "row")}
 
   width: 100%;
@@ -17,4 +21,10 @@ export const AuthButtonsAndEvents = styled.div`
     ${flex("center", "center", "column")}
       row-gap: ${(props) => props.theme.spaces.xxl}px;
     `}
+`;
+
+export const AuthButtonsAndEventsWrapper = styled.div`
+  ${flex("space-between", "center", "row-reverse")}
+
+  width: 100%;
 `;

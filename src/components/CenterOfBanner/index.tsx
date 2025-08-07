@@ -1,17 +1,44 @@
 import AuthButtons from "@components/AuthButtons";
 import EventList from "@components/EventList";
 import WeatherButtons from "@components/WeatherButtons";
+import { BREAKPOINT_TRIGGER_WIDTH } from "@constants";
+import { useEffect, useState } from "react";
 
-import { AuthButtonsAndEvents, Wrapper } from "./styled";
+import { AuthButtonsAndEventsWrapper, EventsAndWeatherButtonsWrapper, Wrapper } from "./styled";
 
 const CenterOfBanner = () => {
+  const [isMobileView, setIsMobileView] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobileView(window.innerWidth <= BREAKPOINT_TRIGGER_WIDTH);
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
     <Wrapper>
-      <AuthButtons />
-      <AuthButtonsAndEvents>
-        <EventList />
-        <WeatherButtons />
-      </AuthButtonsAndEvents>
+      {!isMobileView ? (
+        <>
+          <AuthButtons />
+          <EventsAndWeatherButtonsWrapper>
+            <EventList />
+            <WeatherButtons />
+          </EventsAndWeatherButtonsWrapper>
+        </>
+      ) : (
+        <>
+          <AuthButtonsAndEventsWrapper>
+            <AuthButtons />
+            <EventList />
+          </AuthButtonsAndEventsWrapper>
+          <WeatherButtons />
+        </>
+      )}
     </Wrapper>
   );
 };

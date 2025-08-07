@@ -3,9 +3,9 @@ import styled from "styled-components";
 
 export const Wrapper = styled.div`
   margin-top: ${({ theme }) => theme.spaces.lg}px;
-  margin-right: auto;
 
+  align-self: start;
   ${media.lg`
-     margin-right: none;
+      margin-top: ${({ theme }) => theme.spaces.md}px;
    `}
 `;

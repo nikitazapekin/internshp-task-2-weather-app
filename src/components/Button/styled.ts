@@ -12,6 +12,7 @@ export const ButtonElement = styled.button`
   font-weight: ${({ theme }) => theme.fontWeights.regular};
   font-size: ${({ theme }) => theme.fontSizes.md};
   transition: 0.4s ease-in-out;
+  min-width: 94px;
 
   &:hover {
     background-color: ${({ theme }) => theme.colors.blue};

@@ -1,3 +1,4 @@
+import { media } from "@styles/breakpoints";
 import { flex } from "@styles/mixins";
 import styled from "styled-components";
 
@@ -9,6 +10,11 @@ export const Wrapper = styled.section`
   position: relative;
 
   ${flex("center", "flex-start", "column", "0px", "0px")}
+
+  ${media.lg`
+     padding: ${({ theme }) => theme.spaces.xs}px ${({ theme }) => theme.spaces.sm}px
+    ${({ theme }) => theme.spaces.md}px ${({ theme }) => theme.spaces.sm}px;
+    `}
 `;
 
 export const BannerBackground = styled.section`
