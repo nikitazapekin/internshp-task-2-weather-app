@@ -4,7 +4,7 @@ on:
   push:
     branches: ['**']  
   pull_request:
-    types: [closed]
+    types: [open]
     branches: [develop]
 
 jobs:
@@ -46,8 +46,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.pull_request.head.ref }}  
       
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -59,9 +57,6 @@ jobs:
       
       - name: Deploy to Vercel
         run: vercel --prod --yes --token ${{ secrets.VERCEL_TOKEN }}
-        env:
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 
   deploy-on-push:
     if: github.event_name == 'push'  
@@ -80,6 +75,3 @@ jobs:
       
       - name: Deploy to Vercel
         run: vercel --prod --yes --token ${{ secrets.VERCEL_TOKEN }}
-        env:
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
