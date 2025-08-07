@@ -1,4 +1,3 @@
-
 # Tестовое задание приложение погоды
 
 ## Руководство пользования:
@@ -38,7 +37,7 @@ yarn run format
 ```
 yarn run lint
 ```
-   
+
 Для автоматического исправления ошибок стиля использовать команду:
 
 ```
@@ -49,24 +48,24 @@ yarn run lint:fix
 
 ```
 yarn run test
-```  
-   
+```
+
 Для запуска тестов с генерацией отчета о покрытии использовать команду:
 
 ```
 yarn run test:coverage
-```  
- 
+```
+
 Для запуска e2e тестов использовать команду:
 
 ```
 yarn run cypress
-``` 
+```
 
 Для запуска всех тестов (unit + e2e) использовать команду:
 
-``` 
-yarn run test:all 
+```
+yarn run test:all
 ```
 
 ## Правила оформления кода:
@@ -86,7 +85,7 @@ yarn run test:all
 
 ```javascript
 1. let a = 11
-2. 
+2.
 3. let b = 32
 4. let c = 22
 5. //end of file
@@ -189,14 +188,14 @@ yarn run test:all
 ## Соглашение о коммитах 1.0.0:
 
 При создании коммита необходимо указать тип коммита.
-В скобках после типа указать ключевое изменение. 
-После скобок с типом указывается двоеточие, после которого идет кратное описание изменения с заглавной буквы. 
+В скобках после типа указать ключевое изменение.
+После скобок с типом указывается двоеточие, после которого идет кратное описание изменения с заглавной буквы.
 
 Основные типы:
 
-1. fix(issue): – исправление бага 
+1. fix(issue): – исправление бага
 
-2. feat(feature): – новая функциональность 
+2. feat(feature): – новая функциональность
 
 3. build(config): – изменения, связанные со сборкой (например, Webpack, Rollup)
 
@@ -222,21 +221,21 @@ yarn run test:all
 
 3. feat(feature): Add form validation
 
-3. build(config): Add ts-loader
+4. build(config): Add ts-loader
 
-4. chore(task): Remove code smell 
+5. chore(task): Remove code smell
 
-5. ci(config): Run cypress tests
+6. ci(config): Run cypress tests
 
-6. docs(readme): Add styleguide description
+7. docs(readme): Add styleguide description
 
-7. style(format): Format index.js file
+8. style(format): Format index.js file
 
-8. refactor(function): Move handleValidate function to helpers folder
+9. refactor(function): Move handleValidate function to helpers folder
 
-9. perf(cache): Add useCallback to handleValidate function
+10. perf(cache): Add useCallback to handleValidate function
 
-10. test(jest): – Add tests for handleValidate function
+11. test(jest): – Add tests for handleValidate function
 
 ## Цветовая система приложения:
 
@@ -367,6 +366,3 @@ Will be soon...
 [Eslint](https://eslint.org/docs/user-guide/configuring)
 
 [Babel](https://babeljs.io/docs/en/configuration)
-
-
-

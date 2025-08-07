@@ -1,10 +1,8 @@
+import WeekWeatherPage from "@pages/WeatherPage";
 import { createRoot } from "react-dom/client";
-import { Provider } from "react-redux";
-import { PersistGate } from "redux-persist/integration/react";
 import { ThemeProvider } from "styled-components";
 
 import { theme } from "./constants/";
-import { persistor, store } from "./store";
 
 const root = document.getElementById("root");
 
@@ -15,9 +13,7 @@ if (!root) {
 const container = createRoot(root);
 
 container.render(
-  <Provider store={store}>
-    <PersistGate persistor={persistor}>
-      <ThemeProvider theme={theme}></ThemeProvider>
-    </PersistGate>
-  </Provider>
+  <ThemeProvider theme={theme}>
+    <WeekWeatherPage />
+  </ThemeProvider>
 );
