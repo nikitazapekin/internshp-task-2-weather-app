@@ -1,8 +1,4 @@
 describe("App Component", () => {
-  beforeEach(() => {
-    cy.visit("/");
-  });
-
   it("should render the App component", () => {
     cy.get("div").should("exist");
   });

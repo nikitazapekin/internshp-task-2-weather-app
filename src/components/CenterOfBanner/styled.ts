@@ -8,7 +8,7 @@ export const Wrapper = styled.div`
   width: 100%;
 `;
 
-export const EventsAndWeatherButtonsWrapper = styled.div`
+export const AuthButtonsAndEvents = styled.div`
   ${flex("space-between", "center", "row")}
 
   width: 100%;
