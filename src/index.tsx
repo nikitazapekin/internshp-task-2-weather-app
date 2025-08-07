@@ -1,4 +1,4 @@
-import WeekWeatherPage from "@pages/WeeklyWeatherPage";
+import WeekWeatherPage from "@pages/WeatherPage";
 import { createRoot } from "react-dom/client";
 import { ThemeProvider } from "styled-components";
 
