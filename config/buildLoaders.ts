@@ -3,7 +3,22 @@ export function buildLoaders() {
     {
       test: /\.(ts|tsx)$/,
       exclude: /node_modules/,
-      use: ["ts-loader"],
+
+      use: [
+        {
+          loader: "ts-loader",
+          options: {
+            compilerOptions: {
+              noEmitOnError: false,
+              incremental: true,
+              skipLibCheck: true,
+            },
+
+            transpileOnly: process.env.NODE_ENV === "development",
+            happyPackMode: true,
+          },
+        },
+      ],
     },
     {
       test: /\.css$/,
