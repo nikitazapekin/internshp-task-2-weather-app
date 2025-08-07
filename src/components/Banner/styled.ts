@@ -1,3 +1,4 @@
+import { flex } from "@styles/mixins";
 import styled from "styled-components";
 
 export const Wrapper = styled.section`
@@ -6,6 +7,8 @@ export const Wrapper = styled.section`
     ${({ theme }) => theme.spaces.md}px ${({ theme }) => theme.spaces.xh}px;
   width: 100%;
   position: relative;
+
+  ${flex("center", "flex-start", "column", "0px", "0px")}
 `;
 
 export const BannerBackground = styled.section`
