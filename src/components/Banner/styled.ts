@@ -14,7 +14,7 @@ export const Wrapper = styled.section`
   ${media.lg`
      padding: ${({ theme }) => theme.spaces.xs}px ${({ theme }) => theme.spaces.sm}px
     ${({ theme }) => theme.spaces.md}px ${({ theme }) => theme.spaces.sm}px;
-    `}
+  `}
 `;
 
 export const BannerBackground = styled.section`

@@ -8,7 +8,7 @@ export const TopWrapper = styled.section`
   ${flex("space-between", "center", "row", "0px", "0px")}
 
   ${media.lg`
-  ${flex("center", "center", "column")}
+    ${flex("center", "center", "column")}
     row-gap: ${(props) => props.theme.spaces.xxl}px;
   `}
 `;

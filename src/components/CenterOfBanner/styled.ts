@@ -20,11 +20,12 @@ export const EventsAndWeatherButtonsWrapper = styled.div`
   ${media.lg`
     ${flex("center", "center", "column")}
       row-gap: ${(props) => props.theme.spaces.xxl}px;
-    `}
+  `}
 `;
 
 export const AuthButtonsAndEventsWrapper = styled.div`
   ${flex("space-between", "center", "row-reverse")}
 
+  column-gap: ${(props) => props.theme.spaces.xxl}px;
   width: 100%;
 `;
