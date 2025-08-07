@@ -6,6 +6,8 @@ const events = [
   { id: 1, time: "9:00", text: "English class" },
   { id: 2, time: "9:00", text: "English class" },
   { id: 3, time: "9:00", text: "English class" },
+  { id: 4, time: "9:00", text: "English class" },
+  { id: 5, time: "9:00", text: "English class" },
 ];
 const EventList = () => {
   return (

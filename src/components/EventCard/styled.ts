@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 export const Wrapper = styled.li`
   ${flex("flex-start", "center", "row")}
+
   column-gap: ${(props) => props.theme.spaces.lg}px;
 `;
 export const Time = styled.div`
