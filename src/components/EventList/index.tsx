@@ -10,7 +10,7 @@ const EventList = () => {
   return (
     <Wrapper>
       {events.map((event) => (
-        <EventCard event={event} />
+        <EventCard key={event.id} event={event} />
       ))}
     </Wrapper>
   );

@@ -6,4 +6,5 @@ export const Wrapper = styled.ul`
 
   row-gap: ${(props) => props.theme.spaces.md}px;
   margin-top: ${(props) => props.theme.spaces.sm}px;
+  align-self: start;
 `;

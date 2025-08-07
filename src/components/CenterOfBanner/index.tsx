@@ -1,13 +1,17 @@
 import AuthButtons from "@components/AuthButtons";
 import EventList from "@components/EventList";
+import WeatherButtons from "@components/WeatherButtons";
 
-import { Wrapper } from "./styled";
+import { EventsAndWeatherButtonsWrapper, Wrapper } from "./styled";
 
 const CenterOfBanner = () => {
   return (
     <Wrapper>
       <AuthButtons />
-      <EventList />
+      <EventsAndWeatherButtonsWrapper>
+        <EventList />
+        <WeatherButtons />
+      </EventsAndWeatherButtonsWrapper>
     </Wrapper>
   );
 };

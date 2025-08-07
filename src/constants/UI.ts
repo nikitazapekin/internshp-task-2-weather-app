@@ -4,4 +4,8 @@ export const UI_CONSTANTS = {
     loginButton: "Login",
     signOutButton: "Sign out",
   },
+  weatherButtons: [
+    { id: 1, text: "Daily" },
+    { id: 2, text: "Hourly" },
+  ],
 };
