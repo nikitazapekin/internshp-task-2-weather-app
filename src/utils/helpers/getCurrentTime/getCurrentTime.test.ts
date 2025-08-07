@@ -1,4 +1,4 @@
-import { days, months } from "@constants/test";
+import { days, months } from "@constants/values";
 import { expect } from "@jest/globals";
 
 import { getCurrentTime } from "./getCurrentTime";
