@@ -1,12 +1,13 @@
-import SunnyIcon from "@assets/sunny.webp";
-import { ICONS_ALTS_CONSTANTS } from "@constants/iconsAlts";
+import TodayWeatherIcon from "@components/TodayWeatherIcon";
+import TodayWeatherText from "@components/TodayWeatherText";
 
-import { Image, Wrapper } from "./styled";
+import { Wrapper } from "./styled";
 
 const TodayWeather = () => {
   return (
     <Wrapper>
-      <Image src={SunnyIcon} alt={ICONS_ALTS_CONSTANTS.sunny} />
+      <TodayWeatherIcon />
+      <TodayWeatherText />
     </Wrapper>
   );
 };

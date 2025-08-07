@@ -2,8 +2,8 @@ import styled from "styled-components";
 
 export const Wrapper = styled.section`
   max-width: ${({ theme }) => theme.container}px;
-  padding: ${({ theme }) => theme.spaces.xxl}px ${({ theme }) => theme.spaces.eh}px
-    ${({ theme }) => theme.spaces.md}px ${({ theme }) => theme.spaces.xh}px;
+  /*  padding: ${({ theme }) => theme.spaces.xxl}px ${({ theme }) => theme.spaces.eh}px
+    ${({ theme }) => theme.spaces.md}px ${({ theme }) => theme.spaces.xh}px; */
   width: 100%;
   position: relative;
 `;

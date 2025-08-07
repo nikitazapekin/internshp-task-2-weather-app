@@ -7,6 +7,7 @@ const Banner = () => {
   return (
     <Wrapper>
       <TopOfTheBanner />
+
       <BottomOfTheBanner />
       <BannerBackground />
     </Wrapper>
