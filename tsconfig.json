@@ -10,6 +10,7 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
      "isolatedModules": true,
+      "skipLibCheck": true,
     "baseUrl": ".",
     "paths": {
       "@components/*": ["./src/components/*"],

@@ -16,7 +16,8 @@
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "test:all": "npm run test && npm run cypress:run",
-    "cypress:coverage": "cypress run --env coverage=true"
+    "cypress:coverage": "cypress run --env coverage=true",
+    "preview": "yarn build:prod && serve -s dist -l 4001"
   },
   "keywords": [],
   "author": "",
@@ -51,6 +52,7 @@
     "jest": "^30.0.5",
     "lint-staged": "^16.1.4",
     "prettier": "^3.6.2",
+    "serve": "^14.2.4",
     "ts-jest": "^29.4.1",
     "ts-loader": "^9.5.2",
     "ts-node": "^10.9.2",
