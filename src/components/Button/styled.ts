@@ -1,3 +1,4 @@
+import { media } from "@styles/breakpoints";
 import styled from "styled-components";
 
 export const ButtonElement = styled.button`
@@ -15,4 +16,9 @@ export const ButtonElement = styled.button`
   &:hover {
     background-color: ${({ theme }) => theme.colors.blue};
   }
+
+  ${media.lg`
+   font-size: ${({ theme }) => theme.fontSizes.xs};
+   padding: ${({ theme }) => theme.spaces.xs}px ${({ theme }) => theme.spaces.sm}px;
+  `}
 `;
