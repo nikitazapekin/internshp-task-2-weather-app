@@ -6,6 +6,7 @@ export const breakpoints = {
   xl: theme.media.xl,
   lg: theme.media.lg,
   md: theme.media.md,
+  xh: theme.media.xh,
   sm: theme.media.sm,
 } as const;
 

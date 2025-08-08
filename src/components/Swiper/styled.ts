@@ -11,6 +11,7 @@ export const Wrapper = styled.div`
   scroll-padding: 0 calc(0.5vw + 2.5px);
 
   ${flex("flex-start", "center", "row")}
+
   gap: ${({ theme }) => theme.spaces.xl}px;
   cursor: grab;
 
@@ -23,7 +24,7 @@ export const Wrapper = styled.div`
   }
 
   ${media.xl`
-    display: flex;
+     ${flex("flex-start", "center", "row")}
     flex-wrap: nowrap;
     scroll-snap-type: ${({ theme }) => theme.swiper.scroll_snap_type};
     & > * {

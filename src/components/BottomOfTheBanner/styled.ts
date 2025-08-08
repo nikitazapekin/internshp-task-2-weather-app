@@ -1,3 +1,4 @@
+import { media } from "@styles/breakpoints";
 import { flex } from "@styles/mixins";
 import styled from "styled-components";
 
@@ -13,4 +14,10 @@ export const Wrapper = styled.section`
   column-gap: ${({ theme }) => theme.spaces.xxl}px;
   padding: ${({ theme }) => theme.spaces.md}px ${({ theme }) => theme.spaces.h}px
     ${({ theme }) => theme.spaces.xl}px ${({ theme }) => theme.spaces.xl}px;
+
+  ${media.lg`
+    ${flex("flex-start", "center", "column")};
+
+      padding: ${({ theme }) => theme.spaces.md}px ${({ theme }) => theme.spaces.md}px;
+    `}
 `;

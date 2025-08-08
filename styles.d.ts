@@ -30,6 +30,7 @@ declare module "styled-components" {
       xl: number;
       lg: number;
       md: number;
+      xh: number;
       sm: number;
     };
     zIndexes: {
