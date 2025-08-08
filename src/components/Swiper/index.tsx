@@ -1,6 +1,6 @@
 import SwiperItem from "@components/SwiperItem";
-import { THRERSHOLD, TOUCH_ID } from "@constants/swiper";
-import { useRef, useState } from "react";
+import { TOUCH_ID } from "@constants/swiper";
+import { useSwiper } from "@hooks/useSwiper";
 
 import { Wrapper } from "./styled";
 
@@ -20,34 +20,7 @@ const weatherElements = [
 ];
 
 const Swiper = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [startX, setStartX] = useState(0);
-  const [isDragging, setIsDragging] = useState(false);
-
-  const handleStart = (clientX: number) => {
-    setIsDragging(true);
-    setStartX(clientX);
-  };
-
-  const handleEnd = (clientX: number) => {
-    if (!isDragging || !containerRef.current) return;
-
-    setIsDragging(false);
-
-    const diffX = clientX - startX;
-
-    if (diffX < -THRERSHOLD) {
-      containerRef.current.scrollBy({
-        left: containerRef.current.offsetWidth,
-        behavior: "smooth",
-      });
-    } else if (diffX > THRERSHOLD) {
-      containerRef.current.scrollBy({
-        left: -containerRef.current.offsetWidth,
-        behavior: "smooth",
-      });
-    }
-  };
+  const { containerRef, handleStart, handleEnd, setIsDragging } = useSwiper();
 
   return (
     <Wrapper
