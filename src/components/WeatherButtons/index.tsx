@@ -8,8 +8,8 @@ const WeatherButtons = () => {
 
   return (
     <Wrapper>
-      {weatherButtons.map((button) => (
-        <Button key={button.id} text={button.text} />
+      {weatherButtons.map(({ id, text }) => (
+        <Button key={id} text={text} />
       ))}
     </Wrapper>
   );
