@@ -1,4 +1,4 @@
-import SunnyIcon from "@assets/sunny.webp";
+import SunnyIcon from "@assets/desctop/sunny.webp";
 import { ICONS_ALTS_CONSTANTS } from "@constants/iconsAlts";
 
 import { Image, Wrapper } from "./styled";

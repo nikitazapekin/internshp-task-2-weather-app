@@ -1,5 +1,5 @@
 export const theme = {
-  container: 1147,
+  container: 1187,
   deviceHeight: "100vh",
   colors: {
     black: "#000",

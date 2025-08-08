@@ -3,6 +3,13 @@ import styled from "styled-components";
 
 export const Wrapper = styled.div`
   ${flex("flex-start", "center", "column")}
+
+  @media screen and (min-width: 1024px) and (max-width: 1280px) {
+    min-width: auto;
+    width: 100%;
+    padding: 0 ${({ theme }) => theme.spaces.sm}px;
+    box-sizing: border-box;
+  }
 `;
 
 export const Title = styled.p`
