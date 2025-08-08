@@ -22,7 +22,8 @@
       "@constants": ["./src/constants"],
       "@styles/*": ["src/styles/*"],
       "@styles": ["src/styles"],
-      "@interfaces/*": ["src/interfaces/*"]
+      "@interfaces/*": ["src/interfaces/*"],
+      "@hooks/*": ["src/hooks/*"]
     }
   },
   "ts-node": {

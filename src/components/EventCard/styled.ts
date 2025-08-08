@@ -8,7 +8,8 @@ export const Wrapper = styled.li`
   width: 100%;
   max-width: 100%;
 `;
-export const Time = styled.div`
+
+export const Time = styled.p`
   color: ${({ theme }) => theme.colors.white};
   font-weight: ${({ theme }) => theme.fontWeights.regular};
   font-size: ${({ theme }) => theme.fontSizes.md}px;
