@@ -2,15 +2,15 @@ import styled from "styled-components";
 
 export const Wrapper = styled.section`
   max-width: ${({ theme }) => theme.container}px;
-  padding: ${({ theme }) => theme.spaces.xxl}px ${({ theme }) => theme.spaces.eh}px
-    ${({ theme }) => theme.spaces.md}px ${({ theme }) => theme.spaces.xh}px;
   width: 100%;
   position: relative;
+  backdrop-filter: blur(5px);
+  padding: ${({ theme }) => theme.spaces.sm}px ${({ theme }) => theme.spaces.md}px
+    ${({ theme }) => theme.spaces.md}px ${({ theme }) => theme.spaces.md}px;
 `;
 
 export const BannerBackground = styled.section`
   background-color: ${({ theme }) => theme.colors.gray};
-  backdrop-filter: blur(15px);
   position: absolute;
   left: 0;
   top: 0;

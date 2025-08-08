@@ -1,0 +1,1 @@
+export const BREAKPOINT_TRIGGER_WIDTH = 1024;
