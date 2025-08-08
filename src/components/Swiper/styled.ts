@@ -22,16 +22,15 @@ export const Wrapper = styled.div`
     display: none;
   }
 
-  @media screen and (min-width: 1024px) and (max-width: 1280px) {
+  ${media.xl`
     display: flex;
     flex-wrap: nowrap;
-    scroll-snap-type: x mandatory;
-
+    scroll-snap-type: ${({ theme }) => theme.swiper.scroll_snap_type};
     & > * {
-      flex: 0 0 calc(16.666% - (5px + 0.5vw));
-      min-width: 0;
-      scroll-snap-align: start;
-      margin: 0 calc(0.5vw + 2.5px);
+      flex: ${({ theme }) => theme.swiper.flex_basis} calc(${({ theme }) => theme.swiper.container}% - (5px + ${({ theme }) => theme.swiper.vw_ratio}vw));
+      min-width: ${({ theme }) => theme.swiper.min_width};
+      scroll-snap-align: ${({ theme }) => theme.swiper.scroll_snap_align};
+      margin: 0 calc(${({ theme }) => theme.swiper.vw_ratio}vw +  ${({ theme }) => theme.swiper.margin_base}px);
 
       &:first-child {
         margin-left: 0;
@@ -42,7 +41,7 @@ export const Wrapper = styled.div`
         scroll-margin-right: 0;
       }
     }
-  }
+  `}
 
   ${media.xl`   
     column-gap: ${(props) => props.theme.spaces.sm}px;

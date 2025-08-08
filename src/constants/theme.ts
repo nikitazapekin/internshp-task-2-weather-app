@@ -48,4 +48,14 @@ export const theme = {
     xh: 80,
     eh: 90,
   },
+  swiper: {
+    item_gap: 5,
+    margin_base: 2.5,
+    vw_ratio: 0.5,
+    scroll_snap_type: "x mandatory",
+    scroll_snap_align: "start",
+    flex_basis: "0 0",
+    min_width: "0",
+    container: 16.6,
+  },
 };

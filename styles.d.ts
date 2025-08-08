@@ -51,5 +51,15 @@ declare module "styled-components" {
       xh: number;
       eh: number;
     };
+    swiper: {
+      item_gap: number;
+      margin_base: number;
+      vw_ratio: number;
+      scroll_snap_type: string;
+      scroll_snap_align: string;
+      flex_basis: string;
+      min_width: string;
+      container: number;
+    };
   }
 }
