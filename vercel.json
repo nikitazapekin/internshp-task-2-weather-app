@@ -24,11 +24,12 @@
       "dest": "/build/index.html"
     }
   ],
-   "env": {
-    "REACT_APP_VERCEL_TOKEN": "@react_app_vercel_token",
-    "REACT_APP_API_URL": "@react_app_api_url",
-    "REACT_APP_GOOGLE_CLIENT_ID": "@react_app_google_client_id",
-    "REACT_APP_API_GOOGLE_AUTH": "@react_app_api_google_auth",
-    "REACT_APP_API_GOOGLE_SCOPE": "@react_app_api_google_scope"
-  }
+  "env": {
+  "REACT_APP_VERCEL_TOKEN": "@REACT_APP_VERCEL_TOKEN",
+  "REACT_APP_API_URL": "@REACT_APP_API_URL",
+  "REACT_APP_GOOGLE_CLIENT_ID": "@REACT_APP_GOOGLE_CLIENT_ID",
+  "REACT_APP_API_GOOGLE_AUTH": "@REACT_APP_API_GOOGLE_AUTH",
+  "REACT_APP_API_GOOGLE_SCOPE": "@REACT_APP_API_GOOGLE_SCOPE"
+}
+  
 }
