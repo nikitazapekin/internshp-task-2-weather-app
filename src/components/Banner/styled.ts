@@ -1,3 +1,4 @@
+import { media } from "@styles/breakpoints";
 import styled from "styled-components";
 
 export const Wrapper = styled.section`
@@ -5,11 +6,19 @@ export const Wrapper = styled.section`
   width: 100%;
   position: relative;
   backdrop-filter: blur(5px);
-  padding: ${({ theme }) => theme.spaces.sm}px ${({ theme }) => theme.spaces.md}px
-    ${({ theme }) => theme.spaces.md}px ${({ theme }) => theme.spaces.md}px;
 `;
 
-export const BannerBackground = styled.section`
+export const TopAndCenterOfBannerWrapper = styled.div`
+  padding: ${({ theme }) => theme.spaces.xxl}px ${({ theme }) => theme.spaces.h}px
+    ${({ theme }) => theme.spaces.lg}px ${({ theme }) => theme.spaces.xh}px;
+
+  ${media.lg`
+    padding: ${({ theme }) => theme.spaces.xs}px  
+    
+    `}
+`;
+
+export const BannerBackground = styled.div`
   background-color: ${({ theme }) => theme.colors.gray};
   position: absolute;
   left: 0;
