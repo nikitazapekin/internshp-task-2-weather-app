@@ -1,7 +1,7 @@
 import type { WeatherResponseType } from "@interfaces/weatherResponseType";
 import type { AxiosResponse } from "axios";
 
-import $api from ".";
+import { $api } from ".";
 
 export default class WeatherService {
   static async getWeatherForWeek(): Promise<AxiosResponse<WeatherResponseType>> {

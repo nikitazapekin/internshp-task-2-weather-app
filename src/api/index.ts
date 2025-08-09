@@ -1,11 +1,17 @@
 import axios from "axios";
 
-const $api = axios.create({
+export const $api = axios.create({
   baseURL: process.env.REACT_APP_API_URL,
+});
+
+export const $api2 = axios.create({
+  baseURL: process.env.REACT_APP_API_GOOGLE_AUTH,
 });
 
 $api.interceptors.request.use((config) => {
   return config;
 });
 
-export default $api;
+$api2.interceptors.request.use((config) => {
+  return config;
+});
