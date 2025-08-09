@@ -1,7 +1,7 @@
 import Banner from "@components/Banner";
 import { GlobalStyle, PageWrapper, Reset, WrapperContainer } from "@styles";
 
-const WeekWeatherPage = () => {
+const WeatherPage = () => {
   return (
     <PageWrapper>
       <WrapperContainer>
@@ -13,4 +13,4 @@ const WeekWeatherPage = () => {
   );
 };
 
-export default WeekWeatherPage;
+export default WeatherPage;

@@ -1,6 +1,7 @@
-import WeekWeatherPage from "@pages/WeatherPage";
 import { GlobalStyle } from "@styles/globals";
+import AppRoutes from "@utils/router/routers";
 import { createRoot } from "react-dom/client";
+import { BrowserRouter } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 
 import { theme } from "./constants/";
@@ -14,8 +15,10 @@ if (!root) {
 const container = createRoot(root);
 
 container.render(
-  <ThemeProvider theme={theme}>
-    <GlobalStyle />
-    <WeekWeatherPage />
-  </ThemeProvider>
+  <BrowserRouter>
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
+      <AppRoutes />
+    </ThemeProvider>
+  </BrowserRouter>
 );
