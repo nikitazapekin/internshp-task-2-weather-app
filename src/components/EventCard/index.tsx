@@ -1,12 +1,13 @@
 import type { CalendarEvent } from "@interfaces/googleCalendarTypes";
+import { formatTime } from "@utils/helpers/formatTime/formatTime";
 
 import { Text, Time, Wrapper } from "./styled";
 
-const EventCard = ({ description, start }: CalendarEvent) => {
+const EventCard = ({ start, summary }: CalendarEvent) => {
   return (
     <Wrapper>
-      <Time>{start.dateTime}</Time>
-      <Text>{description}</Text>
+      <Time>{formatTime(start.dateTime)}</Time>
+      <Text>{summary}</Text>
     </Wrapper>
   );
 };

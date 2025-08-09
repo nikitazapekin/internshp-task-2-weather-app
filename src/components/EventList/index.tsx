@@ -12,7 +12,7 @@ const EventList = () => {
       {events.map((item) => (
         <EventCard
           id={item.id}
-          summary={item.description}
+          summary={item.summary}
           start={{
             dateTime: item.start.dateTime,
             date: item.start.date,
