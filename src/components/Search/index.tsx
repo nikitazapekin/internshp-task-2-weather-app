@@ -7,7 +7,7 @@ const SearchCitiesComponent = () => {
   return (
     <Wrapper>
       <SearchInput />
-      <Button text={UI_CONSTANTS.buttons.searchButton} />
+      <Button text={UI_CONSTANTS.buttons.searchButton} handler={() => {}} />
     </Wrapper>
   );
 };

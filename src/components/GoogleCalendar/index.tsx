@@ -2,24 +2,18 @@ import { fetchCalendarEventsRequest } from "@store/actions/googleCalendarActions
 import { fetchWeatherRequest } from "@store/actions/weatherActions";
 import { selectCalendarEvents } from "@store/selectors/calendarEvents";
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 export const GoogleCalendar: React.FC = () => {
   const [isSignedIn, setIsSignedIn] = useState(false);
-  /*  const [events, setEvents] = useState<CalendarEvent[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null); */
 
   const handleAuthClick = () => {
     if (isSignedIn) {
       setIsSignedIn(false);
-      /*  setEvents([]);
-      setError(null); */
     } else {
       const client = window.google?.accounts.oauth2.initTokenClient({
         client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
-        scope: "https://www.googleapis.com/auth/calendar.readonly",
+        scope: process.env.REACT_APP_API_GOOGLE_SCOPE,
 
         callback: async (tokenResponse) => {
           if (tokenResponse.access_token) {
@@ -28,7 +22,6 @@ export const GoogleCalendar: React.FC = () => {
               await fetchEvents(tokenResponse.access_token);
             } catch {
               setIsSignedIn(false);
-              // setError("Failed to load events");
             }
           }
         },
