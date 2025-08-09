@@ -1,5 +1,8 @@
 import { fetchCalendarEventsRequest } from "@store/actions/googleCalendarActions";
+import { fetchWeatherRequest } from "@store/actions/weatherActions";
+import { selectCalendarEvents } from "@store/selectors/calendarEvents";
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 
 export const GoogleCalendar: React.FC = () => {
@@ -36,52 +39,28 @@ export const GoogleCalendar: React.FC = () => {
   };
   const dispatch = useDispatch();
   const fetchEvents = async (accessToken: string) => {
-    /*   setLoading(true);
-    setError(null);
- */
-    /*     try {
-      //    const response = await GoogleCalendarService.fetchEvents(accessToken);
-      dispatch(fetchCalendarEventsRequest());
-      //      setEvents(response.data.items || []);
-    } catch (err) {
-      setError("Error loading events");
-      console.error(err);
-    } finally {
-      setLoading(false);
-    } */
-
     try {
       dispatch(fetchCalendarEventsRequest({ accessToken }));
 
-      const resultAction = await dispatch(fetchCalendarEventsRequest({ accessToken }));
-
-      console.log("res", resultAction);
-      /*   
-  if (fetchCalendarEventsSuccess.match(resultAction)) {
-    setEvents(resultAction.payload.events);  
-  } else if (fetchCalendarEventsFailure.match(resultAction)) {
-    setError(resultAction.payload);  
-  } */
+      await dispatch(fetchCalendarEventsRequest({ accessToken }));
     } catch (err) {
-      // setError("Error loading events");
       console.error(err);
-    } finally {
-      //  setLoading(false);
     }
   };
 
-  /* 
-  const formatDate = (dateString?: string) => {
-    if (!dateString) return "";
-
-    const date = new Date(dateString);
-
-    return date.toLocaleString();
+  const handleElasticSearch = () => {
+    dispatch(fetchWeatherRequest());
   };
- */
+
+  const events = useSelector(selectCalendarEvents);
+
+  console.log(events);
+
   return (
     <div>
       <button onClick={handleAuthClick}>{isSignedIn ? "Sign Out" : "Sign In with Google"}</button>
+
+      <button onClick={handleElasticSearch}>test</button>
     </div>
   );
 };
