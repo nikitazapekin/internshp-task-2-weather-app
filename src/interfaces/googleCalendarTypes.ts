@@ -3,6 +3,23 @@ export interface CalendarEvent {
   summary: string;
   start: { dateTime?: string; date?: string };
   end: { dateTime?: string; date?: string };
+  description: string;
+}
+
+export interface GoogleCalendarEventResponse {
+  kind: string;
+  etag: string;
+  summary: string;
+  description: string;
+  updated: string;
+  timeZone: string;
+  accessRole: string;
+  defaultReminders: {
+    method: string;
+    minutes: number;
+  }[];
+  nextPageToken?: string;
+  items: CalendarEvent[];
 }
 
 export interface GoogleAuthResponse {

@@ -1,11 +1,12 @@
-import { Text, Time, Wrapper } from "./styled";
-import type { EventCardInterface } from "./types";
+import type { CalendarEvent } from "@interfaces/googleCalendarTypes";
 
-const EventCard = ({ event }: EventCardInterface) => {
+import { Text, Time, Wrapper } from "./styled";
+
+const EventCard = ({ description, start }: CalendarEvent) => {
   return (
     <Wrapper>
-      <Time>{event.time}</Time>
-      <Text>{event.text}</Text>
+      <Time>{start.dateTime}</Time>
+      <Text>{description}</Text>
     </Wrapper>
   );
 };
