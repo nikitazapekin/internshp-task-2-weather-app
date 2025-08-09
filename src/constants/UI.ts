@@ -3,6 +3,7 @@ export const UI_CONSTANTS = {
     searchButton: "Search",
     loginButton: "Sign in",
     signOutButton: "Sign out",
+    closeModalButton: "Close",
   },
   weatherButtons: [
     { id: 1, text: "Daily" },

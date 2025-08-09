@@ -6,7 +6,7 @@ import { Wrapper } from "./styled";
 const AuthButtons = () => {
   return (
     <Wrapper>
-      <Button text={UI_CONSTANTS.buttons.loginButton} />
+      <Button text={UI_CONSTANTS.buttons.loginButton} handler={() => {}} />
     </Wrapper>
   );
 };
