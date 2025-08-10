@@ -23,13 +23,7 @@
       "src": "/(.*)",
       "dest": "/build/index.html"
     }
-  ],
-  "env": {
-  "REACT_APP_VERCEL_TOKEN": "@REACT_APP_VERCEL_TOKEN",
-  "REACT_APP_API_URL": "@REACT_APP_API_URL",
-  "REACT_APP_GOOGLE_CLIENT_ID": "@REACT_APP_GOOGLE_CLIENT_ID",
-  "REACT_APP_API_GOOGLE_AUTH": "@REACT_APP_API_GOOGLE_AUTH",
-  "REACT_APP_API_GOOGLE_SCOPE": "@REACT_APP_API_GOOGLE_SCOPE"
-}
+  ]
+  
   
 }
