@@ -1,18 +1,31 @@
 import Button from "@components/Button";
 import { UI_CONSTANTS } from "@constants/UI";
 import { fetchCalendarEventsRequest } from "@store/actions/googleCalendarActions";
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
 import { Wrapper } from "./styled";
 import type { GoogleTokenResponse } from "./types";
 
-const AuthButtons = () => {
-  const [isSignedIn, setIsSignedIn] = useState(false);
+const useAuth = () => {
   const dispatch = useDispatch();
+  const [isSignedIn, setIsSignedIn] = useState(() => {
+    return !!localStorage.getItem("accessToken");
+  });
 
-  const handleAuthClick = () => {
+  useEffect(() => {
+    const handleStorageChange = () => {
+      setIsSignedIn(!!localStorage.getItem("accessToken"));
+    };
+
+    window.addEventListener("storage", handleStorageChange);
+
+    return () => window.removeEventListener("storage", handleStorageChange);
+  }, []);
+
+  const handleAuthClick = useCallback(() => {
     if (isSignedIn) {
+      localStorage.removeItem("accessToken");
       setIsSignedIn(false);
 
       return;
@@ -43,6 +56,7 @@ const AuthButtons = () => {
       scope: process.env.REACT_APP_API_GOOGLE_SCOPE || "",
       callback: async (tokenResponse: GoogleTokenResponse) => {
         if (tokenResponse.access_token) {
+          localStorage.setItem("accessToken", tokenResponse.access_token);
           setIsSignedIn(true);
           try {
             await dispatch(
@@ -51,6 +65,7 @@ const AuthButtons = () => {
               })
             );
           } catch {
+            localStorage.removeItem("accessToken");
             setIsSignedIn(false);
           }
         }
@@ -58,7 +73,21 @@ const AuthButtons = () => {
     });
 
     client.requestAccessToken();
-  };
+  }, [isSignedIn]);
+
+  useEffect(() => {
+    const token = localStorage.getItem("accessToken");
+
+    if (token) {
+      dispatch(fetchCalendarEventsRequest({ accessToken: token }));
+    }
+  }, []);
+
+  return { isSignedIn, handleAuthClick };
+};
+
+const AuthButtons = () => {
+  const { isSignedIn, handleAuthClick } = useAuth();
 
   return (
     <Wrapper>
