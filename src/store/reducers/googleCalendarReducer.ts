@@ -1,6 +1,7 @@
 import type { CalendarEvent } from "@interfaces/googleCalendarTypes";
 import { createReducer } from "@reduxjs/toolkit";
 import {
+  cleanUpEvents,
   fetchCalendarEventsFailure,
   fetchCalendarEventsRequest,
   fetchCalendarEventsSuccess,
@@ -31,40 +32,8 @@ export const calendarReducer = createReducer(initialState, (builder) => {
     .addCase(fetchCalendarEventsFailure, (state, action) => {
       state.loading = false;
       state.error = action.payload;
+    })
+    .addCase(cleanUpEvents, (state) => {
+      state.events = [];
     });
 });
-/* import { createReducer } from "@reduxjs/toolkit";
-import {
-  fetchCalendarEventsFailure,
-  fetchCalendarEventsRequest,
-  fetchCalendarEventsSuccess,
-} from "@store/actions/googleCalendarActions";
-
-interface CalendarEventsState {
-  loading: boolean;
-  error: string | null;
-  title: string | null;
-}
-
-const initialState: CalendarEventsState = {
-  loading: false,
-  error: null,
-  title: null,
-};
-
-export const calendarReducer = createReducer(initialState, (builder) => {
-  builder
-    .addCase(fetchCalendarEventsRequest, (state) => {
-      state.loading = true;
-      state.error = null;
-    })
-    .addCase(fetchCalendarEventsSuccess, (state, action) => {
-      state.loading = false;
-      state.title = action.payload.title;
-    })
-    .addCase(fetchCalendarEventsFailure, (state, action) => {
-      state.loading = false;
-      state.error = action.payload;
-    });
-});
- */
