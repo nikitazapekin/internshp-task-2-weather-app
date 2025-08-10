@@ -63,7 +63,7 @@ const useAuth = () => {
     });
 
     client.requestAccessToken();
-  }, [accessToken]);
+  }, [accessToken, dispatch]);
 
   useEffect(() => {
     if (accessToken !== null) {
@@ -71,7 +71,7 @@ const useAuth = () => {
     } else {
       dispatch(cleanUpEvents());
     }
-  }, [accessToken]);
+  }, [accessToken, dispatch]);
 
   return { isSignedIn: accessToken !== null, handleAuthClick };
 };
