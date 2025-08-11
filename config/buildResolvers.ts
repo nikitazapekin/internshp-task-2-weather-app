@@ -16,6 +16,7 @@ export function buildResolvers() {
       "@interfaces": path.resolve(__dirname, "src/interfaces"),
       "@styles": path.resolve(__dirname, "src/styles"),
       "@hooks": path.resolve(__dirname, "src/hooks"),
+      "@types": path.resolve(__dirname, "src/types"),
     },
   };
 }

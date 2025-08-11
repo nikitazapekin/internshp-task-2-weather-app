@@ -3,7 +3,7 @@ import type { Config } from "jest";
 const config: Config = {
   verbose: true,
   preset: "ts-jest",
-  testEnvironment: "node",
+  testEnvironment: "jsdom",
 
   testPathIgnorePatterns: ["/node_modules/", "/dist/"],
   moduleFileExtensions: ["js", "json", "jsx", "ts", "tsx", "node"],
@@ -25,10 +25,10 @@ const config: Config = {
     "^@utils/(.*)$": "<rootDir>/src/utils/$1",
     "^@store/(.*)$": "<rootDir>/src/store/$1",
     "^@api/(.*)$": "<rootDir>/src/api/$1",
-    "^@types/(.*)$": "<rootDir>/src/types/$1",
     "^@interfaces/(.*)$": "<rootDir>/src/interfaces/$1",
     "^@styles/(.*)$": "<rootDir>/src/styles/$1",
     "^@styles$": "<rootDir>/src/styles/index",
+    "^@types/(.*)$": "<rootDir>/src/types/$1",
   },
 
   collectCoverage: true,
