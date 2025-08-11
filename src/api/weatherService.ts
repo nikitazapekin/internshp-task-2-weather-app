@@ -1,3 +1,4 @@
+import { ENV_CONSTANTS } from "@constants/envConstants";
 import type {
   CityParams,
   CurrentWeatherResponse,
@@ -10,14 +11,10 @@ import type { AxiosResponse } from "axios";
 import { $api } from ".";
 
 export default class WeatherService {
-  private static getApiKey(): string {
-    return process.env.REACT_APP_OPEN_WEATHER_TOKEN || "";
-  }
-
   private static buildParams(params: Record<string, any>): URLSearchParams {
     const searchParams = new URLSearchParams({
       ...params,
-      appid: this.getApiKey(),
+      appid: ENV_CONSTANTS.OPEN_WEATHER_TOKEN,
       units: "metric",
       lang: "ru",
     });

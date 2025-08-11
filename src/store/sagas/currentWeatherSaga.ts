@@ -3,7 +3,8 @@ import type { AxiosResponse } from "axios";
 import type { SagaIterator } from "redux-saga";
 import { call, put, takeLatest } from "redux-saga/effects";
 
-import WeatherService from "../../api/weatherService";
+import WeatherService from "@api/weatherService";
+
 import {
   fetchWeatherByCityRequest,
   fetchWeatherByCoordsRequest,

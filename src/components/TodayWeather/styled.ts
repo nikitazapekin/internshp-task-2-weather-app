@@ -7,4 +7,6 @@ export const Wrapper = styled.div`
   ${flex("flex-start", "center", "row")}
 
   column-gap: ${({ theme }) => theme.spaces.xl}px;
+  max-width: 276px;
+  width: 100%;
 `;
