@@ -32,19 +32,3 @@ export const TopAndCenterOfBannerWrapper = styled.div`
     padding: ${({ theme }) => theme.spaces.xs}px  
     `}
 `;
-
-/*
-  spaces: {
-    x: 5,
-    xs: 10,
-    sm: 15,
-    md: 20,
-    lg: 30,
-    xl: 40,
-    xxl: 50,
-    g: 60,
-    h: 70,
-    xh: 80,
-    eh: 90,
-  },
-  */
