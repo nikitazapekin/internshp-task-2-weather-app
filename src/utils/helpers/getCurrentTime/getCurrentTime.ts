@@ -1,6 +1,5 @@
 import { days, FIRST_DAY_OF_MONTH, LAST_DAY_OF_MONTH, months } from "@constants";
-
-import type { TimeAndDate } from "@interfaces/timeAndDate";
+import type { TimeAndDate } from "@types/timeAndDateTypes";
 
 export const getCurrentTime = (): TimeAndDate => {
   try {

@@ -1,7 +1,6 @@
 import { MAX_RESULTS_CONSTANT, ORDER_BY_CONSTANT, SINGLE_EVENTS_CONSTANT } from "@constants";
 import type { AxiosResponse } from "axios";
-
-import type { CalendarEvent } from "@interfaces/googleCalendarTypes";
+import type { CalendarEvent } from "src/types/googleCalendarTypes";
 
 import { $api2 } from ".";
 

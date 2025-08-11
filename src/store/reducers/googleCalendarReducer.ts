@@ -1,6 +1,6 @@
 import { createReducer } from "@reduxjs/toolkit";
+import type { CalendarEvent } from "src/types/googleCalendarTypes";
 
-import type { CalendarEvent } from "@interfaces/googleCalendarTypes";
 import {
   cleanUpEvents,
   fetchCalendarEventsFailure,

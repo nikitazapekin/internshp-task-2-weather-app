@@ -2,9 +2,9 @@ import { ERROR_CONSTANTS } from "@constants/errors";
 import type { AxiosResponse } from "axios";
 import type { SagaIterator } from "redux-saga";
 import { call, put, takeLatest } from "redux-saga/effects";
+import type { CalendarEvent } from "src/types/googleCalendarTypes";
 
 import GoogleCalendarService from "@api/googleCalendarService";
-import type { CalendarEvent } from "@interfaces/googleCalendarTypes";
 import {
   fetchCalendarEventsFailure,
   fetchCalendarEventsRequest,

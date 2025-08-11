@@ -1,6 +1,5 @@
 import type { AxiosResponse } from "axios";
-
-import type { WeatherResponseType } from "@interfaces/weatherResponseType";
+import type { WeatherResponseType } from "src/types/weatherResponseType";
 
 import { $api } from ".";
 

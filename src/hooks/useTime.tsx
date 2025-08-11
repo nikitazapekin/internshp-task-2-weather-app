@@ -1,8 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { days, MILLISECONDS_IN_MINUTE, months, SECONDS_IN_MINUTE } from "@constants";
+import type { TimeAndDate } from "@types/timeAndDateTypes";
 import { getCurrentTime } from "@utils/helpers/getCurrentTime/getCurrentTime";
-
-import type { TimeAndDate } from "@interfaces/timeAndDate";
 
 const useTime = () => {
   const [timeData, setTimeData] = useState<TimeAndDate>(getCurrentTime());
