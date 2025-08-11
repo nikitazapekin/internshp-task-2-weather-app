@@ -1,12 +1,11 @@
-import SunnyIcon from "@assets/desctop/sunny.webp";
-import { ICONS_ALTS_CONSTANTS } from "@constants/iconsAlts";
+import { ICONS_CONSTANTS } from "@constants/weatherIcons";
 
 import { Image, Wrapper } from "./styled";
 
 const TodayWeatherIcon = () => {
   return (
     <Wrapper>
-      <Image src={SunnyIcon} alt={ICONS_ALTS_CONSTANTS.sunny} />
+      <Image src={ICONS_CONSTANTS.sunny.desktop} alt={ICONS_CONSTANTS.sunny.alt} />
     </Wrapper>
   );
 };

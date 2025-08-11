@@ -1,4 +1,4 @@
-import Foggy from "@assets/desctop/rainy.webp";
+import Foggy from "@assets/desktop/rainy.webp";
 
 import { Degree, Image, Title, Wrapper } from "./styled";
 import type { SwiperItemTypes } from "./types";

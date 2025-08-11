@@ -7,6 +7,7 @@ export const Wrapper = styled.li`
   column-gap: ${(props) => props.theme.spaces.lg}px;
   width: 100%;
   max-width: 100%;
+  padding-right: 20px;
 `;
 
 export const Time = styled.p`

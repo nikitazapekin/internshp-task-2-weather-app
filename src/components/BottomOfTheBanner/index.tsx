@@ -1,6 +1,6 @@
 import Swiper from "@components/Swiper";
 import TodayWeather from "@components/TodayWeather";
-import WeatherCardGrid from "@components/WeatherCardsGrid";
+import WeatherCardGrid from "@components/WeatherCardsList";
 import useResize from "@hooks/useResize";
 
 import { Wrapper } from "./styled";
