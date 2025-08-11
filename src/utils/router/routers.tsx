@@ -1,3 +1,4 @@
+import { NOT_FOUND_PAGE } from "@constants";
 import { Navigate, Route, Routes } from "react-router-dom";
 
 import { routes } from "./routesConfig";
@@ -9,7 +10,7 @@ const AppRoutes = () => {
         return <Route key={path} path={path} element={<Component />} />;
       })}
 
-      <Route path="*" element={<Navigate to="/404" replace />} />
+      <Route path="*" element={<Navigate to={NOT_FOUND_PAGE} replace />} />
     </Routes>
   );
 };
