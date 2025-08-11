@@ -1,33 +1,34 @@
 import { useSelector } from "react-redux";
-import EventCard from "@components/EventCard";
+import Spinner from "@components/Spinner";
 import { UI_CONSTANTS } from "@constants/UI";
+import { formatTime } from "@utils/helpers/formatTime/formatTime";
 
-import { selectCalendarEvents } from "@store/selectors/calendarEvents";
+import { selectCalendarEvents, selectCalendarEventsLoading } from "@store/selectors/calendarEvents";
 
-import { EmptyListText, Wrapper } from "./styled";
+import { EmptyListText, EventCard, Text, Time, Wrapper } from "./styled";
 
 const EventList = () => {
   const events = useSelector(selectCalendarEvents);
+  const isLoading = useSelector(selectCalendarEventsLoading);
   const { emptyList } = UI_CONSTANTS;
 
   return (
     <Wrapper>
-      {events.map((item) => (
-        <EventCard
-          id={item.id}
-          summary={item.summary}
-          start={{
-            dateTime: item.start.dateTime,
-            date: item.start.date,
-          }}
-          end={{
-            dateTime: item.end.dateTime,
-            date: item.end.date,
-          }}
-          description={item.description}
-        />
-      ))}
-      {events.length === 0 && <EmptyListText>{emptyList}</EmptyListText>}
+      {events.map((item) => {
+        const {
+          start: { dateTime },
+          summary,
+        } = item;
+
+        return (
+          <EventCard key={dateTime}>
+            <Time>{formatTime(dateTime)}</Time>
+            <Text>{summary}</Text>
+          </EventCard>
+        );
+      })}
+      {events.length === 0 && !isLoading && <EmptyListText>{emptyList}</EmptyListText>}
+      {isLoading && <Spinner />}
     </Wrapper>
   );
 };
