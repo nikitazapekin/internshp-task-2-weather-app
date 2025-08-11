@@ -30,6 +30,7 @@ declare module "styled-components" {
       xl: number;
       lg: number;
       md: number;
+      xh: number;
       sm: number;
     };
     zIndexes: {
@@ -50,6 +51,16 @@ declare module "styled-components" {
       h: number;
       xh: number;
       eh: number;
+    };
+    swiper: {
+      item_gap: number;
+      margin_base: number;
+      vw_ratio: number;
+      scroll_snap_type: string;
+      scroll_snap_align: string;
+      flex_basis: string;
+      min_width: string;
+      container: number;
     };
   }
 }
