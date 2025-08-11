@@ -6,13 +6,11 @@ import { Wrapper } from "./styled";
 
 const AuthButtons = () => {
   const { isSignedIn, handleAuthClick } = useAuth();
+  const { signOutButton, loginButton } = UI_CONSTANTS.buttons;
 
   return (
     <Wrapper>
-      <Button
-        text={isSignedIn ? UI_CONSTANTS.buttons.signOutButton : UI_CONSTANTS.buttons.loginButton}
-        handler={handleAuthClick}
-      />
+      <Button text={isSignedIn ? signOutButton : loginButton} handler={handleAuthClick} />
     </Wrapper>
   );
 };
