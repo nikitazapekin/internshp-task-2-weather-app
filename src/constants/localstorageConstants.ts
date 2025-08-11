@@ -1,1 +1,3 @@
-export const ACCESS_TOKEN_CONSTANT = "accessToken";
+export const STORAGE_KEYS = {
+  ACCESS_TOKEN: "accessToken",
+} as const;

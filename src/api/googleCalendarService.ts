@@ -1,3 +1,4 @@
+import { MAX_RESULTS_CONSTANT, ORDER_BY_CONSTANT, SINGLE_EVENTS_CONSTANT } from "@constants";
 import type { CalendarEvent } from "@interfaces/googleCalendarTypes";
 import type { AxiosResponse } from "axios";
 
@@ -11,9 +12,9 @@ export default class GoogleCalendarService {
 
     return $api2.get(`/calendars/primary/events`, {
       params: {
-        maxResults: 10,
-        orderBy: "startTime",
-        singleEvents: true,
+        maxResults: MAX_RESULTS_CONSTANT,
+        orderBy: ORDER_BY_CONSTANT,
+        singleEvents: SINGLE_EVENTS_CONSTANT,
         timeMin,
       },
       headers: {

@@ -1,5 +1,8 @@
-import { ACCESS_TOKEN_CONSTANT } from "@constants/localstorageConstants";
 import { cleanUpEvents, fetchCalendarEventsRequest } from "@store/actions/googleCalendarActions";
+import {
+  LocalstorageUtils,
+  STORAGE_KEYS,
+} from "@utils/helpers/localstorageUtility/localstorageUtility";
 import { useCallback, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
@@ -7,15 +10,17 @@ import type { GoogleTokenResponse } from "./types";
 
 const useAuth = () => {
   const dispatch = useDispatch();
-  const [accessToken, setAccessToken] = useState(localStorage.getItem(ACCESS_TOKEN_CONSTANT));
+  const [accessToken, setAccessToken] = useState<string | null>(
+    LocalstorageUtils.getItem<string>(STORAGE_KEYS.ACCESS_TOKEN)
+  );
 
   useEffect(() => {
-    setAccessToken(localStorage.getItem(ACCESS_TOKEN_CONSTANT));
+    setAccessToken(LocalstorageUtils.getItem<string>(STORAGE_KEYS.ACCESS_TOKEN));
   }, []);
 
   const handleAuthClick = useCallback(() => {
     if (accessToken !== null) {
-      localStorage.removeItem(ACCESS_TOKEN_CONSTANT);
+      LocalstorageUtils.removeItem(STORAGE_KEYS.ACCESS_TOKEN);
       setAccessToken(null);
 
       return;
@@ -46,7 +51,7 @@ const useAuth = () => {
       scope: process.env.REACT_APP_API_GOOGLE_SCOPE || "",
       callback: async (tokenResponse: GoogleTokenResponse) => {
         if (tokenResponse.access_token) {
-          localStorage.setItem(ACCESS_TOKEN_CONSTANT, tokenResponse.access_token);
+          LocalstorageUtils.setItem<string>(STORAGE_KEYS.ACCESS_TOKEN, tokenResponse.access_token);
           setAccessToken(tokenResponse.access_token);
           try {
             await dispatch(
@@ -55,7 +60,7 @@ const useAuth = () => {
               })
             );
           } catch {
-            localStorage.removeItem(ACCESS_TOKEN_CONSTANT);
+            LocalstorageUtils.removeItem(STORAGE_KEYS.ACCESS_TOKEN);
             setAccessToken(null);
           }
         }
