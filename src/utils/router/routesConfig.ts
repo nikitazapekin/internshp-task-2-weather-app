@@ -11,7 +11,6 @@ export const routes = [
     path: MAIN_PAGE_CITY,
     Component: WeatherPage,
   },
-
   {
     path: NOT_FOUND_PAGE,
     Component: NotFoundPage,
