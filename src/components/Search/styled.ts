@@ -27,6 +27,6 @@ export const SearchInput = styled.input`
   color: ${({ theme }) => theme.colors.black};
 
   ${media.lg`
-  	max-width: 173px;
+  	width: 173px;
   `}
 `;
