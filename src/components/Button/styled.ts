@@ -22,4 +22,9 @@ export const ButtonElement = styled.button`
    font-size: ${({ theme }) => theme.fontSizes.xxs};
    padding: ${({ theme }) => theme.spaces.xs}px ${({ theme }) => theme.spaces.xs}px;
   `}
+
+  ${media.sm`
+   font-size: ${({ theme }) => theme.fontSizes.xxs};
+   padding: ${({ theme }) => theme.spaces.x}px ${({ theme }) => theme.spaces.x}px;
+  `}
 `;

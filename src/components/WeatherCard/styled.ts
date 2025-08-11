@@ -1,3 +1,4 @@
+import { media } from "@styles/breakpoints";
 import { flex } from "@styles/mixins";
 import styled from "styled-components";
 
@@ -9,6 +10,10 @@ export const Text = styled.p`
   color: ${({ theme }) => theme.colors.black};
   font-weight: ${({ theme }) => theme.fontWeights.regular};
   font-size: ${({ theme }) => theme.fontSizes.xxs};
+
+  ${media.sm`
+    font-size: ${({ theme }) => theme.fontSizes.xxs};
+  `}
 `;
 
 export const Degree = styled.p`
@@ -16,6 +21,10 @@ export const Degree = styled.p`
   color: ${({ theme }) => theme.colors.black};
   font-weight: ${({ theme }) => theme.fontWeights.regular};
   font-size: ${({ theme }) => theme.fontSizes.sm};
+
+  ${media.sm`
+    font-size: ${({ theme }) => theme.fontSizes.xxs};
+  `}
 `;
 
 export const Image = styled.img`

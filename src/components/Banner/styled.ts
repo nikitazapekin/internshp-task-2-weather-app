@@ -7,6 +7,10 @@ export const Wrapper = styled.section`
   position: relative;
   padding: ${({ theme }) => theme.spaces.md}px;
   margin: ${({ theme }) => theme.spaces.md}px 0;
+
+  ${media.sm`
+    padding: ${({ theme }) => theme.spaces.xs}px;
+  `}
 `;
 
 export const BannerBackground = styled.div`

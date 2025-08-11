@@ -13,8 +13,8 @@ export const Wrapper = styled.ul`
   overflow-x: hidden;
   scrollbar-width: thin;
   scrollbar-color: ${(props) => props.theme.colors.black} ${(props) => props.theme.colors.white};
-  max-width: 400px;
-  width: 100%;
+  max-width: 100%;
+  width: auto;
 
   &::-webkit-scrollbar {
     width: 6px;

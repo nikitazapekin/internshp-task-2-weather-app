@@ -29,4 +29,9 @@ export const SearchInput = styled.input`
   ${media.lg`
   	width: 173px;
   `}
+
+  ${media.sm`
+  	font-size: ${({ theme }) => theme.fontSizes.xxs};
+    padding: ${({ theme }) => theme.spaces.x}px;
+  `}
 `;

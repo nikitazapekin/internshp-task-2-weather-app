@@ -20,4 +20,9 @@ export const Wrapper = styled.div`
   ${media.xh`
     grid-template-columns: repeat(2,auto);
   `}
+
+  ${media.sm`
+    grid-template-columns: repeat(2,auto);
+    grid-column-gap: ${({ theme }) => theme.spaces.md}px;
+  `}
 `;

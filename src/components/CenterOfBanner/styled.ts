@@ -27,6 +27,6 @@ export const EventsAndWeatherButtonsWrapper = styled.div`
 export const AuthButtonsAndEventsWrapper = styled.div`
   ${flex("space-between", "center", "row-reverse")}
 
-  column-gap: ${(props) => props.theme.spaces.xxl}px;
+  column-gap: ${(props) => props.theme.spaces.md}px;
   width: 100%;
 `;

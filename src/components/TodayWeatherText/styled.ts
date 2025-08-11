@@ -1,3 +1,4 @@
+import { media } from "@styles/breakpoints";
 import { flex } from "@styles/mixins";
 import styled from "styled-components";
 
@@ -10,4 +11,8 @@ export const Text = styled.p`
   color: ${({ theme }) => theme.colors.black};
   font-weight: ${({ theme }) => theme.fontWeights.regular};
   font-size: ${({ theme }) => theme.fontSizes.lg};
+
+  ${media.sm`
+    font-size: ${({ theme }) => theme.fontSizes.xxs};
+  `}
 `;
