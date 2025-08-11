@@ -35,7 +35,7 @@ export const Wrapper = styled.ul`
 export const EmptyListText = styled.h3`
   color: ${({ theme }) => theme.colors.black};
   font-weight: ${({ theme }) => theme.fontWeights.regular};
-  font-size: ${({ theme }) => theme.fontSizes.md};
+  font-size: ${({ theme }) => theme.fontSizes.xs};
 `;
 
 export const EventCard = styled.li`
