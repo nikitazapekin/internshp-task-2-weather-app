@@ -1,4 +1,5 @@
 import WeekWeatherPage from "@pages/WeatherPage";
+import { GlobalStyle } from "@styles/globals";
 import { createRoot } from "react-dom/client";
 import { ThemeProvider } from "styled-components";
 
@@ -14,6 +15,7 @@ const container = createRoot(root);
 
 container.render(
   <ThemeProvider theme={theme}>
+    <GlobalStyle />
     <WeekWeatherPage />
   </ThemeProvider>
 );

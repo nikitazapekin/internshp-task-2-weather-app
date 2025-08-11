@@ -1,13 +1,16 @@
 import BottomOfTheBanner from "@components/BottomOfTheBanner";
+import CenterOfBanner from "@components/CenterOfBanner";
 import TopOfTheBanner from "@components/TopOfTheBanner";
 
-import { BannerBackground, Wrapper } from "./styled";
+import { BannerBackground, TopAndCenterOfBannerWrapper, Wrapper } from "./styled";
 
 const Banner = () => {
   return (
     <Wrapper>
-      <TopOfTheBanner />
-
+      <TopAndCenterOfBannerWrapper>
+        <TopOfTheBanner />
+        <CenterOfBanner />
+      </TopAndCenterOfBannerWrapper>
       <BottomOfTheBanner />
       <BannerBackground />
     </Wrapper>
