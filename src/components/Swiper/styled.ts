@@ -24,9 +24,11 @@ export const Wrapper = styled.div`
   }
 
   ${media.xl`
-     ${flex("flex-start", "center", "row")}
+    ${flex("flex-start", "center", "row")}
+
     flex-wrap: nowrap;
     scroll-snap-type: ${({ theme }) => theme.swiper.scroll_snap_type};
+
     & > * {
       flex: ${({ theme }) => theme.swiper.flex_basis} calc(${({ theme }) => theme.swiper.container}% - (5px + ${({ theme }) => theme.swiper.vw_ratio}vw));
       min-width: ${({ theme }) => theme.swiper.min_width};
@@ -37,6 +39,7 @@ export const Wrapper = styled.div`
         margin-left: 0;
         scroll-margin-left: 0;
       }
+      
       &:last-child {
         margin-right: 0;
         scroll-margin-right: 0;

@@ -6,9 +6,5 @@ export const Wrapper = styled.div`
 
   ${flex("flex-start", "center", "row")}
 
-  /*  padding: ${({ theme }) => theme.spaces.lg}px ${({ theme }) => theme.spaces.xxl}px
-    ${({ theme }) => theme.spaces.xxl}px ${({ theme }) => theme.spaces.xl}px;
-    */
   column-gap: ${({ theme }) => theme.spaces.xl}px;
-  // padding: 19px 70px 19px 40px;
 `;

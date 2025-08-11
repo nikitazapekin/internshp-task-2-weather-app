@@ -27,7 +27,7 @@ export const theme = {
     xl: 1280,
     lg: 1024,
     md: 768,
-    xh: 560,
+    xh: 547,
     sm: 480,
   },
   zIndexes: {

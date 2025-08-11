@@ -18,6 +18,6 @@ export const Wrapper = styled.section`
   ${media.lg`
     ${flex("flex-start", "center", "column")};
 
-      padding: ${({ theme }) => theme.spaces.md}px ${({ theme }) => theme.spaces.md}px;
+    padding: ${({ theme }) => theme.spaces.md}px ${({ theme }) => theme.spaces.md}px;
     `}
 `;

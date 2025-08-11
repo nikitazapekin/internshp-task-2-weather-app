@@ -14,10 +14,10 @@ export const Wrapper = styled.div`
 
   ${media.md`
     grid-template-columns: repeat(3, 1fr);
-    `}
+    grid-column-gap: ${({ theme }) => theme.spaces.g}px;
+  `}
 
   ${media.xh`
-    grid-template-columns: repeat(3,auto);
-    grid-column-gap: ${({ theme }) => theme.spaces.g}px;
+    grid-template-columns: repeat(2,auto);
   `}
 `;
