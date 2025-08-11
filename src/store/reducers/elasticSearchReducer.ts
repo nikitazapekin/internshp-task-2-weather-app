@@ -1,4 +1,5 @@
 import { createReducer } from "@reduxjs/toolkit";
+
 import { searchElasticQuery } from "@store/actions/elasticSearchActions";
 
 interface ElasticSearchState {

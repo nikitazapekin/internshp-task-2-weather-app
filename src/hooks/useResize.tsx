@@ -1,5 +1,5 @@
-import { BREAKPOINT_TRIGGER_WIDTH } from "@constants";
 import { useEffect, useState } from "react";
+import { BREAKPOINT_TRIGGER_WIDTH } from "@constants";
 
 const useResize = () => {
   const [isMobileView, setIsMobileView] = useState<boolean>(false);

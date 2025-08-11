@@ -19,7 +19,7 @@ export const ButtonElement = styled.button`
   }
 
   ${media.lg`
-   font-size: ${({ theme }) => theme.fontSizes.xs};
-   padding: ${({ theme }) => theme.spaces.xs}px ${({ theme }) => theme.spaces.sm}px;
+   font-size: ${({ theme }) => theme.fontSizes.xxs};
+   padding: ${({ theme }) => theme.spaces.xs}px ${({ theme }) => theme.spaces.xs}px;
   `}
 `;
