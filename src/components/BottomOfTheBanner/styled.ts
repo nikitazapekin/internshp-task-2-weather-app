@@ -19,5 +19,5 @@ export const Wrapper = styled.section`
     ${flex("flex-start", "center", "column")};
 
     padding: ${({ theme }) => theme.spaces.md}px ${({ theme }) => theme.spaces.md}px;
-    `}
+  `}
 `;

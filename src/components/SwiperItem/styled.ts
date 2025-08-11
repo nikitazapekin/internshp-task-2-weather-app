@@ -10,11 +10,11 @@ export const Wrapper = styled.div`
     width: 100%;
     padding: 0 ${({ theme }) => theme.spaces.sm}px;
     box-sizing: border-box;
-    `}
+  `}
 
   ${media.lg`
     display: none;
-    `}
+  `}
 `;
 
 export const Title = styled.p`
