@@ -25,10 +25,9 @@ export const BannerBackground = styled.div`
 `;
 
 export const TopAndCenterOfBannerWrapper = styled.div`
-  /*   padding: ${({ theme }) => theme.spaces.xxl}px ${({ theme }) => theme.spaces.h}px
-    ${({ theme }) => theme.spaces.lg}px ${({ theme }) => theme.spaces.xh}px; */
   padding: ${({ theme }) => theme.spaces.xxl}px ${({ theme }) => theme.spaces.h}px 0
     ${({ theme }) => theme.spaces.xh}px;
+
   ${media.lg`
     padding: ${({ theme }) => theme.spaces.xs}px  
     `}
