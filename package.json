@@ -59,12 +59,12 @@
     "wait-on": "^8.0.4",
     "webpack": "^5.88.2",
     "webpack-cli": "^6.0.1",
-    "webpack-dev-server": "^4.15.1"
+    "webpack-dev-server": "^4.15.1",
+    "dotenv": "^17.2.1"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.8.2",
     "axios": "^1.11.0",
-    "dotenv": "^17.2.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^9.2.0",
