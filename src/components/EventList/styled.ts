@@ -30,3 +30,9 @@ export const Wrapper = styled.ul`
     border-radius: 3px;
   }
 `;
+
+export const EmptyListText = styled.h3`
+  color: ${({ theme }) => theme.colors.white};
+  font-weight: ${({ theme }) => theme.fontWeights.regular};
+  font-size: ${({ theme }) => theme.fontSizes.md};
+`;

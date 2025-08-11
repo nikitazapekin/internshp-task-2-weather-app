@@ -1,3 +1,4 @@
+import { ERROR_CONSTANTS } from "@constants/errors";
 import type { AxiosResponse } from "axios";
 import type { SagaIterator } from "redux-saga";
 import { call, put, takeLatest } from "redux-saga/effects";
@@ -19,10 +20,9 @@ function* fetchCalendarEvents(action: ReturnType<typeof fetchCalendarEventsReque
       accessToken
     );
 
-    console.log("resp", response);
     yield put(fetchCalendarEventsSuccess({ events: response.data.items }));
   } catch (error: unknown) {
-    const message = error instanceof Error ? error.message : "Unknown error";
+    const message = error instanceof Error ? error.message : ERROR_CONSTANTS.UNKNOWN_ERROR;
 
     yield put(fetchCalendarEventsFailure(message));
   }

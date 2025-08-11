@@ -1,12 +1,14 @@
 import { useSelector } from "react-redux";
 import EventCard from "@components/EventCard";
+import { UI_CONSTANTS } from "@constants/UI";
 
 import { selectCalendarEvents } from "@store/selectors/calendarEvents";
 
-import { Wrapper } from "./styled";
+import { EmptyListText, Wrapper } from "./styled";
 
 const EventList = () => {
   const events = useSelector(selectCalendarEvents);
+  const { emptyList } = UI_CONSTANTS;
 
   return (
     <Wrapper>
@@ -25,6 +27,7 @@ const EventList = () => {
           description={item.description}
         />
       ))}
+      {events.length === 0 && <EmptyListText>{emptyList}</EmptyListText>}
     </Wrapper>
   );
 };

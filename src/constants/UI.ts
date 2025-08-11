@@ -8,4 +8,5 @@ export const UI_CONSTANTS = {
     { id: 1, text: "Daily" },
     { id: 2, text: "Hourly" },
   ],
+  emptyList: "No events at the moment",
 };

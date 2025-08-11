@@ -1,21 +1,19 @@
-import { getCurrentTime } from "@utils/helpers/getCurrentTime/getCurrentTime";
+import useTime from "@hooks/useTime";
 
 import { Time } from "./styled";
 
 const DateInfo = () => {
-  const { timeString, dateString, error } = getCurrentTime();
+  const { timeString, dateString, error } = useTime();
 
   if (error) {
-    <Time>{error}</Time>;
+    return <Time>{error}</Time>;
   }
 
   return (
-    <>
-      <Time>
-        {timeString} <br />
-        {dateString}
-      </Time>
-    </>
+    <Time>
+      {timeString} <br />
+      {dateString}
+    </Time>
   );
 };
 
