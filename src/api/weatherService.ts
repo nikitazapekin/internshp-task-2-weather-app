@@ -11,7 +11,7 @@ import type { AxiosResponse } from "axios";
 import { $api } from ".";
 
 export default class WeatherService {
-  private static buildParams(params: Record<string, any>): URLSearchParams {
+  private static buildParams(params: Record<string, string>): URLSearchParams {
     const searchParams = new URLSearchParams({
       ...params,
       appid: ENV_CONSTANTS.OPEN_WEATHER_TOKEN,

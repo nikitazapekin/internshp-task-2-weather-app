@@ -5,8 +5,8 @@ import { GlobalStyle, PageWrapper, Reset, WrapperContainer } from "@styles";
 import { getUserLocation } from "@utils/helpers/getGeolocation/getGeolocation";
 
 import { setCoordinats } from "@store/actions/currentCoordinatsAction";
-import { fetchWeatherByCityRequest } from "@store/actions/currentWeatherActions";
-import { fetchHourlyWeatherByCityRequest } from "@store/actions/weatherActions";
+import { fetchWeatherByCoordsRequest } from "@store/actions/currentWeatherActions";
+import { fetchHourlyWeatherByCoordsRequest } from "@store/actions/weatherActions";
 
 const WeekWeatherPage = () => {
   const dispatch = useDispatch();
@@ -17,6 +17,15 @@ const WeekWeatherPage = () => {
         const coords = await getUserLocation();
 
         dispatch(setCoordinats({ latitude: coords.latitude, longitude: coords.longitude }));
+        dispatch(
+          fetchWeatherByCoordsRequest({ latitude: coords.latitude, longitude: coords.longitude })
+        );
+        dispatch(
+          fetchHourlyWeatherByCoordsRequest({
+            latitude: coords.latitude,
+            longitude: coords.longitude,
+          })
+        );
       } catch (e) {
         console.log(e);
       }
@@ -25,11 +34,6 @@ const WeekWeatherPage = () => {
     handleLocation().catch((error) => {
       console.error("Error:", error);
     });
-  }, []);
-
-  useEffect(() => {
-    dispatch(fetchWeatherByCityRequest({ city: "Moscow" }));
-    dispatch(fetchHourlyWeatherByCityRequest({ city: "Minsk" }));
   }, [dispatch]);
 
   return (
