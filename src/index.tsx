@@ -1,5 +1,5 @@
+import AppRoutes from "@components/AppRouter";
 import { GlobalStyle } from "@styles/globals";
-import AppRoutes from "@utils/router/routers";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
