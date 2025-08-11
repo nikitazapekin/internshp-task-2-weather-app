@@ -13,5 +13,6 @@ export const TopWrapper = styled.section`
     ${flex("center", "center", "column")}
     
     row-gap: ${(props) => props.theme.spaces.xxl}px;
+    padding: 0 0;
   `}
 `;
