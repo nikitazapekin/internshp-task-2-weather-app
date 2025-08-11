@@ -25,7 +25,18 @@ export default [
       "simple-import-sort": simpleImportSort,
     },
     rules: {
-      "simple-import-sort/imports": "error",
+      "simple-import-sort/imports": [
+        "error",
+        {
+          groups: [
+            ["^node:", "^react", "^@?\\w"],
+            ["^@(api|interfaces|store|pages)(/.*|$)"],
+            ["^\\.\\.(?!/?$)", "^\\.\\./?$"],
+            ["^\\./(?=.*/)(?!/?$)", "^\\.(?!/?$)", "^\\./?$"],
+            ["^type "],
+          ],
+        },
+      ],
       "simple-import-sort/exports": "error",
     },
   },

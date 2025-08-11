@@ -1,6 +1,7 @@
-import EventCard from "@components/EventCard";
-import { selectCalendarEvents } from "@store/selectors/calendarEvents";
 import { useSelector } from "react-redux";
+import EventCard from "@components/EventCard";
+
+import { selectCalendarEvents } from "@store/selectors/calendarEvents";
 
 import { Wrapper } from "./styled";
 

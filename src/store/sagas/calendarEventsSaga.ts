@@ -1,3 +1,7 @@
+import type { AxiosResponse } from "axios";
+import type { SagaIterator } from "redux-saga";
+import { call, put, takeLatest } from "redux-saga/effects";
+
 import GoogleCalendarService from "@api/googleCalendarService";
 import type { CalendarEvent } from "@interfaces/googleCalendarTypes";
 import {
@@ -5,9 +9,6 @@ import {
   fetchCalendarEventsRequest,
   fetchCalendarEventsSuccess,
 } from "@store/actions/googleCalendarActions";
-import type { AxiosResponse } from "axios";
-import type { SagaIterator } from "redux-saga";
-import { call, put, takeLatest } from "redux-saga/effects";
 
 function* fetchCalendarEvents(action: ReturnType<typeof fetchCalendarEventsRequest>): SagaIterator {
   try {

@@ -1,5 +1,6 @@
-import type { CalendarEvent } from "@interfaces/googleCalendarTypes";
 import { createAction } from "@reduxjs/toolkit";
+
+import type { CalendarEvent } from "@interfaces/googleCalendarTypes";
 
 interface FetchCalendarEventsRequestPayload {
   accessToken: string;

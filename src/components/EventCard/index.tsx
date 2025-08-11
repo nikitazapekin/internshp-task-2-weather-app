@@ -1,5 +1,6 @@
-import type { CalendarEvent } from "@interfaces/googleCalendarTypes";
 import { formatTime } from "@utils/helpers/formatTime/formatTime";
+
+import type { CalendarEvent } from "@interfaces/googleCalendarTypes";
 
 import { Text, Time, Wrapper } from "./styled";
 

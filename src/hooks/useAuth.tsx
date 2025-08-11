@@ -1,10 +1,12 @@
-import { cleanUpEvents, fetchCalendarEventsRequest } from "@store/actions/googleCalendarActions";
+import { useCallback, useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { ENV_CONSTANTS } from "@constants/envConstants";
 import {
   LocalstorageUtils,
   STORAGE_KEYS,
 } from "@utils/helpers/localstorageUtility/localstorageUtility";
-import { useCallback, useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+
+import { cleanUpEvents, fetchCalendarEventsRequest } from "@store/actions/googleCalendarActions";
 
 import type { GoogleTokenResponse } from "./types";
 
@@ -47,8 +49,8 @@ const useAuth = () => {
     const initTokenClient = (oauth2 as { initTokenClient: Function }).initTokenClient;
 
     const client = initTokenClient({
-      client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID || "",
-      scope: process.env.REACT_APP_API_GOOGLE_SCOPE || "",
+      client_id: ENV_CONSTANTS.GOOGLE_CLIENT_ID || "",
+      scope: ENV_CONSTANTS.GOOGLE_SCOPE || "",
       callback: async (tokenResponse: GoogleTokenResponse) => {
         if (tokenResponse.access_token) {
           LocalstorageUtils.setItem<string>(STORAGE_KEYS.ACCESS_TOKEN, tokenResponse.access_token);
