@@ -6,6 +6,7 @@ import { getUserLocation } from "@utils/helpers/getGeolocation/getGeolocation";
 
 import { setCoordinats } from "@store/actions/currentCoordinatsAction";
 import { fetchWeatherByCityRequest } from "@store/actions/currentWeatherActions";
+import { fetchHourlyWeatherByCityRequest } from "@store/actions/weatherActions";
 
 const WeekWeatherPage = () => {
   const dispatch = useDispatch();
@@ -16,8 +17,8 @@ const WeekWeatherPage = () => {
         const coords = await getUserLocation();
 
         dispatch(setCoordinats({ latitude: coords.latitude, longitude: coords.longitude }));
-      } catch (error) {
-        console.error("Error getting location:", error);
+      } catch (e) {
+        console.log(e);
       }
     }
 
@@ -27,9 +28,9 @@ const WeekWeatherPage = () => {
   }, []);
 
   useEffect(() => {
-    console.log("dispatch");
     dispatch(fetchWeatherByCityRequest({ city: "Moscow" }));
-  }, []);
+    dispatch(fetchHourlyWeatherByCityRequest({ city: "Minsk" }));
+  }, [dispatch]);
 
   return (
     <PageWrapper>
