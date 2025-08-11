@@ -1,8 +1,8 @@
 import { all } from "redux-saga/effects";
 
 import { CalendarEventsSaga } from "./calendarEventsSaga";
-import { WeatherSaga } from "./weatherSaga";
+import { CurrentWeatherSaga } from "./currentWeatherSaga";
 
 export default function* rootSaga() {
-  yield all([WeatherSaga(), CalendarEventsSaga()]);
+  yield all([CurrentWeatherSaga(), CalendarEventsSaga()]);
 }

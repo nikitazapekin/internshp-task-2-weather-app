@@ -5,6 +5,7 @@ import { GlobalStyle, PageWrapper, Reset, WrapperContainer } from "@styles";
 import { getUserLocation } from "@utils/helpers/getGeolocation/getGeolocation";
 
 import { setCoordinats } from "@store/actions/currentCoordinatsAction";
+import { fetchWeatherByCityRequest } from "@store/actions/currentWeatherActions";
 
 const WeekWeatherPage = () => {
   const dispatch = useDispatch();
@@ -23,6 +24,11 @@ const WeekWeatherPage = () => {
     handleLocation().catch((error) => {
       console.error("Error:", error);
     });
+  }, []);
+
+  useEffect(() => {
+    console.log("dispatch");
+    dispatch(fetchWeatherByCityRequest({ city: "Moscow" }));
   }, []);
 
   return (
