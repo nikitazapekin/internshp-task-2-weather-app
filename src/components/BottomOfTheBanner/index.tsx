@@ -15,7 +15,11 @@ const BottomOfTheBanner = () => {
   return (
     <Wrapper>
       <TodayWeather />
-      {isMobileView ? <WeatherCardGrid /> : <Swiper weatherElements={weatherElements} />}
+      {isMobileView ? (
+        <WeatherCardGrid weatherElements={weatherElements} />
+      ) : (
+        <Swiper weatherElements={weatherElements} />
+      )}
     </Wrapper>
   );
 };

@@ -1,27 +1,27 @@
+import { useSelector } from "react-redux";
+import Spinner from "@components/Spinner";
 import WeatherCard from "@components/WeatherCard";
+import { transformWeatherData } from "@utils/helpers/transformWeatherResponse/transformWeatherResponse";
+
+import { selectTimeOfWeather } from "@store/selectors/weklyWeatherSelector";
 
 import { Wrapper } from "./styled";
+import type { WeatherCardsListProps } from "./types";
 
-const weatherElements = [
-  { id: 1, day: "Monday", degrees: "0°" },
-  { id: 2, day: "Tuesday", degrees: "1°" },
-  { id: 3, day: "Wednesday", degrees: "2°" },
-  { id: 4, day: "Thursday", degrees: "3°" },
-  { id: 5, day: "Friday", degrees: "4°" },
-  { id: 6, day: "Saturday", degrees: "5°" },
-  { id: 7, day: "Sunday", degrees: "6°" },
-  { id: 8, day: "Monday", degrees: "7°" },
-  { id: 9, day: "Tuesday", degrees: "8°" },
-  { id: 10, day: "Wednesday", degrees: "9°" },
-  { id: 11, day: "Thursday", degrees: "10°" },
-  { id: 12, day: "Friday", degrees: "11°" },
-];
+const WeatherCardGrid = ({ weatherElements }: WeatherCardsListProps) => {
+  const timeOfWeather = useSelector(selectTimeOfWeather);
 
-const WeatherCardGrid = () => {
+  if (!weatherElements || !weatherElements.list) return <Spinner />;
+
+  const weatherArray =
+    timeOfWeather && timeOfWeather === "weekly"
+      ? transformWeatherData(weatherElements)
+      : weatherElements.list;
+
   return (
     <Wrapper>
-      {weatherElements.map((weatherElement) => (
-        <WeatherCard key={weatherElement.id} weatherElement={weatherElement} />
+      {weatherArray.map((weatherElement) => (
+        <WeatherCard key={weatherElement.dt_txt} weatherElement={weatherElement} />
       ))}
     </Wrapper>
   );

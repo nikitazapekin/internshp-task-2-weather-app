@@ -30,3 +30,11 @@ export const Degree = styled.p`
 export const Image = styled.img`
   margin-top: ${({ theme }) => theme.spaces.md}px;
 `;
+
+export const ImageWrapper = styled.div`
+  ${flex("center", "center", "column")}
+
+  width: ${({ theme }) => theme.spaces.h}px;
+  height: ${({ theme }) => theme.spaces.h}px;
+  position: relative;
+`;

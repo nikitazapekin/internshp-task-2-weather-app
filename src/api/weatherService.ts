@@ -86,8 +86,3 @@ export default class WeatherService {
     return WeatherService.getWeeklyWeatherByCoordinats({ latitude: lat, longitude: lon });
   }
 }
-/*
-     WeatherService.getHourlyWeatherByCoordinats,
-
-       WeatherService.getWeeklyWeatherByCoordinats,
-       */
