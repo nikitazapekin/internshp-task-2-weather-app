@@ -10,7 +10,7 @@ import {
   fetchWeatherByCoordsRequest,
   fetchWeatherFailure,
   fetchWeatherSuccess,
-} from "../actions/currentWeatherActions";
+} from "../actions/currentWeather";
 
 function* fetchWeatherByCoords(
   action: ReturnType<typeof fetchWeatherByCoordsRequest>
@@ -48,7 +48,7 @@ function getErrorMessage(error: unknown): string {
   return "Unknown error occurred";
 }
 
-export function* CurrentWeatherSaga(): SagaIterator {
+export function* CurrentWeather(): SagaIterator {
   yield takeLatest(fetchWeatherByCoordsRequest.type, fetchWeatherByCoords);
   yield takeLatest(fetchWeatherByCityRequest.type, fetchWeatherByCity);
 }

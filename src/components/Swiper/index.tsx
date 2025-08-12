@@ -6,7 +6,7 @@ import { TOUCH_ID } from "@constants/swiper";
 import { useSwiper } from "@hooks/useSwiper";
 import { transformWeatherData } from "@utils/helpers/transformWeatherResponse/transformWeatherResponse";
 
-import { selectTimeOfWeather } from "@store/selectors/weklyWeatherSelector";
+import { selectTimeOfWeather } from "@store/selectors";
 
 import { Wrapper } from "./styled";
 import type { SwiperProps } from "./types";
@@ -15,7 +15,7 @@ const Swiper = ({ weatherElements }: SwiperProps) => {
   const { containerRef, handleStart, handleEnd, setIsDragging } = useSwiper();
   const timeOfWeather = useSelector(selectTimeOfWeather);
 
-  if (!weatherElements || !weatherElements.list) return <Spinner />;
+  if (weatherElements || !weatherElements.list) return <Spinner />;
 
   const weatherArray =
     timeOfWeather && timeOfWeather === TimeOfWeather.WEEKLY

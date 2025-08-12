@@ -1,11 +1,7 @@
-export interface WeatherMain {
-  temp: number;
-  feels_like: number;
-  temp_min: number;
-  temp_max: number;
-  pressure: number;
-  humidity: number;
-}
+export type WeatherMain = Record<
+  "temp" | "feels_like" | "temp_min" | "temp_max" | "pressure" | "humidity",
+  number
+>;
 
 export interface WeatherDescription {
   id: number;

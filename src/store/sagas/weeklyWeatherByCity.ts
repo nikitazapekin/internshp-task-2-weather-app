@@ -5,11 +5,8 @@ import type { SagaIterator } from "redux-saga";
 import { call, put } from "redux-saga/effects";
 
 import WeatherService from "@api/weatherService";
-import type { fetchWeeklyWeatherByCityRequest } from "@store/actions/weatherActions";
-import {
-  fetchWeeklyWeatherFailure,
-  fetchWeeklyWeatherSuccess,
-} from "@store/actions/weatherActions";
+import type { fetchWeeklyWeatherByCityRequest } from "@store/actions/weather";
+import { fetchWeeklyWeatherFailure, fetchWeeklyWeatherSuccess } from "@store/actions/weather";
 
 export function* fetchWeeklyWeatherByCity(
   action: ReturnType<typeof fetchWeeklyWeatherByCityRequest>

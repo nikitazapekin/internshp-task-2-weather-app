@@ -6,7 +6,7 @@ import {
   fetchWeatherByCoordsRequest,
   fetchWeatherFailure,
   fetchWeatherSuccess,
-} from "../actions/currentWeatherActions";
+} from "../actions/currentWeather";
 
 interface WeatherState {
   loading: boolean;
@@ -22,7 +22,7 @@ const initialState: WeatherState = {
   lastRequestType: null,
 };
 
-export const currentWeatherReducer = createReducer(initialState, (builder) => {
+export const currentWeather = createReducer(initialState, (builder) => {
   builder
     .addCase(fetchWeatherByCoordsRequest, (state) => {
       state.loading = true;

@@ -9,6 +9,7 @@ export const Wrapper = styled.section`
   margin-top: ${({ theme }) => theme.spaces.xl}px;
   user-select: none;
   min-height: 216px;
+  height: auto;
   position: relative;
 
   ${flex("flex-start", "center", "row")};

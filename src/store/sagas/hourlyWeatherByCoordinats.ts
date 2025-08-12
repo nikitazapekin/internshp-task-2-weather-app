@@ -5,23 +5,20 @@ import type { SagaIterator } from "redux-saga";
 import { call, put } from "redux-saga/effects";
 
 import WeatherService from "@api/weatherService";
-import type { fetchWeeklyWeatherByCoordsRequest } from "@store/actions/weatherActions";
-import {
-  fetchWeeklyWeatherFailure,
-  fetchWeeklyWeatherSuccess,
-} from "@store/actions/weatherActions";
+import type { fetchHourlyWeatherByCoordsRequest } from "@store/actions/weather";
+import { fetchHourlyWeatherFailure, fetchHourlyWeatherSuccess } from "@store/actions/weather";
 
-export function* fetchWeeklyWeatherByCoords(
-  action: ReturnType<typeof fetchWeeklyWeatherByCoordsRequest>
+export function* fetchHourlyWeatherByCoords(
+  action: ReturnType<typeof fetchHourlyWeatherByCoordsRequest>
 ): SagaIterator {
   try {
     const response: AxiosResponse<FiveDayForecastResponse> = yield call(
-      WeatherService.getWeeklyWeatherByCoordinats,
+      WeatherService.getHourlyWeatherByCoordinats,
       action.payload
     );
 
-    yield put(fetchWeeklyWeatherSuccess(response.data));
+    yield put(fetchHourlyWeatherSuccess(response.data));
   } catch (error) {
-    yield put(fetchWeeklyWeatherFailure(getErrorMessage(error)));
+    yield put(fetchHourlyWeatherFailure(getErrorMessage(error)));
   }
 }

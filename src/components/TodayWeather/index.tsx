@@ -3,7 +3,7 @@ import Spinner from "@components/Spinner";
 import TodayWeatherIcon from "@components/TodayWeatherIcon";
 import TodayWeatherText from "@components/TodayWeatherText";
 
-import { selectCurrentWeather } from "@store/selectors/currentWeather";
+import { selectCurrentWeather } from "@store/selectors";
 
 import { Wrapper } from "./styled";
 

@@ -6,14 +6,14 @@ import {
   fetchHourlyWeatherByCoordsRequest,
   fetchWeeklyWeatherByCityRequest,
   fetchWeeklyWeatherByCoordsRequest,
-} from "../actions/weatherActions";
+} from "../actions/weather";
 
-import { fetchHourlyWeatherByCity } from "./hourlyWeatherByCitySaga";
-import { fetchHourlyWeatherByCoords } from "./hourlyWeatherByCoordinatsSaga";
-import { fetchWeeklyWeatherByCity } from "./weeklyWeatherByCitySaga";
-import { fetchWeeklyWeatherByCoords } from "./weeklyWeatherByCoordinatsSaga";
+import { fetchHourlyWeatherByCity } from "./hourlyWeatherByCity";
+import { fetchHourlyWeatherByCoords } from "./hourlyWeatherByCoordinats";
+import { fetchWeeklyWeatherByCity } from "./weeklyWeatherByCity";
+import { fetchWeeklyWeatherByCoords } from "./weeklyWeatherByCoordinats";
 
-export function* WeatherSagas(): SagaIterator {
+export function* Weather(): SagaIterator {
   yield takeLatest(fetchWeeklyWeatherByCoordsRequest.type, fetchWeeklyWeatherByCoords);
   yield takeLatest(fetchWeeklyWeatherByCityRequest.type, fetchWeeklyWeatherByCity);
   yield takeLatest(fetchHourlyWeatherByCoordsRequest.type, fetchHourlyWeatherByCoords);

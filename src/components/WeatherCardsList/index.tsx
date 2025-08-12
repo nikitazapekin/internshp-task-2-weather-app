@@ -3,7 +3,7 @@ import Spinner from "@components/Spinner";
 import WeatherCard from "@components/WeatherCard";
 import { transformWeatherData } from "@utils/helpers/transformWeatherResponse/transformWeatherResponse";
 
-import { selectTimeOfWeather } from "@store/selectors/weklyWeatherSelector";
+import { selectTimeOfWeather } from "@store/selectors";
 
 import { Wrapper } from "./styled";
 import type { WeatherCardsListProps } from "./types";

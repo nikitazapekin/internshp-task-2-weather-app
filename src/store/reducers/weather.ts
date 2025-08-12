@@ -10,7 +10,7 @@ import {
   fetchWeeklyWeatherByCoordsRequest,
   fetchWeeklyWeatherFailure,
   fetchWeeklyWeatherSuccess,
-} from "../actions/weatherActions";
+} from "../actions/weather";
 
 interface WeatherState<T> {
   loading: boolean;
@@ -28,7 +28,7 @@ const createInitialWeatherState = <T>(): WeatherState<T> => ({
   timeOfWeather: null,
 });
 
-export const weatherReducer = createReducer<WeatherState<FiveDayForecastResponse>>(
+export const weather = createReducer<WeatherState<FiveDayForecastResponse>>(
   createInitialWeatherState<FiveDayForecastResponse>(),
   (builder) => {
     builder

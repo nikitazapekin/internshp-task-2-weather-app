@@ -4,9 +4,9 @@ import Banner from "@components/Banner";
 import { GlobalStyle, PageWrapper, Reset, WrapperContainer } from "@styles";
 import { getUserLocation } from "@utils/helpers";
 
-import { setCoordinats } from "@store/actions/currentCoordinatsAction";
-import { fetchWeatherByCoordsRequest } from "@store/actions/currentWeatherActions";
-import { fetchHourlyWeatherByCoordsRequest } from "@store/actions/weatherActions";
+import { setCoordinats } from "@store/actions/currentCoordinats";
+import { fetchWeatherByCoordsRequest } from "@store/actions/currentWeather";
+import { fetchHourlyWeatherByCoordsRequest } from "@store/actions/weather";
 
 const WeekWeatherPage = () => {
   const dispatch = useDispatch();

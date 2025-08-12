@@ -1,13 +1,13 @@
 import { media } from "@styles/breakpoints";
 import styled from "styled-components";
 
-export const ButtonElement = styled.button`
+export const ButtonElement = styled.button<{ isActive?: boolean }>`
   cursor: pointer;
   padding: ${({ theme }) => theme.spaces.x}px ${({ theme }) => theme.spaces.lg}px;
   border: none;
   outline: none;
   border-radius: 10px;
-  background-color: ${({ theme }) => theme.colors.black};
+  background-color: ${({ theme, isActive }) => (isActive ? theme.colors.blue : theme.colors.black)};
   color: ${({ theme }) => theme.colors.white};
   font-weight: ${({ theme }) => theme.fontWeights.regular};
   font-size: ${({ theme }) => theme.fontSizes.md};
