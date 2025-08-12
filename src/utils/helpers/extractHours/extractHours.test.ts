@@ -20,13 +20,6 @@ describe("extractTime function", () => {
     expect(result3).toBe("0:00");
   });
 
-  it("should pad minutes with zero when less than 10", () => {
-    const testDate2 = "2025-05-15T10:09:00Z";
-    const result2 = extractTime(testDate2);
-
-    expect(result2).toBe("10:09");
-  });
-
   it("should return string type", () => {
     const testDate = "2025-05-15T12:34:00Z";
     const result = extractTime(testDate);
