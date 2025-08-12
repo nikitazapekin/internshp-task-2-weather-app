@@ -1,5 +1,4 @@
-// src/store/sagas/weatherSagas.ts
-import type { FiveDayForecastResponse, OneCallResponse } from "@types/apiTypes";
+import type { FiveDayForecastResponse } from "@types/apiTypes";
 import type { AxiosResponse } from "axios";
 import type { SagaIterator } from "redux-saga";
 import { call, put, takeLatest } from "redux-saga/effects";
@@ -29,7 +28,8 @@ function* fetchWeeklyWeatherByCoords(
   action: ReturnType<typeof fetchWeeklyWeatherByCoordsRequest>
 ): SagaIterator {
   try {
-    const response: AxiosResponse<OneCallResponse> = yield call(
+    console.log("fetch weekly by coords");
+    const response: AxiosResponse<FiveDayForecastResponse> = yield call(
       WeatherService.getWeeklyWeatherByCoordinats,
       action.payload
     );
@@ -44,7 +44,7 @@ function* fetchWeeklyWeatherByCity(
   action: ReturnType<typeof fetchWeeklyWeatherByCityRequest>
 ): SagaIterator {
   try {
-    const response: AxiosResponse<OneCallResponse> = yield call(
+    const response: AxiosResponse<FiveDayForecastResponse> = yield call(
       WeatherService.getWeeklyWeatherByCity,
       action.payload
     );
@@ -59,6 +59,7 @@ function* fetchHourlyWeatherByCoords(
   action: ReturnType<typeof fetchHourlyWeatherByCoordsRequest>
 ): SagaIterator {
   try {
+    console.log("fetch hourly by coords");
     const response: AxiosResponse<FiveDayForecastResponse> = yield call(
       WeatherService.getHourlyWeatherByCoordinats,
       action.payload

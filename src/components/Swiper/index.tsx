@@ -1,16 +1,25 @@
+import { useSelector } from "react-redux";
 import Spinner from "@components/Spinner";
 import SwiperItem from "@components/SwiperItem";
 import { TOUCH_ID } from "@constants/swiper";
 import { useSwiper } from "@hooks/useSwiper";
+import { transformWeatherData } from "@utils/helpers/transformWeatherResponse/transformWeatherResponse";
+
+import { selectTimeOfWeather } from "@store/selectors/weklyWeatherSelector";
 
 import { Wrapper } from "./styled";
 import type { SwiperProps } from "./types";
 
 const Swiper = ({ weatherElements }: SwiperProps) => {
-  //console.log("el", weatherElements.list)
   const { containerRef, handleStart, handleEnd, setIsDragging } = useSwiper();
+  const timeOfWeather = useSelector(selectTimeOfWeather);
 
   if (!weatherElements || !weatherElements.list) return <Spinner />;
+
+  const weatherArray =
+    timeOfWeather && timeOfWeather === "weekly"
+      ? transformWeatherData(weatherElements)
+      : weatherElements.list;
 
   return (
     <Wrapper
@@ -21,7 +30,7 @@ const Swiper = ({ weatherElements }: SwiperProps) => {
       onTouchStart={(e) => handleStart(e.touches[TOUCH_ID].clientX)}
       onTouchEnd={(e) => handleEnd(e.changedTouches[TOUCH_ID].clientX)}
     >
-      {weatherElements.list.map((weatherElement) => (
+      {weatherArray.map((weatherElement) => (
         <SwiperItem weatherElement={weatherElement} />
       ))}
     </Wrapper>

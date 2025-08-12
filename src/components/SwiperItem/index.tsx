@@ -1,15 +1,28 @@
 import Foggy from "@assets/desktop/rainy.webp";
-import { extractHours } from "@utils/helpers/extractHours/extractHours";
+import type { ForecastItem } from "@types/apiTypes";
+import { extractTime } from "@utils/helpers/extractHours/extractHours";
 
 import { Degree, Image, Title, Wrapper } from "./styled";
 import type { SwiperItemTypes } from "./types";
 
+function isForecastItem(item: unknown): item is ForecastItem {
+  return (
+    typeof item === "object" &&
+    item !== null &&
+    "dt_txt" in item &&
+    "main" in item &&
+    typeof (item as ForecastItem).main.temp === "number"
+  );
+}
+
 const SwiperItem = ({ weatherElement }: SwiperItemTypes) => {
+  const isForecast = isForecastItem(weatherElement);
+
   return (
     <Wrapper>
-      <Title>{extractHours(weatherElement.dt_txt)}</Title>
+      <Title>{isForecast ? extractTime(weatherElement.dt_txt) : weatherElement.day}</Title>
       <Image src={Foggy} />
-      <Degree>{weatherElement.main.temp}</Degree>
+      <Degree>{isForecast ? weatherElement.main.temp : weatherElement.temp}</Degree>
     </Wrapper>
   );
 };

@@ -4,15 +4,14 @@ import { currentCoordinatsReducer } from "./currentCoordinatsReducer";
 import { currentWeatherReducer } from "./currentWeatherReducer";
 import { elasticSearchReducer } from "./elasticSearchReducer";
 import { calendarReducer } from "./googleCalendarReducer";
-import { hourlyWeatherReducer, weeklyWeatherReducer } from "./weatherReducers";
+import { weatherReducer } from "./weatherReducers";
 
 const rootReducer = combineReducers({
   elasticSearch: elasticSearchReducer,
   currentWeatherReducer: currentWeatherReducer,
   calendarReducer: calendarReducer,
   coordinatsReducer: currentCoordinatsReducer,
-  weatherHourlyReducer: hourlyWeatherReducer,
-  weeklyWeatherCityReducer: weeklyWeatherReducer,
+  weatherReducer: weatherReducer,
 });
 
 export default rootReducer;

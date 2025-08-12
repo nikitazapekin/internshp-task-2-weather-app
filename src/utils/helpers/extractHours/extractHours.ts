@@ -1,12 +1,7 @@
-export function extractHours(dateTimeString: string): string {
+export function extractTime(dateTimeString: string): string {
   const date = new Date(dateTimeString);
-
-  if (isNaN(date.getTime())) {
-    throw new Error("Invalid date string");
-  }
-
   const hours = date.getHours();
   const minutes = date.getMinutes();
 
-  return `${hours}:${minutes < 10 ? "0" + minutes : minutes}`;
+  return `${hours}:${minutes.toString().padStart(2, "0")}`;
 }

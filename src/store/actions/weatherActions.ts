@@ -1,5 +1,5 @@
 import { createAction } from "@reduxjs/toolkit";
-import type { FiveDayForecastResponse, OneCallResponse } from "@types/apiTypes";
+import type { FiveDayForecastResponse } from "@types/apiTypes";
 
 interface WeatherByCoordsParams {
   latitude: number;
@@ -18,7 +18,7 @@ export const fetchWeeklyWeatherByCityRequest = createAction<WeatherByCityParams>
   "weeklyWeather/fetchByCityRequest"
 );
 
-export const fetchWeeklyWeatherSuccess = createAction<OneCallResponse>(
+export const fetchWeeklyWeatherSuccess = createAction<FiveDayForecastResponse>(
   "weeklyWeather/fetchSuccess"
 );
 

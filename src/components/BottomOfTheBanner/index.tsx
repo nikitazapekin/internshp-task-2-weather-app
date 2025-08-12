@@ -12,8 +12,6 @@ const BottomOfTheBanner = () => {
   const { isMobileView } = useResize();
   const weatherElements = useSelector(selectHorlyWeather);
 
-  console.log(weatherElements);
-
   return (
     <Wrapper>
       <TodayWeather />

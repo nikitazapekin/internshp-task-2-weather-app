@@ -1,5 +1,5 @@
 import { createReducer } from "@reduxjs/toolkit";
-import type { FiveDayForecastResponse, OneCallResponse } from "@types/apiTypes";
+import type { FiveDayForecastResponse } from "@types/apiTypes";
 
 import {
   fetchHourlyWeatherByCityRequest,
@@ -17,6 +17,7 @@ interface WeatherState<T> {
   error: string | null;
   data: T | null;
   lastRequestType: "city" | "coords" | null;
+  timeOfWeather: "weekly" | "hourly" | null;
 }
 
 const createInitialWeatherState = <T>(): WeatherState<T> => ({
@@ -24,52 +25,53 @@ const createInitialWeatherState = <T>(): WeatherState<T> => ({
   error: null,
   data: null,
   lastRequestType: null,
+  timeOfWeather: null,
 });
 
-export const weeklyWeatherReducer = createReducer<WeatherState<OneCallResponse>>(
-  createInitialWeatherState<OneCallResponse>(),
+export const weatherReducer = createReducer<WeatherState<FiveDayForecastResponse>>(
+  createInitialWeatherState<FiveDayForecastResponse>(),
   (builder) => {
     builder
       .addCase(fetchWeeklyWeatherByCoordsRequest, (state) => {
         state.loading = true;
         state.error = null;
         state.lastRequestType = "coords";
+        state.timeOfWeather = "weekly";
       })
       .addCase(fetchWeeklyWeatherByCityRequest, (state) => {
         state.loading = true;
         state.error = null;
         state.lastRequestType = "city";
+        state.timeOfWeather = "weekly";
+      })
+
+      .addCase(fetchHourlyWeatherByCoordsRequest, (state) => {
+        state.loading = true;
+        state.error = null;
+        state.lastRequestType = "coords";
+        state.timeOfWeather = "hourly";
+      })
+
+      .addCase(fetchHourlyWeatherByCityRequest, (state) => {
+        state.loading = true;
+        state.error = null;
+        state.lastRequestType = "city";
+        state.timeOfWeather = "hourly";
+      })
+
+      .addCase(fetchHourlyWeatherSuccess, (state, action) => {
+        state.loading = false;
+        state.data = action.payload;
+      })
+      .addCase(fetchHourlyWeatherFailure, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
       })
       .addCase(fetchWeeklyWeatherSuccess, (state, action) => {
         state.loading = false;
         state.data = action.payload;
       })
       .addCase(fetchWeeklyWeatherFailure, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
-      });
-  }
-);
-
-export const hourlyWeatherReducer = createReducer<WeatherState<FiveDayForecastResponse>>(
-  createInitialWeatherState<FiveDayForecastResponse>(),
-  (builder) => {
-    builder
-      .addCase(fetchHourlyWeatherByCoordsRequest, (state) => {
-        state.loading = true;
-        state.error = null;
-        state.lastRequestType = "coords";
-      })
-      .addCase(fetchHourlyWeatherByCityRequest, (state) => {
-        state.loading = true;
-        state.error = null;
-        state.lastRequestType = "city";
-      })
-      .addCase(fetchHourlyWeatherSuccess, (state, action) => {
-        state.loading = false;
-        state.data = action.payload;
-      })
-      .addCase(fetchHourlyWeatherFailure, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       });
