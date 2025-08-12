@@ -4,7 +4,7 @@ import { GlobalStyle, PageWrapper, Reset, WrapperContainer } from "@styles";
 import { useState } from "react";
 
 const WeekWeatherPage = () => {
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(true);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
@@ -15,7 +15,7 @@ const WeekWeatherPage = () => {
         <GlobalStyle />
         <Reset />
         <Banner />
-        <Modal isOpen={isModalOpen} onClose={handleCloseModal} />
+        {isModalOpen && <Modal onClose={handleCloseModal} errorMessage="The error was occured" />}
       </WrapperContainer>
     </PageWrapper>
   );
