@@ -1,4 +1,10 @@
+import type React from "react";
+
 export interface ModalProps {
   onClose: () => void;
-  errorMessage?: string;
+  title?: string;
+  message?: string;
+  children?: React.ReactNode;
+  showCloseButton?: boolean;
+  overlayClose?: boolean;
 }

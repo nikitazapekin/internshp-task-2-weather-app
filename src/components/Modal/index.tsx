@@ -1,30 +1,32 @@
+import { createPortal } from "react-dom";
 import Button from "@components/Button";
 import { UI_CONSTANTS } from "@constants/UI";
-import { useEffect } from "react";
-import { createPortal } from "react-dom";
+import useModal from "@hooks/useModal";
 
 import { Content, Overlay, Text, Title, Wrapper } from "./styled";
 import type { ModalProps } from "./types";
 
-const Modal = ({ errorMessage, onClose }: ModalProps) => {
+const Modal = ({
+  title,
+  message,
+  children,
+  onClose,
+  showCloseButton = true,
+  overlayClose = true,
+}: ModalProps) => {
   const { closeModalButton } = UI_CONSTANTS.buttons;
 
-  useEffect(() => {
-    document.body.style.overflow = "hidden";
-
-    return () => {
-      document.body.style.overflow = "unset";
-    };
-  }, []);
+  useModal();
 
   return createPortal(
     <Wrapper>
       <Content>
-        <Title>Ooops something wen't wrong</Title>
-        <Text>{errorMessage}</Text>
-        <Button text={closeModalButton} handler={onClose} />
+        <Title>{title}</Title>
+        <Text>{message}</Text>
+        {children}
+        {showCloseButton && <Button text={closeModalButton} handler={onClose} />}
       </Content>
-      <Overlay onClick={onClose} />
+      <Overlay onClick={overlayClose ? onClose : undefined} />
     </Wrapper>,
     document.body
   );

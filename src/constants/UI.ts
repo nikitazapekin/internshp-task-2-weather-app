@@ -10,4 +10,8 @@ export const UI_CONSTANTS = {
     { id: 2, text: "Hourly" },
   ],
   emptyList: "No events at the moment",
+  errorsModal: {
+    defaultErrorTitle: "Opps, something wen't wrong",
+    defaultErrorMessage: "The error was occured while page was loading",
+  },
 };
