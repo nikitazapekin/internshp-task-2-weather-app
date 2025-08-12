@@ -1,6 +1,6 @@
 {
   "version": 2,
-    "public": true,
+  "public": true,
   "builds": [
     {
       "src": "package.json",
@@ -23,7 +23,18 @@
       "src": "/(.*)",
       "dest": "/build/index.html"
     }
+  ],
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ],
+  "errorRoutes": [
+    {
+      "status": 404,
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
   ]
-  
-  
 }
