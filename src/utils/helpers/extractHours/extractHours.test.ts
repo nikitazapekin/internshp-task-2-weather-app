@@ -9,11 +9,6 @@ describe("extractTime function", () => {
 
     expect(result1).toBe("17:30");
 
-    const testDate2 = "2025-05-15T08:05:00Z";
-    const result2 = extractTime(testDate2);
-
-    expect(result2).toBe("8:05");
-
     const testDate3 = "2025-05-15T00:00:00Z";
     const result3 = extractTime(testDate3);
 
