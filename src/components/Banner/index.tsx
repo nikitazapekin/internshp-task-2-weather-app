@@ -1,3 +1,4 @@
+import BottomOfTheBanner from "@components/BottomOfTheBanner";
 import CenterOfBanner from "@components/CenterOfBanner";
 import TopOfTheBanner from "@components/TopOfTheBanner";
 
@@ -10,6 +11,7 @@ const Banner = () => {
         <TopOfTheBanner />
         <CenterOfBanner />
       </TopAndCenterOfBannerWrapper>
+      <BottomOfTheBanner />
       <BannerBackground />
     </Wrapper>
   );

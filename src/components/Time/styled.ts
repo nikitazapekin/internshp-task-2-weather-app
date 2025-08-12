@@ -10,4 +10,7 @@ export const Time = styled.h1`
     text-align: center;
     font-size: ${({ theme }) => theme.fontSizes.lg};
   `}
+  ${media.sm`
+    font-size: ${({ theme }) => theme.fontSizes.sm};
+  `}
 `;

@@ -1,13 +1,14 @@
+import type { AxiosResponse } from "axios";
+import type { SagaIterator } from "redux-saga";
+import { call, put, takeLatest } from "redux-saga/effects";
+import type { WeatherResponseType } from "src/types/weatherResponseType";
+
 import WeatherService from "@api/weatherService";
-import type { WeatherResponseType } from "@interfaces/weatherResponseType";
 import {
   fetchWeatherFailure,
   fetchWeatherRequest,
   fetchWeatherSuccess,
 } from "@store/actions/weatherActions";
-import type { AxiosResponse } from "axios";
-import type { SagaIterator } from "redux-saga";
-import { call, put, takeLatest } from "redux-saga/effects";
 
 function* fetchWeather(): SagaIterator {
   try {
