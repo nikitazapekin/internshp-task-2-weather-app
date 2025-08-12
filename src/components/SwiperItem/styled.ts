@@ -15,8 +15,6 @@ export const Wrapper = styled.div`
   ${media.lg`
     display: none;
   `}
-
-  background-color: red;
 `;
 
 export const Title = styled.p`
