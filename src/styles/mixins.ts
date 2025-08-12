@@ -14,3 +14,20 @@ export const flex = (
   column-gap: ${columnGap};
   row-gap: ${rowGap};
 `;
+
+export const grid = (
+  justifyContent = "start",
+  alignItems = "stretch",
+  columns = "1fr",
+  rows = "auto",
+  alignContent = "start",
+  justifyItems = "stretch"
+) => css`
+  display: grid;
+  justify-content: ${justifyContent};
+  align-items: ${alignItems};
+  grid-template-columns: ${columns};
+  grid-template-rows: ${rows};
+  align-content: ${alignContent};
+  justify-items: ${justifyItems};
+`;

@@ -10,9 +10,9 @@ const rotate = keyframes`
 `;
 
 export const SpinnerStyled = styled.span`
-  width: 48px;
-  height: 48px;
-  border: 5px solid ${({ theme }) => theme.colors.blue};
+  width: 30px;
+  height: 30px;
+  border: 3px solid ${({ theme }) => theme.colors.blue};
   border-bottom-color: ${({ theme }) => theme.colors.gray};
   border-radius: 50%;
   display: inline-block;
@@ -22,4 +22,6 @@ export const SpinnerStyled = styled.span`
   display: flex;
   justify-content: center;
   align-items: center;
+  align-self: center;
+  justify-self: center;
 `;

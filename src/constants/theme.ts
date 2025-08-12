@@ -27,6 +27,7 @@ export const theme = {
     xl: 1280,
     lg: 1024,
     md: 768,
+    xh: 547,
     sm: 480,
   },
   zIndexes: {
@@ -47,5 +48,15 @@ export const theme = {
     h: 70,
     xh: 80,
     eh: 90,
+  },
+  swiper: {
+    item_gap: 5,
+    margin_base: 2.5,
+    vw_ratio: 0.5,
+    scroll_snap_type: "x mandatory",
+    scroll_snap_align: "start",
+    flex_basis: "0 0",
+    min_width: "0",
+    container: 16.6,
   },
 };
