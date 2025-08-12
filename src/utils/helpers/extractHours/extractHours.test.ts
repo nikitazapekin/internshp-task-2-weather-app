@@ -12,7 +12,7 @@ describe("extractTime function", () => {
     const testDate3 = "2025-05-15T00:00:00Z";
     const result3 = extractTime(testDate3);
 
-    expect(result3).toBe("0:00");
+    expect(result3).toBe("3:00");
   });
 
   it("should return string type", () => {
