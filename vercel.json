@@ -29,12 +29,5 @@
       "source": "/(.*)",
       "destination": "/index.html"
     }
-  ],
-  "errorRoutes": [
-    {
-      "status": 404,
-      "src": "/(.*)",
-      "dest": "/index.html"
-    }
   ]
 }
