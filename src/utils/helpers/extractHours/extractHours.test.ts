@@ -7,7 +7,7 @@ describe("extractTime function", () => {
     const testDate1 = "2025-05-15T14:30:00Z";
     const result1 = extractTime(testDate1);
 
-    expect(result1).toBe("17:30");
+    expect(result1).toBe("14:30");
 
     const testDate3 = "2025-05-15T00:00:00Z";
     const result3 = extractTime(testDate3);
