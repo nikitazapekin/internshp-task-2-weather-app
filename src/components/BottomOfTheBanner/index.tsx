@@ -16,8 +16,6 @@ const BottomOfTheBanner = () => {
 
   const isGeolocationTurnedOff = !latitude || !longitude || !weatherElements;
 
-  console.log("Is", isGeolocationTurnedOff, latitude, longitude, weatherElements);
-
   return (
     <Wrapper>
       {isGeolocationTurnedOff ? (
