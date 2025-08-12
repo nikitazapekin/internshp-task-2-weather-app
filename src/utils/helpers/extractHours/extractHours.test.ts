@@ -1,0 +1,36 @@
+import { expect } from "@jest/globals";
+
+import { extractTime } from "./extractHours";
+
+describe("extractTime function", () => {
+  it("should return time in HH:MM format", () => {
+    const testDate1 = "2025-05-15T14:30:00Z";
+    const result1 = extractTime(testDate1);
+
+    expect(result1).toBe("17:30");
+
+    const testDate2 = "2025-05-15T08:05:00Z";
+    const result2 = extractTime(testDate2);
+
+    expect(result2).toBe("8:05");
+
+    const testDate3 = "2025-05-15T00:00:00Z";
+    const result3 = extractTime(testDate3);
+
+    expect(result3).toBe("0:00");
+  });
+
+  it("should pad minutes with zero when less than 10", () => {
+    const testDate2 = "2025-05-15T10:09:00Z";
+    const result2 = extractTime(testDate2);
+
+    expect(result2).toBe("10:09");
+  });
+
+  it("should return string type", () => {
+    const testDate = "2025-05-15T12:34:00Z";
+    const result = extractTime(testDate);
+
+    expect(typeof result).toBe("string");
+  });
+});

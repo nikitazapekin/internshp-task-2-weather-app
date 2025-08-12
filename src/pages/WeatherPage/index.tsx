@@ -31,9 +31,7 @@ const WeekWeatherPage = () => {
       }
     }
 
-    handleLocation().catch((error) => {
-      console.error("Error:", error);
-    });
+    handleLocation().catch((e) => console.error(e));
   }, [dispatch]);
 
   return (
