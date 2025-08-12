@@ -5,4 +5,5 @@ export interface WeatherDaySummary {
   rainy: number;
   sunny: number;
   cloudy: number;
+  dt_txt: string;
 }

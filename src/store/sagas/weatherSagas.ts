@@ -28,7 +28,6 @@ function* fetchWeeklyWeatherByCoords(
   action: ReturnType<typeof fetchWeeklyWeatherByCoordsRequest>
 ): SagaIterator {
   try {
-    console.log("fetch weekly by coords");
     const response: AxiosResponse<FiveDayForecastResponse> = yield call(
       WeatherService.getWeeklyWeatherByCoordinats,
       action.payload
@@ -59,7 +58,6 @@ function* fetchHourlyWeatherByCoords(
   action: ReturnType<typeof fetchHourlyWeatherByCoordsRequest>
 ): SagaIterator {
   try {
-    console.log("fetch hourly by coords");
     const response: AxiosResponse<FiveDayForecastResponse> = yield call(
       WeatherService.getHourlyWeatherByCoordinats,
       action.payload

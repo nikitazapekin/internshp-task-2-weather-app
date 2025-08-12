@@ -8,6 +8,8 @@ export const Wrapper = styled.section`
   backdrop-filter: blur(15px);
   margin-top: ${({ theme }) => theme.spaces.xl}px;
   user-select: none;
+  min-height: 216px;
+  position: relative;
 
   ${flex("flex-start", "center", "row")};
 

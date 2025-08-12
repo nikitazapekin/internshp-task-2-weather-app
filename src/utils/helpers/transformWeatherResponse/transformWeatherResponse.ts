@@ -69,6 +69,7 @@ export function transformWeatherData(forecast: FiveDayForecastResponse): Weather
       rainy,
       sunny,
       cloudy,
+      dt_txt: dayForecasts[0].dt_txt,
     });
   }
 
