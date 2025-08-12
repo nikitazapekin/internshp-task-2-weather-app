@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import NoGeolocationBackground from "@assets/promo_660_x_440_weather_-_forecast_weather_strips_-_istock.png.webp";
+import NoGeolocationBackground from "@assets/NoGeolocationBackground.webp";
 import Button from "@components/Button";
 import { UI_CONSTANTS } from "@constants";
 import { MAIN_PAGE } from "@constants";
