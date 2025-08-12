@@ -1,5 +1,5 @@
 export interface WeatherDaySummary {
-  temp: number;
+  dt: number;
   day: string;
   foggy: number;
   rainy: number;

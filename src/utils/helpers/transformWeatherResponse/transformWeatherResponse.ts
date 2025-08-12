@@ -63,7 +63,7 @@ export function transformWeatherData(forecast: FiveDayForecastResponse): Weather
     const cloudy = cloudyCount / total;
 
     result.push({
-      temp: Number(avgTemp.toFixed(1)),
+      dt: Number(avgTemp.toFixed(1)),
       day: dayOfWeek,
       foggy,
       rainy,

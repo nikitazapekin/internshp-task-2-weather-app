@@ -31,7 +31,7 @@ const Swiper = ({ weatherElements }: SwiperProps) => {
       onTouchEnd={(e) => handleEnd(e.changedTouches[TOUCH_ID].clientX)}
     >
       {weatherArray.map((weatherElement) => (
-        <SwiperItem weatherElement={weatherElement} />
+        <SwiperItem weatherElement={weatherElement} key={weatherElement.dt} />
       ))}
     </Wrapper>
   );
