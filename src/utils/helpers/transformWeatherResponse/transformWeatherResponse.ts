@@ -1,8 +1,7 @@
 import { INCLUDES_CONSTANTS } from "@constants/includesConstants";
 import {
-  NUMBER_ONE_CONSTANT,
-  T_CONSTANT,
-  THOSAND_CONSTANT,
+  ISO_DATE_TIME_SEPARATOR,
+  TIMESTAMP_CONVERSION_FACTOR,
   ZERO_CONSTANT,
 } from "@constants/numericalConstants";
 import { days } from "@constants/time";
@@ -13,8 +12,8 @@ export function transformWeatherData(forecast: FiveDayForecastResponse): Weather
   const forecastsByDay: Record<string, ForecastItem[]> = {};
 
   forecast.list.forEach((item) => {
-    const date = new Date(item.dt * THOSAND_CONSTANT);
-    const dayKey = date.toISOString().split(T_CONSTANT)[ZERO_CONSTANT];
+    const date = new Date(item.dt * TIMESTAMP_CONVERSION_FACTOR);
+    const dayKey = date.toISOString().split(ISO_DATE_TIME_SEPARATOR)[ZERO_CONSTANT];
 
     if (!forecastsByDay[dayKey]) {
       forecastsByDay[dayKey] = [];
@@ -27,7 +26,7 @@ export function transformWeatherData(forecast: FiveDayForecastResponse): Weather
 
   for (const dayKey in forecastsByDay) {
     const dayForecasts = forecastsByDay[dayKey];
-    const date = new Date(dayForecasts[ZERO_CONSTANT].dt * THOSAND_CONSTANT);
+    const date = new Date(dayForecasts[ZERO_CONSTANT].dt * TIMESTAMP_CONVERSION_FACTOR);
     const dayOfWeek = days[date.getDay()];
 
     const avgTemp =
@@ -81,7 +80,7 @@ export function transformWeatherData(forecast: FiveDayForecastResponse): Weather
     const cloudy = cloudyCount / total;
 
     result.push({
-      dt: Number(avgTemp.toFixed(NUMBER_ONE_CONSTANT)),
+      dt: Math.round(avgTemp),
       day: dayOfWeek,
       foggy,
       rainy,

@@ -1,4 +1,9 @@
 import { ENV_CONSTANTS } from "@constants/envConstants";
+import {
+  NUMBER_EIGHT_CONSTANT,
+  SINGLE_GEOCODING_RESULT_LIMIT,
+} from "@constants/numericalConstants";
+import { API_LANG, API_METRIC, EXCLUDE_PARAMS } from "@constants/utilsConstants";
 import type { CityParams, CurrentWeatherResponse, FiveDayForecastResponse } from "@types/apiTypes";
 import type { CurrentCoordinatsState } from "@types/coordinatsTypes";
 import type { AxiosResponse } from "axios";
@@ -10,8 +15,8 @@ export default class WeatherService {
     const searchParams = new URLSearchParams({
       ...params,
       appid: ENV_CONSTANTS.OPEN_WEATHER_TOKEN,
-      units: "metric",
-      lang: "ru",
+      units: API_METRIC,
+      lang: API_LANG,
     });
 
     return searchParams;
@@ -44,7 +49,7 @@ export default class WeatherService {
     const queryParams = WeatherService.buildParams({
       lat: params.latitude,
       lon: params.longitude,
-      cnt: "8",
+      cnt: NUMBER_EIGHT_CONSTANT,
     });
 
     return $api.get<FiveDayForecastResponse>(`/data/2.5/forecast?${queryParams.toString()}`);
@@ -55,7 +60,7 @@ export default class WeatherService {
   ): Promise<AxiosResponse<FiveDayForecastResponse>> {
     const queryParams = WeatherService.buildParams({
       q: params.city,
-      cnt: "8",
+      cnt: NUMBER_EIGHT_CONSTANT,
     });
 
     return $api.get<FiveDayForecastResponse>(`/data/2.5/forecast?${queryParams.toString()}`);
@@ -67,7 +72,7 @@ export default class WeatherService {
     const queryParams = WeatherService.buildParams({
       lat: params.latitude,
       lon: params.longitude,
-      exclude: "minutely,hourly",
+      exclude: EXCLUDE_PARAMS,
     });
 
     return $api.get<FiveDayForecastResponse>(`/data/2.5/forecast?${queryParams.toString()}`);
@@ -78,7 +83,7 @@ export default class WeatherService {
   ): Promise<AxiosResponse<FiveDayForecastResponse>> {
     const geoParams = WeatherService.buildParams({
       q: params.city,
-      limit: 1,
+      limit: SINGLE_GEOCODING_RESULT_LIMIT,
     });
     const geoResponse = await $api.get(`/data/2.5/forecast?${geoParams.toString()}`);
     const { lat, lon } = geoResponse.data[0];

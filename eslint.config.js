@@ -88,6 +88,18 @@ export default [
       "react/react-in-jsx-scope": "off",
       "react-hooks/rules-of-hooks": "error",
       "react-hooks/exhaustive-deps": "warn",
+      "no-unused-vars": "off",
+
+      "@typescript-eslint/no-unused-vars": [
+        "error",
+        {
+          args: "none",
+          ignoreRestSiblings: true,
+          argsIgnorePattern: "^_",
+          varsIgnorePattern: "^_",
+          caughtErrorsIgnorePattern: "^_",
+        },
+      ],
       "padding-line-between-statements": [
         "error",
         { blankLine: "always", prev: ["const", "let", "var"], next: "*" },

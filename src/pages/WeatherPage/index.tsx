@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import Banner from "@components/Banner";
 import { GlobalStyle, PageWrapper, Reset, WrapperContainer } from "@styles";
-import { getUserLocation } from "@utils/helpers/getGeolocation/getGeolocation";
+import { getUserLocation } from "@utils/helpers";
 
 import { setCoordinats } from "@store/actions/currentCoordinatsAction";
 import { fetchWeatherByCoordsRequest } from "@store/actions/currentWeatherActions";

@@ -32,6 +32,10 @@ export const Wrapper = styled.ul`
     background-color: ${(props) => props.theme.colors.black};
     border-radius: 3px;
   }
+
+  ${media.xh`
+      width: 173px;
+    `}
 `;
 
 export const EmptyListText = styled.h3`
@@ -47,8 +51,9 @@ export const EventCard = styled.li`
   width: 100%;
   max-width: 100%;
 
-  ${media.sm`
+  ${media.xh`
     ${flex("flex-start", "flex-start", "column")}
+    
      row-gap: ${(props) => props.theme.spaces.sm}px;
   `}
 `;
@@ -61,7 +66,7 @@ export const Time = styled.p`
   background-color: ${({ theme }) => theme.colors.blue};
   border-radius: ${({ theme }) => theme.spaces.md}px;
 
-  ${media.sm`
+  ${media.xh`
     padding: ${({ theme }) => theme.spaces.x}px;
     font-size: ${({ theme }) => theme.fontSizes.xxs}px;
   `}

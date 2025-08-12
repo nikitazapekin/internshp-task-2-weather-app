@@ -29,4 +29,10 @@ export const AuthButtonsAndEventsWrapper = styled.div`
 
   column-gap: ${(props) => props.theme.spaces.md}px;
   width: 100%;
+
+  ${media.xh`
+    ${flex("center", "center", "row-reverse")}
+ 
+      column-gap: ${(props) => props.theme.spaces.lg}px;
+   `}
 `;

@@ -9,20 +9,22 @@ import type { SwiperItemTypes } from "./types";
 
 const SwiperItem = ({ weatherElement }: SwiperItemTypes) => {
   const isForecast = isForecastItem(weatherElement);
-  const [imageLoaded, setImageLoaded] = useState<boolean>(false);
+  const [isImageLoaded, setIsImageLoaded] = useState<boolean>(false);
 
-  const handleImageLoad = (isLoaded: boolean) => {
-    setImageLoaded(isLoaded);
+  const handleImageLoad = (): undefined => {
+    setIsImageLoaded(true);
   };
 
   return (
     <Wrapper>
       <Title>{isForecast ? extractTime(weatherElement.dt_txt) : weatherElement.day}</Title>
       <ImageWrapper>
-        {!imageLoaded && <Spinner />}
-        <Image src={Foggy} onLoad={() => handleImageLoad(true)} />
+        {!isImageLoaded && <Spinner />}
+        <Image src={Foggy} onLoad={handleImageLoad} />
       </ImageWrapper>
-      <Degree>{isForecast ? weatherElement.main.temp : weatherElement.dt}</Degree>
+      <Degree>
+        {isForecast ? Math.round(weatherElement.main.temp) : Math.round(weatherElement.dt)}°
+      </Degree>
     </Wrapper>
   );
 };

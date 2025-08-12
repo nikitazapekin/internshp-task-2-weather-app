@@ -9,20 +9,22 @@ import type { WeatherInterface } from "./types";
 
 const WeatherCard = ({ weatherElement }: WeatherInterface) => {
   const isForecast = isForecastItem(weatherElement);
-  const [imageLoaded, setImageLoaded] = useState<boolean>(false);
+  const [isImageLoaded, setIsImageLoaded] = useState<boolean>(false);
 
-  const handleImageLoad = (isLoaded: boolean) => {
-    setImageLoaded(isLoaded);
+  const handleImageLoad = (): undefined => {
+    setIsImageLoaded(true);
   };
 
   return (
     <Wrapper>
       <Text>{isForecast ? extractTime(weatherElement.dt_txt) : weatherElement.day}</Text>
       <ImageWrapper>
-        {!imageLoaded && <Spinner />}
-        <Image src={Rainy} onLoad={() => handleImageLoad(true)} />
+        {!isImageLoaded && <Spinner />}
+        <Image src={Rainy} onLoad={handleImageLoad} />
       </ImageWrapper>
-      <Degree>{isForecast ? weatherElement.main.temp : weatherElement.dt}</Degree>
+      <Degree>
+        {isForecast ? Math.round(weatherElement.main.temp) : Math.round(weatherElement.dt)}°
+      </Degree>
     </Wrapper>
   );
 };

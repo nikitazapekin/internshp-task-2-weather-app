@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import Spinner from "@components/Spinner";
 import SwiperItem from "@components/SwiperItem";
+import { TimeOfWeather } from "@constants";
 import { TOUCH_ID } from "@constants/swiper";
 import { useSwiper } from "@hooks/useSwiper";
 import { transformWeatherData } from "@utils/helpers/transformWeatherResponse/transformWeatherResponse";
@@ -17,7 +18,7 @@ const Swiper = ({ weatherElements }: SwiperProps) => {
   if (!weatherElements || !weatherElements.list) return <Spinner />;
 
   const weatherArray =
-    timeOfWeather && timeOfWeather === "weekly"
+    timeOfWeather && timeOfWeather === TimeOfWeather.WEEKLY
       ? transformWeatherData(weatherElements)
       : weatherElements.list;
 
