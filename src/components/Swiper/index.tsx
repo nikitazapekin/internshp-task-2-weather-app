@@ -15,8 +15,6 @@ const Swiper = ({ weatherElements }: SwiperProps) => {
   const { containerRef, handleStart, handleEnd, setIsDragging } = useSwiper();
   const timeOfWeather = useSelector(selectTimeOfWeather);
 
-  console.log("weather el", weatherElements);
-
   if (!weatherElements) return <Spinner />;
 
   const weatherArray =

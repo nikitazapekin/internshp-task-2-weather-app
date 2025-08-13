@@ -5,9 +5,9 @@ import { extractTime } from "@utils/helpers/extractHours/extractHours";
 import { isForecastItem } from "@utils/helpers/isForecastItem/isForecastItem";
 
 import { Degree, Image, ImageWrapper, Text, Wrapper } from "./styled";
-import type { WeatherInterface } from "./types";
+import type { SwiperItemTypes } from "./types";
 
-const WeatherCard = ({ weatherElement }: WeatherInterface) => {
+const WeatherCard = ({ weatherElement }: SwiperItemTypes) => {
   const isForecast = isForecastItem(weatherElement);
   const [isImageLoaded, setIsImageLoaded] = useState<boolean>(false);
 

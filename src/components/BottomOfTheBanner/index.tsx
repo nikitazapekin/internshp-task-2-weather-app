@@ -21,7 +21,7 @@ const BottomOfTheBanner = () => {
   if (isLoadingContent) {
     return (
       <Wrapper>
-        <Spinner />;
+        <Spinner />
       </Wrapper>
     );
   }
