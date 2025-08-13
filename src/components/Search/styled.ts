@@ -3,14 +3,16 @@ import { flex } from "@styles/mixins";
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-  ${flex("flex-start", "center", "column")}
+  ${flex("center", "center", "column")}
 
   row-gap: ${(props) => props.theme.spaces.md}px;
 
   ${media.lg`   
-    ${flex("flex-start", "center", "row")}
+    ${flex("center", "center", "row")}
       column-gap: ${(props) => props.theme.spaces.lg}px;
-  `}
+    `}
+
+  width: 100%;
 `;
 
 export const SearchInput = styled.input`
@@ -28,6 +30,11 @@ export const SearchInput = styled.input`
 
   ${media.lg`
   	width: 173px;
+  `}
+
+  ${media.xh`
+    max-width: 100%;
+  	width: 100%;
   `}
 
   ${media.sm`

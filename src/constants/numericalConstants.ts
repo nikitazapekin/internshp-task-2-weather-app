@@ -1,6 +1,6 @@
 export const BREAKPOINT_TRIGGER_WIDTH = 1024;
 export const TIMESTAMP_CONVERSION_FACTOR = 1000;
-export const ZERO_CONSTANT = 0;
+export const FIRST_ELEMENT_INDEX = 0;
 export const SINGLE_GEOCODING_RESULT_LIMIT = 1;
-export const NUMBER_EIGHT_CONSTANT = "8";
-export const ISO_DATE_TIME_SEPARATOR = "T";
+export const NUMBER_OF_3_HOUR_INTERVALS_PER_DAY = "8";
+export const ISO_SPLIT_MARKER = "T";

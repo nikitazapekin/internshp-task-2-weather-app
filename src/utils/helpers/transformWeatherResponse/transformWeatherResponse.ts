@@ -1,8 +1,8 @@
 import { INCLUDES_CONSTANTS } from "@constants/includesConstants";
 import {
-  ISO_DATE_TIME_SEPARATOR,
+  FIRST_ELEMENT_INDEX,
+  ISO_SPLIT_MARKER,
   TIMESTAMP_CONVERSION_FACTOR,
-  ZERO_CONSTANT,
 } from "@constants/numericalConstants";
 import { days } from "@constants/time";
 import type { FiveDayForecastResponse, ForecastItem } from "@types/apiTypes";
@@ -13,7 +13,7 @@ export function transformWeatherData(forecast: FiveDayForecastResponse): Weather
 
   forecast.list.forEach((item) => {
     const date = new Date(item.dt * TIMESTAMP_CONVERSION_FACTOR);
-    const dayKey = date.toISOString().split(ISO_DATE_TIME_SEPARATOR)[ZERO_CONSTANT];
+    const dayKey = date.toISOString().split(ISO_SPLIT_MARKER)[FIRST_ELEMENT_INDEX];
 
     if (!forecastsByDay[dayKey]) {
       forecastsByDay[dayKey] = [];
@@ -26,7 +26,7 @@ export function transformWeatherData(forecast: FiveDayForecastResponse): Weather
 
   for (const dayKey in forecastsByDay) {
     const dayForecasts = forecastsByDay[dayKey];
-    const date = new Date(dayForecasts[ZERO_CONSTANT].dt * TIMESTAMP_CONVERSION_FACTOR);
+    const date = new Date(dayForecasts[FIRST_ELEMENT_INDEX].dt * TIMESTAMP_CONVERSION_FACTOR);
     const dayOfWeek = days[date.getDay()];
 
     const avgTemp =
@@ -38,8 +38,8 @@ export function transformWeatherData(forecast: FiveDayForecastResponse): Weather
     let cloudyCount = 0;
 
     dayForecasts.forEach((item) => {
-      const weatherMain = item.weather[ZERO_CONSTANT].main.toLowerCase();
-      const weatherDesc = item.weather[ZERO_CONSTANT].description.toLowerCase();
+      const weatherMain = item.weather[FIRST_ELEMENT_INDEX].main.toLowerCase();
+      const weatherDesc = item.weather[FIRST_ELEMENT_INDEX].description.toLowerCase();
 
       if (
         weatherDesc.includes(INCLUDES_CONSTANTS.FOG_EN) ||
@@ -86,7 +86,7 @@ export function transformWeatherData(forecast: FiveDayForecastResponse): Weather
       rainy,
       sunny,
       cloudy,
-      dt_txt: dayForecasts[ZERO_CONSTANT].dt_txt,
+      dt_txt: dayForecasts[FIRST_ELEMENT_INDEX].dt_txt,
     });
   }
 

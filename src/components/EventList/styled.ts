@@ -3,11 +3,9 @@ import { flex } from "@styles/mixins";
 import styled from "styled-components";
 
 export const Wrapper = styled.ul`
-  ${flex("center", "center", "column")}
+  ${flex("flex-start", "center", "column")}
 
   row-gap: ${(props) => props.theme.spaces.md}px;
-  margin-top: ${(props) => props.theme.spaces.sm}px;
-  align-self: start;
   max-height: 145px;
   min-height: 100px;
   width: auto;
@@ -34,8 +32,9 @@ export const Wrapper = styled.ul`
   }
 
   ${media.xh`
-      width: 173px;
-    `}
+   max-width: 100%;
+   width: 100%;
+  `}
 `;
 
 export const EmptyListText = styled.h3`
@@ -52,9 +51,7 @@ export const EventCard = styled.li`
   max-width: 100%;
 
   ${media.xh`
-    ${flex("flex-start", "flex-start", "column")}
-    
-     row-gap: ${(props) => props.theme.spaces.sm}px;
+     column-gap: ${(props) => props.theme.spaces.xs}px;
   `}
 `;
 
@@ -75,7 +72,11 @@ export const Time = styled.p`
 export const Text = styled.p`
   color: ${({ theme }) => theme.colors.black};
   font-weight: ${({ theme }) => theme.fontWeights.regular};
-  font-size: ${({ theme }) => theme.fontSizes.md}px;
+  font-size: ${({ theme }) => theme.fontSizes.sm};
   max-width: 200px;
   width: 100%;
+
+  ${media.sm`
+  font-size: ${({ theme }) => theme.fontSizes.xs};
+  `}
 `;

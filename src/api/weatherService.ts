@@ -1,6 +1,6 @@
 import { ENV_CONSTANTS } from "@constants/envConstants";
 import {
-  NUMBER_EIGHT_CONSTANT,
+  NUMBER_OF_3_HOUR_INTERVALS_PER_DAY,
   SINGLE_GEOCODING_RESULT_LIMIT,
 } from "@constants/numericalConstants";
 import { API_LANG, API_METRIC, EXCLUDE_PARAMS } from "@constants/utilsConstants";
@@ -49,7 +49,7 @@ export default class WeatherService {
     const queryParams = WeatherService.buildParams({
       lat: params.latitude,
       lon: params.longitude,
-      cnt: NUMBER_EIGHT_CONSTANT,
+      cnt: NUMBER_OF_3_HOUR_INTERVALS_PER_DAY,
     });
 
     return $api.get<FiveDayForecastResponse>(`/data/2.5/forecast?${queryParams.toString()}`);
@@ -60,7 +60,7 @@ export default class WeatherService {
   ): Promise<AxiosResponse<FiveDayForecastResponse>> {
     const queryParams = WeatherService.buildParams({
       q: params.city,
-      cnt: NUMBER_EIGHT_CONSTANT,
+      cnt: NUMBER_OF_3_HOUR_INTERVALS_PER_DAY,
     });
 
     return $api.get<FiveDayForecastResponse>(`/data/2.5/forecast?${queryParams.toString()}`);

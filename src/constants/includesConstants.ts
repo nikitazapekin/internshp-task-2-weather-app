@@ -7,5 +7,5 @@ export const INCLUDES_CONSTANTS = {
   RAINY_RU: "дождь",
   CLOUDS_EN: "clouds",
   CLOUDY_EN: "cloud",
-  CLOUDY_RU: "облач",
+  CLOUDY_RU: "облачность",
 };

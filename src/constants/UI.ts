@@ -9,4 +9,5 @@ export const UI_CONSTANTS = {
     { id: 2, text: "Hourly", type: "hourly" },
   ],
   emptyList: "No events at the moment",
+  mobileTitleOfEvents: "Your events",
 };

@@ -5,7 +5,6 @@ export const Wrapper = styled.section`
   max-width: ${({ theme }) => theme.container}px;
   width: 100%;
   position: relative;
-  //  padding: ${({ theme }) => theme.spaces.md}px;
   margin: ${({ theme }) => theme.spaces.md}px 0;
 
   ${media.sm`
@@ -30,5 +29,5 @@ export const TopAndCenterOfBannerWrapper = styled.div`
 
   ${media.lg`
     padding: ${({ theme }) => theme.spaces.xs}px  
-    `}
+  `}
 `;
