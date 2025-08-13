@@ -88,6 +88,10 @@ export default class WeatherService {
     const geoResponse = await $api.get(`/data/2.5/forecast?${geoParams.toString()}`);
     const { lat, lon } = geoResponse.data[0];
 
-    return WeatherService.getWeeklyWeatherByCoordinats({ latitude: lat, longitude: lon });
+    return WeatherService.getWeeklyWeatherByCoordinats({
+      latitude: lat,
+      longitude: lon,
+      isGeolocationDenied: false,
+    });
   }
 }
