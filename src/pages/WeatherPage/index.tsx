@@ -5,7 +5,7 @@ import { UI_CONSTANTS } from "@constants/UI";
 import { GlobalStyle, PageWrapper, Reset, WrapperContainer } from "@styles";
 
 const WeekWeatherPage = () => {
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(true);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const handleCloseModal = (): void => {
     setIsModalOpen(false);
   };
