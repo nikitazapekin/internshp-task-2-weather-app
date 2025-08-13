@@ -1,12 +1,12 @@
 import { useState } from "react";
 import Banner from "@components/Banner";
-import Modal from "@components/Modal";
+import ErrorModal from "@components/ErrorModal";
 import { UI_CONSTANTS } from "@constants/UI";
 import { GlobalStyle, PageWrapper, Reset, WrapperContainer } from "@styles";
 
 const WeekWeatherPage = () => {
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const handleCloseModal = () => {
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(true);
+  const handleCloseModal = (): void => {
     setIsModalOpen(false);
   };
   const { defaultErrorMessage, defaultErrorTitle } = UI_CONSTANTS.errorsModal;
@@ -18,10 +18,10 @@ const WeekWeatherPage = () => {
         <Reset />
         <Banner />
         {isModalOpen && (
-          <Modal
+          <ErrorModal
+            errorMessage={defaultErrorMessage}
+            errorTitle={defaultErrorTitle}
             onClose={handleCloseModal}
-            title={defaultErrorTitle}
-            message={defaultErrorMessage}
           />
         )}
       </WrapperContainer>
