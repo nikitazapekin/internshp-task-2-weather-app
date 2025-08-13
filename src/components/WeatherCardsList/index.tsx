@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import Spinner from "@components/Spinner";
 import WeatherCard from "@components/WeatherCard";
+import { TimeOfWeather } from "@constants/weatherConstants";
 import { transformWeatherData } from "@utils/helpers/transformWeatherResponse/transformWeatherResponse";
 
 import { selectTimeOfWeather } from "@store/selectors";
@@ -14,7 +15,7 @@ const WeatherCardGrid = ({ weatherElements }: WeatherCardsListProps) => {
   if (!weatherElements || !weatherElements.list) return <Spinner />;
 
   const weatherArray =
-    timeOfWeather && timeOfWeather === "weekly"
+    timeOfWeather && timeOfWeather === TimeOfWeather.WEEKLY
       ? transformWeatherData(weatherElements)
       : weatherElements.list;
 
