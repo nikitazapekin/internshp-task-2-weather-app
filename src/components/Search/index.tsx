@@ -6,10 +6,12 @@ import { SearchInput, Wrapper } from "./styled";
 const SearchCitiesComponent = () => {
   const { searchButton } = UI_CONSTANTS.buttons;
 
+  const handleSearchCity = () => {};
+
   return (
     <Wrapper>
       <SearchInput />
-      <Button text={searchButton} handler={() => {}} />
+      <Button text={searchButton} handler={handleSearchCity} />
     </Wrapper>
   );
 };
