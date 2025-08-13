@@ -16,7 +16,13 @@ const WeekWeatherPage = () => {
       try {
         const coords = await getUserLocation();
 
-        dispatch(setCoordinats({ latitude: coords.latitude, longitude: coords.longitude }));
+        dispatch(
+          setCoordinats({
+            latitude: coords.latitude,
+            longitude: coords.longitude,
+            isGeolocationDenied: false,
+          })
+        );
         dispatch(
           fetchWeatherByCoordsRequest({ latitude: coords.latitude, longitude: coords.longitude })
         );
