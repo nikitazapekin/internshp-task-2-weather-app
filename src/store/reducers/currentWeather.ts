@@ -16,7 +16,7 @@ interface WeatherState {
 }
 
 const initialState: WeatherState = {
-  loading: false,
+  loading: true,
   error: null,
   data: null,
   lastRequestType: null,

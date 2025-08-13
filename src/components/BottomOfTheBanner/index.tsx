@@ -13,10 +13,8 @@ import { Wrapper } from "./styled";
 const BottomOfTheBanner = () => {
   const { isMobileView } = useResize();
   const weatherElements = useSelector(selectHorlyWeather);
-  const { latitude, longitude } = useSelector(selectCurrentCoordinats);
+  const { latitude, longitude, isGeolocationDenied } = useSelector(selectCurrentCoordinats);
   const isLoadingContent = useSelector(selectIsLoading);
-
-  const isGeolocationTurnedOff = !latitude || !longitude;
 
   if (isLoadingContent) {
     return (
@@ -26,11 +24,21 @@ const BottomOfTheBanner = () => {
     );
   }
 
+  if (latitude === null && longitude === null && !isGeolocationDenied) {
+    return null;
+  }
+
+  if (isGeolocationDenied) {
+    return (
+      <Wrapper>
+        <GeolocationIsTurnOff />
+      </Wrapper>
+    );
+  }
+
   return (
     <Wrapper>
-      {isGeolocationTurnedOff ? (
-        <GeolocationIsTurnOff />
-      ) : isMobileView ? (
+      {isMobileView ? (
         <>
           <TodayWeather />
           <WeatherCardGrid weatherElements={weatherElements} />
