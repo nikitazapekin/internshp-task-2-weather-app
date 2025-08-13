@@ -11,8 +11,6 @@ export const Wrapper = styled.div`
     ${flex("center", "center", "row")}
       column-gap: ${(props) => props.theme.spaces.lg}px;
     `}
-
-  width: 100%;
 `;
 
 export const SearchInput = styled.input`

@@ -10,3 +10,4 @@ export const selectCurrentCoordinats = (state: RootState) => state.coordinatsRed
 export const selectHorlyWeather = (state: RootState) => state.weatherReducer.data;
 export const selectWeeklyWeather = (state: RootState) => state.weatherReducer.data;
 export const selectTimeOfWeather = (state: RootState) => state.weatherReducer.timeOfWeather;
+export const selectIsLoading = (state: RootState) => state.weatherReducer.loading;

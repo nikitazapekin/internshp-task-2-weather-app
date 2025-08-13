@@ -15,8 +15,7 @@ export const Wrapper = styled.section`
   ${flex("flex-start", "center", "row")};
 
   column-gap: ${({ theme }) => theme.spaces.xxl}px;
-  padding: ${({ theme }) => theme.spaces.md}px ${({ theme }) => theme.spaces.h}px
-    ${({ theme }) => theme.spaces.xl}px ${({ theme }) => theme.spaces.xl}px;
+  padding: 0 ${({ theme }) => theme.spaces.h}px 0 ${({ theme }) => theme.spaces.xl}px;
 
   ${media.lg`
     ${flex("flex-start", "center", "column")};
