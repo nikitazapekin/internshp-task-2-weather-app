@@ -17,7 +17,7 @@
     "test:coverage": "jest --coverage",
     "test:all": "npm run test && npm run cypress:run",
     "cypress:coverage": "cypress run --env coverage=true",
-    "preview": "yarn build:prod && serve build 4001",
+    "preview": "webpack serve --env mode=production --env port=4001 --static-directory=build",
     "vercel-build": "yarn run build:prod"
   },
   "keywords": [],
