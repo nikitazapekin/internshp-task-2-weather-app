@@ -1,9 +1,9 @@
 import React from "react";
 import { useEffect, useRef, useState } from "react";
 import Button from "@components/Button";
-import { ENV_CONSTANTS } from "@constants/envConstants";
+//import WeatherService from "@api/weatherService";
 import { UI_CONSTANTS } from "@constants/UI";
-import { API_LIMIT_ERROR, DEBOUNCE_DELAY } from "@constants/utilsConstants";
+import { DEBOUNCE_DELAY } from "@constants/utilsConstants";
 
 import {
   SearchInput,
@@ -16,9 +16,9 @@ import {
 const SearchCitiesComponent = () => {
   const { searchButton } = UI_CONSTANTS.buttons;
 
-  const [inputValue, setInputValue] = useState("");
+  const [inputValue, setInputValue] = useState<string>("");
   const [suggestions, setSuggestions] = useState<string[]>([]);
-  const [showSuggestions, setShowSuggestions] = useState(false);
+  const [showSuggestions, setShowSuggestions] = useState<boolean>(false);
   const timeoutRef = useRef<number | null>(null);
 
   const handleSearchCity = (): void => {
@@ -32,27 +32,11 @@ const SearchCitiesComponent = () => {
       return;
     }
 
-    try {
-      const response = await fetch(
-        `https://api.openweathermap.org/geo/1.0/direct?q=${query}&limit=5&appid=${ENV_CONSTANTS.OPEN_WEATHER_TOKEN}`
-      );
-
-      if (!response.ok) {
-        throw new Error(API_LIMIT_ERROR);
-      }
-
-      const data = await response.json();
-
-      if (Array.isArray(data)) {
-        const cities = data.map(
-          (city) => `${city.name}${city.state ? `, ${city.state}` : ""}, ${city.country}`
-        );
-
-        setSuggestions(cities);
-      }
+    /*   try {
+  
     } catch {
       setSuggestions([]);
-    }
+    } */
   };
 
   useEffect(() => {

@@ -3,8 +3,14 @@ import {
   NUMBER_OF_3_HOUR_INTERVALS_PER_DAY,
   SINGLE_GEOCODING_RESULT_LIMIT,
 } from "@constants/numericalConstants";
-import { API_LANG, API_METRIC, EXCLUDE_PARAMS } from "@constants/utilsConstants";
+import {
+  API_LANG,
+  API_METRIC,
+  EXCLUDE_PARAMS,
+  LIMIT_OF_CITIES_FOR_SUGGESTION,
+} from "@constants/utilsConstants";
 import type { CityParams, CurrentWeatherResponse, FiveDayForecastResponse } from "@types/apiTypes";
+import type { OpenWeatherGeoResponse } from "@types/CitySearchResponseTypes";
 import type { CurrentCoordinatsState } from "@types/coordinatsTypes";
 import type { AxiosResponse } from "axios";
 
@@ -93,5 +99,16 @@ export default class WeatherService {
       longitude: lon,
       isGeolocationDenied: false,
     });
+  }
+
+  static async getCitiesByQuery(
+    params: CityParams
+  ): Promise<AxiosResponse<OpenWeatherGeoResponse>> {
+    const queryParams = WeatherService.buildParams({
+      q: params.city,
+      limit: LIMIT_OF_CITIES_FOR_SUGGESTION,
+    });
+
+    return $api.get<OpenWeatherGeoResponse>(`/geo/1.0/direct?${queryParams.toString()}`);
   }
 }
