@@ -29,5 +29,5 @@ export const TopAndCenterOfBannerWrapper = styled.div`
 
   ${media.lg`
     padding: ${({ theme }) => theme.spaces.xs}px  
-    `}
+  `}
 `;

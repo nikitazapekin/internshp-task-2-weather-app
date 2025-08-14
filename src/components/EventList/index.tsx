@@ -3,7 +3,7 @@ import Spinner from "@components/Spinner";
 import { UI_CONSTANTS } from "@constants/UI";
 import { formatTime } from "@utils/helpers/formatTime/formatTime";
 
-import { selectCalendarEvents, selectCalendarEventsLoading } from "@store/selectors/calendarEvents";
+import { selectCalendarEvents, selectCalendarEventsLoading } from "@store/selectors";
 
 import { EmptyListText, EventCard, Text, Time, Wrapper } from "./styled";
 

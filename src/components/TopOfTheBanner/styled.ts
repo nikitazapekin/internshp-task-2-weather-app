@@ -7,9 +7,6 @@ export const TopWrapper = styled.section`
 
   ${flex("space-between", "center", "row")}
 
-  /*   padding: ${({ theme }) => theme.spaces.xxl}px ${({ theme }) => theme.spaces.eh}px
-    0px ${({ theme }) => theme.spaces.xh}px; */
-
   ${media.lg`
     ${flex("center", "center", "column")}
     

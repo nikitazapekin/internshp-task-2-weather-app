@@ -1,10 +1,11 @@
 import { Text, TextWrapper } from "./styled";
+import type { TodayWeatherTextProps } from "./types";
 
-const TodayWeatherText = () => {
+const TodayWeatherText = ({ text }: TodayWeatherTextProps) => {
   return (
     <TextWrapper>
       <Text>Today</Text>
-      <Text>2°</Text>
+      <Text>{Math.round(text)}°</Text>
     </TextWrapper>
   );
 };
