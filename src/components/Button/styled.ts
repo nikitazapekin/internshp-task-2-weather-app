@@ -1,7 +1,7 @@
 import { media } from "@styles/breakpoints";
 import styled from "styled-components";
 
-export const ButtonElement = styled.button<{ isActive?: boolean }>`
+export const ButtonElement = styled.button<{ isActive?: boolean; isFullWidth?: boolean }>`
   cursor: pointer;
   padding: ${({ theme }) => theme.spaces.x}px ${({ theme }) => theme.spaces.lg}px;
   border: none;
@@ -13,6 +13,7 @@ export const ButtonElement = styled.button<{ isActive?: boolean }>`
   font-size: ${({ theme }) => theme.fontSizes.md};
   transition: 0.4s ease-in-out;
   min-width: 94px;
+  width: ${({ isFullWidth }) => (isFullWidth ? "100%" : "auto")};
 
   &:hover {
     background-color: ${({ theme }) => theme.colors.blue};

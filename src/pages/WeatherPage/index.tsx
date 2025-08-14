@@ -8,6 +8,7 @@ import { UI_CONSTANTS } from "@constants/UI";
 import { GlobalStyle, PageWrapper, Reset, WrapperContainer } from "@styles";
 import { getUserLocation } from "@utils/helpers";
 
+import { fetchCurrentCityRequest } from "@store/actions/currentCity";
 import { setCoordinats, setGeolocationDenied } from "@store/actions/currentCoordinats";
 import { fetchWeatherByCoordsRequest } from "@store/actions/currentWeather";
 import { fetchHourlyWeatherByCoordsRequest } from "@store/actions/weather";
@@ -36,8 +37,11 @@ const WeatherPage = () => {
             longitude: coords.longitude,
           })
         );
-      } catch (e) {
-        console.log(e);
+
+        dispatch(
+          fetchCurrentCityRequest({ latitude: coords.latitude, longitude: coords.longitude })
+        );
+      } catch {
         dispatch(setGeolocationDenied());
       }
     }

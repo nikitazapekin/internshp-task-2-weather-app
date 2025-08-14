@@ -12,6 +12,8 @@ export const UI_CONSTANTS = {
   ],
   emptyList: "No events at the moment",
   mobileTitleOfEvents: "Your events",
+  placeholder: "Search",
+  nothingFoundText: "Nothing found for query",
   errorsModal: {
     defaultErrorTitle: "Opps, something wen't wrong",
     defaultErrorMessage: "The error was occured while page was loading",
