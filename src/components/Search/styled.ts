@@ -28,7 +28,7 @@ export const SearchWrapper = styled.div`
 `;
 
 export const SearchInput = styled.input`
-  border-radius: 5px;
+  border-radius: ${({ theme }) => theme.spaces.x}px;
   max-width: 257px;
   padding: ${({ theme }) => theme.spaces.x}px ${({ theme }) => theme.spaces.sm}px;
   width: 100%;
@@ -79,6 +79,7 @@ export const SuggestionsContent = styled.ul<{ height?: boolean }>`
   width: 100%;
   word-wrap: break-word;
   white-space: pre-wrap;
+  z-index: ${({ theme }) => theme.zIndexes.md};
 `;
 
 export const SuggestionItem = styled.li`
