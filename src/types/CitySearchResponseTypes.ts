@@ -1,7 +1,7 @@
-export interface CitySearchResponse {
+export interface CitySearchResult {
   name: string;
   local_names?: {
-    [language: string]: string;
+    [key: string]: string;
   };
   lat: number;
   lon: number;
@@ -14,4 +14,4 @@ export interface CitySearchError {
   message: string;
 }
 
-export type OpenWeatherGeoResponse = CitySearchResponse[] | CitySearchError;
+export type OpenWeatherGeoResponse = CitySearchResult[] | CitySearchError;

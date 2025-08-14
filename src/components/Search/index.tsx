@@ -1,9 +1,12 @@
-import React from "react";
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Button from "@components/Button";
-//import WeatherService from "@api/weatherService";
 import { UI_CONSTANTS } from "@constants/UI";
 import { DEBOUNCE_DELAY } from "@constants/utilsConstants";
+import type { CitySearchResult } from "@types/CitySearchResponseTypes";
+
+import { fetchCitiesRequest, fetchClearCitiesRequest } from "@store/actions/elasticSearch";
+import { selectCitiesSuggestions } from "@store/selectors";
 
 import {
   SearchInput,
@@ -17,26 +20,24 @@ const SearchCitiesComponent = () => {
   const { searchButton } = UI_CONSTANTS.buttons;
 
   const [inputValue, setInputValue] = useState<string>("");
-  const [suggestions, setSuggestions] = useState<string[]>([]);
   const [showSuggestions, setShowSuggestions] = useState<boolean>(false);
   const timeoutRef = useRef<number | null>(null);
+  const dispatch = useDispatch();
+
+  const suggestedCities = useSelector(selectCitiesSuggestions) as CitySearchResult[];
 
   const handleSearchCity = (): void => {
     setShowSuggestions(false);
   };
 
-  const fetchCities = async (query: string) => {
+  const fetchCities = (query: string) => {
     if (query.length < 1) {
-      setSuggestions([]);
+      dispatch(fetchClearCitiesRequest());
 
       return;
     }
 
-    /*   try {
-  
-    } catch {
-      setSuggestions([]);
-    } */
+    dispatch(fetchCitiesRequest({ city: query }));
   };
 
   useEffect(() => {
@@ -45,7 +46,7 @@ const SearchCitiesComponent = () => {
     }
 
     timeoutRef.current = window.setTimeout(() => {
-      void fetchCities(inputValue);
+      fetchCities(inputValue);
     }, DEBOUNCE_DELAY);
 
     return () => {
@@ -53,17 +54,25 @@ const SearchCitiesComponent = () => {
         clearTimeout(timeoutRef.current);
       }
     };
-  }, [inputValue]);
+  }, [inputValue, dispatch]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setInputValue(e.target.value);
     setShowSuggestions(true);
   };
 
-  const handleSuggestionClick = (suggestion: string): void => {
-    setInputValue(suggestion);
+  const handleSuggestionClick = (city: CitySearchResult): void => {
+    const cityName = `${city.name}${city.state ? `, ${city.state}` : ""}, ${city.country}`;
+
+    setInputValue(cityName);
     setShowSuggestions(false);
   };
+
+  const formatCityName = (city: CitySearchResult) => {
+    return `${city.name}${city.state ? `, ${city.state}` : ""}, ${city.country}`;
+  };
+
+  console.log(suggestedCities);
 
   return (
     <Wrapper>
@@ -73,11 +82,14 @@ const SearchCitiesComponent = () => {
         placeholder={UI_CONSTANTS.placeholder}
       />
       <SuggestionsWrapper>
-        {showSuggestions && suggestions.length > 0 && (
+        {showSuggestions && suggestedCities && suggestedCities.length > 0 && (
           <SuggestionsList>
-            {suggestions.map((suggestion, index) => (
-              <SuggestionItem key={index} onClick={() => handleSuggestionClick(suggestion)}>
-                {suggestion}
+            {suggestedCities.map((city, index) => (
+              <SuggestionItem
+                key={`${city.lat}-${city.lon}-${index}`}
+                onClick={() => handleSuggestionClick(city)}
+              >
+                {formatCityName(city)}
               </SuggestionItem>
             ))}
           </SuggestionsList>

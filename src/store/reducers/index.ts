@@ -12,6 +12,7 @@ const rootReducer = combineReducers({
   calendarReducer: calendar,
   coordinatsReducer: currentCoordinats,
   weatherReducer: weather,
+  elasticReducer: elasticSearch,
 });
 
 export default rootReducer;
