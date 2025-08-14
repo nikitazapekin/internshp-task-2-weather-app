@@ -1,5 +1,5 @@
-import { THRERSHOLD } from "@constants/swiper";
 import { useRef, useState } from "react";
+import { THRERSHOLD } from "@constants/swiper";
 
 export const useSwiper = () => {
   const containerRef = useRef<HTMLDivElement>(null);

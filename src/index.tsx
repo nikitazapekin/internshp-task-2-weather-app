@@ -1,9 +1,9 @@
 import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
+import { BrowserRouter } from "react-router-dom";
+import AppRoutes from "@components/AppRouter";
 import { GlobalStyle } from "@styles/globals";
 import { ThemeProvider } from "styled-components";
-
-import WeekWeatherPage from "@pages/WeatherPage";
 
 import { theme } from "./constants/";
 import { store } from "./store";
@@ -17,10 +17,12 @@ if (!root) {
 const container = createRoot(root);
 
 container.render(
-  <Provider store={store}>
-    <ThemeProvider theme={theme}>
-      <GlobalStyle />
-      <WeekWeatherPage />
-    </ThemeProvider>
-  </Provider>
+  <BrowserRouter>
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <AppRoutes />
+      </ThemeProvider>
+    </Provider>
+  </BrowserRouter>
 );
