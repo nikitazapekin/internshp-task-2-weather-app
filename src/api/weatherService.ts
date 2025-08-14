@@ -9,7 +9,12 @@ import type { OpenWeatherGeoResponse } from "@types/CitySearchResponseTypes";
 import type { CurrentCoordinatsState } from "@types/coordinatsTypes";
 import type { AxiosResponse } from "axios";
 
+import { setCacheItem } from "@store/actions/cache";
+import { store } from "@store/index";
+
 import { $api } from ".";
+
+const CACHE_TTL = 5 * 60 * 1000;
 
 export default class WeatherService {
   private static buildParams(params: Record<string, string | number>): URLSearchParams {
@@ -24,7 +29,50 @@ export default class WeatherService {
     return searchParams;
   }
 
+  private static async cachedRequest<T>(
+    key: string,
+    requestFn: () => Promise<AxiosResponse<T>>
+  ): Promise<AxiosResponse<T>> {
+    const cacheState = store.getState().cache;
+    const cachedItem = cacheState[key];
+    const now = Date.now();
+
+    if (cachedItem && now - cachedItem.timestamp < CACHE_TTL) {
+      return {
+        ...cachedItem.data,
+        config: { ...cachedItem.data.config, cached: true },
+      } as AxiosResponse<T>;
+    }
+
+    const response = await requestFn();
+
+    console.log("cached");
+    store.dispatch(
+      setCacheItem({
+        key,
+        data: response,
+      })
+    );
+
+    return response;
+  }
+
   static async getCurrentWeatherByCoordinats(
+    params: CurrentCoordinatsState
+  ): Promise<AxiosResponse<CurrentWeatherResponse>> {
+    const queryParams = WeatherService.buildParams({
+      lat: params.latitude,
+      lon: params.longitude,
+    });
+    const cacheKey = `weather:${params.latitude}:${params.longitude}`;
+
+    return this.cachedRequest(cacheKey, () =>
+      $api.get<CurrentWeatherResponse>(`/data/2.5/weather?${queryParams.toString()}`)
+    );
+  }
+
+  /* 
+static async getCurrentWeatherByCoordinats(
     params: CurrentCoordinatsState
   ): Promise<AxiosResponse<CurrentWeatherResponse>> {
     const queryParams = WeatherService.buildParams({
@@ -33,7 +81,7 @@ export default class WeatherService {
     });
 
     return $api.get<CurrentWeatherResponse>(`/data/2.5/weather?${queryParams.toString()}`);
-  }
+  } */
 
   static async getCurrentWeatherByCity(
     params: CityParams

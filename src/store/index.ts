@@ -6,26 +6,26 @@ import createSagaMiddleware from "redux-saga";
 import rootReducer from "./reducers";
 import rootSaga from "./sagas";
 
+const sagaMiddleware = createSagaMiddleware();
+
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: [""],
+  whitelist: ["cache"],
 };
 
-const sagaMiddleware = createSagaMiddleware();
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({
   reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
-      serializableCheck: false,
+      serializableCheck: {
+        ignoredActions: ["persist/PERSIST", "persist/REHYDRATE"],
+      },
     }).concat(sagaMiddleware),
 });
 
 sagaMiddleware.run(rootSaga);
 
 export const persistor = persistStore(store);
-
-export type RootState = ReturnType<typeof store.getState>;
-export type AppDispatch = typeof store.dispatch;
