@@ -3,7 +3,7 @@ import { flex } from "@styles/mixins";
 import styled from "styled-components";
 
 export const Wrapper = styled.ul`
-  ${flex("center", "center", "column")}
+  ${flex("flex-start", "center", "column")}
 
   row-gap: ${(props) => props.theme.spaces.md}px;
   max-height: 145px;
@@ -18,18 +18,11 @@ export const Wrapper = styled.ul`
   position: relative;
 
   &::-webkit-scrollbar {
-    width: 6px;
+    display: none;
   }
 
-  &::-webkit-scrollbar-track {
-    background: ${(props) => props.theme.colors.white};
-    border-radius: 3px;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background-color: ${(props) => props.theme.colors.black};
-    border-radius: 3px;
-  }
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 
   ${media.xh`
    max-width: 100%;
