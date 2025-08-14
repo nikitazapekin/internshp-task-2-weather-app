@@ -1,7 +1,7 @@
 import type React from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { DEBOUNCE_DELAY } from "@constants/utilsConstants";
+import { UI_CONFIG } from "@constants/utilsConstants";
 import type { CitySearchResult } from "@types/CitySearchResponseTypes";
 
 import { fetchCurrentCityRequest } from "@store/actions/currentCity";
@@ -22,7 +22,7 @@ export const useElastic = () => {
   const dispatch = useDispatch();
   const { coordinats } = useSelector(selectCitiesSuggestions);
   const suggestedCities = useSelector(selectCitiesSuggestions).data as CitySearchResult[];
-
+  const { DELAY } = UI_CONFIG.DEBOUNCE;
   const fetchCities = useCallback(
     (query: string): void => {
       if (query.length < 1) {
@@ -44,14 +44,14 @@ export const useElastic = () => {
 
     timeoutRef.current = window.setTimeout(() => {
       fetchCities(inputValue);
-    }, DEBOUNCE_DELAY);
+    }, DELAY);
 
     return () => {
       if (timeoutRef.current) {
         clearTimeout(timeoutRef.current);
       }
     };
-  }, [inputValue, fetchCities]);
+  }, [inputValue, fetchCities, DELAY]);
 
   const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);

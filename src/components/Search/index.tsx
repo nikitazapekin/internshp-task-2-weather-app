@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import Button from "@components/Button";
 import Spinner from "@components/Spinner";
 import { UI_CONSTANTS } from "@constants/UI";
-import { RELATIVE_POSITION } from "@constants/utilsConstants";
+import { UI_CONFIG } from "@constants/utilsConstants";
 import { useElastic } from "@hooks/useElastic";
 import useMobile from "@hooks/useMobile";
 
@@ -32,7 +32,7 @@ const SearchCitiesComponent = () => {
     handleSearchCity,
     handleKeyDown,
   } = useElastic();
-
+  const { RELATIVE } = UI_CONFIG.SUGGESTIONS;
   const renderSuggestions = () => {
     const hasInput = inputValue?.length > 0;
     const hasSuggestions = suggestedCities?.length > 0;
@@ -43,7 +43,7 @@ const SearchCitiesComponent = () => {
 
     return (
       <SuggestionsContent height={shouldShowSuggestions}>
-        {showLoading && <Spinner position={RELATIVE_POSITION} />}
+        {showLoading && <Spinner position={RELATIVE} />}
 
         {showEmptyState && (
           <NothingFoundText>

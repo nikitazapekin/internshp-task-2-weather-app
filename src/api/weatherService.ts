@@ -3,12 +3,7 @@ import {
   NUMBER_OF_3_HOUR_INTERVALS_PER_DAY,
   SINGLE_GEOCODING_RESULT_LIMIT,
 } from "@constants/numericalConstants";
-import {
-  API_LANG,
-  API_METRIC,
-  EXCLUDE_PARAMS,
-  LIMIT_OF_CITIES_FOR_SUGGESTION,
-} from "@constants/utilsConstants";
+import { API_CONFIG } from "@constants/utilsConstants";
 import type { CityParams, CurrentWeatherResponse, FiveDayForecastResponse } from "@types/apiTypes";
 import type { OpenWeatherGeoResponse } from "@types/CitySearchResponseTypes";
 import type { CurrentCoordinatsState } from "@types/coordinatsTypes";
@@ -18,11 +13,12 @@ import { $api } from ".";
 
 export default class WeatherService {
   private static buildParams(params: Record<string, string | number>): URLSearchParams {
+    const { METRIC, LANG } = API_CONFIG.PARAMS;
     const searchParams = new URLSearchParams({
       ...params,
       appid: ENV_CONSTANTS.OPEN_WEATHER_TOKEN,
-      units: API_METRIC,
-      lang: API_LANG,
+      units: METRIC,
+      lang: LANG,
     });
 
     return searchParams;
@@ -75,10 +71,11 @@ export default class WeatherService {
   static async getWeeklyWeatherByCoordinats(
     params: CurrentCoordinatsState
   ): Promise<AxiosResponse<FiveDayForecastResponse>> {
+    const { EXCLUDE } = API_CONFIG.PARAMS;
     const queryParams = WeatherService.buildParams({
       lat: params.latitude,
       lon: params.longitude,
-      exclude: EXCLUDE_PARAMS,
+      exclude: EXCLUDE,
     });
 
     return $api.get<FiveDayForecastResponse>(`/data/2.5/forecast?${queryParams.toString()}`);
@@ -104,6 +101,7 @@ export default class WeatherService {
   static async getCitiesByQuery(
     params: CityParams
   ): Promise<AxiosResponse<OpenWeatherGeoResponse>> {
+    const { LIMIT_OF_CITIES_FOR_SUGGESTION } = API_CONFIG.PARAMS;
     const queryParams = WeatherService.buildParams({
       q: params.city,
       limit: LIMIT_OF_CITIES_FOR_SUGGESTION,
