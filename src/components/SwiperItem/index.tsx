@@ -22,7 +22,7 @@ const SwiperItem = ({ weatherElement }: SwiperItemTypes) => {
       <ImageWrapper>
         {!isImageLoaded && <Spinner />}
         <Image
-          src={ICONS_CONSTANTS[getWeatherCondition(weatherElement)].desktop}
+          src={ICONS_CONSTANTS[getWeatherCondition(weatherElement).condition].desktop}
           onLoad={handleImageLoad}
         />
       </ImageWrapper>
