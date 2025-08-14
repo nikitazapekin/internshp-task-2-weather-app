@@ -12,3 +12,7 @@ export const selectTimeOfWeather = (state: RootState) => state.weatherReducer.ti
 export const selectIsLoading = (state: RootState) => state.weatherReducer.loading;
 export const selectCitiesSuggestions = (state: RootState) => state.elasticReducer.data;
 export const selectCitiesSuggestionsLoading = (state: RootState) => state.elasticReducer.loading;
+export const selectCitiesSuggestionsCoordinats = (state: RootState) =>
+  state.elasticReducer.coordinats;
+export const selectCitiesSuggestionsIsActive = (state: RootState) =>
+  state.elasticReducer.isElasticActive;

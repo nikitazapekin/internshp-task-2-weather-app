@@ -2,22 +2,22 @@ import type React from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { DEBOUNCE_DELAY } from "@constants/utilsConstants";
-import type { CityCoordinats } from "@types/cityCoordinats";
 import type { CitySearchResult } from "@types/CitySearchResponseTypes";
 
-import { fetchCitiesRequest, fetchClearCitiesRequest } from "@store/actions/elasticSearch";
+import {
+  fetchCitiesRequest,
+  fetchClearCitiesRequest,
+  fetchSuggestedCityCoordinats,
+} from "@store/actions/elasticSearch";
 import { fetchWeeklyWeatherByCoordsRequest } from "@store/actions/weather";
-import { selectCitiesSuggestions } from "@store/selectors";
+import { selectCitiesSuggestions, selectCitiesSuggestionsCoordinats } from "@store/selectors";
 
 export const useElastic = () => {
   const [inputValue, setInputValue] = useState<string>("");
-  const [cityCoordinats, setCityCoordinats] = useState<CityCoordinats>({
-    latitude: null,
-    longitude: null,
-  });
   const [showSuggestions, setShowSuggestions] = useState<boolean>(false);
   const timeoutRef = useRef<number | null>(null);
   const dispatch = useDispatch();
+  const cityCoordinats = useSelector(selectCitiesSuggestionsCoordinats);
 
   const suggestedCities = useSelector(selectCitiesSuggestions) as CitySearchResult[];
 
@@ -61,11 +61,11 @@ export const useElastic = () => {
 
       setInputValue(cityName);
       setShowSuggestions(false);
-      setCityCoordinats({ latitude: city.lat, longitude: city.lon });
+      dispatch(fetchSuggestedCityCoordinats({ latitude: city.lat, longitude: city.lon }));
 
       return cityName;
     },
-    []
+    [dispatch]
   );
 
   const formatCityName = useCallback((city: CitySearchResult): string => {
@@ -77,11 +77,14 @@ export const useElastic = () => {
     setShowSuggestions(false);
   }, []);
 
-  const handleKeyDown = useCallback((e: React.KeyboardEvent<HTMLInputElement>): void => {
-    if (e.key === "Enter") {
-      handleSearchCity();
-    }
-  }, []);
+  const handleKeyDown = useCallback(
+    (e: React.KeyboardEvent<HTMLInputElement>): void => {
+      if (e.key === "Enter") {
+        handleSearchCity();
+      }
+    },
+    [dispatch]
+  );
 
   return {
     inputValue,
