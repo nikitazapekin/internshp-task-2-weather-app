@@ -111,4 +111,16 @@ export default class WeatherService {
 
     return $api.get<OpenWeatherGeoResponse>(`/geo/1.0/direct?${queryParams.toString()}`);
   }
+
+  static async getCityNameByCoordinats(
+    params: CurrentCoordinatsState
+  ): Promise<AxiosResponse<OpenWeatherGeoResponse>> {
+    const queryParams = WeatherService.buildParams({
+      lat: params.latitude,
+      lon: params.longitude,
+      limit: SINGLE_GEOCODING_RESULT_LIMIT,
+    });
+
+    return $api.get<OpenWeatherGeoResponse>(`/geo/1.0/reverse?${queryParams.toString()}`);
+  }
 }

@@ -16,3 +16,5 @@ export const selectCitiesSuggestionsCoordinats = (state: RootState) =>
   state.elasticReducer.coordinats;
 export const selectCitiesSuggestionsIsActive = (state: RootState) =>
   state.elasticReducer.isElasticActive;
+export const selectCurrentCity = (state: RootState) => state.currentCitReducer.city;
+export const selectCurrentLoading = (state: RootState) => state.currentCitReducer.city;

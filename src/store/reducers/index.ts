@@ -1,5 +1,6 @@
 import { combineReducers } from "redux";
 
+import { currentCity } from "./currentCity";
 import { currentCoordinats } from "./currentCoordinats";
 import { currentWeather } from "./currentWeather";
 import { elasticSearch } from "./elasticSearch";
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   coordinatsReducer: currentCoordinats,
   weatherReducer: weather,
   elasticReducer: elasticSearch,
+  currentCitReducer: currentCity,
 });
 
 export default rootReducer;

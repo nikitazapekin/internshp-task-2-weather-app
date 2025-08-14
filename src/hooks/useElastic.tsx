@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { DEBOUNCE_DELAY } from "@constants/utilsConstants";
 import type { CitySearchResult } from "@types/CitySearchResponseTypes";
 
+import { fetchCurrentCityRequest } from "@store/actions/currentCity";
 import { fetchWeatherByCoordsRequest } from "@store/actions/currentWeather";
 import {
   fetchCitiesActive,
@@ -80,6 +81,12 @@ export const useElastic = () => {
     dispatch(fetchCitiesActive(true));
     dispatch(
       fetchWeatherByCoordsRequest({
+        latitude: cityCoordinats.latitude,
+        longitude: cityCoordinats.longitude,
+      })
+    );
+    dispatch(
+      fetchCurrentCityRequest({
         latitude: cityCoordinats.latitude,
         longitude: cityCoordinats.longitude,
       })

@@ -4,6 +4,7 @@ import Banner from "@components/Banner";
 import { GlobalStyle, PageWrapper, Reset, WrapperContainer } from "@styles";
 import { getUserLocation } from "@utils/helpers";
 
+import { fetchCurrentCityRequest } from "@store/actions/currentCity";
 import { setCoordinats, setGeolocationDenied } from "@store/actions/currentCoordinats";
 import { fetchWeatherByCoordsRequest } from "@store/actions/currentWeather";
 import { fetchHourlyWeatherByCoordsRequest } from "@store/actions/weather";
@@ -31,6 +32,10 @@ const WeekWeatherPage = () => {
             latitude: coords.latitude,
             longitude: coords.longitude,
           })
+        );
+
+        dispatch(
+          fetchCurrentCityRequest({ latitude: coords.latitude, longitude: coords.longitude })
         );
       } catch {
         dispatch(setGeolocationDenied());

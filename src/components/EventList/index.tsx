@@ -28,7 +28,7 @@ const EventList = () => {
         );
       })}
       {events.length === 0 && !isLoading && <EmptyListText>{emptyList}</EmptyListText>}
-      {isLoading && <Spinner />}
+      {isLoading && <Spinner position="relative" />}
     </Wrapper>
   );
 };

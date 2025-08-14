@@ -12,6 +12,12 @@ export const Wrapper = styled.div`
 
       column-gap: ${(props) => props.theme.spaces.lg}px;
     `}
+
+    ${media.sm`   
+      ${flex("center", "flex-start", "column")}
+
+      width: 100%;
+    `}
 `;
 
 export const SearchWrapper = styled.div`
@@ -54,22 +60,21 @@ export const SuggestionsWrapper = styled.div`
   width: 100%;
 `;
 
-export const SuggestionsContent = styled.ul<{ height?: number }>`
+export const SuggestionsContent = styled.ul<{ height?: boolean }>`
   position: absolute;
   top: 100%;
   left: 0;
   right: 0;
   background-color: ${({ theme }) => theme.colors.white};
-  border-radius: 5px;
+  border-radius: ${({ theme }) => theme.spaces.x}px;
   list-style: none;
   margin: 0;
-  z-index: 100;
   max-height: 200px;
   overflow-y: auto;
-  height: ${({ height }) => (height ? `${height}px` : "auto")};
+  height: auto;
   padding: ${({ height, theme }) => (height ? theme.spaces.md : 0)}px;
 
-  ${flex("center", "flex-start", "column")};
+  ${flex("flex-start", "flex-start", "column")};
 
   width: 100%;
   word-wrap: break-word;
