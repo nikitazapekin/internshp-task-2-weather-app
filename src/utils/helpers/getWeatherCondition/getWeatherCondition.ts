@@ -1,28 +1,42 @@
-import type { ForecastItem } from "@types/apiTypes";
-import type { CurrentWeatherResponse } from "@types/apiTypes";
-import type { DailyForecastItem } from "@types/apiTypes";
-import type { WeatherDaySummary } from "@types/weatherDaySummaryTypes";
-
-type WeatherCondition = "foggy" | "sunny" | "rainy" | "cloudy";
-type WeatherData = WeatherDaySummary | CurrentWeatherResponse | ForecastItem | DailyForecastItem;
+import { WeatherConditions } from "@constants/conditions";
+import type { conditionType, WeatherData } from "@types/conditionTypes";
 
 export function getWeatherCondition(weatherElement: WeatherData): {
-  condition: WeatherCondition;
+  condition: conditionType;
   description: string;
 } {
-  if ("foggy" in weatherElement && typeof weatherElement.foggy === "number") {
+  if (
+    WeatherConditions.WEATHER_FOGGY in weatherElement &&
+    typeof weatherElement.foggy === "number"
+  ) {
     const { foggy, rainy, sunny, cloudy } = weatherElement;
     const maxValue = Math.max(foggy, rainy, sunny, cloudy);
 
-    if (maxValue === foggy) return { condition: "foggy", description: "Foggy" };
+    if (maxValue === foggy)
+      return {
+        condition: WeatherConditions.FOGGY,
+        description: WeatherConditions.DESCRIPTION_FOGGY,
+      };
 
-    if (maxValue === rainy) return { condition: "rainy", description: "Rainy" };
+    if (maxValue === rainy)
+      return {
+        condition: WeatherConditions.RAINY,
+        description: WeatherConditions.DESCRIPTION_RAINY,
+      };
 
-    if (maxValue === sunny) return { condition: "sunny", description: "Sunny" };
+    if (maxValue === sunny)
+      return {
+        condition: WeatherConditions.SUNNY,
+        description: WeatherConditions.DESCRIPTION_SUNNY,
+      };
 
-    if (maxValue === cloudy) return { condition: "cloudy", description: "Cloudy" };
+    if (maxValue === cloudy)
+      return {
+        condition: WeatherConditions.CLOUDY,
+        description: WeatherConditions.DESCRIPTION_CLOUDY,
+      };
 
-    return { condition: "sunny", description: "Sunny" };
+    return { condition: WeatherConditions.SUNNY, description: WeatherConditions.DESCRIPTION_SUNNY };
   }
 
   if ("weather" in weatherElement && Array.isArray(weatherElement.weather)) {
@@ -30,36 +44,54 @@ export function getWeatherCondition(weatherElement: WeatherData): {
     const mainCondition = weatherDescription?.main.toLowerCase() || "";
     const description = weatherDescription?.description || "";
 
-    if (mainCondition.includes("fog") || mainCondition.includes("mist")) {
-      return { condition: "foggy", description };
+    if (
+      mainCondition.includes(WeatherConditions.WEATHER_FOG) ||
+      mainCondition.includes(WeatherConditions.WEATHER_MIST)
+    ) {
+      return { condition: WeatherConditions.FOGGY, description };
     }
 
     if (
-      mainCondition.includes("rain") ||
-      mainCondition.includes("drizzle") ||
-      mainCondition.includes("shower")
+      mainCondition.includes(WeatherConditions.WEATHER_RAIN) ||
+      mainCondition.includes(WeatherConditions.WEATHER_DRIZZLE) ||
+      mainCondition.includes(WeatherConditions.WEATHER_SHOWER)
     ) {
-      return { condition: "rainy", description };
+      return { condition: WeatherConditions.RAINY, description };
     }
 
-    if (mainCondition.includes("clear") || mainCondition.includes("sun")) {
-      return { condition: "sunny", description };
+    if (
+      mainCondition.includes(WeatherConditions.WEATHER_CLEAR) ||
+      mainCondition.includes(WeatherConditions.WEATHER_SUN)
+    ) {
+      return { condition: WeatherConditions.SUNNY, description };
     }
 
-    if (mainCondition.includes("cloud") || mainCondition.includes("overcast")) {
-      return { condition: "cloudy", description };
+    if (
+      mainCondition.includes(WeatherConditions.WEATHER_CLOUD) ||
+      mainCondition.includes(WeatherConditions.WEATHER_OVERCAST)
+    ) {
+      return { condition: WeatherConditions.CLOUDY, description };
     }
 
-    if (mainCondition.includes("snow") || mainCondition.includes("flurr")) {
-      return { condition: "rainy", description };
+    if (
+      mainCondition.includes(WeatherConditions.WEATHER_SNOW) ||
+      mainCondition.includes(WeatherConditions.WEATHER_FLURRY)
+    ) {
+      return { condition: WeatherConditions.RAINY, description };
     }
 
-    if (mainCondition.includes("thunder") || mainCondition.includes("storm")) {
-      return { condition: "rainy", description };
+    if (
+      mainCondition.includes(WeatherConditions.WEATHER_THUNDER) ||
+      mainCondition.includes(WeatherConditions.WEATHER_STORM)
+    ) {
+      return { condition: WeatherConditions.RAINY, description };
     }
 
-    return { condition: "sunny", description: description || "Clear" };
+    return {
+      condition: WeatherConditions.SUNNY,
+      description: description || WeatherConditions.DESCRIPTION_CLEAR,
+    };
   }
 
-  return { condition: "sunny", description: "Clear" };
+  return { condition: WeatherConditions.SUNNY, description: WeatherConditions.DESCRIPTION_CLEAR };
 }
