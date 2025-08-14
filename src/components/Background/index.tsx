@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { BACKGROUND_CONSTANTS } from "@constants/backgroundConstants";
+import { BACKGROUND_CONSTANTS } from "@constants/background";
 import { getWeatherCondition } from "@utils/helpers";
 
 import { selectCurrentWeather } from "@store/selectors";

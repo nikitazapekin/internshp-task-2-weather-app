@@ -1,4 +1,4 @@
-export * from "./backgroundConstants";
+export * from "./background";
 export * from "./calendarEvents";
 export * from "./envConstants";
 export * from "./errors";
