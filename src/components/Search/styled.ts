@@ -3,9 +3,9 @@ import { flex } from "@styles/mixins";
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-  ${flex("center", "center", "column")}
+  position: relative;
 
-  row-gap: ${(props) => props.theme.spaces.md}px;
+  ${flex("center", "center", "column")}
 
   ${media.lg`   
     ${flex("center", "center", "row")}
@@ -39,4 +39,33 @@ export const SearchInput = styled.input`
   	font-size: ${({ theme }) => theme.fontSizes.xxs};
     padding: ${({ theme }) => theme.spaces.x}px;
   `}
+`;
+
+export const SuggestionsWrapper = styled.div`
+  position: relative;
+  width: 100%;
+  margin-bottom: ${(props) => props.theme.spaces.md}px;
+`;
+export const SuggestionsList = styled.ul`
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  z-index: 100;
+  max-height: 200px;
+  overflow-y: auto;
+`;
+
+export const SuggestionItem = styled.li`
+  padding: ${({ theme }) => theme.spaces.sm}px;
+  cursor: pointer;
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.gray};
+  }
 `;

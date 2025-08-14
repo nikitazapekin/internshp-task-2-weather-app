@@ -10,4 +10,5 @@ export const UI_CONSTANTS = {
   ],
   emptyList: "No events at the moment",
   mobileTitleOfEvents: "Your events",
+  placeholder: "Search",
 };
