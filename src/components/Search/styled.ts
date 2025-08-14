@@ -8,10 +8,16 @@ export const Wrapper = styled.div`
   ${flex("center", "center", "column")}
 
   ${media.lg`   
-    ${flex("center", "center", "row")}
+    ${flex("center", "flex-start", "row")}
 
       column-gap: ${(props) => props.theme.spaces.lg}px;
     `}
+`;
+
+export const SearchWrapper = styled.div`
+  position: relative;
+  width: 100%;
+  margin-bottom: ${(props) => props.theme.spaces.md}px;
 `;
 
 export const SearchInput = styled.input`
@@ -45,7 +51,6 @@ export const SearchInput = styled.input`
 export const SuggestionsWrapper = styled.div`
   position: relative;
   width: 100%;
-  margin-bottom: ${(props) => props.theme.spaces.md}px;
 `;
 
 export const SuggestionsList = styled.ul`

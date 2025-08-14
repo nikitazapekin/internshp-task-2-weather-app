@@ -4,6 +4,7 @@ import { useElastic } from "@hooks/useElastic";
 
 import {
   SearchInput,
+  SearchWrapper,
   SuggestionItem,
   SuggestionsList,
   SuggestionsWrapper,
@@ -26,23 +27,25 @@ const SearchCitiesComponent = () => {
 
   return (
     <Wrapper>
-      <SearchInput
-        value={inputValue}
-        onChange={handleInputChange}
-        onKeyDown={handleKeyDown}
-        placeholder={UI_CONSTANTS.placeholder}
-      />
-      <SuggestionsWrapper>
-        {showSuggestions && suggestedCities && suggestedCities.length > 0 && (
-          <SuggestionsList>
-            {suggestedCities.map((city, index) => (
-              <SuggestionItem key={`${city.name}-${index}`} onClick={handleSuggestionClick(city)}>
-                {formatCityName(city)}
-              </SuggestionItem>
-            ))}
-          </SuggestionsList>
-        )}
-      </SuggestionsWrapper>
+      <SearchWrapper>
+        <SearchInput
+          value={inputValue}
+          onChange={handleInputChange}
+          onKeyDown={handleKeyDown}
+          placeholder={UI_CONSTANTS.placeholder}
+        />
+        <SuggestionsWrapper>
+          {showSuggestions && suggestedCities && suggestedCities.length > 0 && (
+            <SuggestionsList>
+              {suggestedCities.map((city, index) => (
+                <SuggestionItem key={`${city.name}-${index}`} onClick={handleSuggestionClick(city)}>
+                  {formatCityName(city)}
+                </SuggestionItem>
+              ))}
+            </SuggestionsList>
+          )}
+        </SuggestionsWrapper>
+      </SearchWrapper>
       <Button text={searchButton} handler={handleSearchCity} />
     </Wrapper>
   );
