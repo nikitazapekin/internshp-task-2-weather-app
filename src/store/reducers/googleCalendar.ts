@@ -6,7 +6,7 @@ import {
   fetchCalendarEventsFailure,
   fetchCalendarEventsRequest,
   fetchCalendarEventsSuccess,
-} from "@store/actions/googleCalendarActions";
+} from "@store/actions/googleCalendar";
 
 interface CalendarEventsState {
   loading: boolean;
@@ -20,7 +20,7 @@ const initialState: CalendarEventsState = {
   events: [],
 };
 
-export const calendarReducer = createReducer(initialState, (builder) => {
+export const calendar = createReducer(initialState, (builder) => {
   builder
     .addCase(fetchCalendarEventsRequest, (state) => {
       state.loading = true;

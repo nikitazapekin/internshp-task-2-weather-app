@@ -8,4 +8,8 @@ export const Wrapper = styled.div`
   ${media.lg`
       margin-top: ${({ theme }) => theme.spaces.md}px;
    `}
+
+  ${media.xh`
+      margin-top: 0px;
+   `}
 `;

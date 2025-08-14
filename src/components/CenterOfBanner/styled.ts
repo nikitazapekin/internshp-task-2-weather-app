@@ -29,4 +29,22 @@ export const AuthButtonsAndEventsWrapper = styled.div`
 
   column-gap: ${(props) => props.theme.spaces.md}px;
   width: 100%;
+
+  ${media.xh`
+    ${flex("center", "center", "row-reverse")}
+ 
+      column-gap: ${(props) => props.theme.spaces.lg}px;
+   `}
+`;
+
+export const TitleOfEvents = styled.h3`
+  color: ${({ theme }) => theme.colors.black};
+  font-weight: ${({ theme }) => theme.fontWeights.regular};
+  font-size: ${({ theme }) => theme.fontSizes.md};
+  display: none;
+  margin-top: ${({ theme }) => theme.spaces.md}px;
+
+  ${media.xh`
+    ${flex("center", "center", "row")}
+  `}
 `;

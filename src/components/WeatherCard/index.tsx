@@ -1,14 +1,30 @@
+import { useState } from "react";
 import Rainy from "@assets/mobile/foggy.webp";
+import Spinner from "@components/Spinner";
+import { extractTime } from "@utils/helpers/extractHours/extractHours";
+import { isForecastItem } from "@utils/helpers/isForecastItem/isForecastItem";
 
-import { Degree, Image, Text, Wrapper } from "./styled";
-import type { WeatherInterface } from "./types";
+import { Degree, Image, ImageWrapper, Text, Wrapper } from "./styled";
+import type { SwiperItemTypes } from "./types";
 
-const WeatherCard = ({ weatherElement }: WeatherInterface) => {
+const WeatherCard = ({ weatherElement }: SwiperItemTypes) => {
+  const isForecast = isForecastItem(weatherElement);
+  const [isImageLoaded, setIsImageLoaded] = useState<boolean>(false);
+
+  const handleImageLoad = (): undefined => {
+    setIsImageLoaded(true);
+  };
+
   return (
     <Wrapper>
-      <Text>{weatherElement.day}</Text>
-      <Image src={Rainy} />
-      <Degree>{weatherElement.degrees}</Degree>
+      <Text>{isForecast ? extractTime(weatherElement.dt_txt) : weatherElement.day}</Text>
+      <ImageWrapper>
+        {!isImageLoaded && <Spinner />}
+        <Image src={Rainy} onLoad={handleImageLoad} />
+      </ImageWrapper>
+      <Degree>
+        {isForecast ? Math.round(weatherElement.main.temp) : Math.round(weatherElement.dt)}°
+      </Degree>
     </Wrapper>
   );
 };

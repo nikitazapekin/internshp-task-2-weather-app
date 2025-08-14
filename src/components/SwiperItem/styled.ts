@@ -24,6 +24,13 @@ export const Title = styled.p`
   user-select: none;
 `;
 
+export const ImageWrapper = styled.div`
+  position: relative;
+  width: 88px;
+  height: 83px;
+
+  ${flex("center", "center", "column")}
+`;
 export const Image = styled.img`
   margin-top: ${({ theme }) => theme.spaces.md}px;
   pointer-events: none;

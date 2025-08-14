@@ -9,7 +9,7 @@ import {
   fetchCalendarEventsFailure,
   fetchCalendarEventsRequest,
   fetchCalendarEventsSuccess,
-} from "@store/actions/googleCalendarActions";
+} from "@store/actions/googleCalendar";
 
 function* fetchCalendarEvents(action: ReturnType<typeof fetchCalendarEventsRequest>): SagaIterator {
   try {
@@ -28,6 +28,6 @@ function* fetchCalendarEvents(action: ReturnType<typeof fetchCalendarEventsReque
   }
 }
 
-export function* CalendarEventsSaga(): SagaIterator {
+export function* CalendarEvents(): SagaIterator {
   yield takeLatest(fetchCalendarEventsRequest.type, fetchCalendarEvents);
 }

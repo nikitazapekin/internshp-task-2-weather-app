@@ -23,8 +23,7 @@
       "@styles/*": ["src/styles/*"],
       "@styles": ["src/styles"],
       "@types/*": ["src/types/*"],
-      "@hooks/*": ["src/hooks/*"],
-      
+      "@hooks/*": ["src/hooks/*"]
     }
   },
   "ts-node": {
@@ -32,5 +31,7 @@
       "module": "CommonJS"
     }
   },
+  "types": ["node", "jest", "@testing-library/jest-dom"],
+
   "exclude": ["./cypress.config.ts"]
 }
