@@ -25,7 +25,7 @@ const WeatherButtons = () => {
   const isElasticActive = useSelector(selectCitiesSuggestionsIsActive);
   const suggestedCityCoordinats = useSelector(selectCitiesSuggestionsCoordinats);
 
-  const handleSendRequest = (type: string) => {
+  const handleSendRequest = (type: string): void => {
     const coords =
       isElasticActive && suggestedCityCoordinats
         ? {

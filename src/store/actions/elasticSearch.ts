@@ -10,3 +10,4 @@ export const fetchSuggestedCityCoordinats = createAction<CityCoordinats>(
 );
 export const fetchCitiesSuccess = createAction<OpenWeatherGeoResponse>("city/fetchCitiesSuccess");
 export const fetchCitiesFailure = createAction<string>("city/fetchCitiesFailure");
+export const fetchCitiesActive = createAction<boolean>("city/fetchCitiesActive");

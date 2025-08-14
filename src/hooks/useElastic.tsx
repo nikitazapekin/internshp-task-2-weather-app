@@ -4,7 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { DEBOUNCE_DELAY } from "@constants/utilsConstants";
 import type { CitySearchResult } from "@types/CitySearchResponseTypes";
 
+import { fetchWeatherByCoordsRequest } from "@store/actions/currentWeather";
 import {
+  fetchCitiesActive,
   fetchCitiesRequest,
   fetchClearCitiesRequest,
   fetchSuggestedCityCoordinats,
@@ -25,6 +27,7 @@ export const useElastic = () => {
     (query: string): void => {
       if (query.length < 1) {
         dispatch(fetchClearCitiesRequest());
+        dispatch(fetchCitiesActive(false));
 
         return;
       }
@@ -74,6 +77,13 @@ export const useElastic = () => {
 
   const handleSearchCity = useCallback((): void => {
     dispatch(fetchWeeklyWeatherByCoordsRequest(cityCoordinats));
+    dispatch(fetchCitiesActive(true));
+    dispatch(
+      fetchWeatherByCoordsRequest({
+        latitude: cityCoordinats.latitude,
+        longitude: cityCoordinats.longitude,
+      })
+    );
     setShowSuggestions(false);
   }, [cityCoordinats, dispatch]);
 

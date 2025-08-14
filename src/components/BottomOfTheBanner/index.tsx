@@ -6,7 +6,12 @@ import TodayWeather from "@components/TodayWeather";
 import WeatherCardGrid from "@components/WeatherCardsList";
 import useResize from "@hooks/useResize";
 
-import { selectCurrentCoordinats, selectHorlyWeather, selectIsLoading } from "@store/selectors";
+import {
+  selectCitiesSuggestionsIsActive,
+  selectCurrentCoordinats,
+  selectHorlyWeather,
+  selectIsLoading,
+} from "@store/selectors";
 
 import { Wrapper } from "./styled";
 
@@ -15,6 +20,7 @@ const BottomOfTheBanner = () => {
   const weatherElements = useSelector(selectHorlyWeather);
   const { latitude, longitude, isGeolocationDenied } = useSelector(selectCurrentCoordinats);
   const isLoadingContent = useSelector(selectIsLoading);
+  const isElasticActive = useSelector(selectCitiesSuggestionsIsActive);
 
   if (isLoadingContent) {
     return (
@@ -28,7 +34,7 @@ const BottomOfTheBanner = () => {
     return null;
   }
 
-  if (isGeolocationDenied) {
+  if (isGeolocationDenied && !isElasticActive) {
     return (
       <Wrapper>
         <GeolocationIsTurnOff />

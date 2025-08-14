@@ -3,6 +3,7 @@ import type { CityCoordinats } from "@types/cityCoordinats";
 import type { OpenWeatherGeoResponse } from "@types/CitySearchResponseTypes";
 
 import {
+  fetchCitiesActive,
   fetchCitiesFailure,
   fetchCitiesRequest,
   fetchCitiesSuccess,
@@ -31,7 +32,9 @@ export const elasticSearch = createReducer(initialState, (builder) => {
     .addCase(fetchCitiesRequest, (state) => {
       state.loading = true;
       state.error = null;
-      state.isElasticActive = true;
+    })
+    .addCase(fetchCitiesActive, (state, action) => {
+      state.isElasticActive = action.payload;
     })
     .addCase(fetchClearCitiesRequest, (state) => {
       state.loading = false;
