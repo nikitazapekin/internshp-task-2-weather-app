@@ -1,6 +1,7 @@
-import { ERROR_CONSTANTS } from "@constants/errors";
 import type { OpenWeatherGeoResponse } from "@types/CitySearchResponseTypes";
 import type { CurrentCoordinatsState } from "@types/coordinatsTypes";
+import { getErrorMessage } from "@utils/helpers/getErrorMessage/getErrorMessage";
+import type { AxiosResponse } from "axios";
 import type { SagaIterator } from "redux-saga";
 import { call, put, takeLatest } from "redux-saga/effects";
 
@@ -14,10 +15,15 @@ import {
 function* fetchCurrentCity(action: ReturnType<typeof fetchCurrentCityRequest>): SagaIterator {
   try {
     const { latitude, longitude } = action.payload;
+    const params: CurrentCoordinatsState = {
+      latitude,
+      longitude,
+      isGeolocationDenied: false,
+    };
 
-    const response: { data: OpenWeatherGeoResponse } = yield call(
+    const response: AxiosResponse<OpenWeatherGeoResponse> = yield call(
       [WeatherService, "getCityNameByCoordinats"],
-      { latitude, longitude } as CurrentCoordinatsState
+      params
     );
 
     if (Array.isArray(response.data) && response.data.length > 0) {
@@ -25,12 +31,10 @@ function* fetchCurrentCity(action: ReturnType<typeof fetchCurrentCityRequest>): 
 
       yield put(fetchCurrentCitySuccess(cityName));
     } else {
-      yield put(fetchCurrentCityFailure(ERROR_CONSTANTS.NO_CITY_FOUND));
+      yield put(fetchCurrentCityFailure("No city found"));
     }
-  } catch (error: unknown) {
-    const message = error instanceof Error ? error.message : ERROR_CONSTANTS.UNKNOWN_ERROR;
-
-    yield put(fetchCurrentCityFailure(message));
+  } catch (error) {
+    yield put(fetchCurrentCityFailure(getErrorMessage(error)));
   }
 }
 
