@@ -12,7 +12,7 @@ import { setCoordinats, setGeolocationDenied } from "@store/actions/currentCoord
 import { fetchWeatherByCoordsRequest } from "@store/actions/currentWeather";
 import { fetchHourlyWeatherByCoordsRequest } from "@store/actions/weather";
 
-const WeekWeatherPage = () => {
+const WeatherPage = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -67,4 +67,4 @@ const WeekWeatherPage = () => {
   );
 };
 
-export default WeekWeatherPage;
+export default WeatherPage;
