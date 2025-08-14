@@ -6,7 +6,7 @@ import { RELATIVE_POSITION } from "@constants/utilsConstants";
 import { useElastic } from "@hooks/useElastic";
 import useMobile from "@hooks/useMobile";
 
-import { selectCitiesSuggestionsLoading } from "@store/selectors";
+import { selectCitiesSuggestions } from "@store/selectors";
 
 import {
   NothingFoundText,
@@ -21,7 +21,7 @@ import {
 const SearchCitiesComponent = () => {
   const { searchButton } = UI_CONSTANTS.buttons;
   const { nothingFoundText } = UI_CONSTANTS;
-  const isLoadingSuggestions = useSelector(selectCitiesSuggestionsLoading);
+  const { loading } = useSelector(selectCitiesSuggestions);
   const {
     inputValue,
     showSuggestions,
@@ -37,8 +37,8 @@ const SearchCitiesComponent = () => {
     const hasInput = inputValue?.length > 0;
     const hasSuggestions = suggestedCities?.length > 0;
     const shouldShowSuggestions = showSuggestions && hasInput;
-    const showLoading = isLoadingSuggestions && !hasSuggestions;
-    const showEmptyState = shouldShowSuggestions && !hasSuggestions && !isLoadingSuggestions;
+    const showLoading = loading && !hasSuggestions;
+    const showEmptyState = shouldShowSuggestions && !hasSuggestions && !loading;
     const showSuggestionsList = shouldShowSuggestions && hasSuggestions;
 
     return (
@@ -83,32 +83,3 @@ const SearchCitiesComponent = () => {
 };
 
 export default SearchCitiesComponent;
-
-/*   const renderSuggestions = () => {
-    return (
-      <SuggestionsContent
-        height={inputValue.length > 0 && showSuggestions && DEFAULT_HEIGHT_OF_CITY_SUGGESTIONS}
-      >
-        {isLoadingSuggestions && suggestedCities.length == 0 && (
-          <Spinner position={RELATIVE_POSITION} />
-        )}
-        {showSuggestions &&
-          suggestedCities.length == 0 &&
-          inputValue.length > 0 &&
-          !isLoadingSuggestions && (
-            <NothingFoundText>
-              {nothingFoundText} {inputValue}
-            </NothingFoundText>
-          )}
-        {showSuggestions && suggestedCities && suggestedCities.length > 0 && (
-          <>
-            {suggestedCities.map((city, index) => (
-              <SuggestionItem key={`${city.name}-${index}`} onClick={handleSuggestionClick(city)}>
-                {formatCityName(city)}
-              </SuggestionItem>
-            ))}
-          </>
-        )}
-      </SuggestionsContent>
-    );
-  }; */

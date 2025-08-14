@@ -6,23 +6,17 @@ import TodayWeather from "@components/TodayWeather";
 import WeatherCardGrid from "@components/WeatherCardsList";
 import useResize from "@hooks/useResize";
 
-import {
-  selectCitiesSuggestionsIsActive,
-  selectCurrentCoordinats,
-  selectHorlyWeather,
-  selectIsLoading,
-} from "@store/selectors";
+import { selectCitiesSuggestions, selectCurrentCoordinats, selectWeather } from "@store/selectors";
 
 import { Wrapper } from "./styled";
 
 const BottomOfTheBanner = () => {
   const { isMobileView } = useResize();
-  const weatherElements = useSelector(selectHorlyWeather);
+  const { data, loading } = useSelector(selectWeather);
   const { latitude, longitude, isGeolocationDenied } = useSelector(selectCurrentCoordinats);
-  const isLoadingContent = useSelector(selectIsLoading);
-  const isElasticActive = useSelector(selectCitiesSuggestionsIsActive);
+  const { isElasticActive } = useSelector(selectCitiesSuggestions);
 
-  if (isLoadingContent) {
+  if (loading) {
     return (
       <Wrapper>
         <Spinner />
@@ -47,12 +41,12 @@ const BottomOfTheBanner = () => {
       {isMobileView ? (
         <>
           <TodayWeather />
-          <WeatherCardGrid weatherElements={weatherElements} />
+          <WeatherCardGrid weatherElements={data} />
         </>
       ) : (
         <>
           <TodayWeather />
-          <Swiper weatherElements={weatherElements} />
+          <Swiper weatherElements={data} />
         </>
       )}
     </Wrapper>

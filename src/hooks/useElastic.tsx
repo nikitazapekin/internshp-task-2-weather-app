@@ -13,16 +13,15 @@ import {
   fetchSuggestedCityCoordinats,
 } from "@store/actions/elasticSearch";
 import { fetchWeeklyWeatherByCoordsRequest } from "@store/actions/weather";
-import { selectCitiesSuggestions, selectCitiesSuggestionsCoordinats } from "@store/selectors";
+import { selectCitiesSuggestions } from "@store/selectors";
 
 export const useElastic = () => {
   const [inputValue, setInputValue] = useState<string>("");
   const [showSuggestions, setShowSuggestions] = useState<boolean>(false);
   const timeoutRef = useRef<number | null>(null);
   const dispatch = useDispatch();
-  const cityCoordinats = useSelector(selectCitiesSuggestionsCoordinats);
-
-  const suggestedCities = useSelector(selectCitiesSuggestions) as CitySearchResult[];
+  const { coordinats } = useSelector(selectCitiesSuggestions);
+  const suggestedCities = useSelector(selectCitiesSuggestions).data as CitySearchResult[];
 
   const fetchCities = useCallback(
     (query: string): void => {
@@ -77,22 +76,22 @@ export const useElastic = () => {
   }, []);
 
   const handleSearchCity = useCallback((): void => {
-    dispatch(fetchWeeklyWeatherByCoordsRequest(cityCoordinats));
+    dispatch(fetchWeeklyWeatherByCoordsRequest(coordinats));
     dispatch(fetchCitiesActive(true));
     dispatch(
       fetchWeatherByCoordsRequest({
-        latitude: cityCoordinats.latitude,
-        longitude: cityCoordinats.longitude,
+        latitude: coordinats.latitude,
+        longitude: coordinats.longitude,
       })
     );
     dispatch(
       fetchCurrentCityRequest({
-        latitude: cityCoordinats.latitude,
-        longitude: cityCoordinats.longitude,
+        latitude: coordinats.latitude,
+        longitude: coordinats.longitude,
       })
     );
     setShowSuggestions(false);
-  }, [cityCoordinats, dispatch]);
+  }, [coordinats, dispatch]);
 
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent<HTMLInputElement>): void => {
@@ -112,7 +111,7 @@ export const useElastic = () => {
     handleInputChange,
     handleSuggestionClick,
     formatCityName,
-    cityCoordinats,
+    coordinats,
     handleSearchCity,
     handleKeyDown,
   };

@@ -6,15 +6,15 @@ import { TOUCH_ID } from "@constants/swiper";
 import { useSwiper } from "@hooks/useSwiper";
 import { transformWeatherData } from "@utils/helpers/transformWeatherResponse/transformWeatherResponse";
 
-import { selectCitiesSuggestionsIsActive, selectTimeOfWeather } from "@store/selectors";
+import { selectCitiesSuggestions, selectWeather } from "@store/selectors";
 
 import { Wrapper } from "./styled";
 import type { SwiperProps } from "./types";
 
 const Swiper = ({ weatherElements }: SwiperProps) => {
   const { containerRef, handleStart, handleEnd, setIsDragging } = useSwiper();
-  const timeOfWeather = useSelector(selectTimeOfWeather);
-  const isElasticActive = useSelector(selectCitiesSuggestionsIsActive);
+  const { timeOfWeather } = useSelector(selectWeather);
+  const { isElasticActive } = useSelector(selectCitiesSuggestions);
 
   if (!weatherElements && isElasticActive) return <Spinner />;
 

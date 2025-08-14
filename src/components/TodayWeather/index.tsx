@@ -8,10 +8,10 @@ import { selectCurrentCity, selectCurrentWeather } from "@store/selectors";
 import { Wrapper } from "./styled";
 
 const TodayWeather = () => {
-  const currentWeather = useSelector(selectCurrentWeather);
-  const city = useSelector(selectCurrentCity);
+  const { data } = useSelector(selectCurrentWeather);
+  const { city } = useSelector(selectCurrentCity);
 
-  if (!currentWeather || !currentWeather.main) {
+  if (!data || !data.main) {
     return (
       <Wrapper>
         <Spinner />
@@ -22,7 +22,7 @@ const TodayWeather = () => {
   return (
     <Wrapper>
       <TodayWeatherIcon />
-      <TodayWeatherText text={currentWeather.main.temp} city={city} />
+      <TodayWeatherText text={data.main.temp} city={city} />
     </Wrapper>
   );
 };

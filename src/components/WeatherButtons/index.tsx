@@ -8,12 +8,7 @@ import {
   fetchHourlyWeatherByCoordsRequest,
   fetchWeeklyWeatherByCoordsRequest,
 } from "@store/actions/weather";
-import {
-  selectCitiesSuggestionsCoordinats,
-  selectCitiesSuggestionsIsActive,
-  selectCurrentCoordinats,
-  selectTimeOfWeather,
-} from "@store/selectors";
+import { selectCitiesSuggestions, selectCurrentCoordinats, selectWeather } from "@store/selectors";
 
 import { Wrapper } from "./styled";
 
@@ -21,16 +16,15 @@ const WeatherButtons = () => {
   const { weatherButtons } = UI_CONSTANTS;
   const dispatch = useDispatch();
   const { latitude, longitude } = useSelector(selectCurrentCoordinats);
-  const currentWeatherType = useSelector(selectTimeOfWeather);
-  const isElasticActive = useSelector(selectCitiesSuggestionsIsActive);
-  const suggestedCityCoordinats = useSelector(selectCitiesSuggestionsCoordinats);
+  const { timeOfWeather } = useSelector(selectWeather);
+  const { isElasticActive, coordinats } = useSelector(selectCitiesSuggestions);
 
   const handleSendRequest = (type: string): void => {
     const coords =
-      isElasticActive && suggestedCityCoordinats
+      isElasticActive && coordinats
         ? {
-            latitude: suggestedCityCoordinats.latitude,
-            longitude: suggestedCityCoordinats.longitude,
+            latitude: coordinats.latitude,
+            longitude: coordinats.longitude,
           }
         : { latitude, longitude };
 
@@ -47,7 +41,7 @@ const WeatherButtons = () => {
         <Button
           key={id}
           text={text}
-          isActive={type === currentWeatherType}
+          isActive={type === timeOfWeather}
           handler={() => handleSendRequest(type)}
         />
       ))}
