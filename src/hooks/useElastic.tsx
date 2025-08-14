@@ -75,7 +75,7 @@ export const useElastic = () => {
   const handleSearchCity = useCallback((): void => {
     dispatch(fetchWeeklyWeatherByCoordsRequest(cityCoordinats));
     setShowSuggestions(false);
-  }, []);
+  }, [cityCoordinats, dispatch]);
 
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent<HTMLInputElement>): void => {
@@ -83,7 +83,7 @@ export const useElastic = () => {
         handleSearchCity();
       }
     },
-    [dispatch]
+    [handleSearchCity]
   );
 
   return {
