@@ -9,7 +9,7 @@ const rotate = keyframes`
   }
 `;
 
-export const SpinnerStyled = styled.span`
+export const SpinnerStyled = styled.span<{ position?: "relative" | "absolute" }>`
   width: 30px;
   height: 30px;
   border: 3px solid ${({ theme }) => theme.colors.blue};
@@ -18,8 +18,17 @@ export const SpinnerStyled = styled.span`
   display: inline-block;
   box-sizing: border-box;
   animation: ${rotate} 0.8s linear infinite;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translateX(-50%) translateY(-50%);
+
+  ${({ position = "absolute" }) =>
+    position === "absolute"
+      ? `
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translateX(-50%) translateY(-50%);
+      `
+      : `
+        position: relative;
+        margin: 0 auto;
+      `}
 `;
