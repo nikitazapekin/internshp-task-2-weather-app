@@ -21,8 +21,9 @@ export const Wrapper = styled.div`
     grid-template-columns: repeat(2,auto);
   `}
 
-  ${media.sm`
-    grid-template-columns: repeat(2,auto);
+ ${media.sm`
+    grid-template-columns: repeat(2, 1fr);  
     grid-column-gap: ${({ theme }) => theme.spaces.md}px;
+    grid-row-gap: ${({ theme }) => theme.spaces.h}px; 
   `}
 `;

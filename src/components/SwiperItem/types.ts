@@ -1,7 +1,6 @@
+import type { ForecastItem } from "@types/apiTypes";
+import type { WeatherDaySummary } from "@types/weatherDaySummaryTypes";
+
 export interface SwiperItemTypes {
-  weatherElement: {
-    id: number;
-    day: string;
-    degrees: string;
-  };
+  weatherElement: WeatherDaySummary | ForecastItem;
 }

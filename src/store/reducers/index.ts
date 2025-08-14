@@ -1,13 +1,17 @@
 import { combineReducers } from "redux";
 
-import { elasticSearchReducer } from "./elasticSearchReducer";
-import { calendarReducer } from "./googleCalendarReducer";
-import { weatherReducer } from "./weatherReducer";
+import { currentCoordinats } from "./currentCoordinats";
+import { currentWeather } from "./currentWeather";
+import { elasticSearch } from "./elasticSearch";
+import { calendar } from "./googleCalendar";
+import { weather } from "./weather";
 
 const rootReducer = combineReducers({
-  elasticSearch: elasticSearchReducer,
-  weatherReducer: weatherReducer,
-  calendarReducer: calendarReducer,
+  elasticSearch: elasticSearch,
+  currentWeatherReducer: currentWeather,
+  calendarReducer: calendar,
+  coordinatsReducer: currentCoordinats,
+  weatherReducer: weather,
 });
 
 export default rootReducer;

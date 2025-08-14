@@ -24,9 +24,22 @@ export const Degree = styled.p`
 
   ${media.sm`
     font-size: ${({ theme }) => theme.fontSizes.xxs};
+    margin-top: ${({ theme }) => theme.spaces.x}px;
   `}
 `;
 
 export const Image = styled.img`
   margin-top: ${({ theme }) => theme.spaces.md}px;
+
+  ${media.sm`
+    margin-top: ${({ theme }) => theme.spaces.x}px;
+  `}
+`;
+
+export const ImageWrapper = styled.div`
+  ${flex("center", "center", "column")}
+
+  width: ${({ theme }) => theme.spaces.h}px;
+  height: ${({ theme }) => theme.spaces.h}px;
+  position: relative;
 `;

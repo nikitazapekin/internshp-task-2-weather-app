@@ -6,7 +6,7 @@ import {
   STORAGE_KEYS,
 } from "@utils/helpers/localstorageUtility/localstorageUtility";
 
-import { cleanUpEvents, fetchCalendarEventsRequest } from "@store/actions/googleCalendarActions";
+import { cleanUpEvents, fetchCalendarEventsRequest } from "@store/actions/googleCalendar";
 
 import type { GoogleTokenResponse } from "./types";
 

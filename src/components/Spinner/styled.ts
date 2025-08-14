@@ -18,10 +18,8 @@ export const SpinnerStyled = styled.span`
   display: inline-block;
   box-sizing: border-box;
   animation: ${rotate} 0.8s linear infinite;
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  align-self: center;
-  justify-self: center;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
 `;

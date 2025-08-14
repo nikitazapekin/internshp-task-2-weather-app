@@ -9,6 +9,7 @@ export const Wrapper = styled.div`
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
   scroll-padding: 0 calc(0.5vw + 2.5px);
+  min-height: 216px;
 
   ${flex("flex-start", "center", "row")}
 

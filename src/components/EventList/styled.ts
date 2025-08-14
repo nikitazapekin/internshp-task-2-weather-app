@@ -3,12 +3,11 @@ import { flex } from "@styles/mixins";
 import styled from "styled-components";
 
 export const Wrapper = styled.ul`
-  ${flex("center", "center", "column")}
+  ${flex("flex-start", "center", "column")}
 
   row-gap: ${(props) => props.theme.spaces.md}px;
-  margin-top: ${(props) => props.theme.spaces.sm}px;
-  align-self: start;
   max-height: 145px;
+  min-height: 100px;
   width: auto;
   overflow-y: scroll;
   overflow-x: hidden;
@@ -16,6 +15,7 @@ export const Wrapper = styled.ul`
   scrollbar-color: ${(props) => props.theme.colors.black} ${(props) => props.theme.colors.white};
   max-width: 100%;
   width: 100%;
+  position: relative;
 
   &::-webkit-scrollbar {
     width: 6px;
@@ -30,12 +30,23 @@ export const Wrapper = styled.ul`
     background-color: ${(props) => props.theme.colors.black};
     border-radius: 3px;
   }
+
+  ${media.xh`
+   max-width: 100%;
+   width: 100%;
+  `}
 `;
 
 export const EmptyListText = styled.h3`
   color: ${({ theme }) => theme.colors.black};
   font-weight: ${({ theme }) => theme.fontWeights.regular};
   font-size: ${({ theme }) => theme.fontSizes.xs};
+  justify-self: center;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  text-align: center;
 `;
 
 export const EventCard = styled.li`
@@ -45,9 +56,8 @@ export const EventCard = styled.li`
   width: 100%;
   max-width: 100%;
 
-  ${media.sm`
-    ${flex("flex-start", "flex-start", "column")}
-     row-gap: ${(props) => props.theme.spaces.sm}px;
+  ${media.xh`
+     column-gap: ${(props) => props.theme.spaces.xs}px;
   `}
 `;
 
@@ -59,7 +69,7 @@ export const Time = styled.p`
   background-color: ${({ theme }) => theme.colors.blue};
   border-radius: ${({ theme }) => theme.spaces.md}px;
 
-  ${media.sm`
+  ${media.xh`
     padding: ${({ theme }) => theme.spaces.x}px;
     font-size: ${({ theme }) => theme.fontSizes.xxs}px;
   `}
@@ -68,7 +78,11 @@ export const Time = styled.p`
 export const Text = styled.p`
   color: ${({ theme }) => theme.colors.black};
   font-weight: ${({ theme }) => theme.fontWeights.regular};
-  font-size: ${({ theme }) => theme.fontSizes.md}px;
+  font-size: ${({ theme }) => theme.fontSizes.sm};
   max-width: 200px;
   width: 100%;
+
+  ${media.sm`
+  font-size: ${({ theme }) => theme.fontSizes.xs};
+  `}
 `;
