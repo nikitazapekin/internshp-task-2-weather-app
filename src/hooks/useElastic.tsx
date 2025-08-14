@@ -1,3 +1,4 @@
+import type React from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { DEBOUNCE_DELAY } from "@constants/utilsConstants";
@@ -5,6 +6,7 @@ import type { CityCoordinats } from "@types/cityCoordinats";
 import type { CitySearchResult } from "@types/CitySearchResponseTypes";
 
 import { fetchCitiesRequest, fetchClearCitiesRequest } from "@store/actions/elasticSearch";
+import { fetchWeeklyWeatherByCoordsRequest } from "@store/actions/weather";
 import { selectCitiesSuggestions } from "@store/selectors";
 
 export const useElastic = () => {
@@ -48,23 +50,31 @@ export const useElastic = () => {
     };
   }, [inputValue, fetchCities]);
 
-  const handleInputChange = useCallback((value: string): void => {
-    setInputValue(value);
+  const handleInputChange = useCallback((event: React.ChangeEvent<HTMLInputElement>): void => {
+    setInputValue(event.target.value);
     setShowSuggestions(true);
   }, []);
 
-  const handleSuggestionClick = useCallback((city: CitySearchResult): string => {
-    const cityName = `${city.name}${city.state ? `, ${city.state}` : ""}, ${city.country}`;
+  const handleSuggestionClick = useCallback(
+    (city: CitySearchResult) => () => {
+      const cityName = `${city.name}${city.state ? `, ${city.state}` : ""}, ${city.country}`;
 
-    setInputValue(cityName);
-    setShowSuggestions(false);
-    setCityCoordinats({ latitude: city.lat, longitude: city.lon });
+      setInputValue(cityName);
+      setShowSuggestions(false);
+      setCityCoordinats({ latitude: city.lat, longitude: city.lon });
 
-    return cityName;
-  }, []);
+      return cityName;
+    },
+    []
+  );
 
   const formatCityName = useCallback((city: CitySearchResult): string => {
     return `${city.name}${city.state ? `, ${city.state}` : ""}, ${city.country}`;
+  }, []);
+
+  const handleSearchCity = useCallback((): void => {
+    dispatch(fetchWeeklyWeatherByCoordsRequest(cityCoordinats));
+    setShowSuggestions(false);
   }, []);
 
   return {
@@ -76,5 +86,6 @@ export const useElastic = () => {
     handleSuggestionClick,
     formatCityName,
     cityCoordinats,
+    handleSearchCity,
   };
 };

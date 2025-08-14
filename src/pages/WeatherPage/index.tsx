@@ -32,8 +32,7 @@ const WeekWeatherPage = () => {
             longitude: coords.longitude,
           })
         );
-      } catch (e) {
-        console.log(e);
+      } catch {
         dispatch(setGeolocationDenied());
       }
     }
