@@ -2,7 +2,8 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import Banner from "@components/Banner";
-import ErrorModal from "@components/ErrorModal";
+import ErrorContent from "@components/ErrorContent";
+import Modal from "@components/Modal";
 import { UI_CONSTANTS } from "@constants/UI";
 import { GlobalStyle, PageWrapper, Reset, WrapperContainer } from "@styles";
 import { getUserLocation } from "@utils/helpers";
@@ -57,11 +58,9 @@ const WeekWeatherPage = () => {
         <Reset />
         <Banner />
         {isModalOpen && (
-          <ErrorModal
-            errorMessage={defaultErrorMessage}
-            errorTitle={defaultErrorTitle}
-            onClose={handleCloseModal}
-          />
+          <Modal onClose={handleCloseModal}>
+            <ErrorContent title={defaultErrorTitle} text={defaultErrorMessage} />
+          </Modal>
         )}
       </WrapperContainer>
     </PageWrapper>

@@ -3,40 +3,20 @@ import Button from "@components/Button";
 import { UI_CONSTANTS } from "@constants/UI";
 import useModal from "@hooks/useModal";
 
-import { Content, Overlay, Text, Title, Wrapper } from "./styled";
+import { Content, Overlay, Wrapper } from "./styled";
 import type { ModalProps } from "./types";
 
-const Modal = ({
-  title,
-  message,
-  children,
-  onClose,
-  showCloseButton = true,
-  overlayClose = true,
-  customContent = false,
-}: ModalProps) => {
+const Modal = ({ children, onClose, showCloseButton = true, overlayClose = true }: ModalProps) => {
   const { closeModalButton } = UI_CONSTANTS.buttons;
 
   useModal();
 
-  const renderContent = () => {
-    if (customContent) {
-      return children;
-    }
-
-    return (
-      <>
-        <Title>{title}</Title>
-        <Text>{message}</Text>
-        {children}
-        {showCloseButton && <Button text={closeModalButton} handler={onClose} />}
-      </>
-    );
-  };
-
   return createPortal(
     <Wrapper>
-      <Content>{renderContent()}</Content>
+      <Content>
+        {children}
+        {showCloseButton && <Button text={closeModalButton} handler={onClose} />}
+      </Content>
       <Overlay onClick={overlayClose ? onClose : undefined} />
     </Wrapper>,
     document.body
