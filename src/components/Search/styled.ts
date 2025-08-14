@@ -9,6 +9,7 @@ export const Wrapper = styled.div`
 
   ${media.lg`   
     ${flex("center", "center", "row")}
+
       column-gap: ${(props) => props.theme.spaces.lg}px;
     `}
 `;
@@ -46,14 +47,14 @@ export const SuggestionsWrapper = styled.div`
   width: 100%;
   margin-bottom: ${(props) => props.theme.spaces.md}px;
 `;
+
 export const SuggestionsList = styled.ul`
   position: absolute;
   top: 100%;
   left: 0;
   right: 0;
-  background: white;
+  background-color: ${({ theme }) => theme.colors.white};
   border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   list-style: none;
   padding: 0;
   margin: 0;
@@ -65,6 +66,7 @@ export const SuggestionsList = styled.ul`
 export const SuggestionItem = styled.li`
   padding: ${({ theme }) => theme.spaces.sm}px;
   cursor: pointer;
+
   &:hover {
     background-color: ${({ theme }) => theme.colors.gray};
   }

@@ -1,10 +1,6 @@
-import React from "react";
-import { useDispatch } from "react-redux";
 import Button from "@components/Button";
 import { UI_CONSTANTS } from "@constants/UI";
 import { useElastic } from "@hooks/useElastic";
-
-import { fetchWeeklyWeatherByCoordsRequest } from "@store/actions/weather";
 
 import {
   SearchInput,
@@ -21,30 +17,18 @@ const SearchCitiesComponent = () => {
     inputValue,
     showSuggestions,
     suggestedCities,
-    setShowSuggestions,
     handleInputChange,
     handleSuggestionClick,
     formatCityName,
-    cityCoordinats,
+    handleSearchCity,
+    handleKeyDown,
   } = useElastic();
-
-  const dispatch = useDispatch();
-  const handleSearchCity = (): void => {
-    dispatch(fetchWeeklyWeatherByCoordsRequest(cityCoordinats));
-    setShowSuggestions(false);
-  };
-
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>): void => {
-    if (e.key === "Enter") {
-      handleSearchCity();
-    }
-  };
 
   return (
     <Wrapper>
       <SearchInput
         value={inputValue}
-        onChange={(e) => handleInputChange(e.target.value)}
+        onChange={handleInputChange}
         onKeyDown={handleKeyDown}
         placeholder={UI_CONSTANTS.placeholder}
       />
@@ -52,10 +36,7 @@ const SearchCitiesComponent = () => {
         {showSuggestions && suggestedCities && suggestedCities.length > 0 && (
           <SuggestionsList>
             {suggestedCities.map((city, index) => (
-              <SuggestionItem
-                key={`${city.name}-${index}`}
-                onClick={() => handleSuggestionClick(city)}
-              >
+              <SuggestionItem key={`${city.name}-${index}`} onClick={handleSuggestionClick(city)}>
                 {formatCityName(city)}
               </SuggestionItem>
             ))}

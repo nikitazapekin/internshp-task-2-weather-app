@@ -50,8 +50,8 @@ export const useElastic = () => {
     };
   }, [inputValue, fetchCities]);
 
-  const handleInputChange = useCallback((event: React.ChangeEvent<HTMLInputElement>): void => {
-    setInputValue(event.target.value);
+  const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    setInputValue(e.target.value);
     setShowSuggestions(true);
   }, []);
 
@@ -77,15 +77,23 @@ export const useElastic = () => {
     setShowSuggestions(false);
   }, []);
 
+  const handleKeyDown = useCallback((e: React.KeyboardEvent<HTMLInputElement>): void => {
+    if (e.key === "Enter") {
+      handleSearchCity();
+    }
+  }, []);
+
   return {
     inputValue,
     showSuggestions,
     suggestedCities,
     setShowSuggestions,
+    setInputValue,
     handleInputChange,
     handleSuggestionClick,
     formatCityName,
     cityCoordinats,
     handleSearchCity,
+    handleKeyDown,
   };
 };
