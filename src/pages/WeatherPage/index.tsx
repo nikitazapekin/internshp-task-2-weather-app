@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
+import Background from "@components/Background";
 import Banner from "@components/Banner";
 import { GlobalStyle, PageWrapper, Reset, WrapperContainer } from "@styles";
 import { getUserLocation } from "@utils/helpers";
@@ -47,6 +48,7 @@ const WeekWeatherPage = () => {
         <GlobalStyle />
         <Reset />
         <Banner />
+        <Background />
       </WrapperContainer>
     </PageWrapper>
   );
