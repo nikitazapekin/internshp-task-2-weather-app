@@ -3,7 +3,7 @@ import { flex } from "@styles/mixins";
 import styled from "styled-components";
 
 export const Wrapper = styled.ul`
-  ${flex("flex-start", "center", "column")}
+  ${flex("center", "center", "column")}
 
   row-gap: ${(props) => props.theme.spaces.md}px;
   max-height: 145px;
@@ -47,6 +47,12 @@ export const EmptyListText = styled.h3`
   top: 50%;
   transform: translateX(-50%) translateY(-50%);
   text-align: center;
+  width: 100%;
+  padding: ${({ theme }) => theme.spaces.x}px;
+
+  ${media.sm`
+    font-size: ${({ theme }) => theme.fontSizes.xxs};
+  `}
 `;
 
 export const EventCard = styled.li`
@@ -79,10 +85,9 @@ export const Text = styled.p`
   color: ${({ theme }) => theme.colors.black};
   font-weight: ${({ theme }) => theme.fontWeights.regular};
   font-size: ${({ theme }) => theme.fontSizes.sm};
-  max-width: 200px;
   width: 100%;
 
   ${media.sm`
-  font-size: ${({ theme }) => theme.fontSizes.xs};
+    font-size: ${({ theme }) => theme.fontSizes.xxs};
   `}
 `;
