@@ -9,11 +9,11 @@ import { Image } from "./styled";
 const Background = () => {
   const currentWeather = useSelector(selectCurrentWeather);
 
-  console.log(currentWeather);
-
   if (!currentWeather) return;
 
   const { condition } = getWeatherCondition(currentWeather);
+
+  console.log(BACKGROUND_CONSTANTS[condition].src);
 
   return (
     <Image src={BACKGROUND_CONSTANTS[condition].src} alt={BACKGROUND_CONSTANTS[condition].alt} />

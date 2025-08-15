@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import Background from "@components/Background";
 import Banner from "@components/Banner";
 import ErrorContent from "@components/ErrorContent";
 import Modal from "@components/Modal";
@@ -62,6 +63,7 @@ const WeatherPage = () => {
             <ErrorContent title={defaultErrorTitle} text={defaultErrorMessage} />
           </Modal>
         )}
+        <Background />
       </WrapperContainer>
     </PageWrapper>
   );
