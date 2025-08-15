@@ -9,7 +9,13 @@ import rootSaga from "./sagas";
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: [""],
+  whitelist: [
+    "currentWeatherReducer",
+    "coordinatsReducer",
+    "weatherReducer",
+    "currentCityReducer",
+    "elasticReducer",
+  ],
 };
 
 const sagaMiddleware = createSagaMiddleware();

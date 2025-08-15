@@ -22,7 +22,7 @@ const TodayWeather = () => {
   return (
     <Wrapper>
       <TodayWeatherIcon />
-      <TodayWeatherText text={data.main.temp} city={city} />
+      <TodayWeatherText text={data.main.temp} city={city || ""} />
     </Wrapper>
   );
 };

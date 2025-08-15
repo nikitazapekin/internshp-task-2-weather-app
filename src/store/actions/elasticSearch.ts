@@ -11,3 +11,5 @@ export const fetchSuggestedCityCoordinats = createAction<CityCoordinats>(
 export const fetchCitiesSuccess = createAction<OpenWeatherGeoResponse>("city/fetchCitiesSuccess");
 export const fetchCitiesFailure = createAction<string>("city/fetchCitiesFailure");
 export const fetchCitiesActive = createAction<boolean>("city/fetchCitiesActive");
+export const fetchElasticActive = createAction<boolean>("city/fetchElasticActive");
+export const fetchHasLastSearch = createAction<boolean>("city/fetchHasLastSearch");

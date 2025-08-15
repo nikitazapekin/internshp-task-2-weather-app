@@ -14,7 +14,7 @@ const rootReducer = combineReducers({
   coordinatsReducer: currentCoordinats,
   weatherReducer: weather,
   elasticReducer: elasticSearch,
-  currentCitReducer: currentCity,
+  currentCityReducer: currentCity,
 });
 
 export default rootReducer;

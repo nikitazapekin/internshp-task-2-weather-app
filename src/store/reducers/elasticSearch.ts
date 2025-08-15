@@ -8,6 +8,8 @@ import {
   fetchCitiesRequest,
   fetchCitiesSuccess,
   fetchClearCitiesRequest,
+  fetchElasticActive,
+  fetchHasLastSearch,
   fetchSuggestedCityCoordinats,
 } from "@store/actions/elasticSearch";
 
@@ -17,6 +19,7 @@ interface CityState {
   error: string | null;
   isElasticActive: boolean;
   coordinats: CityCoordinats;
+  hasLastSearch: boolean;
 }
 
 const initialState: CityState = {
@@ -25,6 +28,7 @@ const initialState: CityState = {
   error: null,
   isElasticActive: false,
   coordinats: { latitude: null, longitude: null },
+  hasLastSearch: false,
 };
 
 export const elasticSearch = createReducer(initialState, (builder) => {
@@ -35,6 +39,12 @@ export const elasticSearch = createReducer(initialState, (builder) => {
     })
     .addCase(fetchCitiesActive, (state, action) => {
       state.isElasticActive = action.payload;
+    })
+    .addCase(fetchHasLastSearch, (state) => {
+      state.hasLastSearch = true;
+    })
+    .addCase(fetchElasticActive, (state) => {
+      state.isElasticActive = true;
     })
     .addCase(fetchClearCitiesRequest, (state) => {
       state.loading = false;

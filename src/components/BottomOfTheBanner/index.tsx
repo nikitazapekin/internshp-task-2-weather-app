@@ -14,7 +14,7 @@ const BottomOfTheBanner = () => {
   const { isMobileView } = useResize();
   const { data, loading } = useSelector(selectWeather);
   const { latitude, longitude, isGeolocationDenied } = useSelector(selectCurrentCoordinats);
-  const { isElasticActive } = useSelector(selectCitiesSuggestions);
+  const { isElasticActive, hasLastSearch } = useSelector(selectCitiesSuggestions);
 
   if (loading) {
     return (
@@ -28,7 +28,7 @@ const BottomOfTheBanner = () => {
     return null;
   }
 
-  if (isGeolocationDenied && !isElasticActive) {
+  if (isGeolocationDenied && !isElasticActive && !hasLastSearch) {
     return (
       <Wrapper>
         <GeolocationIsTurnOff />

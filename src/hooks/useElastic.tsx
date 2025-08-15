@@ -5,11 +5,13 @@ import { UI_CONFIG } from "@constants/utilsConstants";
 import type { CitySearchResult } from "@types/CitySearchResponseTypes";
 
 import { fetchCurrentCityRequest } from "@store/actions/currentCity";
+import { setCoordinats, setGeolocationDenied } from "@store/actions/currentCoordinats";
 import { fetchWeatherByCoordsRequest } from "@store/actions/currentWeather";
 import {
   fetchCitiesActive,
   fetchCitiesRequest,
   fetchClearCitiesRequest,
+  fetchHasLastSearch,
   fetchSuggestedCityCoordinats,
 } from "@store/actions/elasticSearch";
 import { fetchWeeklyWeatherByCoordsRequest } from "@store/actions/weather";
@@ -65,6 +67,11 @@ export const useElastic = () => {
       setInputValue(cityName);
       setShowSuggestions(false);
       dispatch(fetchSuggestedCityCoordinats({ latitude: city.lat, longitude: city.lon }));
+      dispatch(
+        setCoordinats({ latitude: city.lat, longitude: city.lon, isGeolocationDenied: false })
+      );
+      dispatch(setGeolocationDenied());
+      dispatch(fetchHasLastSearch());
 
       return cityName;
     },

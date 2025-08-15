@@ -5,4 +5,4 @@ export const selectCurrentWeather = (state: RootState) => state.currentWeatherRe
 export const selectCurrentCoordinats = (state: RootState) => state.coordinatsReducer;
 export const selectWeather = (state: RootState) => state.weatherReducer;
 export const selectCitiesSuggestions = (state: RootState) => state.elasticReducer;
-export const selectCurrentCity = (state: RootState) => state.currentCitReducer;
+export const selectCurrentCity = (state: RootState) => state.currentCityReducer;
