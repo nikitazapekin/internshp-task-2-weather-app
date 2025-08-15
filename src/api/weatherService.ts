@@ -13,7 +13,7 @@ import { $api } from ".";
 
 interface CacheItem {
   timestamp: number;
-  data: any;
+  data: unknown;
 }
 
 const CACHE_TTL = 5 * 60 * 1000;
@@ -24,29 +24,28 @@ export default class WeatherService {
     return `${CACHE_PREFIX}${url}?${params.toString()}`;
   }
 
-  private static getFromCache(key: string): any | null {
+  private static getFromCache(key: string): unknown | null {
     try {
       const cached = localStorage.getItem(key);
 
       if (!cached) return null;
 
       const item: CacheItem = JSON.parse(cached);
+      const isExpired = Date.now() - item.timestamp >= CACHE_TTL;
 
-      if (Date.now() - item.timestamp < CACHE_TTL) {
-        return item.data;
+      if (isExpired) {
+        localStorage.removeItem(key);
+
+        return null;
       }
 
-      localStorage.removeItem(key);
-
-      return null;
-    } catch (e) {
-      console.error("Cache read error:", e);
-
+      return item.data;
+    } catch {
       return null;
     }
   }
 
-  private static setToCache(key: string, data: any): void {
+  private static setToCache(key: string, data: unknown): void {
     try {
       const item: CacheItem = {
         timestamp: Date.now(),
@@ -54,33 +53,11 @@ export default class WeatherService {
       };
 
       localStorage.setItem(key, JSON.stringify(item));
-    } catch (e) {
-      console.error("Cache write error:", e);
-
-      WeatherService.clearExpiredCache();
+    } catch {
+      return null;
     }
   }
 
-  private static clearExpiredCache(): void {
-    Object.keys(localStorage)
-      .filter((key) => key.startsWith(CACHE_PREFIX))
-      .forEach((key) => {
-        try {
-          const cached = localStorage.getItem(key);
-
-          if (!cached) return;
-
-          const item: CacheItem = JSON.parse(cached);
-
-          if (Date.now() - item.timestamp >= CACHE_TTL) {
-            localStorage.removeItem(key);
-          }
-        } catch (e) {
-          console.error("Cache cleanup error:", e);
-          localStorage.removeItem(key);
-        }
-      });
-  }
   private static buildParams(params: Record<string, string | number>): URLSearchParams {
     const { METRIC, LANG } = API_CONFIG.PARAMS;
     const searchParams = new URLSearchParams({
