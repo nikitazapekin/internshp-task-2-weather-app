@@ -1,7 +1,8 @@
 import { useState } from "react";
-import Foggy from "@assets/desktop/rainy.webp";
 import Spinner from "@components/Spinner";
+import { ICONS_CONSTANTS } from "@constants/weatherIcons";
 import { extractTime } from "@utils/helpers/extractHours/extractHours";
+import { getWeatherCondition } from "@utils/helpers/getWeatherCondition/getWeatherCondition";
 import { isForecastItem } from "@utils/helpers/isForecastItem/isForecastItem";
 
 import { Degree, Image, ImageWrapper, Title, Wrapper } from "./styled";
@@ -20,7 +21,10 @@ const SwiperItem = ({ weatherElement }: SwiperItemTypes) => {
       <Title>{isForecast ? extractTime(weatherElement.dt_txt) : weatherElement.day}</Title>
       <ImageWrapper>
         {!isImageLoaded && <Spinner />}
-        <Image src={Foggy} onLoad={handleImageLoad} />
+        <Image
+          src={ICONS_CONSTANTS[getWeatherCondition(weatherElement).condition].desktop}
+          onLoad={handleImageLoad}
+        />
       </ImageWrapper>
       <Degree>
         {isForecast ? Math.round(weatherElement.main.temp) : Math.round(weatherElement.dt)}°

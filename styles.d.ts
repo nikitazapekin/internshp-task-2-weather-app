@@ -34,6 +34,7 @@ declare module "styled-components" {
       sm: number;
     };
     zIndexes: {
+      xm: number;
       x: number;
       xs: number;
       sm: number;

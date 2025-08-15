@@ -31,6 +31,7 @@ export const theme = {
     sm: 480,
   },
   zIndexes: {
+    xm: -2,
     x: -1,
     xs: 0,
     sm: 1,

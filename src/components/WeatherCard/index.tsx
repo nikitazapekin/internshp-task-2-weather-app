@@ -1,6 +1,7 @@
 import { useState } from "react";
-import Rainy from "@assets/mobile/foggy.webp";
 import Spinner from "@components/Spinner";
+import { ICONS_CONSTANTS } from "@constants/weatherIcons";
+import { getWeatherCondition } from "@utils/helpers";
 import { extractTime } from "@utils/helpers/extractHours/extractHours";
 import { isForecastItem } from "@utils/helpers/isForecastItem/isForecastItem";
 
@@ -14,13 +15,14 @@ const WeatherCard = ({ weatherElement }: SwiperItemTypes) => {
   const handleImageLoad = (): undefined => {
     setIsImageLoaded(true);
   };
+  const { condition } = getWeatherCondition(weatherElement);
 
   return (
     <Wrapper>
       <Text>{isForecast ? extractTime(weatherElement.dt_txt) : weatherElement.day}</Text>
       <ImageWrapper>
         {!isImageLoaded && <Spinner />}
-        <Image src={Rainy} onLoad={handleImageLoad} />
+        <Image src={ICONS_CONSTANTS[condition].mobile} onLoad={handleImageLoad} />
       </ImageWrapper>
       <Degree>
         {isForecast ? Math.round(weatherElement.main.temp) : Math.round(weatherElement.dt)}°
