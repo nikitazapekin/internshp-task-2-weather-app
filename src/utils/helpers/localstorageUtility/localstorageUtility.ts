@@ -3,7 +3,7 @@ import { STORAGE_KEYS } from "@constants/localstorageConstants";
 export type StorageKeysType = (typeof STORAGE_KEYS)[keyof typeof STORAGE_KEYS];
 
 class LocalstorageUtils {
-  static setItem<T>(key: StorageKeysType, value: T): void {
+  static setItem<T>(key: string, value: T): void {
     try {
       const jsonValue = JSON.stringify(value);
 
@@ -13,7 +13,7 @@ class LocalstorageUtils {
     }
   }
 
-  static getItem<T>(key: StorageKeysType): T | null {
+  static getItem<T>(key: string): T | null {
     try {
       const jsonValue = localStorage.getItem(key);
 
@@ -23,7 +23,7 @@ class LocalstorageUtils {
     }
   }
 
-  static removeItem(key: StorageKeysType): void {
+  static removeItem(key: string): void {
     try {
       localStorage.removeItem(key);
     } catch {
