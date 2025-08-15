@@ -70,8 +70,6 @@ export const useElastic = () => {
       dispatch(
         setCoordinats({ latitude: city.lat, longitude: city.lon, isGeolocationDenied: false })
       );
-      dispatch(setGeolocationDenied());
-      dispatch(fetchHasLastSearch());
 
       return cityName;
     },
@@ -97,6 +95,8 @@ export const useElastic = () => {
         longitude: coordinats.longitude,
       })
     );
+    dispatch(setGeolocationDenied());
+    dispatch(fetchHasLastSearch());
     setShowSuggestions(false);
   }, [coordinats, dispatch]);
 
