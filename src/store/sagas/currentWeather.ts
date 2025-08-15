@@ -17,7 +17,7 @@ function* fetchWeatherByCoords(
 ): SagaIterator {
   try {
     const response: AxiosResponse<CurrentWeatherResponse> = yield call(
-      WeatherService.getCurrentWeatherByCoordinats,
+      WeatherService.getCurrentWeatherByCoordinats.bind(WeatherService),
       action.payload
     );
 

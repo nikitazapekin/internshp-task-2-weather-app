@@ -13,7 +13,7 @@ export function* fetchHourlyWeatherByCoords(
 ): SagaIterator {
   try {
     const response: AxiosResponse<FiveDayForecastResponse> = yield call(
-      WeatherService.getHourlyWeatherByCoordinats,
+      WeatherService.getHourlyWeatherByCoordinats.bind(WeatherService),
       action.payload
     );
 

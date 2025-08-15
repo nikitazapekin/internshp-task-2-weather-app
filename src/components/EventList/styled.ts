@@ -18,18 +18,11 @@ export const Wrapper = styled.ul`
   position: relative;
 
   &::-webkit-scrollbar {
-    width: 6px;
+    display: none;
   }
 
-  &::-webkit-scrollbar-track {
-    background: ${(props) => props.theme.colors.white};
-    border-radius: 3px;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background-color: ${(props) => props.theme.colors.black};
-    border-radius: 3px;
-  }
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 
   ${media.xh`
    max-width: 100%;
@@ -41,12 +34,15 @@ export const EmptyListText = styled.h3`
   color: ${({ theme }) => theme.colors.black};
   font-weight: ${({ theme }) => theme.fontWeights.regular};
   font-size: ${({ theme }) => theme.fontSizes.xs};
-  justify-self: center;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translateX(-50%) translateY(-50%);
+  justify-self: flex-start;
+  position: relative;
   text-align: center;
+  width: 100%;
+  padding: ${({ theme }) => theme.spaces.x}px;
+
+  ${media.sm`
+    font-size: ${({ theme }) => theme.fontSizes.xxs};
+  `}
 `;
 
 export const EventCard = styled.li`
@@ -79,10 +75,9 @@ export const Text = styled.p`
   color: ${({ theme }) => theme.colors.black};
   font-weight: ${({ theme }) => theme.fontWeights.regular};
   font-size: ${({ theme }) => theme.fontSizes.sm};
-  max-width: 200px;
   width: 100%;
 
   ${media.sm`
-  font-size: ${({ theme }) => theme.fontSizes.xs};
+    font-size: ${({ theme }) => theme.fontSizes.xxs};
   `}
 `;
