@@ -156,7 +156,7 @@ export default class WeatherService {
     const cachedGeoData = CacheUtility.getFromCache(geoCacheKey);
 
     if (cachedGeoData) {
-      geoResponse = { data: cachedGeoData };
+      geoResponse = { data: cachedGeoData } as AxiosResponse<FiveDayForecastResponse>;
     } else {
       geoResponse = await $api.get(`/geo/1.0/direct?${geoParams.toString()}`);
       CacheUtility.setToCache(geoCacheKey, geoResponse.data);
