@@ -29,6 +29,7 @@
     "@babel/preset-typescript": "^7.23.2",
     "@commitlint/cli": "^19.8.1",
     "@commitlint/config-conventional": "^19.8.1",
+    "@testing-library/jest-dom": "^6.7.0",
     "@types/dotenv": "^8.2.3",
     "@types/jest": "^30.0.0",
     "@types/node": "^24.2.0",
