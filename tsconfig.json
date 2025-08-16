@@ -32,6 +32,6 @@
     }
   },
   "types": ["node", "jest", "@testing-library/jest-dom"],
-
+  
   "exclude": ["./cypress.config.ts"]
 }

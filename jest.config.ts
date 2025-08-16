@@ -5,6 +5,7 @@ const config: Config = {
   preset: "ts-jest",
   testEnvironment: "jsdom",
 
+  modulePathIgnorePatterns: ["<rootDir>/src/.*/styled.ts"],
   testPathIgnorePatterns: ["/node_modules/", "/dist/"],
   moduleFileExtensions: ["js", "json", "jsx", "ts", "tsx", "node"],
   modulePaths: ["<rootDir>/src"],
@@ -38,6 +39,7 @@ const config: Config = {
   clearMocks: true,
   resetMocks: true,
   restoreMocks: true,
+  setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
 };
 
 export default config;

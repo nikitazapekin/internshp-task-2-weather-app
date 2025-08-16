@@ -38,9 +38,9 @@ describe("transformWeatherData", () => {
   });
 
   it("should group forecasts by day and calculate average temperature", () => {
-    const sameDayTimestamp1 = Math.floor(new Date("2023-01-01T12:00:00").getTime() / 1000);
-    const sameDayTimestamp2 = Math.floor(new Date("2023-01-01T15:00:00").getTime() / 1000);
-    const anotherDayTimestamp = Math.floor(new Date("2023-01-02T12:00:00").getTime() / 1000);
+    const sameDayTimestamp1 = Math.floor(new Date("2025-01-01T12:00:00").getTime() / 1000);
+    const sameDayTimestamp2 = Math.floor(new Date("2025-01-01T15:00:00").getTime() / 1000);
+    const anotherDayTimestamp = Math.floor(new Date("2025-01-02T12:00:00").getTime() / 1000);
 
     const mockResponse: FiveDayForecastResponse = {
       cod: "200",
@@ -77,7 +77,7 @@ describe("transformWeatherData", () => {
   });
 
   it("should correctly calculate weather condition probabilities", () => {
-    const timestamp = Math.floor(new Date("2023-01-01T12:00:00").getTime() / 1000);
+    const timestamp = Math.floor(new Date("2025-01-01T12:00:00").getTime() / 1000);
 
     const mockResponse: FiveDayForecastResponse = {
       cod: "200",
@@ -112,7 +112,7 @@ describe("transformWeatherData", () => {
   });
 
   it("should handle multiple language weather descriptions", () => {
-    const timestamp = Math.floor(new Date("2023-01-01T12:00:00").getTime() / 1000);
+    const timestamp = Math.floor(new Date("2025-01-01T12:00:00").getTime() / 1000);
 
     const mockResponse: FiveDayForecastResponse = {
       cod: "200",
@@ -205,8 +205,8 @@ describe("transformWeatherData", () => {
   });
 
   it("should preserve dt_txt from the first item of each day", () => {
-    const sameDayTimestamp1 = Math.floor(new Date("2023-01-01T12:00:00").getTime() / 1000);
-    const sameDayTimestamp2 = Math.floor(new Date("2023-01-01T15:00:00").getTime() / 1000);
+    const sameDayTimestamp1 = Math.floor(new Date("2025-01-01T12:00:00").getTime() / 1000);
+    const sameDayTimestamp2 = Math.floor(new Date("2025-01-01T15:00:00").getTime() / 1000);
 
     const mockResponse: FiveDayForecastResponse = {
       cod: "200",
