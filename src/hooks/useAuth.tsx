@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { ENV_CONSTANTS } from "@constants/envConstants";
+import { ERROR_CONSTANTS } from "@constants/errors";
 import WeatherAppError from "@errors/weatherAppError";
 import {
   LocalstorageUtils,
@@ -11,6 +12,7 @@ import { cleanUpEvents, fetchCalendarEventsRequest } from "@store/actions/google
 
 import type { GoogleTokenResponse } from "./types";
 
+const { SIGN_IN_ERROR, TITLE } = ERROR_CONSTANTS.AUTH_ERRORS;
 const useAuth = () => {
   const dispatch = useDispatch();
   const [accessToken, setAccessToken] = useState<string | null>(
@@ -65,7 +67,7 @@ const useAuth = () => {
           } catch {
             LocalstorageUtils.removeItem(STORAGE_KEYS.ACCESS_TOKEN);
             setAccessToken(null);
-            throw new WeatherAppError("Sign in error", "Cannot ");
+            throw new WeatherAppError(TITLE, SIGN_IN_ERROR);
           }
         }
       },

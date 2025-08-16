@@ -12,6 +12,8 @@ import {
 } from "@store/actions/googleCalendar";
 
 function* fetchCalendarEvents(action: ReturnType<typeof fetchCalendarEventsRequest>): SagaIterator {
+  const { UNKNOWN_ERROR } = ERROR_CONSTANTS.API_ERRORS;
+
   try {
     const { accessToken } = action.payload;
 
@@ -22,7 +24,7 @@ function* fetchCalendarEvents(action: ReturnType<typeof fetchCalendarEventsReque
 
     yield put(fetchCalendarEventsSuccess({ events: response.data.items }));
   } catch (error: unknown) {
-    const message = error instanceof Error ? error.message : ERROR_CONSTANTS.UNKNOWN_ERROR;
+    const message = error instanceof Error ? error.message : UNKNOWN_ERROR;
 
     yield put(fetchCalendarEventsFailure(message));
   }
