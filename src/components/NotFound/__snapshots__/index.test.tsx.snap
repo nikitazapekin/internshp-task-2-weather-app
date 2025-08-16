@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`NotFound Component matches basic structure snapshot 1`] = `
+<section
+  class="sc-hvigdm jFOnpX"
+>
+  <img
+    class="sc-jwTyAe enONoM"
+    src="test-image.webp"
+  />
+  <section
+    class="sc-fhHczv gcRCkT"
+  >
+    <section
+      class="sc-ggWZvA dWXBqe"
+    >
+      Page Not Found
+    </section>
+    <section
+      class="sc-dTvVRJ evOKyb"
+    >
+       The page you have reached does not exist
+    </section>
+    <button
+      class="sc-bRKDuR bcDZqI"
+    >
+      Home
+    </button>
+  </section>
+</section>
+`;
