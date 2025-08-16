@@ -1,4 +1,5 @@
 import AuthButtons from "@components/AuthButtons";
+import ErrorBoundary from "@components/ErrorBoundary";
 import EventList from "@components/EventList";
 import WeatherButtons from "@components/WeatherButtons";
 import { UI_CONSTANTS } from "@constants/UI";
@@ -16,26 +17,28 @@ const CenterOfBanner = () => {
   const { mobileTitleOfEvents } = UI_CONSTANTS;
 
   return (
-    <Wrapper>
-      {!isMobileView ? (
-        <>
-          <AuthButtons />
-          <EventsAndWeatherButtonsWrapper>
-            <EventList />
-            <WeatherButtons />
-          </EventsAndWeatherButtonsWrapper>
-        </>
-      ) : (
-        <>
-          <TitleOfEvents>{mobileTitleOfEvents}</TitleOfEvents>
-          <AuthButtonsAndEventsWrapper>
+    <ErrorBoundary>
+      <Wrapper>
+        {!isMobileView ? (
+          <>
             <AuthButtons />
-            <EventList />
-          </AuthButtonsAndEventsWrapper>
-          <WeatherButtons />
-        </>
-      )}
-    </Wrapper>
+            <EventsAndWeatherButtonsWrapper>
+              <EventList />
+              <WeatherButtons />
+            </EventsAndWeatherButtonsWrapper>
+          </>
+        ) : (
+          <>
+            <TitleOfEvents>{mobileTitleOfEvents}</TitleOfEvents>
+            <AuthButtonsAndEventsWrapper>
+              <AuthButtons />
+              <EventList />
+            </AuthButtonsAndEventsWrapper>
+            <WeatherButtons />
+          </>
+        )}
+      </Wrapper>
+    </ErrorBoundary>
   );
 };
 
