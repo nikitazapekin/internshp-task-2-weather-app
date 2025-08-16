@@ -7,6 +7,7 @@ import { API_CONFIG } from "@constants/utilsConstants";
 import type { CityParams, CurrentWeatherResponse, FiveDayForecastResponse } from "@types/apiTypes";
 import type { OpenWeatherGeoResponse } from "@types/CitySearchResponseTypes";
 import type { CurrentCoordinatsState } from "@types/coordinatsTypes";
+import { CacheUtility } from "@utils/helpers/cacheUtility/cacheUtility";
 import type { AxiosResponse } from "axios";
 
 import { $api } from ".";
@@ -32,7 +33,20 @@ export default class WeatherService {
       lon: params.longitude,
     });
 
-    return $api.get<CurrentWeatherResponse>(`/data/2.5/weather?${queryParams.toString()}`);
+    const cacheKey = CacheUtility.getCacheKey("/data/2.5/weather", queryParams);
+    const cachedData = CacheUtility.getFromCache(cacheKey);
+
+    if (cachedData) {
+      return { data: cachedData } as AxiosResponse<CurrentWeatherResponse>;
+    }
+
+    const response = await $api.get<CurrentWeatherResponse>(
+      `/data/2.5/weather?${queryParams.toString()}`
+    );
+
+    CacheUtility.setToCache(cacheKey, response.data);
+
+    return response;
   }
 
   static async getCurrentWeatherByCity(
@@ -41,8 +55,20 @@ export default class WeatherService {
     const queryParams = WeatherService.buildParams({
       q: params.city,
     });
+    const cacheKey = CacheUtility.getCacheKey("/data/2.5/weather", queryParams);
+    const cachedData = CacheUtility.getFromCache(cacheKey);
 
-    return $api.get<CurrentWeatherResponse>(`/data/2.5/weather?${queryParams.toString()}`);
+    if (cachedData) {
+      return { data: cachedData } as AxiosResponse<CurrentWeatherResponse>;
+    }
+
+    const response = await $api.get<CurrentWeatherResponse>(
+      `/data/2.5/weather?${queryParams.toString()}`
+    );
+
+    CacheUtility.setToCache(cacheKey, response.data);
+
+    return response;
   }
 
   static async getHourlyWeatherByCoordinats(
@@ -53,8 +79,20 @@ export default class WeatherService {
       lon: params.longitude,
       cnt: NUMBER_OF_3_HOUR_INTERVALS_PER_DAY,
     });
+    const cacheKey = CacheUtility.getCacheKey("/data/2.5/forecast", queryParams);
+    const cachedData = CacheUtility.getFromCache(cacheKey);
 
-    return $api.get<FiveDayForecastResponse>(`/data/2.5/forecast?${queryParams.toString()}`);
+    if (cachedData) {
+      return { data: cachedData } as AxiosResponse<FiveDayForecastResponse>;
+    }
+
+    const response = await $api.get<FiveDayForecastResponse>(
+      `/data/2.5/forecast?${queryParams.toString()}`
+    );
+
+    CacheUtility.setToCache(cacheKey, response.data);
+
+    return response;
   }
 
   static async getHourlyWeatherByCity(
@@ -64,8 +102,20 @@ export default class WeatherService {
       q: params.city,
       cnt: NUMBER_OF_3_HOUR_INTERVALS_PER_DAY,
     });
+    const cacheKey = CacheUtility.getCacheKey("/data/2.5/forecast", queryParams);
+    const cachedData = CacheUtility.getFromCache(cacheKey);
 
-    return $api.get<FiveDayForecastResponse>(`/data/2.5/forecast?${queryParams.toString()}`);
+    if (cachedData) {
+      return { data: cachedData } as AxiosResponse<FiveDayForecastResponse>;
+    }
+
+    const response = await $api.get<FiveDayForecastResponse>(
+      `/data/2.5/forecast?${queryParams.toString()}`
+    );
+
+    CacheUtility.setToCache(cacheKey, response.data);
+
+    return response;
   }
 
   static async getWeeklyWeatherByCoordinats(
@@ -77,8 +127,20 @@ export default class WeatherService {
       lon: params.longitude,
       exclude: EXCLUDE,
     });
+    const cacheKey = CacheUtility.getCacheKey("/data/2.5/forecast", queryParams);
+    const cachedData = CacheUtility.getFromCache(cacheKey);
 
-    return $api.get<FiveDayForecastResponse>(`/data/2.5/forecast?${queryParams.toString()}`);
+    if (cachedData) {
+      return { data: cachedData } as AxiosResponse<FiveDayForecastResponse>;
+    }
+
+    const response = await $api.get<FiveDayForecastResponse>(
+      `/data/2.5/forecast?${queryParams.toString()}`
+    );
+
+    CacheUtility.setToCache(cacheKey, response.data);
+
+    return response;
   }
 
   static async getWeeklyWeatherByCity(
@@ -88,7 +150,18 @@ export default class WeatherService {
       q: params.city,
       limit: SINGLE_GEOCODING_RESULT_LIMIT,
     });
-    const geoResponse = await $api.get(`/data/2.5/forecast?${geoParams.toString()}`);
+    const geoCacheKey = CacheUtility.getCacheKey("/geo/1.0/direct", geoParams);
+    let geoResponse;
+
+    const cachedGeoData = CacheUtility.getFromCache(geoCacheKey);
+
+    if (cachedGeoData) {
+      geoResponse = { data: cachedGeoData } as AxiosResponse<FiveDayForecastResponse>;
+    } else {
+      geoResponse = await $api.get(`/geo/1.0/direct?${geoParams.toString()}`);
+      CacheUtility.setToCache(geoCacheKey, geoResponse.data);
+    }
+
     const { lat, lon } = geoResponse.data[0];
 
     return WeatherService.getWeeklyWeatherByCoordinats({
@@ -106,8 +179,20 @@ export default class WeatherService {
       q: params.city,
       limit: LIMIT_OF_CITIES_FOR_SUGGESTION,
     });
+    const cacheKey = CacheUtility.getCacheKey("/geo/1.0/direct", queryParams);
+    const cachedData = CacheUtility.getFromCache(cacheKey);
 
-    return $api.get<OpenWeatherGeoResponse>(`/geo/1.0/direct?${queryParams.toString()}`);
+    if (cachedData) {
+      return { data: cachedData } as AxiosResponse<OpenWeatherGeoResponse>;
+    }
+
+    const response = await $api.get<OpenWeatherGeoResponse>(
+      `/geo/1.0/direct?${queryParams.toString()}`
+    );
+
+    CacheUtility.setToCache(cacheKey, response.data);
+
+    return response;
   }
 
   static async getCityNameByCoordinats(
@@ -118,7 +203,19 @@ export default class WeatherService {
       lon: params.longitude,
       limit: SINGLE_GEOCODING_RESULT_LIMIT,
     });
+    const cacheKey = CacheUtility.getCacheKey("/geo/1.0/reverse", queryParams);
+    const cachedData = CacheUtility.getFromCache(cacheKey);
 
-    return $api.get<OpenWeatherGeoResponse>(`/geo/1.0/reverse?${queryParams.toString()}`);
+    if (cachedData) {
+      return { data: cachedData } as AxiosResponse<OpenWeatherGeoResponse>;
+    }
+
+    const response = await $api.get<OpenWeatherGeoResponse>(
+      `/geo/1.0/reverse?${queryParams.toString()}`
+    );
+
+    CacheUtility.setToCache(cacheKey, response.data);
+
+    return response;
   }
 }
