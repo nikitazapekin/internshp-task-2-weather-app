@@ -1,8 +1,10 @@
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import Button from "@components/Button";
+import { ERROR_CONSTANTS } from "@constants";
 import { UI_CONSTANTS } from "@constants/UI";
 import { TimeOfWeather } from "@constants/weatherConstants";
+import WeatherAppError from "@errors/weatherAppError";
 
 import {
   fetchHourlyWeatherByCoordsRequest,
@@ -16,8 +18,13 @@ const WeatherButtons = () => {
   const { weatherButtons } = UI_CONSTANTS;
   const dispatch = useDispatch();
   const { latitude, longitude } = useSelector(selectCurrentCoordinats);
-  const { timeOfWeather } = useSelector(selectWeather);
+  const { timeOfWeather, error } = useSelector(selectWeather);
   const { isElasticActive, coordinats } = useSelector(selectCitiesSuggestions);
+  const { TITLE } = ERROR_CONSTANTS.API_ERRORS;
+
+  if (error) {
+    throw new WeatherAppError(TITLE, error);
+  }
 
   const handleSendRequest = (type: string): void => {
     const coords =
