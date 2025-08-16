@@ -69,7 +69,7 @@ describe("Swiper Component", () => {
         visibility: 10000,
         pop: 0,
         sys: { pod: "d" },
-        dt_txt: "2023-05-03 12:00:00",
+        dt_txt: "2025-05-03 12:00:00",
       },
       {
         dt: 1620010800,
@@ -94,7 +94,7 @@ describe("Swiper Component", () => {
         visibility: 8000,
         pop: 0.4,
         sys: { pod: "n" },
-        dt_txt: "2023-05-03 15:00:00",
+        dt_txt: "2025-05-03 15:00:00",
       },
     ],
     city: {
@@ -146,8 +146,8 @@ describe("Swiper Component", () => {
       </Provider>
     );
 
-    expect(screen.getByText("2023-05-03 12:00:00")).toBeInTheDocument();
-    expect(screen.getByText("2023-05-03 15:00:00")).toBeInTheDocument();
+    expect(screen.getByText("2025-05-03 12:00:00")).toBeInTheDocument();
+    expect(screen.getByText("2025-05-03 15:00:00")).toBeInTheDocument();
     expect(screen.getAllByTestId("swiper-item")).toHaveLength(2);
   });
 });
