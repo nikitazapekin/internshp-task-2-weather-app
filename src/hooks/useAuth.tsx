@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { ENV_CONSTANTS } from "@constants/envConstants";
+import WeatherAppError from "@errors/weatherAppError";
 import {
   LocalstorageUtils,
   STORAGE_KEYS,
@@ -64,6 +65,7 @@ const useAuth = () => {
           } catch {
             LocalstorageUtils.removeItem(STORAGE_KEYS.ACCESS_TOKEN);
             setAccessToken(null);
+            throw new WeatherAppError("Sign in error", "Cannot ");
           }
         }
       },

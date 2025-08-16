@@ -1,4 +1,5 @@
 import { days, FIRST_DAY_OF_MONTH, LAST_DAY_OF_MONTH, months } from "@constants";
+import WeatherAppError from "@errors/weatherAppError";
 import type { TimeAndDate } from "@types/timeAndDateTypes";
 
 export const getCurrentTime = (): TimeAndDate => {
@@ -6,7 +7,7 @@ export const getCurrentTime = (): TimeAndDate => {
     const currentTime = new Date();
 
     if (isNaN(currentTime.getTime())) {
-      throw new Error("Invalid date");
+      throw new WeatherAppError("Invalid date", "Invalid date format");
     }
 
     const timeString = currentTime.toLocaleTimeString("en-US", {
@@ -16,18 +17,18 @@ export const getCurrentTime = (): TimeAndDate => {
     });
 
     if (!days || !months) {
-      throw new Error("Days or months constants are not defined");
+      throw new WeatherAppError("Invalid date", "Days or month are not defined");
     }
 
     const dayIndex = currentTime.getDay();
     const monthIndex = currentTime.getMonth();
 
     if (dayIndex < 0 || dayIndex >= days.length || !days[dayIndex]) {
-      throw new Error("Invalid day index or missing day name");
+      throw new WeatherAppError("Invalid date", "Invalid date index");
     }
 
     if (monthIndex < 0 || monthIndex >= months.length || !months[monthIndex]) {
-      throw new Error("Invalid month index or missing month name");
+      throw new WeatherAppError("Invalid date", "Invalid month index");
     }
 
     const dayName = days[dayIndex];
@@ -36,13 +37,13 @@ export const getCurrentTime = (): TimeAndDate => {
     const year = currentTime.getFullYear();
 
     if (day < FIRST_DAY_OF_MONTH || day > LAST_DAY_OF_MONTH) {
-      throw new Error("Invalid day of month");
+      throw new WeatherAppError("Invalid date", "Invalid date of month");
     }
 
     const dateString = `${dayName}, ${day} ${month} ${year}`;
 
     if (!timeString || !dateString) {
-      throw new Error("Failed to generate time or date string");
+      throw new WeatherAppError("Invalid date", "Failed to generate time or date string");
     }
 
     return { timeString, dateString };
