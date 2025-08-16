@@ -35,7 +35,7 @@ const config: Config = {
 
   collectCoverage: true,
   coverageDirectory: "coverage",
-  collectCoverageFrom: ["src/**/*.{ts,tsx}", "!src/**/*.d.ts"],
+  collectCoverageFrom: ["src/**/*.{ts,tsx}", "!src/**/*.d.ts", "!src/styles/**/*.{ts,tsx}"],
 
   clearMocks: true,
   resetMocks: true,
