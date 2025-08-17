@@ -14,7 +14,7 @@ const NotFound = () => {
   };
 
   return (
-    <Wrapper>
+    <Wrapper data-testid="not-found-page">
       <Image src={NoGeolocationBackground} />
       <Content>
         <Title>Page Not Found</Title>
