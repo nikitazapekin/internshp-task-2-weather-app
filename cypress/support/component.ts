@@ -1,4 +1,5 @@
-import { mount } from "cypress/vue";
+import { mount } from "cypress/react";
+
 declare global {
   namespace Cypress {
     interface Chainable {
@@ -6,3 +7,5 @@ declare global {
     }
   }
 }
+
+Cypress.Commands.add("mount", mount);

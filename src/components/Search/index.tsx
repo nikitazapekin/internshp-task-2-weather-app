@@ -42,7 +42,7 @@ const SearchCitiesComponent = () => {
     const showSuggestionsList = shouldShowSuggestions && hasSuggestions;
 
     return (
-      <SuggestionsContent height={shouldShowSuggestions}>
+      <SuggestionsContent height={shouldShowSuggestions} data-testid="suggestions-wrapper">
         {showLoading && <Spinner position={RELATIVE} />}
 
         {showEmptyState && (
