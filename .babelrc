@@ -1,6 +1,7 @@
 {
   "presets": [
     "@babel/preset-env",
+    "istanbul",
     "@babel/preset-typescript",
     [
       "@babel/preset-react",
