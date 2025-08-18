@@ -46,7 +46,7 @@ const SearchCitiesComponent = () => {
         {showLoading && <Spinner position={RELATIVE} />}
 
         {showEmptyState && (
-          <NothingFoundText>
+          <NothingFoundText data-testid="no-suggestions">
             {nothingFoundText} {inputValue}
           </NothingFoundText>
         )}

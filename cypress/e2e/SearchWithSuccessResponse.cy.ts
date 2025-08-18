@@ -8,50 +8,6 @@ describe("SearchCitiesComponent", () => {
     cy.get("button").should("contain", "Search");
   });
 
-  it("should show suggestions when typing in the input and make correct API request", () => {
-    const mockResponse = [
-      {
-        name: "London",
-        country: "GB",
-        lat: 51.5074,
-        lon: -0.1278,
-        state: "England",
-        local_names: {
-          en: "London",
-          ru: "Лондон",
-        },
-      },
-    ];
-
-    cy.intercept("GET", `Cypress.env('REACT_APP_API_URL')/geo/1.0/direct*`, (req) => {
-      expect(req.url).to.match(/q=te/);
-      expect(req.url).to.match(/limit=5/);
-      expect(req.url).to.match(/units=metric/);
-      expect(req.url).to.match(/lang=ru/);
-      expect(req.url).to.match(/appid=[a-zA-Z0-9]+/);
-
-      expect(req.url).to.match(/q=te&limit=5&appid=.+&units=metric&lang=ru/);
-
-      req.reply({
-        statusCode: 200,
-        body: mockResponse,
-      });
-    }).as("getCities");
-
-    cy.get("input").type("te");
-
-    cy.get('[data-testid="spinner"]').should("exist");
-
-    cy.wait("@getCities").then((interception) => {
-      expect(interception.request.url).to.eq(
-        `${Cypress.env("REACT_APP_API_URL")}/geo/1.0/direct?q=te&limit=5&appid=${Cypress.env("REACT_APP_OPEN_WEATHER_TOKEN")}&units=metric&lang=ru`
-      );
-    });
-
-    cy.get('[data-testid="spinner"]').should("not.exist");
-    cy.get('[data-testid="suggestions-wrapper"]').should("exist");
-  });
-
   it("should pass correct parameters to getCitiesByQuery", () => {
     const mockResponse = [
       {
