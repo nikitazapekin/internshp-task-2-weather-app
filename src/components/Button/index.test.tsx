@@ -1,35 +1,32 @@
+import { BUTTON_TEST } from "@constants";
 import { theme } from "@constants/theme";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { ThemeProvider } from "styled-components";
 
-import type { ButtonProps } from "./types";
 import Button from ".";
 
-describe("Button Component", () => {
-  const defaultProps: ButtonProps = {
-    text: "Test Button",
-    handler: jest.fn(),
-    isActive: false,
-    isFullWidth: false,
-  };
+const { DESCRIPTION, IT, CONSTANTS } = BUTTON_TEST;
+const { RENDERS_CORRECT_TEXT, CALLS_HANDLER, APPLIES_FULL_WIDTH, MATCHES_SNAPSHOT } = IT;
+const { DEFAULT_PROPS, STYLES } = CONSTANTS;
 
-  test("renders button with correct text", () => {
+describe(`${DESCRIPTION}`, () => {
+  test(`${RENDERS_CORRECT_TEXT}`, () => {
     render(
       <ThemeProvider theme={theme}>
-        <Button {...defaultProps} />
+        <Button {...DEFAULT_PROPS} />
       </ThemeProvider>
     );
 
-    expect(screen.getByText(defaultProps.text)).toBeInTheDocument();
+    expect(screen.getByText(DEFAULT_PROPS.text)).toBeInTheDocument();
   });
 
-  test("calls handler when clicked", async () => {
+  test(`${CALLS_HANDLER}`, async () => {
     const mockHandler = jest.fn();
 
     render(
       <ThemeProvider theme={theme}>
-        <Button {...defaultProps} handler={mockHandler} />
+        <Button {...DEFAULT_PROPS} handler={mockHandler} />
       </ThemeProvider>
     );
 
@@ -37,22 +34,22 @@ describe("Button Component", () => {
     expect(mockHandler).toHaveBeenCalledTimes(1);
   });
 
-  test("applies full width styles when isFullWidth is true", () => {
+  test(`${APPLIES_FULL_WIDTH}`, () => {
     render(
       <ThemeProvider theme={theme}>
-        <Button {...defaultProps} isFullWidth={true} />
+        <Button {...DEFAULT_PROPS} isFullWidth={true} />
       </ThemeProvider>
     );
 
     const button = screen.getByRole("button");
 
-    expect(button).toHaveStyle("width: 100%");
+    expect(button).toHaveStyle(STYLES.FULL_WIDTH);
   });
 
-  test("matches snapshot", () => {
+  test(`${MATCHES_SNAPSHOT}`, () => {
     const { container } = render(
       <ThemeProvider theme={theme}>
-        <Button {...defaultProps} />
+        <Button {...DEFAULT_PROPS} />
       </ThemeProvider>
     );
 

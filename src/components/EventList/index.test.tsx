@@ -1,6 +1,6 @@
 import { Provider } from "react-redux";
+import { EVENT_LIST_TEST } from "@constants";
 import { theme } from "@constants/theme";
-import { UI_CONSTANTS } from "@constants/UI";
 import { render, screen } from "@testing-library/react";
 import configureMockStore from "redux-mock-store";
 import { ThemeProvider } from "styled-components";
@@ -8,6 +8,11 @@ import { ThemeProvider } from "styled-components";
 import type { RootState } from "@store/index";
 
 import EventList from ".";
+
+const { DESCRIPTION, IT, CONSTANTS, MOCKS } = EVENT_LIST_TEST;
+const { RENDERS_EMPTY_LIST, RENDERS_EVENTS_LIST } = IT;
+const { EMPTY_LIST_TEXT } = CONSTANTS;
+const { EVENTS, FORMATTED_TIME } = MOCKS;
 
 jest.mock("@components/Spinner");
 jest.mock("@utils/helpers/formatTime/formatTime");
@@ -19,7 +24,7 @@ jest.mock("react-redux", () => ({
 const mockStore = configureMockStore();
 const useSelectorMock = jest.spyOn(require("react-redux"), "useSelector") as jest.Mock;
 
-describe("EventList Component", () => {
+describe(`${DESCRIPTION}`, () => {
   const initialState: Partial<RootState> = {
     calendarReducer: {
       loading: false,
@@ -55,33 +60,16 @@ describe("EventList Component", () => {
     );
   };
 
-  test("renders empty list message when no events", () => {
+  test(`${RENDERS_EMPTY_LIST}`, () => {
     renderWithProviders();
-    expect(screen.getByText(UI_CONSTANTS.emptyList)).toBeInTheDocument();
+    expect(screen.getByText(EMPTY_LIST_TEXT)).toBeInTheDocument();
   });
 
-  test("renders list of events with dateTime", () => {
-    const mockEvents = [
-      {
-        id: "1",
-        summary: "Test Event 1",
-        start: { dateTime: "2025-01-01T10:00:00" },
-        end: { dateTime: "2025-01-01T11:00:00" },
-        description: "Description 1",
-      },
-      {
-        id: "2",
-        summary: "Test Event 2",
-        start: { dateTime: "2025-01-02T11:00:00" },
-        end: { dateTime: "2025-01-02T12:00:00" },
-        description: "Description 2",
-      },
-    ];
-
+  test(`${RENDERS_EVENTS_LIST}`, () => {
     const state = {
       calendarReducer: {
         ...initialState.calendarReducer,
-        events: mockEvents,
+        events: EVENTS,
       },
     };
 
@@ -91,9 +79,9 @@ describe("EventList Component", () => {
 
     renderWithProviders(state);
 
-    expect(screen.getByText("Test Event 1")).toBeInTheDocument();
-    expect(screen.getByText("10:00")).toBeInTheDocument();
-    expect(screen.getByText("Test Event 2")).toBeInTheDocument();
-    expect(screen.getByText("11:00")).toBeInTheDocument();
+    expect(screen.getByText(EVENTS[0].summary)).toBeInTheDocument();
+    expect(screen.getByText(FORMATTED_TIME.EVENT_1)).toBeInTheDocument();
+    expect(screen.getByText(EVENTS[1].summary)).toBeInTheDocument();
+    expect(screen.getByText(FORMATTED_TIME.EVENT_2)).toBeInTheDocument();
   });
 });

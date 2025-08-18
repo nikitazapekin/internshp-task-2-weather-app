@@ -1,12 +1,17 @@
+import { EXTRACT_TIME_TEST } from "@constants";
 import { expect } from "@jest/globals";
 
 import { extractTime } from "./extractHours";
 
-describe("extractTime function", () => {
-  it("should return string type", () => {
-    const testDate = "2025-05-15T12:34:00Z";
-    const result = extractTime(testDate);
+const { DESCRIPTION, IT, TEST_DATA, EXPECTATIONS } = EXTRACT_TIME_TEST;
+const { RETURNS_STRING_TYPE } = IT;
+const { DATE_STRING } = TEST_DATA;
+const { TYPE } = EXPECTATIONS;
 
-    expect(typeof result).toBe("string");
+describe(`${DESCRIPTION}`, () => {
+  it(`${RETURNS_STRING_TYPE}`, () => {
+    const result = extractTime(DATE_STRING);
+
+    expect(typeof result).toBe(TYPE);
   });
 });

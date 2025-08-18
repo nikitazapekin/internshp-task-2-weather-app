@@ -1,14 +1,22 @@
+import { BANNER_TEST } from "@constants/bannerTestConstants";
 import { theme } from "@constants/theme";
 import { render } from "@testing-library/react";
 import { ThemeProvider } from "styled-components";
 
 import Banner from ".";
 
-jest.mock("@components/BottomOfTheBanner", () => () => <div data-testid="bottom-banner" />);
-jest.mock("@components/CenterOfBanner", () => () => <div data-testid="center-banner" />);
-jest.mock("@components/TopOfTheBanner", () => () => <div data-testid="top-banner" />);
-describe("Banner Component", () => {
-  test("matches snapshot", () => {
+const { DESCRIPTION, IT, CONSTANTS } = BANNER_TEST;
+const { SHOULD_MATCH_SNAPSHOT } = IT;
+const { TEST_IDS } = CONSTANTS;
+
+jest.mock("@components/BottomOfTheBanner", () => () => (
+  <div data-testid={TEST_IDS.BOTTOM_BANNER} />
+));
+jest.mock("@components/CenterOfBanner", () => () => <div data-testid={TEST_IDS.CENTER_BANNER} />);
+jest.mock("@components/TopOfTheBanner", () => () => <div data-testid={TEST_IDS.TOP_BANNER} />);
+
+describe(`${DESCRIPTION}`, () => {
+  test(`${SHOULD_MATCH_SNAPSHOT}`, () => {
     const { container } = render(
       <ThemeProvider theme={theme}>
         <Banner />

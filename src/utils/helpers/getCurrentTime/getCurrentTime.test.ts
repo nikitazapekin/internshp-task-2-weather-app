@@ -1,27 +1,35 @@
-import { days, months } from "@constants";
+import { days, GET_CURRENT_TIME_TEST, months } from "@constants";
 import { expect } from "@jest/globals";
 
 import { getCurrentTime } from "./getCurrentTime";
 
-describe("getCurrentTime function", () => {
-  it("should return correct date string format", () => {
+const { DESCRIPTION, IT, EXPECTATIONS } = GET_CURRENT_TIME_TEST;
+const { RETURNS_CORRECT_DATE_FORMAT, RETURNS_EXPECTED_PROPERTIES } = IT;
+const { PROPERTIES, TYPES } = EXPECTATIONS;
+
+describe(`${DESCRIPTION}`, () => {
+  it(`${RETURNS_CORRECT_DATE_FORMAT}`, () => {
     const currentDate = new Date();
     const { dateString } = getCurrentTime();
-    const expectedDayName = days[currentDate.getDay()];
-    const expectedDay = currentDate.getDate();
-    const expectedMonth = months[currentDate.getMonth()];
-    const expectedYear = currentDate.getFullYear();
-    const expectedDateString = `${expectedDayName}, ${expectedDay} ${expectedMonth} ${expectedYear}`;
+
+    const expectedParts = {
+      dayName: days[currentDate.getDay()],
+      day: currentDate.getDate(),
+      month: months[currentDate.getMonth()],
+      year: currentDate.getFullYear(),
+    };
+
+    const expectedDateString = `${expectedParts.dayName}, ${expectedParts.day} ${expectedParts.month} ${expectedParts.year}`;
 
     expect(dateString).toBe(expectedDateString);
   });
 
-  it("should return an object with timeString and dateString properties", () => {
+  it(`${RETURNS_EXPECTED_PROPERTIES}`, () => {
     const result = getCurrentTime();
 
-    expect(result).toHaveProperty("timeString");
-    expect(result).toHaveProperty("dateString");
-    expect(typeof result.timeString).toBe("string");
-    expect(typeof result.dateString).toBe("string");
+    expect(result).toHaveProperty(PROPERTIES.TIME_STRING);
+    expect(result).toHaveProperty(PROPERTIES.DATE_STRING);
+    expect(typeof result.timeString).toBe(TYPES.STRING);
+    expect(typeof result.dateString).toBe(TYPES.STRING);
   });
 });

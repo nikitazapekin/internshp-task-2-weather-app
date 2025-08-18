@@ -1,24 +1,36 @@
 import { createMemoryRouter, RouterProvider } from "react-router-dom";
-import { MAIN_PAGE, NOT_FOUND_PAGE } from "@constants";
+import {
+  APP_ROUTER_TEST,
+  MAIN_PAGE as MAIN_PAGE_CONST,
+  NOT_FOUND_PAGE as NOT_FOUND_PAGE_CONST,
+} from "@constants";
 import { render, screen } from "@testing-library/react";
 
 import AppRoutes from ".";
 
+const { DESCRIPTION, IT, CONSTANTS } = APP_ROUTER_TEST;
+const {
+  SHOULD_RENDER_WEATHER_PAGE,
+  SHOULD_RENDER_NOT_FOUND_PAGE_FOR_UNKNOWN_ROUTE,
+  SHOULD_RENDER_NOT_FOUND_PAGE_FOR_404,
+} = IT;
+const { MAIN_PAGE, TEST_ID, BUTTON_NAME, UNKNOWN_ROUTE } = CONSTANTS;
+
 jest.mock("@pages/WeatherPage", () => () => (
-  <div data-testid="weather-page">
+  <div data-testid={TEST_ID.WEATHER_PAGE}>
     <h1>Weather Page</h1>
-    <button>Search</button>
+    <button>{BUTTON_NAME}</button>
   </div>
 ));
 
 jest.mock("@pages/NotFoundPage", () => () => (
-  <div data-testid="not-found-page">
+  <div data-testid={TEST_ID.NOT_FOUND_PAGE}>
     <h1>Page Not Found</h1>
     <p>The page you have reached does not exist</p>
   </div>
 ));
 
-describe("AppRouter", () => {
+describe(`${DESCRIPTION}`, () => {
   const setupRouterTest = (initialRoute = MAIN_PAGE) => {
     const router = createMemoryRouter(
       [
@@ -37,19 +49,19 @@ describe("AppRouter", () => {
     return { router };
   };
 
-  it("should render WeatherPage for main route", async () => {
-    setupRouterTest(MAIN_PAGE);
-    expect(await screen.findByTestId("weather-page")).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "Search" })).toBeInTheDocument();
+  it(`${SHOULD_RENDER_WEATHER_PAGE}`, async () => {
+    setupRouterTest(MAIN_PAGE_CONST);
+    expect(await screen.findByTestId(TEST_ID.WEATHER_PAGE)).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: BUTTON_NAME })).toBeInTheDocument();
   });
 
-  it("should render NotFoundPage for unknown route", async () => {
-    setupRouterTest("/unknown-route");
-    expect(await screen.findByTestId("not-found-page")).toBeInTheDocument();
+  it(`${SHOULD_RENDER_NOT_FOUND_PAGE_FOR_UNKNOWN_ROUTE}`, async () => {
+    setupRouterTest(UNKNOWN_ROUTE);
+    expect(await screen.findByTestId(TEST_ID.NOT_FOUND_PAGE)).toBeInTheDocument();
   });
 
-  it("should render NotFoundPage for /404 route", async () => {
-    setupRouterTest(NOT_FOUND_PAGE);
-    expect(await screen.findByTestId("not-found-page")).toBeInTheDocument();
+  it(`${SHOULD_RENDER_NOT_FOUND_PAGE_FOR_404}`, async () => {
+    setupRouterTest(NOT_FOUND_PAGE_CONST);
+    expect(await screen.findByTestId(TEST_ID.NOT_FOUND_PAGE)).toBeInTheDocument();
   });
 });

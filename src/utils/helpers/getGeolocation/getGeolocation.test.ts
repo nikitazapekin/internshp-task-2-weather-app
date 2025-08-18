@@ -1,6 +1,12 @@
+import { GEOLOCATION_TEST } from "@constants";
+
 import { getUserLocation } from "./getGeolocation";
 
-describe("getUserLocation function", () => {
+const { DESCRIPTION, IT, MOCKS } = GEOLOCATION_TEST;
+const { RESOLVES_WITH_COORDS, REJECTS_PERMISSION_DENIED, REJECTS_POSITION_UNAVAILABLE } = IT;
+const { COORDS, ERRORS, ERROR_MESSAGES } = MOCKS;
+
+describe(`${DESCRIPTION}`, () => {
   beforeAll(() => {
     Object.defineProperty(global.navigator, "geolocation", {
       value: {
@@ -10,50 +16,29 @@ describe("getUserLocation function", () => {
     });
   });
 
-  it("should resolve with coordinates when geolocation is successful", async () => {
-    const mockCoords = {
-      latitude: 55.7558,
-      longitude: 37.6176,
-    };
-
+  it(`${RESOLVES_WITH_COORDS}`, async () => {
     (navigator.geolocation.getCurrentPosition as jest.Mock).mockImplementationOnce((success) =>
-      success({ coords: mockCoords })
+      success({ coords: COORDS })
     );
 
     const coords = await getUserLocation();
 
-    expect(coords).toEqual(mockCoords);
+    expect(coords).toEqual(COORDS);
   });
 
-  it("should reject with correct error message when permission is denied", async () => {
-    const mockError = {
-      code: 1,
-      message: "User denied Geolocation",
-      PERMISSION_DENIED: 1,
-      POSITION_UNAVAILABLE: 2,
-      TIMEOUT: 3,
-    };
-
+  it(`${REJECTS_PERMISSION_DENIED}`, async () => {
     (navigator.geolocation.getCurrentPosition as jest.Mock).mockImplementationOnce((_, error) =>
-      error(mockError)
+      error(ERRORS.PERMISSION_DENIED)
     );
 
-    await expect(getUserLocation()).rejects.toThrow("User denied the request for Geolocation.");
+    await expect(getUserLocation()).rejects.toThrow(ERROR_MESSAGES.PERMISSION_DENIED);
   });
 
-  it("should reject with correct error message when position is unavailable", async () => {
-    const mockError = {
-      code: 2,
-      message: "Position unavailable",
-      PERMISSION_DENIED: 1,
-      POSITION_UNAVAILABLE: 2,
-      TIMEOUT: 3,
-    };
-
+  it(`${REJECTS_POSITION_UNAVAILABLE}`, async () => {
     (navigator.geolocation.getCurrentPosition as jest.Mock).mockImplementationOnce((_, error) =>
-      error(mockError)
+      error(ERRORS.POSITION_UNAVAILABLE)
     );
 
-    await expect(getUserLocation()).rejects.toThrow("Location information is unavailable.");
+    await expect(getUserLocation()).rejects.toThrow(ERROR_MESSAGES.POSITION_UNAVAILABLE);
   });
 });

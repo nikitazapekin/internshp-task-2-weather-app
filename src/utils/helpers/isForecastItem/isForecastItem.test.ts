@@ -1,66 +1,44 @@
+import { FORECAST_ITEM_TEST } from "@constants";
 import { expect } from "@jest/globals";
-import type { ForecastItem } from "@types/apiTypes";
 
 import { isForecastItem } from "./isForecastItem";
 
-describe("isForecastItem", () => {
-  const validForecastItem: ForecastItem = {
-    dt: 1234567890,
-    main: {
-      temp: 15.5,
-      feels_like: 14.2,
-      temp_min: 12.0,
-      temp_max: 18.0,
-      pressure: 1012,
-      humidity: 65,
-    },
-    weather: [
-      {
-        id: 800,
-        main: "Clear",
-        description: "clear sky",
-        icon: "01d",
-      },
-    ],
-    clouds: { all: 0 },
-    wind: { speed: 3.1, deg: 120 },
-    visibility: 10000,
-    pop: 0,
-    sys: { pod: "d" },
-    dt_txt: "2025-01-01 12:00:00",
-  };
+const { DESCRIPTION, IT, TEST_DATA, EXPECTED_RESULTS } = FORECAST_ITEM_TEST;
+const {
+  VALID_ITEM,
+  NULL_CHECK,
+  UNDEFINED_CHECK,
+  PRIMITIVE_CHECK,
+  INVALID_TEMP_CHECK,
+  MINIMAL_ITEM_CHECK,
+} = IT;
+const { VALID_ITEM: validItem, INVALID_ITEM, MINIMAL_ITEM, PRIMITIVES } = TEST_DATA;
+const { TRUE, FALSE } = EXPECTED_RESULTS;
 
-  it("should return true for a valid ForecastItem", () => {
-    expect(isForecastItem(validForecastItem)).toBe(true);
+describe(`${DESCRIPTION}`, () => {
+  it(`${VALID_ITEM}`, () => {
+    expect(isForecastItem(validItem)).toBe(TRUE);
   });
 
-  it("should return false for null", () => {
-    expect(isForecastItem(null)).toBe(false);
+  it(`${NULL_CHECK}`, () => {
+    expect(isForecastItem(null)).toBe(FALSE);
   });
 
-  it("should return false for undefined", () => {
-    expect(isForecastItem(undefined)).toBe(false);
+  it(`${UNDEFINED_CHECK}`, () => {
+    expect(isForecastItem(undefined)).toBe(FALSE);
   });
 
-  it("should return false for a primitive value", () => {
-    expect(isForecastItem(42)).toBe(false);
-    expect(isForecastItem("string")).toBe(false);
-    expect(isForecastItem(true)).toBe(false);
+  it(`${PRIMITIVE_CHECK}`, () => {
+    expect(isForecastItem(PRIMITIVES.NUMBER)).toBe(FALSE);
+    expect(isForecastItem(PRIMITIVES.STRING)).toBe(FALSE);
+    expect(isForecastItem(PRIMITIVES.BOOLEAN)).toBe(FALSE);
   });
 
-  it("should return false if main.temp is not a number", () => {
-    const invalidItem = { ...validForecastItem, main: { ...validForecastItem.main, temp: "15" } };
-
-    expect(isForecastItem(invalidItem)).toBe(false);
+  it(`${INVALID_TEMP_CHECK}`, () => {
+    expect(isForecastItem(INVALID_ITEM)).toBe(FALSE);
   });
 
-  it("should return true even if optional fields are missing", () => {
-    const minimalValidItem = {
-      dt: 1234567890,
-      main: { temp: 15.5 },
-      dt_txt: "2025-01-01 12:00:00",
-    };
-
-    expect(isForecastItem(minimalValidItem)).toBe(true);
+  it(`${MINIMAL_ITEM_CHECK}`, () => {
+    expect(isForecastItem(MINIMAL_ITEM)).toBe(TRUE);
   });
 });

@@ -4,6 +4,7 @@ import * as SpinnerModule from "@components/Spinner";
 import * as SwiperModule from "@components/Swiper";
 import * as TodayWeatherModule from "@components/TodayWeather";
 import * as WeatherCardGridModule from "@components/WeatherCardsList";
+import { BOTTOM_BANNER_TEST } from "@constants";
 import { theme } from "@constants/theme";
 import { render, screen } from "@testing-library/react";
 import configureMockStore from "redux-mock-store";
@@ -12,6 +13,18 @@ import { ThemeProvider } from "styled-components";
 import type { RootState } from "@store/index";
 
 import BottomOfTheBanner from ".";
+
+const { DESCRIPTION, IT, CONSTANTS, MOCKS, SELECTORS } = BOTTOM_BANNER_TEST;
+const {
+  RENDERS_SPINNER,
+  RETURNS_NULL,
+  RENDERS_GEOLOCATION_OFF,
+  RENDERS_DESKTOP_VIEW,
+  RENDERS_MOBILE_VIEW,
+} = IT;
+const { TEST_IDS, TEXT } = CONSTANTS;
+const { WEATHER_DATA, RESIZE } = MOCKS;
+const { SELECT_CITIES_SUGGESTIONS, SELECT_CURRENT_COORDINATS, SELECT_WEATHER } = SELECTORS;
 
 jest.mock("@components/Spinner", () => ({
   __esModule: true,
@@ -51,7 +64,7 @@ jest.mock("react-redux", () => ({
 const mockStore = configureMockStore();
 const useSelectorMock = jest.spyOn(require("react-redux"), "useSelector") as jest.Mock;
 
-describe("BottomOfTheBanner Component", () => {
+describe(`${DESCRIPTION}`, () => {
   const initialState: Partial<RootState> = {
     currentWeatherReducer: {
       loading: true,
@@ -77,37 +90,34 @@ describe("BottomOfTheBanner Component", () => {
   beforeEach(() => {
     jest.clearAllMocks();
 
-    (SpinnerModule.default as jest.Mock).mockImplementation(() => <div data-testid="spinner" />);
-
+    (SpinnerModule.default as jest.Mock).mockImplementation(() => (
+      <div data-testid={TEST_IDS.SPINNER} />
+    ));
     (GeolocationModule.default as jest.Mock).mockImplementation(() => (
-      <div>Geolocation is turned off</div>
+      <div>{TEXT.GEOLOCATION_OFF}</div>
     ));
-
-    (TodayWeatherModule.default as jest.Mock).mockImplementation(() => <div>TodayWeather</div>);
-
+    (TodayWeatherModule.default as jest.Mock).mockImplementation(() => (
+      <div>{TEXT.TODAY_WEATHER}</div>
+    ));
     (WeatherCardGridModule.default as jest.Mock).mockImplementation(() => (
-      <div>WeatherCardGrid</div>
+      <div>{TEXT.WEATHER_CARD_GRID}</div>
     ));
-
-    (SwiperModule.default as jest.Mock).mockImplementation(() => <div>Swiper</div>);
-
-    (require("@hooks/useResize").default as jest.Mock).mockReturnValue({
-      isMobileView: false,
-    });
+    (SwiperModule.default as jest.Mock).mockImplementation(() => <div>{TEXT.SWIPER}</div>);
+    (require("@hooks/useResize").default as jest.Mock).mockReturnValue(RESIZE.DESKTOP);
   });
 
   const renderWithProviders = (state: Partial<RootState> = initialState) => {
     const store = mockStore(state);
 
     useSelectorMock.mockImplementation((selector) => {
-      if (selector.name === "selectWeather") {
+      if (selector.name === SELECT_WEATHER) {
         return {
           data: state.currentWeatherReducer?.data,
           loading: state.currentWeatherReducer?.loading,
         };
       }
 
-      if (selector.name === "selectCurrentCoordinats") {
+      if (selector.name === SELECT_CURRENT_COORDINATS) {
         return {
           latitude: state.coordinatsReducer?.latitude,
           longitude: state.coordinatsReducer?.longitude,
@@ -115,7 +125,7 @@ describe("BottomOfTheBanner Component", () => {
         };
       }
 
-      if (selector.name === "selectCitiesSuggestions") {
+      if (selector.name === SELECT_CITIES_SUGGESTIONS) {
         return {
           isElasticActive: state.elasticReducer?.isElasticActive,
           hasLastSearch: state.elasticReducer?.hasLastSearch,
@@ -134,12 +144,12 @@ describe("BottomOfTheBanner Component", () => {
     );
   };
 
-  test("renders spinner when loading", () => {
+  test(`${RENDERS_SPINNER}`, () => {
     renderWithProviders();
-    expect(screen.getByTestId("spinner")).toBeInTheDocument();
+    expect(screen.getByTestId(TEST_IDS.SPINNER)).toBeInTheDocument();
   });
 
-  test("returns null when no coordinates and geolocation not denied", () => {
+  test(`${RETURNS_NULL}`, () => {
     const state = {
       ...initialState,
       currentWeatherReducer: {
@@ -152,7 +162,7 @@ describe("BottomOfTheBanner Component", () => {
     expect(container.firstChild).toBeNull();
   });
 
-  test("renders GeolocationIsTurnOff when geolocation denied and no search", () => {
+  test(`${RENDERS_GEOLOCATION_OFF}`, () => {
     const state = {
       ...initialState,
       coordinatsReducer: {
@@ -166,31 +176,16 @@ describe("BottomOfTheBanner Component", () => {
     };
 
     renderWithProviders(state);
-    expect(screen.getByText("Geolocation is turned off")).toBeInTheDocument();
+    expect(screen.getByText(TEXT.GEOLOCATION_OFF)).toBeInTheDocument();
   });
 
-  test("renders TodayWeather and Swiper in desktop view with weather data", () => {
-    const mockWeatherData = {
-      coord: { lon: 30, lat: 59 },
-      weather: [{ id: 800, main: "Clear", description: "clear sky", icon: "01d" }],
-      main: { temp: 20, feels_like: 19, temp_min: 18, temp_max: 22, pressure: 1012, humidity: 50 },
-      visibility: 10000,
-      wind: { speed: 3, deg: 180 },
-      clouds: { all: 0 },
-      dt: 162,
-      sys: { country: "RU", sunrise: 162, sunset: 162 },
-      timezone: 108,
-      id: 498817,
-      name: "Saint Petersburg",
-      cod: 200,
-    };
-
+  test(`${RENDERS_DESKTOP_VIEW}`, () => {
     const state = {
       ...initialState,
       currentWeatherReducer: {
         ...initialState.currentWeatherReducer,
         loading: false,
-        data: mockWeatherData,
+        data: WEATHER_DATA,
       },
       coordinatsReducer: {
         latitude: 59,
@@ -200,36 +195,19 @@ describe("BottomOfTheBanner Component", () => {
     };
 
     renderWithProviders(state);
-    expect(screen.getByText("TodayWeather")).toBeInTheDocument();
-    expect(screen.getByText("Swiper")).toBeInTheDocument();
+    expect(screen.getByText(TEXT.TODAY_WEATHER)).toBeInTheDocument();
+    expect(screen.getByText(TEXT.SWIPER)).toBeInTheDocument();
   });
 
-  test("renders TodayWeather and WeatherCardGrid in mobile view with weather data", () => {
-    (require("@hooks/useResize").default as jest.Mock).mockReturnValue({
-      isMobileView: true,
-    });
-
-    const mockWeatherData = {
-      coord: { lon: 30, lat: 59 },
-      weather: [{ id: 800, main: "Clear", description: "clear sky", icon: "01d" }],
-      main: { temp: 20, feels_like: 19, temp_min: 18, temp_max: 22, pressure: 1012, humidity: 50 },
-      visibility: 10000,
-      wind: { speed: 3, deg: 180 },
-      clouds: { all: 0 },
-      dt: 162,
-      sys: { country: "RU", sunrise: 162, sunset: 162 },
-      timezone: 108,
-      id: 498817,
-      name: "Saint Petersburg",
-      cod: 200,
-    };
+  test(`${RENDERS_MOBILE_VIEW}`, () => {
+    (require("@hooks/useResize").default as jest.Mock).mockReturnValue(RESIZE.MOBILE);
 
     const state = {
       ...initialState,
       currentWeatherReducer: {
         ...initialState.currentWeatherReducer,
         loading: false,
-        data: mockWeatherData,
+        data: WEATHER_DATA,
       },
       coordinatsReducer: {
         latitude: 59,
@@ -239,7 +217,7 @@ describe("BottomOfTheBanner Component", () => {
     };
 
     renderWithProviders(state);
-    expect(screen.getByText("TodayWeather")).toBeInTheDocument();
-    expect(screen.getByText("WeatherCardGrid")).toBeInTheDocument();
+    expect(screen.getByText(TEXT.TODAY_WEATHER)).toBeInTheDocument();
+    expect(screen.getByText(TEXT.WEATHER_CARD_GRID)).toBeInTheDocument();
   });
 });

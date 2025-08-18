@@ -1,9 +1,14 @@
 import { Provider } from "react-redux";
+import { ELASTIC_HOOK_TEST } from "@constants";
 import { useElastic } from "@hooks/useElastic";
 import { renderHook } from "@testing-library/react";
 
 import { store } from "@store/index";
 import { selectCitiesSuggestions } from "@store/selectors";
+
+const { DESCRIPTION, IT, MOCKS, INITIAL_VALUES } = ELASTIC_HOOK_TEST;
+const { RETURNS_INITIAL_VALUES, FORMATS_CITY_NAME } = IT;
+const { DISPATCH, SUGGESTIONS, CITY, FORMATTED_CITY_NAME } = MOCKS;
 
 jest.mock("react-redux", () => ({
   ...jest.requireActual("react-redux"),
@@ -18,42 +23,27 @@ jest.mock("@store/selectors", () => ({
 const useSelectorMock = jest.spyOn(require("react-redux"), "useSelector");
 const useDispatchMock = jest.spyOn(require("react-redux"), "useDispatch");
 
-describe("useElastic hook", () => {
-  const mockDispatch = jest.fn();
-  const mockSuggestions = {
-    data: [
-      {
-        name: "Moscow",
-        state: "Moscow",
-        country: "Russia",
-        lat: 55.7558,
-        lon: 37.6176,
-      },
-    ],
-    coordinats: { latitude: 55.7558, longitude: 37.6176 },
-    loading: false,
-  };
-
+describe(`${DESCRIPTION}`, () => {
   beforeEach(() => {
     jest.clearAllMocks();
-    useDispatchMock.mockReturnValue(mockDispatch);
+    useDispatchMock.mockReturnValue(DISPATCH);
     useSelectorMock.mockImplementation((selector) => {
       if (selector === selectCitiesSuggestions) {
-        return mockSuggestions;
+        return SUGGESTIONS;
       }
 
       return null;
     });
   });
 
-  test("should return initial values and functions", () => {
+  test(`${RETURNS_INITIAL_VALUES}`, () => {
     const { result } = renderHook(() => useElastic(), {
       wrapper: ({ children }) => <Provider store={store}>{children}</Provider>,
     });
 
-    expect(result.current.inputValue).toBe("");
-    expect(result.current.showSuggestions).toBe(false);
-    expect(result.current.suggestedCities).toEqual(mockSuggestions.data);
+    expect(result.current.inputValue).toBe(INITIAL_VALUES.INPUT_VALUE);
+    expect(result.current.showSuggestions).toBe(INITIAL_VALUES.SHOW_SUGGESTIONS);
+    expect(result.current.suggestedCities).toEqual(SUGGESTIONS.data);
     expect(typeof result.current.handleInputChange).toBe("function");
     expect(typeof result.current.handleSuggestionClick).toBe("function");
     expect(typeof result.current.formatCityName).toBe("function");
@@ -61,19 +51,11 @@ describe("useElastic hook", () => {
     expect(typeof result.current.handleKeyDown).toBe("function");
   });
 
-  test("should format city name correctly", () => {
+  test(`${FORMATS_CITY_NAME}`, () => {
     const { result } = renderHook(() => useElastic(), {
       wrapper: ({ children }) => <Provider store={store}>{children}</Provider>,
     });
 
-    const city = {
-      name: "Moscow",
-      state: "Moscow",
-      country: "Russia",
-      lat: 55.7558,
-      lon: 37.6176,
-    };
-
-    expect(result.current.formatCityName(city)).toBe("Moscow, Moscow, Russia");
+    expect(result.current.formatCityName(CITY)).toBe(FORMATTED_CITY_NAME);
   });
 });
