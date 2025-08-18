@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import Banner from "@components/Banner";
-import ErrorBoundary from "@components/ErrorBoundary";
 import { ERROR_CONSTANTS } from "@constants/errors";
 import WeatherAppError from "@errors/weatherAppError";
 import { GlobalStyle, PageWrapper, Reset, WrapperContainer } from "@styles";
@@ -53,15 +52,13 @@ const WeatherPage = () => {
   }, [dispatch, CANNOT_GET_LOCATION, TITLE]);
 
   return (
-    <ErrorBoundary>
-      <PageWrapper>
-        <WrapperContainer>
-          <GlobalStyle />
-          <Reset />
-          <Banner />
-        </WrapperContainer>
-      </PageWrapper>
-    </ErrorBoundary>
+    <PageWrapper>
+      <WrapperContainer>
+        <GlobalStyle />
+        <Reset />
+        <Banner />
+      </WrapperContainer>
+    </PageWrapper>
   );
 };
 
