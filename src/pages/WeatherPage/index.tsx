@@ -1,6 +1,9 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import Banner from "@components/Banner";
+import ErrorBoundary from "@components/ErrorBoundary";
+import { ERROR_CONSTANTS } from "@constants/errors";
+import WeatherAppError from "@errors/weatherAppError";
 import { GlobalStyle, PageWrapper, Reset, WrapperContainer } from "@styles";
 import { getUserLocation } from "@utils/helpers";
 
@@ -10,6 +13,8 @@ import { fetchWeatherByCoordsRequest } from "@store/actions/currentWeather";
 import { fetchHourlyWeatherByCoordsRequest } from "@store/actions/weather";
 
 const WeatherPage = () => {
+  const { LOCATION_ERROR } = ERROR_CONSTANTS;
+  const { TITLE, CANNOT_GET_LOCATION } = LOCATION_ERROR;
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -42,17 +47,21 @@ const WeatherPage = () => {
       }
     }
 
-    handleLocation().catch((e) => console.error(e));
-  }, [dispatch]);
+    handleLocation().catch(() => {
+      throw new WeatherAppError(TITLE, CANNOT_GET_LOCATION);
+    });
+  }, [dispatch, CANNOT_GET_LOCATION, TITLE]);
 
   return (
-    <PageWrapper>
-      <WrapperContainer>
-        <GlobalStyle />
-        <Reset />
-        <Banner />
-      </WrapperContainer>
-    </PageWrapper>
+    <ErrorBoundary>
+      <PageWrapper>
+        <WrapperContainer>
+          <GlobalStyle />
+          <Reset />
+          <Banner />
+        </WrapperContainer>
+      </PageWrapper>
+    </ErrorBoundary>
   );
 };
 

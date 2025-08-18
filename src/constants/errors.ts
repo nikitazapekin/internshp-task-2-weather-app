@@ -17,4 +17,8 @@ export const ERROR_CONSTANTS = {
     INVALID_MONTH_INDEX_ERROR: "Invalid month index",
     INVALID_DATE_ERROR: "Failed to generate time or date",
   },
+  LOCATION_ERROR: {
+    TITLE: "Location error",
+    CANNOT_GET_LOCATION: "Cannot get location of your device",
+  },
 };

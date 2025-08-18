@@ -1,5 +1,4 @@
 import { useSelector } from "react-redux";
-import ErrorBoundary from "@components/ErrorBoundary";
 import GeolocationIsTurnOff from "@components/GeolocationIsTurnOff";
 import Spinner from "@components/Spinner";
 import Swiper from "@components/Swiper";
@@ -38,21 +37,19 @@ const BottomOfTheBanner = () => {
   }
 
   return (
-    <ErrorBoundary>
-      <Wrapper>
-        {isMobileView ? (
-          <>
-            <TodayWeather />
-            <WeatherCardGrid weatherElements={data} />
-          </>
-        ) : (
-          <>
-            <TodayWeather />
-            <Swiper weatherElements={data} />
-          </>
-        )}
-      </Wrapper>
-    </ErrorBoundary>
+    <Wrapper>
+      {isMobileView ? (
+        <>
+          <TodayWeather />
+          <WeatherCardGrid weatherElements={data} />
+        </>
+      ) : (
+        <>
+          <TodayWeather />
+          <Swiper weatherElements={data} />
+        </>
+      )}
+    </Wrapper>
   );
 };
 
