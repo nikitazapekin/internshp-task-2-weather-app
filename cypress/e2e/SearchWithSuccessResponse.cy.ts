@@ -87,4 +87,16 @@ describe("SearchCitiesComponent", () => {
 
     cy.get('[data-testid="suggestions-wrapper"]').should("exist");
   });
+
+  it("should display suggestions when typing", () => {
+    cy.get("input").type("Lon");
+    cy.get('[data-testid="suggestions-wrapper"]').should("be.visible");
+    cy.get("li").should("have.length.gt", 0);
+  });
+
+  it("should select a suggestion when clicked", () => {
+    cy.get("input").type("Lon");
+    cy.get("li").first().click();
+    cy.get("input").should("have.value", "London, England, GB");
+  });
 });
