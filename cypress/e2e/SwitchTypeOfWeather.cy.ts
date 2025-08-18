@@ -84,5 +84,10 @@ describe("SearchCitiesComponent", () => {
       expect(interception.request.url).to.include("cnt=8");
       expect(interception.response?.body).to.exist;
     });
+
+    cy.get("button").contains("Daily").click();
+    cy.wait("@getForecastWeather").then((interception) => {
+      expect(interception.request.url).not.to.include("cnt=8");
+    });
   });
 });
