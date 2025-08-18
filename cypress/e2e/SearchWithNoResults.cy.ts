@@ -2,11 +2,11 @@ describe("SearchCitiesComponent", () => {
   const mockResponse: unknown = [];
 
   beforeEach(() => {
-    const apiUrl =
-      "https://api.openweathermap.org/geo/1.0/direct?q=dddddddddddddddddddddddddddddddddd&limit=5&appid=cda8d711f59b4dd43f8ba261a26ec7a9&units=metric&lang=ru";
-    cy.intercept("GET", apiUrl, {
-      statusCode: 200,
-      body: mockResponse,
+    cy.intercept("GET", "**/geo/1.0/direct*", (req) => {
+      req.reply({
+        statusCode: 200,
+        body: mockResponse,
+      });
     }).as("getCities");
 
     cy.visit("http://localhost:4000");
