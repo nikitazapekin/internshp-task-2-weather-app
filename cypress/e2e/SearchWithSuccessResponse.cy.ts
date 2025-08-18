@@ -38,10 +38,7 @@ describe("SearchCitiesComponent", () => {
       grnd_level: 1014,
     },
   };
-  const mockLat = 51.5073219;
-  const mockLon = -0.1276474;
-  /*   https://api.openweathermap.org/data/2.5/weather?lat=51.5073219&lon=-0.1276474&appid=cda8d711f59b4dd43f8ba261a26ec7a9&units=metric&lang=ru
-   */
+
   beforeEach(() => {
     cy.intercept("GET", "**/geo/1.0/direct*", { statusCode: 200, body: mockResponse }).as(
       "getCities"
@@ -115,34 +112,15 @@ describe("SearchCitiesComponent", () => {
     cy.get('[data-testid="suggestions-wrapper"]').should("be.visible");
     cy.get("li").should("have.length.gt", 0);
   });
-  /* 
-  it("should receive weather after click on search button", () => {
-    cy.get("input").type("London");
-    cy.get('[data-testid="suggestions-wrapper"]').should("exist");
-    cy.get("button").should("contain", "Search").click()
-    
-    cy.wait("@getCurrentWeather").then((interception) => {
-      const response = interception.response?.body;
 
-
-   })
-  });
-  */
   it("should receive weather after click on search button", () => {
     cy.get("input").type("London");
     cy.get('[data-testid="suggestions-wrapper"]').should("exist");
 
     cy.get("button").contains("Search").click();
 
-    /*   cy.wait("@getGeocode").then((interception) => {
-    expect(interception.response?.body[0].lat).to.eq(mockLat);
-    expect(interception.response?.body[0].lon).to.eq(mockLon);
-  });
-    */
     cy.wait("@getCurrentWeather").then((interception) => {
       expect(interception.response?.body).to.exist;
     });
   });
-
-  //getCurrentWeather
 });
