@@ -1,5 +1,3 @@
-import { UI_CONSTANTS } from ".";
-
 export const EVENT_LIST_TEST = {
   DESCRIPTION: "EventList Component",
   IT: {
@@ -7,7 +5,7 @@ export const EVENT_LIST_TEST = {
     RENDERS_EVENTS_LIST: "renders list of events with dateTime",
   },
   CONSTANTS: {
-    EMPTY_LIST_TEXT: UI_CONSTANTS.emptyList,
+    EMPTY_LIST_TEXT: "No events at the moment",
   },
   MOCKS: {
     EVENTS: [
