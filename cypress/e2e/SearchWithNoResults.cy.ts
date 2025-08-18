@@ -15,7 +15,6 @@ describe("SearchCitiesComponent", () => {
   it("should validate API response structure matches mock data", () => {
     cy.get("input").type("dddddddddddddddddddddddddddddddddd");
     cy.get('[data-testid="spinner"]').should("exist");
-
     cy.wait("@getCities").then((interception) => {
       expect(interception.request.url).to.include("/geo/1.0/direct");
       expect(interception.request.method).to.equal("GET");
