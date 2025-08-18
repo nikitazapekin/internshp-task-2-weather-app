@@ -1,6 +1,7 @@
 import { CACHE_PREFIX, CACHE_TTL } from "@constants";
-import type { CachedResponse } from "@types/cachedResponse";
+import type { CachedResponse, WeatherCacheKey } from "@types/cachedResponse";
 
+import { isWeatherCacheKey } from "../isValidCacheKey.ts/isValidCacheKey";
 import { LocalstorageUtils } from "../localstorageUtility/localstorageUtility";
 
 export class CacheUtility {
@@ -9,6 +10,10 @@ export class CacheUtility {
   }
 
   static getFromCache(key: string): unknown | null {
+    if (!isWeatherCacheKey(key)) {
+      return;
+    }
+
     try {
       const cached = LocalstorageUtils.getItem(key);
 
@@ -28,7 +33,7 @@ export class CacheUtility {
       return null;
     }
   }
-  static setToCache(key: string, data: unknown): void {
+  static setToCache(key: WeatherCacheKey, data: unknown): void {
     try {
       const item: CachedResponse = {
         timestamp: Date.now(),

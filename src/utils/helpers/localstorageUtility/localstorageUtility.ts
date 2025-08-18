@@ -1,9 +1,8 @@
 import { STORAGE_KEYS } from "@constants/localstorageConstants";
-
-export type StorageKeysType = (typeof STORAGE_KEYS)[keyof typeof STORAGE_KEYS];
+import type { StorageKey } from "@types/storageKeys";
 
 class LocalstorageUtils {
-  static setItem<T>(key: string, value: T): void {
+  static setItem<T>(key: StorageKey, value: T): void {
     try {
       const jsonValue = JSON.stringify(value);
 
@@ -13,7 +12,7 @@ class LocalstorageUtils {
     }
   }
 
-  static getItem<T>(key: string): T | null {
+  static getItem<T>(key: StorageKey): T | null {
     try {
       const jsonValue = localStorage.getItem(key);
 
@@ -23,7 +22,7 @@ class LocalstorageUtils {
     }
   }
 
-  static removeItem(key: string): void {
+  static removeItem(key: StorageKey): void {
     try {
       localStorage.removeItem(key);
     } catch {
