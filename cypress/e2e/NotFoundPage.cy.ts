@@ -1,4 +1,4 @@
-describe("Weather page", () => {
+describe("Test 4", () => {
   const baseUrl = "http://localhost:4000";
 
   it("should navigate to notFoundPage for invalid URL", () => {

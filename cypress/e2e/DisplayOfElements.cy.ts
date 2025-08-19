@@ -1,4 +1,4 @@
-describe("Weather Page Component", () => {
+describe("Test 1", () => {
   beforeEach(() => {
     cy.visit("http://localhost:4000");
   });

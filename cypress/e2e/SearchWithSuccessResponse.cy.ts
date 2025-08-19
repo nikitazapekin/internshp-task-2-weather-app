@@ -1,4 +1,4 @@
-describe("SearchCitiesComponent", () => {
+describe("Test 2", () => {
   const mockResponse = [
     {
       name: "London",
@@ -103,6 +103,7 @@ describe("SearchCitiesComponent", () => {
 
   it("should select a suggestion when clicked", () => {
     cy.get("input").type("Lon");
+    cy.get('[data-testid="spinner"]').should("exist");
     cy.get("li").first().click();
     cy.get("input").should("have.value", "London, England, GB");
   });

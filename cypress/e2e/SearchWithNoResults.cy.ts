@@ -1,4 +1,4 @@
-describe("SearchCitiesComponent", () => {
+describe("Test 3", () => {
   const mockResponse: unknown = [];
 
   beforeEach(() => {

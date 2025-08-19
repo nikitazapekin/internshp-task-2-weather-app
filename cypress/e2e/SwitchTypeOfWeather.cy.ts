@@ -1,4 +1,4 @@
-describe("SearchCitiesComponent", () => {
+describe("Test 7", () => {
   const mockResponse = [
     {
       name: "London",

@@ -1,4 +1,4 @@
-describe("GeolocationComponent", () => {
+describe("Test 5", () => {
   beforeEach(() => {
     cy.visit("http://localhost:4000");
   });
