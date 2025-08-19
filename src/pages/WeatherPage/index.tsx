@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
+import Background from "@components/Background";
 import Banner from "@components/Banner";
 import { ERROR_CONSTANTS } from "@constants/errors";
 import WeatherAppError from "@errors/weatherAppError";
@@ -57,6 +58,7 @@ const WeatherPage = () => {
         <GlobalStyle />
         <Reset />
         <Banner />
+        <Background />
       </WrapperContainer>
     </PageWrapper>
   );

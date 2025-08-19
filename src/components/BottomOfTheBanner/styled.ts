@@ -2,14 +2,13 @@ import { media } from "@styles/breakpoints";
 import { flex } from "@styles/mixins";
 import styled from "styled-components";
 
-export const Wrapper = styled.section`
+export const Wrapper = styled.div`
   width: 100%;
-  background-color: ${({ theme }) => theme.colors.gray};
-  backdrop-filter: blur(15px);
   margin-top: ${({ theme }) => theme.spaces.xl}px;
   user-select: none;
   min-height: 216px;
   height: auto;
+  backdrop-filter: blur(15px);
   position: relative;
 
   ${flex("flex-start", "center", "row")};
@@ -22,4 +21,15 @@ export const Wrapper = styled.section`
 
     padding: ${({ theme }) => theme.spaces.md}px ${({ theme }) => theme.spaces.md}px;
   `}
+`;
+
+export const Background = styled.div`
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: ${({ theme }) => theme.colors.gray};
+  opacity: 0.2;
+  z-index: ${({ theme }) => theme.zIndexes.x};
 `;
