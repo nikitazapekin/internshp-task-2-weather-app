@@ -1,95 +1,72 @@
-describe("Test 7", () => {
-  const mockResponse = [
-    {
-      name: "Moscow",
-      country: "GB",
-      lat: 51.5074,
-      lon: -0.1278,
-      state: "England",
-      local_names: {
-        en: "London",
-        ru: "Лондон",
-      },
-    },
-  ];
+import {
+  MOCK_WEATHER_RESPONSE,
+  MOCK_CURRENT_WEATHER_RESPONSE,
+  MOCK_FORECAST_WEATHER,
+} from "@mocks/switchTypeOfWeatherMock";
 
-  const mockCurrentWeather = {
-    coord: {
-      lon: -0.1276,
-      lat: 51.5073,
-    },
-    weather: [
-      {
-        id: 804,
-        main: "Clouds",
-        description: "пасмурно",
-        icon: "04d",
-      },
-    ],
-    base: "stations",
-    main: {
-      temp: 20.03,
-      feels_like: 19.79,
-      temp_min: 19.47,
-      temp_max: 21.08,
-      pressure: 1018,
-      humidity: 65,
-      sea_level: 1018,
-      grnd_level: 1014,
-    },
-  };
+import { WEATHER_SWITCH_TEST } from "@constants/switchTypeOfWeatherConstants";
 
-  const mockForecastWeather = {};
+const { DESCRIPTION, IT, CONSTANTS } = WEATHER_SWITCH_TEST;
+const { DISPLAY_HOURLY_WEATHER } = IT;
+const { URLS, SELECTORS, HTTP, TEXT, QUERY_PARAMS, TIMEOUTS, ALIASES } = CONSTANTS;
 
+const { BASE_URL, GEO_DIRECT_API, CURRENT_WEATHER_API, FORECAST_WEATHER_API } = URLS;
+const { INPUT, BUTTON } = SELECTORS;
+const { STATUS_OK } = HTTP;
+const { SEARCH, HOURLY, DAILY, MOSCOW } = TEXT;
+const { COUNT, COUNT_VALUE } = QUERY_PARAMS;
+const { TIME } = TIMEOUTS;
+const { GET_CITIES, GET_CURRENT_WEATHER, GET_FORECAST_WEATHER } = ALIASES;
+describe(`${DESCRIPTION}`, () => {
   beforeEach(() => {
     cy.clearLocalStorage();
 
-    cy.intercept("GET", "**/geo/1.0/direct*", { statusCode: 200, body: mockResponse }).as(
-      "getCities"
+    cy.intercept("GET", GEO_DIRECT_API, { statusCode: STATUS_OK, body: MOCK_WEATHER_RESPONSE }).as(
+      GET_CITIES
     );
 
-    cy.intercept("GET", "**/data/2.5/weather*", (req) => {
+    cy.intercept("GET", CURRENT_WEATHER_API, (req) => {
       req.reply({
-        statusCode: 200,
-        body: mockCurrentWeather,
+        statusCode: STATUS_OK,
+        body: MOCK_CURRENT_WEATHER_RESPONSE,
       });
-    }).as("getCurrentWeather");
+    }).as(`${GET_CURRENT_WEATHER}`);
 
-    cy.intercept("GET", "**/data/2.5/forecast*", (req) => {
-      if (req.url.includes("cnt=8")) {
-        expect(req.url).to.include("cnt=8");
+    cy.intercept("GET", FORECAST_WEATHER_API, (req) => {
+      if (req.url.includes(`${COUNT}=${COUNT_VALUE}`)) {
+        expect(req.url).to.include(`${COUNT}=${COUNT_VALUE}`);
       }
       req.reply({
-        statusCode: 200,
-        body: mockForecastWeather,
+        statusCode: STATUS_OK,
+        body: MOCK_FORECAST_WEATHER,
       });
-    }).as("getForecastWeather");
+    }).as(`${GET_FORECAST_WEATHER}`);
 
-    cy.visit("http://localhost:4000");
+    cy.visit(BASE_URL);
   });
 
-  it("display hourly weather after search", () => {
-    cy.get("input", { timeout: 10000 }).type("Moscow");
-    cy.wait("@getCities");
+  it(`${DISPLAY_HOURLY_WEATHER}`, () => {
+    cy.get(INPUT, { timeout: TIME }).type(MOSCOW);
+    cy.wait(`@${GET_CITIES}`);
 
-    cy.get("button").contains("Search").click();
-    cy.wait("@getCurrentWeather").then((interception) => {
+    cy.get(BUTTON).contains(SEARCH).click();
+    cy.wait(`@${GET_CURRENT_WEATHER}`).then((interception) => {
       expect(interception.response?.body).to.exist;
     });
 
-    cy.wait("@getForecastWeather").then((interception) => {
-      expect(interception.request.url).not.to.include("cnt=8");
+    cy.wait(`@${GET_FORECAST_WEATHER}`).then((interception) => {
+      expect(interception.request.url).not.to.include(`${COUNT}=${COUNT_VALUE}`);
     });
 
-    cy.get("button").contains("Hourly").click();
-    cy.wait("@getForecastWeather").then((interception) => {
-      expect(interception.request.url).to.include("cnt=8");
+    cy.get(BUTTON).contains(HOURLY).click();
+    cy.wait(`@${GET_FORECAST_WEATHER}`).then((interception) => {
+      expect(interception.request.url).to.include(`${COUNT}=${COUNT_VALUE}`);
       expect(interception.response?.body).to.exist;
     });
     cy.clearLocalStorage();
-    cy.get("button").contains("Daily").click();
-    cy.wait("@getForecastWeather").then((interception) => {
-      expect(interception.request.url).not.to.include("cnt=8");
+    cy.get(BUTTON).contains(DAILY).click();
+    cy.wait(`@${GET_FORECAST_WEATHER}`).then((interception) => {
+      expect(interception.request.url).not.to.include(`${COUNT}=${COUNT_VALUE}`);
     });
   });
 });

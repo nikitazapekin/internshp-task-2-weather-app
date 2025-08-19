@@ -1,85 +1,48 @@
-describe("Test 5 - User approved geolocation", () => {
-  const mockCurrentWeather = {
-    coord: {
-      lon: 37.6173,
-      lat: 55.7558,
-    },
-    weather: [
-      {
-        id: 800,
-        main: "Clear",
-        description: "ясно",
-        icon: "01d",
-      },
-    ],
-    main: {
-      temp: 20.5,
-      feels_like: 20.2,
-      temp_min: 18.0,
-      temp_max: 22.0,
-      pressure: 1015,
-      humidity: 60,
-    },
-    name: "Moscow",
-  };
+import { GEOLOCATION_IS_TURN_ON_MOCK } from "@mocks/geolocationIsTurnOnMock";
+import { GEOLOCATION_IS_TURN_ON_TEST } from "@constants/geolocationIsTurnOnTestConstants";
+const { CURRENT_WEATHER_MOCK, FORECAST_WEATHER_MOCK, CITY_DATA_MOCK } = GEOLOCATION_IS_TURN_ON_MOCK;
 
-  const mockForecastWeather = {
-    list: [
-      {
-        dt: Date.now() / 1000,
-        main: { temp: 20.5 },
-        weather: [{ icon: "01d" }],
-      },
-    ],
-  };
+const { DESCRIPTION, CONSTANTS } = GEOLOCATION_IS_TURN_ON_TEST;
+const { URLS, ALIASES, GEOLOCATION, HTTP } = CONSTANTS;
 
-  const mockCityData = [
-    {
-      name: "Moscow",
-      country: "RU",
-      lat: 55.7558,
-      lon: 37.6173,
-      state: "Moscow",
-    },
-  ];
-
+describe(`${DESCRIPTION}`, () => {
   beforeEach(() => {
-    cy.intercept("GET", "**/data/2.5/weather*", (req) => {
-      expect(req.url).to.include("lat=55.7558");
-      expect(req.url).to.include("lon=37.6173");
+    cy.intercept("GET", URLS.WEATHER_API, (req) => {
+      expect(req.url).to.include(`lat=${GEOLOCATION.LATITUDE}`);
+      expect(req.url).to.include(`lon=${GEOLOCATION.LONGITUDE}`);
       req.reply({
-        statusCode: 200,
-        body: mockCurrentWeather,
+        statusCode: HTTP.STATUS_OK,
+        body: CURRENT_WEATHER_MOCK,
       });
-    }).as("getCurrentWeatherByCoords");
+    }).as(ALIASES.GET_CURRENT_WEATHER);
 
-    cy.intercept("GET", "**/data/2.5/forecast*", (req) => {
-      expect(req.url).to.include("lat=55.7558");
-      expect(req.url).to.include("lon=37.6173");
+    cy.intercept("GET", URLS.FORECAST_API, (req) => {
+      expect(req.url).to.include(`lat=${GEOLOCATION.LATITUDE}`);
+      expect(req.url).to.include(`lon=${GEOLOCATION.LONGITUDE}`);
       req.reply({
-        statusCode: 200,
-        body: mockForecastWeather,
+        statusCode: HTTP.STATUS_OK,
+        body: FORECAST_WEATHER_MOCK,
       });
-    }).as("getForecastWeatherByCoords");
+    }).as(ALIASES.GET_FORECAST_WEATHER);
 
-    cy.intercept("GET", "**/geo/1.0/reverse*", (req) => {
-      expect(req.url).to.include("lat=55.7558");
-      expect(req.url).to.include("lon=37.6173");
+    cy.intercept("GET", URLS.REVERSE_GEO_API, (req) => {
+      expect(req.url).to.include(`lat=${GEOLOCATION.LATITUDE}`);
+      expect(req.url).to.include(`lon=${GEOLOCATION.LONGITUDE}`);
       req.reply({
-        statusCode: 200,
-        body: mockCityData,
+        statusCode: HTTP.STATUS_OK,
+        body: CITY_DATA_MOCK,
       });
-    }).as("getCityByCoords");
+    }).as(ALIASES.GET_CITY_BY_COORDS);
 
-    cy.visit("http://localhost:4000", {
+    cy.visit(URLS.BASE_URL, {
       onBeforeLoad(win) {
         const mockGeolocation = {
           getCurrentPosition: (successCallback: PositionCallback) => {
             const position: GeolocationPosition = {
               coords: {
-                latitude: 55.7558,
-                longitude: 37.6173,
-                accuracy: 10,
+                latitude: GEOLOCATION.LATITUDE,
+                longitude: GEOLOCATION.LONGITUDE,
+                accuracy: GEOLOCATION.ACCURACY,
                 altitude: null,
                 altitudeAccuracy: null,
                 heading: null,
@@ -93,7 +56,7 @@ describe("Test 5 - User approved geolocation", () => {
                 throw new Error("Function not implemented.");
               },
             };
-            setTimeout(() => successCallback(position), 100);
+            setTimeout(() => successCallback(position), GEOLOCATION.DELAY);
           },
           clearWatch: () => {},
           watchPosition: () => {},

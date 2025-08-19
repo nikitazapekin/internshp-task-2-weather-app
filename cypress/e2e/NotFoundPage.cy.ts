@@ -1,13 +1,16 @@
-describe("Test 4", () => {
-  const baseUrl = "http://localhost:4000";
+import { NOT_FOUND_TEST } from "@constants/notFoundPageTestConstants";
+const { DESCRIPTION, IT, CONSTANTS } = NOT_FOUND_TEST;
+const { SHOULD_NAVIGATE_TO_NOT_FOUND } = IT;
+const { URLS, TEST_IDS, TEXT } = CONSTANTS;
 
-  it("should navigate to notFoundPage for invalid URL", () => {
-    cy.visit(`${baseUrl}/odvvwefmo`);
+describe(`${DESCRIPTION}`, () => {
+  it(`${SHOULD_NAVIGATE_TO_NOT_FOUND}`, () => {
+    cy.visit(`${URLS.BASE_URL}${URLS.INVALID_PATH}`);
 
-    cy.get('[data-testid="not-found-page"]').should("exist");
+    cy.get(`[data-testid="${TEST_IDS.NOT_FOUND_PAGE}"]`).should("exist");
 
-    cy.contains("Page Not Found").should("be.visible");
+    cy.contains(TEXT.PAGE_NOT_FOUND).should("be.visible");
 
-    cy.url().should("include", "/odvvwefmo");
+    cy.url().should("include", URLS.INVALID_PATH);
   });
 });

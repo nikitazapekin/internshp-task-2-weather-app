@@ -1,23 +1,18 @@
-describe("Calendar Events Test", () => {
-  const baseUrl = "http://localhost:4000";
+import { EVENTS_MOCK } from "@mocks";
+import { CALENDAR_EVENTS_TEST } from "@constants/calendarEventTest";
 
-  const mockEvents = [
-    {
-      id: "event1",
-      summary: "JS internships Daily Meeting",
-      start: { dateTime: "2025-08-20T10:00:00+03:00" },
-      end: { dateTime: "2025-08-20T10:30:00+03:00" },
-      description: "Test meeting description",
-    },
-  ];
+const { DESCRIPTION, IT, CONSTANTS } = CALENDAR_EVENTS_TEST;
+const { SHOULD_MANIPULATE_REDUX_AFTER_CLICK } = IT;
+const { URLS, TEST_IDS, SELECTORS, TEXT, ACTIONS, TIMEOUTS, LOG_MESSAGES } = CONSTANTS;
 
+describe(DESCRIPTION, () => {
   beforeEach(() => {
-    cy.intercept("https://www.googleapis.com/**", { forceNetworkError: true });
-    cy.intercept("https://accounts.google.com/**", { forceNetworkError: true });
+    cy.intercept(URLS.GOOGLE_APIS, { forceNetworkError: true });
+    cy.intercept(URLS.GOOGLE_ACCOUNTS, { forceNetworkError: true });
   });
 
-  it("should directly manipulate Redux store after click", () => {
-    cy.visit(baseUrl);
+  it(SHOULD_MANIPULATE_REDUX_AFTER_CLICK, () => {
+    cy.visit(URLS.BASE_URL);
 
     cy.window().then((win) => {
       const store =
@@ -28,32 +23,35 @@ describe("Calendar Events Test", () => {
         Object.keys(win).find((key) => key.includes("store") && (win as any)[key]);
 
       if (store && store.dispatch) {
-        cy.log("Found Redux store, will use it after click");
         (win as any).__testStore = store;
       }
     });
 
-    cy.get("button").contains("Sign in").click();
+    cy.get(SELECTORS.BUTTON).contains(TEXT.SIGN_IN).click();
+
     cy.window().then((win) => {
       const store = (win as any).__testStore;
       if (store) {
         store.dispatch({
-          type: "calendar/fetchSuccess",
-          payload: { events: mockEvents },
+          type: ACTIONS.CALENDAR_FETCH_SUCCESS,
+          payload: { events: EVENTS_MOCK },
         });
       } else {
-        cy.log("Store not found, using DOM manipulation");
-        cy.get('[data-testid="event-list"]').then(($el) => {
+        cy.log(LOG_MESSAGES.STORE_NOT_FOUND);
+        cy.get(`[data-testid="${TEST_IDS.EVENT_LIST}"]`).then(($el) => {
           $el.append(`
-            <div data-testid="event">
-              <time>10:00</time>
-              <div>JS internships Daily Meeting</div>
+            <div data-testid="${TEST_IDS.EVENT}">
+              <time>${TEXT.EVENT_TIME}</time>
+              <div>${TEXT.EVENT_TITLE}</div>
             </div>
           `);
         });
       }
     });
-    cy.get('[data-testid="event"]', { timeout: 5000 }).should("exist");
-    cy.contains("JS internships Daily Meeting").should("be.visible");
+
+    cy.get(`[data-testid="${TEST_IDS.EVENT}"]`, { timeout: TIMEOUTS.EVENT_VISIBILITY }).should(
+      "exist"
+    );
+    cy.contains(TEXT.EVENT_TITLE).should("be.visible");
   });
 });

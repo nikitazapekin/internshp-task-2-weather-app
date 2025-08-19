@@ -1,9 +1,14 @@
-describe("Test 5", () => {
+import { GEOLOCATION_DENIED_TEST } from "@constants/permissionDeniedTestConstants";
+const { DESCRIPTION, IT, CONSTANTS } = GEOLOCATION_DENIED_TEST;
+const { SHOULD_SHOW_GEOLOCATION_TURN_OFF } = IT;
+const { URLS, TEST_IDS, GEOLOCATION } = CONSTANTS;
+
+describe(DESCRIPTION, () => {
   beforeEach(() => {
-    cy.visit("http://localhost:4000");
+    cy.visit(URLS.BASE_URL);
   });
 
-  it("should show geolocation turn off message when permission is denied", () => {
+  it(SHOULD_SHOW_GEOLOCATION_TURN_OFF, () => {
     cy.window().then((win) => {
       const mockGeolocation = {
         getCurrentPosition: (
@@ -12,11 +17,11 @@ describe("Test 5", () => {
         ) => {
           if (errorCallback) {
             const error: GeolocationPositionError = {
-              code: 1,
-              message: "User denied Geolocation",
-              PERMISSION_DENIED: 1,
-              POSITION_UNAVAILABLE: 2,
-              TIMEOUT: 3,
+              code: GEOLOCATION.ERROR.CODE,
+              message: GEOLOCATION.ERROR.MESSAGE,
+              PERMISSION_DENIED: GEOLOCATION.ERROR.PERMISSION_DENIED as 1,
+              POSITION_UNAVAILABLE: GEOLOCATION.ERROR.POSITION_UNAVAILABLE as 2,
+              TIMEOUT: GEOLOCATION.ERROR.TIMEOUT as 3,
             };
             errorCallback(error);
           }
@@ -29,6 +34,6 @@ describe("Test 5", () => {
       });
     });
 
-    cy.get('[data-testid="geolocation-is-turn-off"]').should("exist");
+    cy.get(`[data-testid="${TEST_IDS.GEOLOCATION_TURN_OFF}"]`).should("exist");
   });
 });

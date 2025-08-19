@@ -1,29 +1,40 @@
-describe("Test 3", () => {
-  const mockResponse: unknown = [];
+import { SEARCH_WITH_NO_RESULTS } from "@constants/searchWithNoResults";
+import { EMPTY_ARRAY_MOCK } from "@mocks/emptyArrayMock";
+const { IT, CONSTANTS } = SEARCH_WITH_NO_RESULTS;
+const { SHOULD_VALIDATE_API_RESPONSE_STRUCTURE } = IT;
 
+const { URLS, TEST_IDS, SELECTORS, HTTP, TEXT, ALIASES } = CONSTANTS;
+const { GET_CITIES } = ALIASES;
+const { BASE_URL, GEO_DIRECT_API } = URLS;
+const { SPINNER, NO_SUGGESTIONS } = TEST_IDS;
+const { TEST_INPUT } = TEXT;
+const { STATUS_OK, METHOD_GET } = HTTP;
+const { INPUT } = SELECTORS;
+
+describe(`${SEARCH_WITH_NO_RESULTS}`, () => {
   beforeEach(() => {
-    cy.intercept("GET", "**/geo/1.0/direct*", (req) => {
+    cy.intercept("GET", GEO_DIRECT_API, (req) => {
       req.reply({
-        statusCode: 200,
-        body: mockResponse,
+        statusCode: STATUS_OK,
+        body: EMPTY_ARRAY_MOCK,
       });
-    }).as("getCities");
+    }).as(`${GET_CITIES}`);
 
-    cy.visit("http://localhost:4000");
+    cy.visit(BASE_URL);
   });
 
-  it("should validate API response structure matches mock data", () => {
-    cy.get("input").type("dddddddddddddddddddddddddddddddddd");
-    cy.get('[data-testid="spinner"]').should("exist");
-    cy.wait("@getCities").then((interception) => {
+  it(`${SHOULD_VALIDATE_API_RESPONSE_STRUCTURE}`, () => {
+    cy.get(INPUT).type(TEST_INPUT);
+    cy.get(`[data-testid=${SPINNER}]`).should("exist");
+    cy.wait(`@${GET_CITIES}`).then((interception) => {
       expect(interception.request.url).to.include("/geo/1.0/direct");
-      expect(interception.request.method).to.equal("GET");
+      expect(interception.request.method).to.equal(METHOD_GET);
 
       const response = interception.response?.body;
       expect(response).to.be.an("array");
     });
 
-    cy.get('[data-testid="spinner"]').should("not.exist");
-    cy.get('[data-testid="no-suggestions"]').should("exist");
+    cy.get(`[data-testid=${SPINNER}]`).should("not.exist");
+    cy.get(`[data-testid=${NO_SUGGESTIONS}]`).should("exist");
   });
 });

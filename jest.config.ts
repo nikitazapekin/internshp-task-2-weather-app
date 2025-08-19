@@ -30,6 +30,8 @@ const config: Config = {
     "^@styles$": "<rootDir>/src/styles/index",
     "^@types/(.*)$": "<rootDir>/src/types/$1",
     "^@errors/(.*)$": "<rootDir>/src/errors/$1",
+    "^@mocks/(.*)$": "<rootDir>/src/mocks/$1",
+    "^@mocks$": "<rootDir>/src/mocks/index",
   },
 
   collectCoverage: true,

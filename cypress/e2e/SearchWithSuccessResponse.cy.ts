@@ -1,90 +1,72 @@
-describe("Test 2", () => {
-  const mockResponse = [
-    {
-      name: "London",
-      country: "GB",
-      lat: 51.5074,
-      lon: -0.1278,
-      state: "England",
-      local_names: {
-        en: "London",
-        ru: "Лондон",
-      },
-    },
-  ];
+import { MOCK_CURRENT_WEATHER, MOCK_RESPONSE } from "@mocks/searchWithSuccessResponseMock";
+import { SEARCH_TEST_CONSTANTS } from "@constants/searchWithSuccessConstant";
 
-  const mockCurrentWeather = {
-    coord: {
-      lon: -0.1276,
-      lat: 51.5073,
-    },
-    weather: [
-      {
-        id: 804,
-        main: "Clouds",
-        description: "пасмурно",
-        icon: "04d",
-      },
-    ],
-    base: "stations",
-    main: {
-      temp: 20.03,
-      feels_like: 19.79,
-      temp_min: 19.47,
-      temp_max: 21.08,
-      pressure: 1018,
-      humidity: 65,
-      sea_level: 1018,
-      grnd_level: 1014,
-    },
-  };
+const { DESCRIPTION, IT, CONSTANTS } = SEARCH_TEST_CONSTANTS;
+const {
+  SHOULD_PASS_CORRECT_PARAMETERS,
+  SHOULD_DISPLAY_SUGGESTIONS,
+  SHOULD_RENDER_INPUT_AND_BUTTON,
+  SHOULD_VALIDATE_API_RESPONSE,
+  SHOULD_SELECT_SUGGESTION,
+  SHOULD_RECEIVE_WEATHER,
+} = IT;
+const { URLS, TEST_IDS, SELECTORS, HTTP, TEXT, QUERY_PARAMS, VALIDATION, ALIASES } = CONSTANTS;
+const { BASE_URL, GEO_DIRECT_API, WEATHER_API } = URLS;
+const { SUGGESTIONS_WRAPPER } = TEST_IDS;
+const { STATUS_OK } = HTTP;
+const { INPUT, BUTTON, LIST_ITEM } = SELECTORS;
+const { SEARCH, LONDON, LON, MINSK, SELECTED_SUGGESTION } = TEXT;
+const { QUERY, LIMIT, LIMIT_VALUE } = QUERY_PARAMS;
+const { TIMEOUT, LAT_RANGE, LON_RANGE, RESPONSE_KEYS } = VALIDATION;
+const { GET_CITIES, GET_CURRENT_WEATHER } = ALIASES;
 
+describe(`${DESCRIPTION}`, () => {
   beforeEach(() => {
-    cy.intercept("GET", "**/geo/1.0/direct*", { statusCode: 200, body: mockResponse }).as(
-      "getCities"
+    cy.intercept("GET", GEO_DIRECT_API, { statusCode: STATUS_OK, body: MOCK_RESPONSE }).as(
+      GET_CITIES
     );
 
-    cy.intercept("GET", "**/data/2.5/weather*", (req) => {
+    cy.intercept("GET", WEATHER_API, (req) => {
       req.reply({
-        statusCode: 200,
-        body: mockCurrentWeather,
+        statusCode: STATUS_OK,
+        body: MOCK_CURRENT_WEATHER,
       });
-    }).as("getCurrentWeather");
+    }).as(GET_CURRENT_WEATHER);
 
-    cy.visit("http://localhost:4000");
+    cy.visit(BASE_URL);
   });
 
-  it("should pass correct parameters to API", () => {
-    cy.get("input").type("London");
+  it(`${SHOULD_PASS_CORRECT_PARAMETERS}`, () => {
+    cy.get(INPUT).type(LONDON);
 
-    cy.wait("@getCities").then((interception) => {
-      expect(interception.request.url).to.include("q=London");
-      expect(interception.request.url).to.include("limit=5");
+    cy.wait(`@${GET_CITIES}`).then((interception) => {
+      expect(interception.request.url).to.include(`${QUERY}=${LONDON}`);
+      expect(interception.request.url).to.include(`${LIMIT}=${LIMIT_VALUE}`);
     });
   });
 
-  it("should display suggestions when typing", () => {
-    cy.get("input").type("Lon");
-    cy.get('[data-testid="suggestions-wrapper"]').should("be.visible");
-    cy.get("li").should("have.length.gt", 0);
+  it(`${SHOULD_DISPLAY_SUGGESTIONS}`, () => {
+    cy.get(INPUT).type(LON);
+    cy.get(`[data-testid=${SUGGESTIONS_WRAPPER}]`).should("be.visible");
+    cy.get(LIST_ITEM).should("have.length.gt", 0);
   });
 
-  it("should render search input and button", () => {
-    cy.get("input").should("exist");
-    cy.get("button").should("contain", "Search");
+  it(`${SHOULD_RENDER_INPUT_AND_BUTTON}`, () => {
+    cy.get(INPUT).should("exist");
+    cy.get(BUTTON).should("contain", SEARCH);
   });
 
-  it("should validate API response structure matches mock data", () => {
-    cy.get("input").type("Minsk");
+  it(`${SHOULD_VALIDATE_API_RESPONSE}`, () => {
+    cy.get(INPUT).type(MINSK);
 
-    cy.get('[data-testid="suggestions-wrapper"]').should("be.visible");
+    cy.get(`[data-testid=${SUGGESTIONS_WRAPPER}]`).should("be.visible");
 
-    cy.wait("@getCities", { timeout: 10000 }).then((interception) => {
+    cy.wait(`@${GET_CITIES}`, { timeout: TIMEOUT }).then((interception) => {
       expect(interception.response?.body).to.exist;
       const response = interception.response?.body;
 
       expect(response).to.be.an("array");
-      expect(response[0]).to.have.all.keys("name", "country", "lat", "lon", "state", "local_names");
+      expect(response[0]).to.have.all.keys(RESPONSE_KEYS);
 
       expect(response[0].name).to.be.a("string");
       expect(response[0].country).to.be.a("string");
@@ -97,33 +79,63 @@ describe("Test 2", () => {
         expect(response[0].local_names.en).to.be.a("string");
         expect(response[0].local_names.ru).to.be.a("string");
       }
-      expect(response[0].lat).to.be.within(-90, 90);
-      expect(response[0].lon).to.be.within(-180, 180);
+      expect(response[0].lat).to.be.within(LAT_RANGE.MIN, LAT_RANGE.MAX);
+      expect(response[0].lon).to.be.within(LON_RANGE.MIN, LON_RANGE.MAX);
     });
 
-    cy.get('[data-testid="suggestions-wrapper"]').should("exist");
+    cy.get(`[data-testid=${SUGGESTIONS_WRAPPER}]`).should("exist");
   });
 
-  it("should select a suggestion when clicked", () => {
-    cy.get("input").type("Lon");
-    cy.get("li").first().click();
-    cy.get("input").should("have.value", "London, England, GB");
+  it(`${SHOULD_SELECT_SUGGESTION}`, () => {
+    cy.get(INPUT).type(LON);
+    cy.get(LIST_ITEM).first().click();
+    cy.get(INPUT).should("have.value", `${SELECTED_SUGGESTION}`);
   });
 
-  it("should display suggestions when typing", () => {
-    cy.get("input").type("Lon");
-    cy.get('[data-testid="suggestions-wrapper"]').should("be.visible");
-    cy.get("li").should("have.length.gt", 0);
+  it(`${SHOULD_RECEIVE_WEATHER}`, () => {
+    cy.get(INPUT).type(LON);
+    cy.get(`[data-testid=${SUGGESTIONS_WRAPPER}]`).should("be.visible");
+    cy.get(LIST_ITEM).should("have.length.gt", 0);
   });
 
-  it("should receive weather after click on search button", () => {
-    cy.get("input").type("London");
-    cy.get('[data-testid="suggestions-wrapper"]').should("exist");
+  it(`${SHOULD_RECEIVE_WEATHER}`, () => {
+    cy.get(INPUT).type(LONDON);
+    cy.get(`[data-testid=${SUGGESTIONS_WRAPPER}]`).should("exist");
 
-    cy.get("button").contains("Search").click();
+    cy.get(BUTTON).contains(SEARCH).click();
 
-    cy.wait("@getCurrentWeather").then((interception) => {
+    cy.wait(`@${GET_CURRENT_WEATHER}`).then((interception) => {
       expect(interception.response?.body).to.exist;
     });
   });
 });
+
+/*
+ 
+    TEXT: {
+      SEARCH: "Search",
+      LONDON: "London",
+      LON: "Lon",
+      MINSK: "Minsk",
+      SELECTED_SUGGESTION: "London, England, GB",
+    },
+    QUERY_PARAMS: {
+      QUERY: "q",
+      LIMIT: "limit",
+      LIMIT_VALUE: "5",
+    },
+    VALIDATION: {
+      TIMEOUT: 10000,
+      LAT_RANGE: { MIN: -90, MAX: 90 },
+      LON_RANGE: { MIN: -180, MAX: 180 },
+      RESPONSE_KEYS: ["name", "country", "lat", "lon", "state", "local_names"],
+      LOCAL_NAMES_KEYS: ["en", "ru"],
+    },
+    ALIASES: {
+      GET_CITIES: "getCities",
+      GET_CURRENT_WEATHER: "getCurrentWeather",
+    },
+  },
+};
+
+*/
