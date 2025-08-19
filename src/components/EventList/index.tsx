@@ -37,8 +37,7 @@ const EventList = () => {
       {events.length === 0 && !loading && (
         <EmptyListText data-testid="no-events">{emptyList}</EmptyListText>
       )}
-      {loading && <Spinner position="relative" />}
-      {events.length === 0 && !loading && <EmptyListText>{emptyList}</EmptyListText>}
+
       {loading && <Spinner position={RELATIVE} />}
     </Wrapper>
   );
