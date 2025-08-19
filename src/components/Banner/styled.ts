@@ -6,6 +6,7 @@ export const Wrapper = styled.section`
   width: 100%;
   position: relative;
   margin: ${({ theme }) => theme.spaces.md}px 0;
+  backdrop-filter: blur(7px);
 
   ${media.sm`
     padding: ${({ theme }) => theme.spaces.xs}px;
