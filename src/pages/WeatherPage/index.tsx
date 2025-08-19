@@ -1,10 +1,8 @@
 import { useEffect } from "react";
-import { useState } from "react";
 import { useDispatch } from "react-redux";
 import Banner from "@components/Banner";
-import ErrorContent from "@components/ErrorContent";
-import Modal from "@components/Modal";
-import { UI_CONSTANTS } from "@constants/UI";
+import { ERROR_CONSTANTS } from "@constants/errors";
+import WeatherAppError from "@errors/weatherAppError";
 import { GlobalStyle, PageWrapper, Reset, WrapperContainer } from "@styles";
 import { getUserLocation } from "@utils/helpers";
 
@@ -14,6 +12,8 @@ import { fetchWeatherByCoordsRequest } from "@store/actions/currentWeather";
 import { fetchHourlyWeatherByCoordsRequest } from "@store/actions/weather";
 
 const WeatherPage = () => {
+  const { LOCATION_ERROR } = ERROR_CONSTANTS;
+  const { TITLE, CANNOT_GET_LOCATION } = LOCATION_ERROR;
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -46,14 +46,10 @@ const WeatherPage = () => {
       }
     }
 
-    handleLocation().catch((e) => console.error(e));
-  }, [dispatch]);
-
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const handleCloseModal = (): void => {
-    setIsModalOpen(false);
-  };
-  const { defaultErrorMessage, defaultErrorTitle } = UI_CONSTANTS.errorsModal;
+    handleLocation().catch(() => {
+      throw new WeatherAppError(TITLE, CANNOT_GET_LOCATION);
+    });
+  }, [dispatch, CANNOT_GET_LOCATION, TITLE]);
 
   return (
     <PageWrapper>
@@ -61,11 +57,6 @@ const WeatherPage = () => {
         <GlobalStyle />
         <Reset />
         <Banner />
-        {isModalOpen && (
-          <Modal onClose={handleCloseModal}>
-            <ErrorContent title={defaultErrorTitle} text={defaultErrorMessage} />
-          </Modal>
-        )}
       </WrapperContainer>
     </PageWrapper>
   );

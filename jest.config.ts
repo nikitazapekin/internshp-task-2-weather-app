@@ -30,6 +30,7 @@ const config: Config = {
     "^@styles/(.*)$": "<rootDir>/src/styles/$1",
     "^@styles$": "<rootDir>/src/styles/index",
     "^@types/(.*)$": "<rootDir>/src/types/$1",
+    "^@errors/(.*)$": "<rootDir>/src/errors/$1",
     "^@hooks/(.*)$": "<rootDir>/src/hooks/$1",
   },
 
