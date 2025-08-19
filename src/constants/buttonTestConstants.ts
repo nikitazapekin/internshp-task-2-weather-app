@@ -9,7 +9,7 @@ export const BUTTON_TEST = {
   CONSTANTS: {
     DEFAULT_PROPS: {
       text: "Test Button",
-      handler: jest.fn(),
+      handler: typeof jest !== "undefined" ? jest.fn() : () => {},
       isActive: false,
       isFullWidth: false,
     },
