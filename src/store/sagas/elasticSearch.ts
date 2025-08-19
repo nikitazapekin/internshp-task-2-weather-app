@@ -12,6 +12,8 @@ import {
 } from "@store/actions/elasticSearch";
 
 function* fetchCitiesSaga(action: ReturnType<typeof fetchCitiesRequest>): SagaIterator {
+  const { UNKNOWN_ERROR } = ERROR_CONSTANTS.API_ERRORS;
+
   try {
     const response: AxiosResponse<OpenWeatherGeoResponse> = yield call(
       WeatherService.getCitiesByQuery,
@@ -20,7 +22,7 @@ function* fetchCitiesSaga(action: ReturnType<typeof fetchCitiesRequest>): SagaIt
 
     yield put(fetchCitiesSuccess(response.data));
   } catch (error: unknown) {
-    const message = error instanceof Error ? error.message : ERROR_CONSTANTS.UNKNOWN_ERROR;
+    const message = error instanceof Error ? error.message : UNKNOWN_ERROR;
 
     yield put(fetchCitiesFailure(message));
   }

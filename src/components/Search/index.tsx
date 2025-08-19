@@ -1,8 +1,10 @@
 import { useSelector } from "react-redux";
 import Button from "@components/Button";
 import Spinner from "@components/Spinner";
+import { ERROR_CONSTANTS } from "@constants";
 import { UI_CONSTANTS } from "@constants/UI";
 import { UI_CONFIG } from "@constants/utilsConstants";
+import WeatherAppError from "@errors/weatherAppError";
 import { useElastic } from "@hooks/useElastic";
 import useMobile from "@hooks/useMobile";
 
@@ -19,9 +21,10 @@ import {
 } from "./styled";
 
 const SearchCitiesComponent = () => {
+  const { TITLE } = ERROR_CONSTANTS.API_ERRORS;
   const { searchButton } = UI_CONSTANTS.buttons;
   const { nothingFoundText } = UI_CONSTANTS;
-  const { loading } = useSelector(selectCitiesSuggestions);
+  const { loading, error } = useSelector(selectCitiesSuggestions);
   const {
     inputValue,
     showSuggestions,
@@ -40,6 +43,10 @@ const SearchCitiesComponent = () => {
     const showLoading = loading && !hasSuggestions;
     const showEmptyState = shouldShowSuggestions && !hasSuggestions && !loading;
     const showSuggestionsList = shouldShowSuggestions && hasSuggestions;
+
+    if (error) {
+      throw new WeatherAppError(TITLE, error);
+    }
 
     return (
       <SuggestionsContent height={shouldShowSuggestions} data-testid="suggestions-wrapper">

@@ -8,7 +8,7 @@ import useResize from "@hooks/useResize";
 
 import { selectCitiesSuggestions, selectCurrentCoordinats, selectWeather } from "@store/selectors";
 
-import { Wrapper } from "./styled";
+import { Background, Wrapper } from "./styled";
 
 const BottomOfTheBanner = () => {
   const { isMobileView } = useResize();
@@ -49,6 +49,7 @@ const BottomOfTheBanner = () => {
           <Swiper weatherElements={data} />
         </>
       )}
+      <Background />
     </Wrapper>
   );
 };
