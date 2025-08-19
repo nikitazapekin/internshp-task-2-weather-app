@@ -6,6 +6,7 @@ import * as TodayWeatherModule from "@components/TodayWeather";
 import * as WeatherCardGridModule from "@components/WeatherCardsList";
 import { BOTTOM_BANNER_TEST } from "@constants";
 import { theme } from "@constants/theme";
+import { BOTTOM_OF_THE_BANNER_MOCK } from "@mocks/index";
 import { render, screen } from "@testing-library/react";
 import configureMockStore from "redux-mock-store";
 import { ThemeProvider } from "styled-components";
@@ -14,7 +15,7 @@ import type { RootState } from "@store/index";
 
 import BottomOfTheBanner from ".";
 
-const { DESCRIPTION, IT, CONSTANTS, MOCKS, SELECTORS } = BOTTOM_BANNER_TEST;
+const { DESCRIPTION, IT, CONSTANTS, SELECTORS } = BOTTOM_BANNER_TEST;
 const {
   RENDERS_SPINNER,
   RETURNS_NULL,
@@ -23,7 +24,7 @@ const {
   RENDERS_MOBILE_VIEW,
 } = IT;
 const { TEST_IDS, TEXT } = CONSTANTS;
-const { WEATHER_DATA, RESIZE } = MOCKS;
+const { WEATHER_DATA, RESIZE } = BOTTOM_OF_THE_BANNER_MOCK;
 const { SELECT_CITIES_SUGGESTIONS, SELECT_CURRENT_COORDINATS, SELECT_WEATHER } = SELECTORS;
 
 jest.mock("@components/Spinner", () => ({

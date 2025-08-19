@@ -32,6 +32,8 @@ const config: Config = {
     "^@types/(.*)$": "<rootDir>/src/types/$1",
     "^@errors/(.*)$": "<rootDir>/src/errors/$1",
     "^@hooks/(.*)$": "<rootDir>/src/hooks/$1",
+    "^@mocks/(.*)$": "<rootDir>/src/mocks/$1",
+    "^@mocks$": "<rootDir>/src/mocks/index",
   },
 
   collectCoverage: true,

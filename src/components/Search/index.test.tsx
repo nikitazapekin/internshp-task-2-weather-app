@@ -1,14 +1,15 @@
 import { Provider } from "react-redux";
 import { ELASTIC_HOOK_TEST } from "@constants";
 import { useElastic } from "@hooks/useElastic";
+import { ELASTIC_SEARCH_MOCKS } from "@mocks/index";
 import { renderHook } from "@testing-library/react";
 
 import { store } from "@store/index";
 import { selectCitiesSuggestions } from "@store/selectors";
 
-const { DESCRIPTION, IT, MOCKS, INITIAL_VALUES } = ELASTIC_HOOK_TEST;
+const { DESCRIPTION, IT, INITIAL_VALUES } = ELASTIC_HOOK_TEST;
 const { RETURNS_INITIAL_VALUES, FORMATS_CITY_NAME } = IT;
-const { DISPATCH, SUGGESTIONS, CITY, FORMATTED_CITY_NAME } = MOCKS;
+const { DISPATCH, SUGGESTIONS, CITY, FORMATTED_CITY_NAME } = ELASTIC_SEARCH_MOCKS;
 
 jest.mock("react-redux", () => ({
   ...jest.requireActual("react-redux"),

@@ -1,7 +1,3 @@
-import type { FiveDayForecastResponse, ForecastItem } from "@types/apiTypes";
-
-import { TIMESTAMP_CONVERSION_FACTOR } from "./numericalConstants";
-
 export const WEATHER_TRANSFORM_TEST = {
   DESCRIPTION: "transformWeatherData",
   TEST_DATA: {
@@ -42,41 +38,6 @@ export const WEATHER_TRANSFORM_TEST = {
       sunset: 0,
     },
   },
-  MOCKS: {
-    forecastItem: (dt: number, temp: number, main: string, description: string): ForecastItem => ({
-      dt,
-      main: {
-        temp,
-        feels_like: 0,
-        temp_min: 0,
-        temp_max: 0,
-        pressure: 0,
-        humidity: 0,
-      },
-      weather: [
-        {
-          id: 0,
-          main,
-          description,
-          icon: "",
-        },
-      ],
-      clouds: { all: 0 },
-      wind: { speed: 0, deg: 0 },
-      visibility: 0,
-      pop: 0,
-      sys: { pod: "" },
-      dt_txt: new Date(dt * TIMESTAMP_CONVERSION_FACTOR).toISOString(),
-    }),
-    baseResponse: (list: ForecastItem[]): FiveDayForecastResponse => ({
-      cod: "200",
-      message: 0,
-      cnt: 0,
-      list,
-      city: WEATHER_TRANSFORM_TEST.TEST_DATA.EMPTY_CITY,
-    }),
-  },
-
   IT: {
     SHOULD_GROUP_FORECAST_BY_DAY: "should group forecasts by day and calculate average temperature",
     SHOULD_CALCULATE_WEATHER_CONDITIONS:

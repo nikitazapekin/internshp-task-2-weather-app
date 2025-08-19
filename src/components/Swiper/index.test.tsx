@@ -5,15 +5,16 @@ import SwiperItem from "@components/SwiperItem";
 import { SWIPER_TEST } from "@constants";
 import { theme } from "@constants/index";
 import { useSwiper } from "@hooks/useSwiper";
+import { SWIPER_MOCKS } from "@mocks/index";
 import { render, screen } from "@testing-library/react";
 import { ThemeProvider } from "styled-components";
 
 import { store } from "@store/index";
 
-const { DESCRIPTION, IT, CONSTANTS, MOCKS } = SWIPER_TEST;
+const { DESCRIPTION, IT, CONSTANTS } = SWIPER_TEST;
 const { RENDERS_SPINNER, RENDERS_SWIPER_ITEMS } = IT;
 const { TEST_IDS, TIME_OF_WEATHER } = CONSTANTS;
-const { WEATHER_DATA } = MOCKS;
+const { WEATHER_DATA } = SWIPER_MOCKS;
 
 jest.mock("@components/Spinner", () => ({
   __esModule: true,

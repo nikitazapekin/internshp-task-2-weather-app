@@ -1,10 +1,11 @@
 import { GEOLOCATION_TEST } from "@constants";
+import { GEOLOCATION_MOCK } from "@mocks";
 
 import { getUserLocation } from "./getGeolocation";
 
-const { DESCRIPTION, IT, MOCKS } = GEOLOCATION_TEST;
+const { DESCRIPTION, IT } = GEOLOCATION_TEST;
 const { RESOLVES_WITH_COORDS, REJECTS_PERMISSION_DENIED, REJECTS_POSITION_UNAVAILABLE } = IT;
-const { COORDS, ERRORS, ERROR_MESSAGES } = MOCKS;
+const { COORDS, ERRORS, ERROR_MESSAGES } = GEOLOCATION_MOCK;
 
 describe(`${DESCRIPTION}`, () => {
   beforeAll(() => {

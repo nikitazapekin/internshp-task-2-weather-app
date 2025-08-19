@@ -2,12 +2,13 @@ import { WEATHER_TRANSFORM_TEST } from "@constants";
 import { TIMESTAMP_CONVERSION_FACTOR } from "@constants/numericalConstants";
 import { days } from "@constants/time";
 import { expect } from "@jest/globals";
+import { TRANSFORM_WEATHER_MOCK } from "@mocks";
 
 import { transformWeatherData } from "./transformWeatherResponse";
 
-const { DESCRIPTION, TEST_DATA, MOCKS, IT } = WEATHER_TRANSFORM_TEST;
+const { DESCRIPTION, TEST_DATA, IT } = WEATHER_TRANSFORM_TEST;
 const { DATES, WEATHER_CONDITIONS, TEMPERATURES, PROBABILITIES } = TEST_DATA;
-const { forecastItem, baseResponse } = MOCKS;
+const { forecastItem, baseResponse } = TRANSFORM_WEATHER_MOCK;
 const {
   SHOULD_GROUP_FORECAST_BY_DAY,
   SHOULD_CALCULATE_WEATHER_CONDITIONS,

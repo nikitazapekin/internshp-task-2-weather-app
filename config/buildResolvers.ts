@@ -18,6 +18,7 @@ export function buildResolvers() {
       "@hooks": path.resolve(__dirname, "src/hooks"),
       "@types": path.resolve(__dirname, "src/types"),
       "@errors": path.resolve(__dirname, "src/errors"),
+      "@mocks": path.resolve(__dirname, "src/mocks"),
     },
   };
 }
