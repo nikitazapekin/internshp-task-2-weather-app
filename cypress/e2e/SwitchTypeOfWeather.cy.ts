@@ -1,7 +1,7 @@
 describe("Test 7", () => {
   const mockResponse = [
     {
-      name: "London",
+      name: "Moscow",
       country: "GB",
       lat: 51.5074,
       lon: -0.1278,
@@ -42,6 +42,8 @@ describe("Test 7", () => {
   const mockForecastWeather = {};
 
   beforeEach(() => {
+    cy.clearLocalStorage();
+
     cy.intercept("GET", "**/geo/1.0/direct*", { statusCode: 200, body: mockResponse }).as(
       "getCities"
     );
@@ -67,7 +69,7 @@ describe("Test 7", () => {
   });
 
   it("display hourly weather after search", () => {
-    cy.get("input").type("London");
+    cy.get("input", { timeout: 10000 }).type("Moscow");
     cy.wait("@getCities");
 
     cy.get("button").contains("Search").click();
@@ -84,7 +86,7 @@ describe("Test 7", () => {
       expect(interception.request.url).to.include("cnt=8");
       expect(interception.response?.body).to.exist;
     });
-
+    cy.clearLocalStorage();
     cy.get("button").contains("Daily").click();
     cy.wait("@getForecastWeather").then((interception) => {
       expect(interception.request.url).not.to.include("cnt=8");

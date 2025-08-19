@@ -75,9 +75,12 @@ describe("Test 2", () => {
   });
 
   it("should validate API response structure matches mock data", () => {
-    cy.get("input").type("London");
+    cy.get("input").type("Minsk");
 
-    cy.wait("@getCities").then((interception) => {
+    cy.get('[data-testid="suggestions-wrapper"]').should("be.visible");
+
+    cy.wait("@getCities", { timeout: 10000 }).then((interception) => {
+      expect(interception.response?.body).to.exist;
       const response = interception.response?.body;
 
       expect(response).to.be.an("array");
