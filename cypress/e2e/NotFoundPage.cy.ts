@@ -1,4 +1,4 @@
-import { NOT_FOUND_TEST } from "@constants/notFoundPageTestConstants";
+import { NOT_FOUND_TEST } from "@mocks";
 const { DESCRIPTION, IT, CONSTANTS } = NOT_FOUND_TEST;
 const { SHOULD_NAVIGATE_TO_NOT_FOUND } = IT;
 const { URLS, TEST_IDS, TEXT } = CONSTANTS;

@@ -1,5 +1,4 @@
-import { EVENTS_MOCK } from "@mocks";
-import { CALENDAR_EVENTS_TEST } from "@constants/calendarEventTest";
+import { EVENTS_MOCK, CALENDAR_EVENTS_TEST } from "@mocks";
 
 const { DESCRIPTION, IT, CONSTANTS } = CALENDAR_EVENTS_TEST;
 const { SHOULD_MANIPULATE_REDUX_AFTER_CLICK } = IT;

@@ -1,4 +1,4 @@
-import { GEOLOCATION_DENIED_TEST } from "@constants/permissionDeniedTestConstants";
+import { GEOLOCATION_DENIED_TEST } from "@mocks";
 const { DESCRIPTION, IT, CONSTANTS } = GEOLOCATION_DENIED_TEST;
 const { SHOULD_SHOW_GEOLOCATION_TURN_OFF } = IT;
 const { URLS, TEST_IDS, GEOLOCATION } = CONSTANTS;

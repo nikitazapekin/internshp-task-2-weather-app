@@ -1,4 +1,4 @@
-import { DISPLAY_OF_ELEMENTS_CONSTANTS } from "@constants/displayOfElementsTestConstants";
+import { DISPLAY_OF_ELEMENTS_CONSTANTS } from "@mocks";
 
 const { DESCRIPTION, IT, CONSTANTS } = DISPLAY_OF_ELEMENTS_CONSTANTS;
 const {

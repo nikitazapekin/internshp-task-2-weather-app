@@ -2,9 +2,8 @@ import {
   MOCK_WEATHER_RESPONSE,
   MOCK_CURRENT_WEATHER_RESPONSE,
   MOCK_FORECAST_WEATHER,
-} from "@mocks/switchTypeOfWeatherMock";
-
-import { WEATHER_SWITCH_TEST } from "@constants/switchTypeOfWeatherConstants";
+  WEATHER_SWITCH_TEST,
+} from "@mocks/switchTypeOfWeather";
 
 const { DESCRIPTION, IT, CONSTANTS } = WEATHER_SWITCH_TEST;
 const { DISPLAY_HOURLY_WEATHER } = IT;

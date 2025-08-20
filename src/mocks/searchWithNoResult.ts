@@ -29,3 +29,5 @@ export const SEARCH_WITH_NO_RESULTS = {
     },
   },
 };
+
+export const EMPTY_ARRAY_MOCK: unknown = [];

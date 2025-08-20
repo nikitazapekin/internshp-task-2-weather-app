@@ -1,13 +1,34 @@
 {
   "presets": [
-    "@babel/preset-env",
-    "istanbul",
-    "@babel/preset-typescript",
     [
       "@babel/preset-react",
       {
-        "runtime": "automatic"
+        "runtime": "automatic",
+        "development": false
       }
     ]
-  ]
+  ],
+  "env": {
+    "development": {
+      "presets": [
+        [
+          "@babel/preset-react",
+          {
+            "runtime": "automatic",
+            "development": true
+          }
+        ]
+      ]
+    },
+    "production": {
+      "plugins": [
+        [
+          "jsx-remove-data-test-id",
+          {
+            "attributes": ["data-testid", "data-test", "test-id"]
+          }
+        ]
+      ]
+    }
+  }
 }

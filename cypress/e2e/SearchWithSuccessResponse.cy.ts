@@ -1,5 +1,4 @@
-import { MOCK_CURRENT_WEATHER, MOCK_RESPONSE } from "@mocks/searchWithSuccessResponseMock";
-import { SEARCH_TEST_CONSTANTS } from "@constants/searchWithSuccessConstant";
+import { MOCK_CURRENT_WEATHER, MOCK_RESPONSE, SEARCH_TEST_CONSTANTS } from "@mocks";
 
 const { DESCRIPTION, IT, CONSTANTS } = SEARCH_TEST_CONSTANTS;
 const {

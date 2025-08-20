@@ -1,5 +1,5 @@
-import { SEARCH_WITH_NO_RESULTS } from "@constants/searchWithNoResults";
-import { EMPTY_ARRAY_MOCK } from "@mocks/emptyArrayMock";
+import { SEARCH_WITH_NO_RESULTS, EMPTY_ARRAY_MOCK } from "@mocks";
+
 const { IT, CONSTANTS } = SEARCH_WITH_NO_RESULTS;
 const { SHOULD_VALIDATE_API_RESPONSE_STRUCTURE } = IT;
 

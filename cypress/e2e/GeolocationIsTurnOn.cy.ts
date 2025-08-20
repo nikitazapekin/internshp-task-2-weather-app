@@ -1,5 +1,5 @@
-import { GEOLOCATION_IS_TURN_ON_MOCK } from "@mocks/geolocationIsTurnOnMock";
-import { GEOLOCATION_IS_TURN_ON_TEST } from "@constants/geolocationIsTurnOnTestConstants";
+import { GEOLOCATION_IS_TURN_ON_MOCK, GEOLOCATION_IS_TURN_ON_TEST } from "@mocks";
+
 const { CURRENT_WEATHER_MOCK, FORECAST_WEATHER_MOCK, CITY_DATA_MOCK } = GEOLOCATION_IS_TURN_ON_MOCK;
 
 const { DESCRIPTION, CONSTANTS } = GEOLOCATION_IS_TURN_ON_TEST;
