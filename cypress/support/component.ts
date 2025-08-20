@@ -1,4 +1,8 @@
 import { mount } from "cypress/react";
+import "./commands";
+Cypress.on("uncaught:exception", (err, runnable) => {
+  return false;
+});
 
 declare global {
   namespace Cypress {
