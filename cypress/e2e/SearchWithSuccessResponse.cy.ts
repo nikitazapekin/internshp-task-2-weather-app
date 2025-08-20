@@ -9,6 +9,7 @@ const {
   SHOULD_VALIDATE_API_RESPONSE,
   SHOULD_SELECT_SUGGESTION,
   SHOULD_RECEIVE_WEATHER,
+  SHOULD_RECEIVE_WEATHER_ON_SEARCH,
 } = IT;
 const { URLS, TEST_IDS, SELECTORS, HTTP, TEXT, QUERY_PARAMS, VALIDATION, ALIASES } = CONSTANTS;
 const { BASE_URL, GEO_DIRECT_API, WEATHER_API } = URLS;
@@ -98,7 +99,7 @@ describe(`${DESCRIPTION}`, () => {
     cy.get(LIST_ITEM).should("have.length.gt", 0);
   });
 
-  it(`${SHOULD_RECEIVE_WEATHER}`, () => {
+  it(`${SHOULD_RECEIVE_WEATHER_ON_SEARCH}`, () => {
     cy.get(INPUT).type(LONDON);
     cy.get(`[data-testid=${SUGGESTIONS_WRAPPER}]`).should("exist");
 
@@ -109,33 +110,3 @@ describe(`${DESCRIPTION}`, () => {
     });
   });
 });
-
-/*
- 
-    TEXT: {
-      SEARCH: "Search",
-      LONDON: "London",
-      LON: "Lon",
-      MINSK: "Minsk",
-      SELECTED_SUGGESTION: "London, England, GB",
-    },
-    QUERY_PARAMS: {
-      QUERY: "q",
-      LIMIT: "limit",
-      LIMIT_VALUE: "5",
-    },
-    VALIDATION: {
-      TIMEOUT: 10000,
-      LAT_RANGE: { MIN: -90, MAX: 90 },
-      LON_RANGE: { MIN: -180, MAX: 180 },
-      RESPONSE_KEYS: ["name", "country", "lat", "lon", "state", "local_names"],
-      LOCAL_NAMES_KEYS: ["en", "ru"],
-    },
-    ALIASES: {
-      GET_CITIES: "getCities",
-      GET_CURRENT_WEATHER: "getCurrentWeather",
-    },
-  },
-};
-
-*/

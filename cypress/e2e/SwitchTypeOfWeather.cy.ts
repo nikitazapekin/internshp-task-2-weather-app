@@ -17,6 +17,7 @@ const { SEARCH, HOURLY, DAILY, MOSCOW } = TEXT;
 const { COUNT, COUNT_VALUE } = QUERY_PARAMS;
 const { TIME } = TIMEOUTS;
 const { GET_CITIES, GET_CURRENT_WEATHER, GET_FORECAST_WEATHER } = ALIASES;
+
 describe(`${DESCRIPTION}`, () => {
   beforeEach(() => {
     cy.clearLocalStorage();
@@ -63,6 +64,7 @@ describe(`${DESCRIPTION}`, () => {
       expect(interception.request.url).to.include(`${COUNT}=${COUNT_VALUE}`);
       expect(interception.response?.body).to.exist;
     });
+
     cy.clearLocalStorage();
     cy.get(BUTTON).contains(DAILY).click();
     cy.wait(`@${GET_FORECAST_WEATHER}`).then((interception) => {

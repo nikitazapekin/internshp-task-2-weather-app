@@ -6,7 +6,8 @@ export const SEARCH_TEST_CONSTANTS = {
     SHOULD_RENDER_INPUT_AND_BUTTON: "should render search input and button",
     SHOULD_VALIDATE_API_RESPONSE: "should validate API response structure matches mock data",
     SHOULD_SELECT_SUGGESTION: "should select a suggestion when clicked",
-    SHOULD_RECEIVE_WEATHER: "should receive weather after click on search button",
+    SHOULD_RECEIVE_WEATHER: "should display weather data when suggestions are available",
+    SHOULD_RECEIVE_WEATHER_ON_SEARCH: "should receive weather after click on search button", //
   },
   CONSTANTS: {
     URLS: {
