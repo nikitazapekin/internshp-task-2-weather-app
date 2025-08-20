@@ -1,5 +1,5 @@
-import { NOT_FOUND_TEST } from "@constants";
 import { theme } from "@constants/theme";
+import { NOT_FOUND_TEST } from "@mocks";
 import { render, screen } from "@testing-library/react";
 import { ThemeProvider } from "styled-components";
 

@@ -1,8 +1,8 @@
 import { Provider } from "react-redux";
 import * as SpinnerModule from "@components/Spinner";
 import * as WeatherCardModule from "@components/WeatherCard";
-import { WEATHER_CARD_GRID_TEST } from "@constants";
 import { theme } from "@constants/theme";
+import { WEATHER_CARD_GRID_TEST } from "@mocks";
 import { render, screen } from "@testing-library/react";
 import type { FiveDayForecastResponse } from "@types/apiTypes";
 import configureMockStore from "redux-mock-store";

@@ -1,5 +1,3 @@
-import { UI_CONSTANTS } from "./UI";
-
 export const NOT_FOUND_TEST = {
   DESCRIPTION: "NotFound Component",
   IT: {
@@ -17,7 +15,7 @@ export const NOT_FOUND_TEST = {
       MOCK_SRC: "test-image.webp",
     },
     BUTTON: {
-      BACK_TO_HOMEPAGE: UI_CONSTANTS.buttons.backToHomepage,
+      BACK_TO_HOMEPAGE: "Home",
     },
   },
 };

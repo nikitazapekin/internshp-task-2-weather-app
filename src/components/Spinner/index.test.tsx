@@ -1,5 +1,5 @@
-import { SPINNER_TEST } from "@constants";
 import { theme } from "@constants/theme";
+import { SPINNER_TEST } from "@mocks";
 import { render, screen } from "@testing-library/react";
 import { ThemeProvider } from "styled-components";
 

@@ -1,7 +1,6 @@
 import { Provider } from "react-redux";
-import { ELASTIC_HOOK_TEST } from "@constants";
 import { useElastic } from "@hooks/useElastic";
-import { ELASTIC_SEARCH_MOCKS } from "@mocks/index";
+import { ELASTIC_HOOK_TEST, ELASTIC_SEARCH_MOCKS } from "@mocks";
 import { renderHook } from "@testing-library/react";
 
 import { store } from "@store/index";

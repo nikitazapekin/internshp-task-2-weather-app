@@ -1,5 +1,5 @@
-import { BUTTON_TEST } from "@constants";
 import { theme } from "@constants/theme";
+import { BUTTON_TEST } from "@mocks";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { ThemeProvider } from "styled-components";

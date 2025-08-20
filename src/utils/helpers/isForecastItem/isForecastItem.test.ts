@@ -1,5 +1,5 @@
-import { FORECAST_ITEM_TEST } from "@constants";
 import { expect } from "@jest/globals";
+import { FORECAST_ITEM_TEST } from "@mocks";
 
 import { isForecastItem } from "./isForecastItem";
 

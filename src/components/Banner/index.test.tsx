@@ -1,5 +1,5 @@
-import { BANNER_TEST } from "@constants/bannerTestConstants";
 import { theme } from "@constants/theme";
+import { BANNER_TEST } from "@mocks";
 import { render } from "@testing-library/react";
 import { ThemeProvider } from "styled-components";
 

@@ -1,5 +1,5 @@
-import { EXTRACT_TIME_TEST } from "@constants";
 import { expect } from "@jest/globals";
+import { EXTRACT_TIME_TEST } from "@mocks";
 
 import { extractTime } from "./extractHours";
 

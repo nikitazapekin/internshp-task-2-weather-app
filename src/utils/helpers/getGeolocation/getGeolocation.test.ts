@@ -1,5 +1,4 @@
-import { GEOLOCATION_TEST } from "@constants";
-import { GEOLOCATION_MOCK } from "@mocks";
+import { GEOLOCATION_MOCK, GEOLOCATION_TEST } from "@mocks";
 
 import { getUserLocation } from "./getGeolocation";
 

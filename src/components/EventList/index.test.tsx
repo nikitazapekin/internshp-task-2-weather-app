@@ -1,7 +1,6 @@
 import { Provider } from "react-redux";
-import { EVENT_LIST_TEST } from "@constants";
 import { theme } from "@constants/theme";
-import { EVENT_LIST_MOCKS } from "@mocks/index";
+import { EVENT_LIST_MOCKS, EVENT_LIST_TEST } from "@mocks/index";
 import { render, screen } from "@testing-library/react";
 import configureMockStore from "redux-mock-store";
 import { ThemeProvider } from "styled-components";

@@ -1,8 +1,7 @@
+import { TimeOfWeather } from "@constants/index";
 import type { FiveDayForecastResponse } from "@types/apiTypes";
 
 import type { RootState } from "@store/index";
-
-import { TimeOfWeather } from "./weatherConstants";
 
 export const WEATHER_CARD_GRID_TEST = {
   DESCRIPTION: "WeatherCardGrid Component",

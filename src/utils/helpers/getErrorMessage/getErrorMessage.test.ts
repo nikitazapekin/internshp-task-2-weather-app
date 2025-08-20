@@ -1,5 +1,5 @@
-import { ERROR_MESSAGE_TEST } from "@constants";
 import { expect } from "@jest/globals";
+import { ERROR_MESSAGE_TEST } from "@mocks";
 
 import { getErrorMessage } from "./getErrorMessage";
 

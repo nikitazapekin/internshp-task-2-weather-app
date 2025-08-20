@@ -1,5 +1,5 @@
-import { FORMAT_TIME_TEST } from "@constants";
 import { expect } from "@jest/globals";
+import { FORMAT_TIME_TEST } from "@mocks";
 
 import { formatTime } from "./formatTime";
 

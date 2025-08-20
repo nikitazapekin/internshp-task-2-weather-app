@@ -1,8 +1,6 @@
-import { WEATHER_TRANSFORM_TEST } from "@constants";
 import { TIMESTAMP_CONVERSION_FACTOR } from "@constants/numericalConstants";
-import { days } from "@constants/time";
 import { expect } from "@jest/globals";
-import { TRANSFORM_WEATHER_MOCK } from "@mocks";
+import { days, TRANSFORM_WEATHER_MOCK, WEATHER_TRANSFORM_TEST } from "@mocks";
 
 import { transformWeatherData } from "./transformWeatherResponse";
 

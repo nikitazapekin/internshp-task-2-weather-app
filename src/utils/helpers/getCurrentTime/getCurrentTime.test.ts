@@ -1,5 +1,5 @@
-import { days, GET_CURRENT_TIME_TEST, months } from "@constants";
 import { expect } from "@jest/globals";
+import { days, GET_CURRENT_TIME_TEST, months } from "@mocks";
 
 import { getCurrentTime } from "./getCurrentTime";
 

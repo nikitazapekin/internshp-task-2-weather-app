@@ -1,9 +1,5 @@
 import { createMemoryRouter, RouterProvider } from "react-router-dom";
-import {
-  APP_ROUTER_TEST,
-  MAIN_PAGE as MAIN_PAGE_CONST,
-  NOT_FOUND_PAGE as NOT_FOUND_PAGE_CONST,
-} from "@constants";
+import { APP_ROUTER_TEST } from "@mocks";
 import { render, screen } from "@testing-library/react";
 
 import AppRoutes from ".";
@@ -14,7 +10,7 @@ const {
   SHOULD_RENDER_NOT_FOUND_PAGE_FOR_UNKNOWN_ROUTE,
   SHOULD_RENDER_NOT_FOUND_PAGE_FOR_404,
 } = IT;
-const { MAIN_PAGE, TEST_ID, BUTTON_NAME, UNKNOWN_ROUTE } = CONSTANTS;
+const { MAIN_PAGE, TEST_ID, BUTTON_NAME, UNKNOWN_ROUTE, NOT_FOUND_PAGE } = CONSTANTS;
 
 jest.mock("@pages/WeatherPage", () => () => (
   <div data-testid={TEST_ID.WEATHER_PAGE}>
@@ -50,7 +46,7 @@ describe(`${DESCRIPTION}`, () => {
   };
 
   it(`${SHOULD_RENDER_WEATHER_PAGE}`, async () => {
-    setupRouterTest(MAIN_PAGE_CONST);
+    setupRouterTest(MAIN_PAGE);
     expect(await screen.findByTestId(TEST_ID.WEATHER_PAGE)).toBeInTheDocument();
     expect(screen.getByRole("button", { name: BUTTON_NAME })).toBeInTheDocument();
   });
@@ -61,7 +57,7 @@ describe(`${DESCRIPTION}`, () => {
   });
 
   it(`${SHOULD_RENDER_NOT_FOUND_PAGE_FOR_404}`, async () => {
-    setupRouterTest(NOT_FOUND_PAGE_CONST);
+    setupRouterTest(NOT_FOUND_PAGE);
     expect(await screen.findByTestId(TEST_ID.NOT_FOUND_PAGE)).toBeInTheDocument();
   });
 });
