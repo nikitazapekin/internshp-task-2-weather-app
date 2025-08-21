@@ -1,5 +1,5 @@
-import { NOT_FOUND_TEST } from "@mocks";
-const { DESCRIPTION, IT, CONSTANTS } = NOT_FOUND_TEST;
+import { NOT_FOUND_TEST_MOCK } from "@mocks";
+const { DESCRIPTION, IT, CONSTANTS } = NOT_FOUND_TEST_MOCK;
 const { SHOULD_NAVIGATE_TO_NOT_FOUND } = IT;
 const { URLS, TEST_IDS, TEXT } = CONSTANTS;
 
