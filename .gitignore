@@ -19,6 +19,7 @@ node_modules/
 
 coverage
 instrumented
+cypress.env.json
 
 /dist/
 /build/

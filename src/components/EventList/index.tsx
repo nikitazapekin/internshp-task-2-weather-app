@@ -20,7 +20,7 @@ const EventList = () => {
   }
 
   return (
-    <Wrapper>
+    <Wrapper data-testid="event-list">
       {events.map((item) => {
         const {
           start: { dateTime },
@@ -28,13 +28,16 @@ const EventList = () => {
         } = item;
 
         return (
-          <EventCard key={dateTime}>
+          <EventCard key={dateTime} data-testid="event">
             <Time>{formatTime(dateTime)}</Time>
             <Text>{summary}</Text>
           </EventCard>
         );
       })}
-      {events.length === 0 && !loading && <EmptyListText>{emptyList}</EmptyListText>}
+      {events.length === 0 && !loading && (
+        <EmptyListText data-testid="no-events">{emptyList}</EmptyListText>
+      )}
+
       {loading && <Spinner position={RELATIVE} />}
     </Wrapper>
   );

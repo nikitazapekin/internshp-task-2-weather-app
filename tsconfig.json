@@ -25,6 +25,8 @@
       "@types/*": ["src/types/*"],
       "@hooks/*": ["src/hooks/*"],
       "@errors/*": ["src/errors/*"],
+      "@mocks/*": ["./src/mocks/*"],
+      "@mocks": ["./src/mocks"]
     }
   },
   "ts-node": {
@@ -32,7 +34,6 @@
       "module": "CommonJS"
     }
   },
-  "types": ["node", "jest", "@testing-library/jest-dom"],
-
+  "types": ["node", "jest", "@testing-library/jest-dom", "cypress", "@cypress/react"],
   "exclude": ["./cypress.config.ts"]
 }

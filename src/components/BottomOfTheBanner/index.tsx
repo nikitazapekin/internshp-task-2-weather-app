@@ -37,7 +37,7 @@ const BottomOfTheBanner = () => {
   }
 
   return (
-    <Wrapper>
+    <Wrapper data-testid="bottomOfTheBanner">
       {isMobileView ? (
         <>
           <TodayWeather />
