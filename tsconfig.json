@@ -34,7 +34,6 @@
       "module": "CommonJS"
     }
   },
-  "types": ["node", "jest", "@testing-library/jest-dom"],
-
+  "types": ["node", "jest", "@testing-library/jest-dom", "cypress", "@cypress/react"],
   "exclude": ["./cypress.config.ts"]
 }

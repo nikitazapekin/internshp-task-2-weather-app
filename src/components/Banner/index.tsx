@@ -6,7 +6,7 @@ import { BannerBackground, TopAndCenterOfBannerWrapper, Wrapper } from "./styled
 
 const Banner = () => {
   return (
-    <Wrapper>
+    <Wrapper data-testid="banner">
       <TopAndCenterOfBannerWrapper>
         <TopOfTheBanner />
         <CenterOfBanner />

@@ -49,11 +49,11 @@ const SearchCitiesComponent = () => {
     }
 
     return (
-      <SuggestionsContent height={shouldShowSuggestions}>
+      <SuggestionsContent height={shouldShowSuggestions} data-testid="suggestions-wrapper">
         {showLoading && <Spinner position={RELATIVE} />}
 
         {showEmptyState && (
-          <NothingFoundText>
+          <NothingFoundText data-testid="no-suggestions">
             {nothingFoundText} {inputValue}
           </NothingFoundText>
         )}

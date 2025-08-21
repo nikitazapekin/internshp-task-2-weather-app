@@ -24,6 +24,7 @@ const Swiper = ({ weatherElements }: SwiperProps) => {
 
   return (
     <Wrapper
+      data-testid="swiper"
       ref={containerRef}
       onMouseDown={(e) => handleStart(e.clientX)}
       onMouseUp={(e) => handleEnd(e.clientX)}

@@ -27,7 +27,7 @@ const TodayWeather = () => {
   }
 
   return (
-    <Wrapper>
+    <Wrapper data-testid="todayWeather">
       <TodayWeatherIcon />
       <TodayWeatherText text={data.main.temp} city={city || ""} />
     </Wrapper>
