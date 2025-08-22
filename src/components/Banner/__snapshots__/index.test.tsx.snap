@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`Banner Component matches snapshot 1`] = `
+<section
+  class="sc-bRKDuR knghSf"
+  data-testid="banner"
+>
+  <div
+    class="sc-fhHczv jHoGvg"
+  >
+    <div
+      data-testid="top-banner"
+    />
+    <div
+      data-testid="center-banner"
+    />
+  </div>
+  <div
+    data-testid="bottom-banner"
+  />
+  <div
+    class="sc-hvigdm eKwmgj"
+  />
+</section>
+`;

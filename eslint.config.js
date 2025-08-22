@@ -20,6 +20,7 @@ export default [
       "**/cypress/**",
     ],
   },
+
   {
     plugins: {
       "simple-import-sort": simpleImportSort,
@@ -40,9 +41,11 @@ export default [
       "simple-import-sort/exports": "error",
     },
   },
+
   {
     languageOptions: {
       globals: {
+        ...globals.jest,
         ...globals.browser,
         ...globals.es2021,
         ...globals.node,
@@ -63,6 +66,7 @@ export default [
       ...jestPlugin.configs.recommended.rules,
     },
   },
+
   {
     files: ["**/*.ts", "**/*.tsx"],
     languageOptions: {

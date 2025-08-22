@@ -8,6 +8,7 @@ export * from "./localstorageConstants";
 export * from "./numericalConstants";
 export * from "./routes";
 export * from "./swiper";
+export * from "./swiperTestConstants";
 export * from "./theme";
 export * from "./time";
 export * from "./UI";

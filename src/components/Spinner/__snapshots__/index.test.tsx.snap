@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`Spinner Component matches snapshot 1`] = `
+<span
+  class="sc-bRKDuR bKSrkH"
+  data-testid="spinner"
+  position="absolute"
+/>
+`;

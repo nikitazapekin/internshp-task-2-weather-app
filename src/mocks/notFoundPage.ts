@@ -1,4 +1,4 @@
-export const NOT_FOUND_TEST = {
+export const NOT_FOUND_TEST_MOCK = {
   DESCRIPTION: "Test 4",
   IT: {
     SHOULD_NAVIGATE_TO_NOT_FOUND: "should navigate to notFoundPage for invalid URL",
